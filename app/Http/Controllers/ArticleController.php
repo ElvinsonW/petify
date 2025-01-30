@@ -42,9 +42,7 @@ class ArticleController extends Controller
             'content' => ['required']
         ]);
 
-        $validatedData['user_id'] = auth()->user()->id;
-        // $validatedData['user_id'] = 1;
-        
+        $validatedData['user_id'] = auth()->user()->id;    
 
         if($request->file('image')){
             $validatedData['image'] = $request->file('image')->store('articles-image','public');

@@ -68,10 +68,10 @@ class AdoptionPostController extends Controller
             'images.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
         ]);
 
-        $validatedData['user_id'] = auth()->user()->id;
+        $petValidatedData['user_id'] = auth()->user()->id;
         $pet = Pet::create($petValidatedData);
         
-        $postValidatedData['user_id'] = 1;
+        $postValidatedData['user_id'] = auth()->user()->id;
         $postValidatedData['vaccinated'] = $postValidatedData['vaccinated'] == "yes" ? 1 : 0;
         $postValidatedData['pet_id'] = $pet->id;
         
@@ -84,7 +84,7 @@ class AdoptionPostController extends Controller
         }
         
         AdoptionPost::create($postValidatedData);
-        return redirect('/adoptions');
+        return redirect('/adoptions')->with('createSuccess','Adoption Post Successfully');
     }
 
     /**
@@ -185,7 +185,7 @@ class AdoptionPostController extends Controller
         $adoptionPost->pet->update($petValidatedData);
         $adoptionPost->update($postValidatedData);
 
-        return redirect('adoptions');
+        return redirect('adoptions')->with('updateSuccess',"Update Successful!");
     }
 
     /**

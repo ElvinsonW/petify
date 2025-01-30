@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AdoptionPostController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\LifeAfterAdoptionController;
 use App\Http\Controllers\LikedAdoptionPostController;
 use App\Http\Middleware\CheckPostOwnership;
+use App\Models\LifeAfterAdoption;
 use App\Models\LikedAdoptionPost;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -24,8 +26,9 @@ Route::resource('/articles', ArticleController::class)->middleware('auth');
 Route::get('/adoptions/createSlug',[ArticleController::class,'createSlug'])->name('adoptions.createSlug');
 
 Route::resource('/adoptions', AdoptionPostController::class);
-    
 
+Route::resource('/life-after-adoption', LifeAfterAdoptionController::class);
+    
 Route::post('/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'like']);
 
 Route::delete('/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'unlike']);

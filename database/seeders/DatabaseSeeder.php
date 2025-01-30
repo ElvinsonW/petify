@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\AdoptionPost;
 use App\Models\Article;
 use App\Models\ArticleCategory;
+use App\Models\LifeAfterAdoption;
 use App\Models\Pet;
 use App\Models\PetCategory;
 use App\Models\User;
@@ -36,5 +37,13 @@ class DatabaseSeeder extends Seeder
             User::all(),
             Pet::all(),
         ])->create();
+
+        LifeAfterAdoption::factory(50)->recycle([
+            User::all(),
+            Pet::all(),
+        ])->create([
+            "image" => 'life-after-adoption-post-image/HjP8UMhtluhvbVIZyQUFG24j5BMoESodW1B9PGCr.png',
+            "description" => fake()->paragraph(),
+        ]);
     }
 }

@@ -48,14 +48,20 @@
     <!-- phone -->
     <div class="py-[2vw] mobileMenu hidden font-overpass font-medium text-lg tracking-wide-9 text-center">
         <ul class="text-red gap-4">
-            <li class="py-3 px-3 cursor-pointer hover:text-greentua hover:font-semibold"><a href="./adopt.html">Adoption</a></li>  
+            {{-- <li class="py-3 px-3 cursor-pointer hover:text-greentua hover:font-semibold"><a href="/adoptions">Adoption</a></li>  
             <li class="cursor-pointer m-7 p-2 font-semibold border-greentua text-greentua border rounded-3xl flex items-center justify-center shadow-md hover:shadow-lg transition-shadow duration-200">
-                <p class="text-center pt-1"><a href="./article.html">Article</a></p>
+                <p class="text-center pt-1"><a href="/articles">Article</a></p>
                 <img class="w-7 h-auto ml-2" src="{{ asset('images/Vector.svg') }}" alt="">
             </li>
-            <li class="py-3 px-3 cursor-pointer hover:text-greentua hover:font-semibold"><a href="/event.html">Event</a></li>
-            <li class="py-3 px-3 cursor-pointer hover:text-greentua hover:font-semibold"><a href="/find-my-pet.html">Find Your Pet</a></li>
-            <li class="py-3 px-3 cursor-pointer hover:text-greentua hover:font-semibold"><a href="/life-after-adoption.html">Life After Adoption</a></li>
+            <li class="py-3 px-3 cursor-pointer hover:text-greentua hover:font-semibold"><a href="/event">Event</a></li>
+            <li class="py-3 px-3 cursor-pointer hover:text-greentua hover:font-semibold"><a href="/find-my-pet">Find Your Pet</a></li>
+            <li class="py-3 px-3 cursor-pointer hover:text-greentua hover:font-semibold"><a href="/life-after-adoption">Life After Adoption</a></li> --}}
+            <x-nav-link href="/adoptions" :active="request()->is(['adoptions', 'adoptions/*'])" class="mb-2">Adoption</x-nav-link>  
+            <x-nav-link href="/articles" :active="request()->is(['articles','articles/*'])">Articles</x-nav-link>  
+            <x-nav-link href="/events" :active="request()->is(['events','events/*'])">Events</x-nav-link>  
+            <x-nav-link href="/find-your-pet" :active="request()->is(['find-your-pet','find-your-pet/*'])">Find Your Pet</x-nav-link>  
+            <x-nav-link href="/life-after-adoption" :active="request()->is(['life-after-adoption','life-after-adoption/*'])">Life After Adoption</x-nav-link>   
+
         </ul>
 
         <!-- a line before button -->
