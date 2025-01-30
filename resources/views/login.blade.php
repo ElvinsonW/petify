@@ -68,10 +68,10 @@
 
                 <!-- Form Section -->
                 <div class="w-full flex items-center justify-center" >
-                    <form class="font-open_sans font-semibold text-base tracking-wide text-black" action="/login" method="post" enctype="multipart/form-data">
+                    <form class="font-open_sans font-semibold text-base tracking-wide text-black w-[30vw]" action="/login" method="post" enctype="multipart/form-data">
                         @csrf
                         <!-- Username -->
-                        <div class="py-1 border border-black rounded-2xl flex items-center mb-8 w-[30vw]">
+                        <div class="py-1 border border-black rounded-2xl flex items-center mb-8">
                             <div class="w-20 text-black text-sm font-semibold pl-4">Username</div>
                             <div class="text-black text-xl font-normal font-open_sans tracking-wide ml-3">|</div>
                             <div class="flex-grow">
@@ -114,6 +114,12 @@
                                 </a>
                             </p>     
                         </div>
+
+                        @if (session('loginError'))    
+                            <div class="text-center p-4 mt-[-1vw] mb-[2vw] text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                {{ session('loginError') }}
+                            </div>
+                        @endif
 
                         <!-- Button -->
                         <div class="flex justify-center">

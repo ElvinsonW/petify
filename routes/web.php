@@ -35,7 +35,7 @@ Route::delete('/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'un
 
 Route::get('/login',function (){
     return view('login');
-})->middleware('guest');
+});
 
 Route::post('/login', function(Request $request) {
     $credentials = $request->validate([
@@ -45,10 +45,10 @@ Route::post('/login', function(Request $request) {
 
     if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
-        return redirect()->intended('');
+        return redirect()->intended('')->with('loginSuccess','You have successfully logged in.');
     }
 
-    return redirect('/')->with('loginFailed','The provided credentials do not match our records.');
+    return redirect('/login')->with('loginError','The provided password do not match our records.');
 })->name('login');
 
 Route::get('/register',function(){

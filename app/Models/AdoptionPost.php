@@ -30,18 +30,29 @@ class AdoptionPost extends Model
 
     public function scopeFilter(Builder $query, array $filters): void {
         $query->when(
-            $filters["category"] ?? false,
+            $filters['search'] ?? false,
+            fn($query, $search) =>
+            $query->where(function (Builder $query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')
+                      ->orWhere('description', 'like', '%' . $search . '%');
+            })
+        );        
+
+        $query->when(
+            $filters['category'] ?? false,
             fn($query, $category) =>
-            $query->whereHas('pet', fn (Builder $petQuery) => 
-                $petQuery->where('pet_category_id', $category)
-            )
-        );
+                $query->whereHas('pet', fn(Builder $petQuery) =>
+                    $petQuery->whereHas('pet_category', fn(Builder $categoryQuery) =>
+                        $categoryQuery->where('slug', $category)
+                    )
+                )
+        );        
 
         $query->when(
             $filters["like"] ?? false,
             fn($query, $like) =>
             $query->whereHas('likedAdoptionPost', fn(Builder $petQuery) => 
-                $petQuery->where('user_id',1)
+                $petQuery->where('user_id',auth()->user()->id)
             ) 
         );
     }

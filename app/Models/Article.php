@@ -25,6 +25,13 @@ class Article extends Model
 
     public function scopeFilter(Builder $query, array $filter): void {
         $query->when(
+            $filter['search'] ?? false,
+            fn($query, $search) =>
+            $query->where('title','like','%',$search,'%')
+                  ->orWhere('content','like','%',$search,'%')
+        );
+
+        $query->when(
             $filter['category'] ?? false,
             fn ($query, $category) =>
             $query->whereHas(

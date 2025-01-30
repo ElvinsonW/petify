@@ -7,3 +7,7 @@ h1{
     font-weight: bold;
 }
 
+.scrollbar-hidden {
+    -ms-overflow-style: none;  /* Untuk IE dan Edge */
+    scrollbar-width: none;  /* Untuk Firefox */
+}

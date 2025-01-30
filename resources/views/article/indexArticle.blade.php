@@ -9,16 +9,27 @@
             </div>
             
             <!-- Search Bar -->
-            <form class="max-w-md w-5/6 mt-4">
-                <label for="default-search" class="mb-2 text-sm text-gray-900 sr-only !font-overpass font-semibold">Search</label>
-                <div class="relative">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+            <div>
+                @php
+                    $params = ['category', 'liked'];
+                @endphp
+                @foreach($params as $param)
+                    @if(request($param))
+                        <input type="hidden" name="{{ $param }}" value="{{ request($param) }}">
+                    @endif
+                @endforeach
+
+                <form class="max-w-md w-5/6 mt-4">
+                    <label for="search" class="mb-2 text-sm text-gray-900 sr-only !font-overpass font-semibold">Search</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <input type="search" id="search" name="search" class="block w-full p-4 ps-10 !font-overpass font-semibold text-slate-400 border-1/2 border-gray-400 rounded-lg bg-white shadow-md" placeholder="Search Here..." required>
+                        <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-lg px-2 py-2 !font-overpass">Search</button>
                     </div>
-                    <input type="search" id="default-search" class="block w-full p-4 ps-10 !font-overpass font-semibold text-slate-400 border-1/2 border-gray-400 rounded-lg bg-white shadow-md" placeholder="Search Here..." required>
-                    <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-lg px-2 py-2 !font-overpass">Search</button>
-                </div>
-            </form>
+                </form>
+            </div>
             
             <!-- Button Article Post -->
             <a href="/articles/create">
@@ -39,6 +50,7 @@
                     @endphp
                     
                     @if ($isActive)
+                        
                         <button class="pl-2 pr-2 w-full transition duration-500 ease-in-out rounded-xl group bg-{{ $category->color }}">
                             <a href="/articles?category={{ $category->slug }}" class="w-full">
                                 <p class="text-xl font-semibold mt-2 text-left text-white">{{ $category->name }}</p>

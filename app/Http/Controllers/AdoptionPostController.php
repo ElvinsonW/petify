@@ -25,7 +25,7 @@ class AdoptionPostController extends Controller
      */
     public function index()
     {
-        $filters = ["category","like"];
+        $filters = ["category","like","search"];
         return view('adoption.indexAdoptionPost',[
             "adoptions" => AdoptionPost::filter(request($filters))->paginate(9)->withQueryString(),
             "categories" => PetCategory::all(),

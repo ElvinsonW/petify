@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="flex h-screen overflow-hidden bg-no-repeat bg-center bg-contain" style="background-image: url(../src/images/adopt-bg.png)">
+    <div class="flex bg-no-repeat bg-center bg-contain h-[100vw]" style="background-image: url(../src/images/adopt-bg.png)">
         <!-- Bagian Kiri (Sidebar) Start -->
         <div class="w-80 h-full shadow-lg pl-10 pt-10">
             <!-- Judul Page -->
@@ -156,18 +156,18 @@
         <!-- Bagian Kiri (Sidebar) End -->
         
         <!-- Bagian Tengah (Konten) Start -->
-        <div class="flex-1 overflow-y-auto">
+        <div class="flex-1 overflow-y-auto scrollbar-hidden">
             <!-- Life After Adoption Posts -->
             <div class="grid grid-cols-1 gap-16 mx-12 mt-10 mb-14 justify-items-center">
                 @foreach ($posts as $post)
                     <!-- Post 1 -->
-                    <div class="rounded-xl shadow-xl p-2 w-5/6 bg-white">
+                    <div class="rounded-xl shadow-xl p-4 w-5/6 bg-white">
                         <!-- Profile -->
-                        <div class="flex flex-row mb-4">
-                            <div class="w-16 h-16 bg-white border-4 border-greentua rounded-full flex justify-center items-center">
-                                <img src="../src/images/after login.svg" alt="Profile Owner" class="w-12">
+                        <div class="flex flex-row mb-4 items-center gap-3">
+                            <div class="w-12 h-12 bg-white border-4 border-greentua rounded-full flex justify-center items-center">
+                                <img src="{{ asset('images/after login.svg') }}" alt="Profile Owner" class="w-12">
                             </div>
-                            <p class="mx-3 mt-4 font-overpass font-semibold text-2xl">Dodoidoy</p>
+                            <p class="mt-1 font-overpass font-semibold text-2xl">Dodoidoy</p>
                         </div>
 
                         <!-- Gambar Pet -->
@@ -180,11 +180,11 @@
                             <p class="ml-2 text-lg font-open_sans font-semibold">15.183 Likes</p> 
                             
                             <!-- Days -->
-                            <p class="text-slate-400 ml-auto px-1 font-montserrat_alt font-semibold">2 days ago</p>
+                            <p class="text-slate-400 ml-auto px-1 font-montserrat_alt font-semibold">{{ $post->created_at->diffForHumans() }}</p>
                         </div>
 
                         <!-- Caption -->
-                        <p class="px-1 font-open_sans text-slate-600 my-4 text-justify pr-2">Bruno cruising in style—because every ride deserves a touch of class. 🚘🐾 Fashion icon and certified good boy. 💼🕶️ #BrunoOnTheGo</p>
+                        <p class="px-1 font-open_sans text-slate-600 my-4 text-justify pr-2">{{ $post->description }}</p>
                     </div>
                 @endforeach
             </div>
