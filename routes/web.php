@@ -5,6 +5,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\LifeAfterAdoptionController;
 use App\Http\Controllers\LikedAdoptionPostController;
 use App\Http\Controllers\LikedLifeAfterAdoptionController;
+use App\Http\Controllers\EventController;  // Import EventController
 use App\Http\Middleware\CheckPostOwnership;
 use App\Models\LifeAfterAdoption;
 use App\Models\LikedAdoptionPost;
@@ -79,4 +80,9 @@ Route::post('/register', function(Request $request){
     
     return redirect('/login')->with('registerSuccess','Registration Success, Please Login!');
 })->middleware('guest');
+
+
+use App\Http\Controllers\EventController;
+
+Route::get('/events', [EventController::class, 'index'])->middleware('auth')->name('events.index');
 
