@@ -1,11 +1,13 @@
+<?php
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Routing\Controller as BaseController;
 
-class EventController extends Controller
+class Controller extends BaseController
 {
-    public function index()
-    {
-        return view('event');  // Pastikan view event.blade.php ada
-    }
+    use AuthorizesRequests, DispatchesJobs;
 }
+
