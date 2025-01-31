@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('liked_adoption_posts', function (Blueprint $table) {
+        Schema::create('liked_life_after_adoptions', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('adoption_post_id')->constrained('adoption_posts')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('laa_post_id')->constrained('life_after_adoptions')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
-
-            $table->primary(['user_id','adoption_post_id']);
+            $table->primary(['user_id', 'laa_post_id']); 
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('liked_adoption_posts');
+        Schema::dropIfExists('liked_life_after_adoptions');
     }
 };

@@ -159,8 +159,17 @@
         <div class="flex-1 overflow-y-auto scrollbar-hidden">
             <!-- Life After Adoption Posts -->
             <div class="grid grid-cols-1 gap-16 mx-12 mt-10 mb-14 justify-items-center">
+                <!-- Post -->
+
+                @php
+                    $likedPostIds = $likedPosts->pluck('laa_post_id')->toArray();
+                @endphp
+
                 @foreach ($posts as $post)
-                    <!-- Post 1 -->
+                    @php
+                        $isLiked = in_array($post->id, $likedPostIds); 
+                    @endphp
+                
                     <div class="rounded-xl shadow-xl p-4 w-5/6 bg-white">
                         <!-- Profile -->
                         <div class="flex flex-row mb-4 items-center gap-3">
@@ -176,8 +185,10 @@
                         <!-- Like & Days -->
                         <div class="flex flex-row mt-8 mb-4 pl-1">
                             <!-- Like -->
-                            <i class="fa-solid fa-heart fa-2x likeIcon" style="color: #a6a6a6; cursor: pointer;"></i>  
-                            <p class="ml-2 text-lg font-open_sans font-semibold">15.183 Likes</p> 
+                            <i class="fa-solid fa-heart fa-2x like-icon {{ $isLiked ? 'filled-heart' : '' }}" data-id="{{ $post->id }}" style="color: #a6a6a6; cursor: pointer;"></i>  
+                            
+                            <!-- Like Count -->
+                            <p class="ml-2 text-lg font-open_sans font-semibold like-count" data-post-id="{{ $post->id }}">{{ $post->like_count }} likes</p> 
                             
                             <!-- Days -->
                             <p class="text-slate-400 ml-auto px-1 font-montserrat_alt font-semibold">{{ $post->created_at->diffForHumans() }}</p>
@@ -199,7 +210,7 @@
                 <i class="fa-solid fa-paw fa-5x text-center w-full my-5" style="color: #166b68;"></i>
                 <p class="text-sm">Have a pet that's up for adoption? Click the button below to create an adoption post!</p>
 
-                <a href="../pages/adopt-post.html">
+                <a href="/adoptions/create">
                     <button class="mt-4 w-full text-white bg-orenmuda rounded-2xl shadow-lg transform hover:scale-95 hover:bg-orange-400 transition duration-300 ease-in-out text-lg font-semibold px-3 py-2.5 font-overpass"><i class="fa-solid fa-plus mr-2" style="color: #ffffff;"></i>Adoption Post</button>
                 </a>
             </div>
@@ -272,43 +283,31 @@
 
 </x-layout>
     <script>
-        const buttonToogle = document.querySelector('.buttonToogle');
-        const mobileMenu = document.querySelector('.mobileMenu');
-
-        buttonToogle.addEventListener('click', function () {
-            mobileMenu.classList.toggle('hidden');
-            
-            const icon = buttonToogle.querySelector('.icon');
-            
-            // Toggle antara hamburger dan X
-            if (icon.classList.contains('icon-hamburger')) {
-                // ganti path
-                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
-                icon.classList.remove('icon-hamburger');
-                icon.classList.add('icon-close');
-                icon.style.transform = 'rotate(90deg)'; // rotation effect
-            } else {
-                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
-                icon.classList.remove('icon-close');
-                icon.classList.add('icon-hamburger');
-                icon.style.transform = 'rotate(0deg)'; // Reset rotation
-            }
-        });
-        
         // Script untuk Fitur Like
-        const likeIcon = document.querySelectorAll('.likeIcon');
+        const likeIcons = document.querySelectorAll('.like-icon'); 
+        
+        likeIcons.forEach(likeIcon => {
+            likeIcon.addEventListener('click', function () {
+                const laaId = likeIcon.getAttribute('data-id'); 
+                const url = `/life-after-adoption/${laaId}/like`;
+                const method = likeIcon.classList.contains('filled-heart') ? 'DELETE' : 'POST';
 
-        // Tambahkan event listener saat diklik
-        likeIcon.forEach((icon) => {
-            icon.addEventListener('click', function () {
-             if (!this.classList.contains('filled-heart')) {
-                // Tambahkan kelas untuk efek fill
-                this.classList.add('filled-heart');
-            } else {
-                // Hapus kelas jika sudah terisi
-                this.classList.remove('filled-heart');
-            }
-           });
+                fetch(url, {
+                    method: method,
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                        'Content-Type': 'application/json',
+                    },
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            likeIcon.classList.toggle('filled-heart'); 
+                        } else {
+                            console.error('Error: Unable to process the request');
+                        }
+                    })
+                    .catch(error => console.error('Network error:', error));
+            });
         });
 
         // Script untuk Add Post
@@ -333,6 +332,29 @@
                 addPostModal.classList.add('hidden'); // Sembunyikan modal
             }
         });
+
+    setInterval(() => {
+        // Select all the posts on the page
+        const posts = document.querySelectorAll('.like-count');
+
+        posts.forEach(post => {
+            const postId = post.getAttribute('data-post-id'); // Get the post ID from data-post-id attribute
+            
+            // Make a request to fetch the like count for this post
+            fetch(`/life-after-adoption/${postId}/like-count`)
+                .then(response => response.json())
+                .then(data => {
+                    // Update the like count in the DOM
+                    const likeCountElement = document.querySelector(`[data-post-id="${postId}"]`);
+                    if (likeCountElement) {
+                        likeCountElement.textContent = `${data.like_count} likes`;  
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    }, 1000);  // Update every 5 seconds
+
+
     </script>   
 </body>
 </html>

@@ -20,7 +20,10 @@ class LikedAdoptionPostController extends Controller
         $user_id = auth()->user()->id;
         // $user_id = 1;
         
-        if (LikedAdoptionPost::where('user_id', $user_id)->where('adoption_post_id', $adoptionPost->id)->exists()) {
+        if ($isLike = LikedAdoptionPost::where('user_id', auth()->user()->id)
+                      ->where('adoption_post_id', $adoptionPost->id)
+                      ->exists()
+        ){
             return response()->json(['message' => 'Already liked'], 200);
         }
 
@@ -28,13 +31,13 @@ class LikedAdoptionPostController extends Controller
             "user_id" => $user_id,
             "adoption_post_id" => $adoptionPost->id
         ]);
-
-        return response()->json(['message' => 'Post liked successfully'], 200);
     }
 
     public function unlike(string $slug)
     {
         $adoptionPost = AdoptionPost::where('slug',$slug)->firstOrFail();
-        LikedAdoptionPost::destroy($adoptionPost->id);
+        LikedAdoptionPost::where('user_id', auth()->user()->id)
+            ->where('adoption_post_id', $adoptionPost->id)
+            ->delete();
     }
 }

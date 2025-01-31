@@ -57,7 +57,7 @@
     
                     <!-- Like -->
                     <div class="mt-2 ml-5">
-                        <i class="fa-solid fa-heart fa-3x" id="likeIcon" style="color: #a6a6a6; cursor: pointer;"></i>
+                        <i class="fa-solid fa-heart fa-3x {{ $isLiked ? 'filled-heart' : '' }}" id="likeIcon" style="color: #a6a6a6; cursor: pointer;"></i>
                     </div>
                 </div>
                 
@@ -202,7 +202,6 @@
     // Script untuk Fitur Like
     const likeIcon = document.getElementById('likeIcon');
     const adoptionSlug = "{{ $adoption->slug }}"
-
 
     // Tambahkan event listener saat diklik
     likeIcon.addEventListener('click', function () {

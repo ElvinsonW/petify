@@ -117,20 +117,21 @@
                         $isActive = request()->query('category') == $category->slug;
                     @endphp
                     
-                    <form>
-                        <input type="hidden" name="{{ $category }}" value="{{ $category }}">
-                        @if ($isActive)
-                            <button type="submit" class="pl-2 pr-2 w-full rounded-xl group bg-{{ $category->color }}">
-                                    <p class="text-xl font-semibold mt-2 text-left text-white">{{ $category->name }}</p>
-                                    <hr class="border-1/2 my-2 w-full border-white">
-                            </button>
-                        @else
-                            <button type="submit" class="pl-2 pr-2 w-full transition duration-500 ease-in-out rounded-xl group hover:bg-{{ $category->color }}">
-                                    <p class="text-xl font-semibold mt-2 text-left group-hover:text-white transition-colors duration-500 ease-in-out">{{ $category->name }}</p>
-                                    <hr class="border-{{ $category->color }} border-1/2 w-3/6 my-2 group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
-                            </button>
-                        @endif
-                    </form>
+                    @if ($isActive)
+                        <button class="pl-2 pr-2 w-full rounded-xl group bg-{{ $category->color }}">
+                            <a href="/adoptions?category={{ $category->slug }}" class="w-full">
+                                <p class="text-xl font-semibold mt-2 text-left text-white">{{ $category->name }}</p>
+                                <hr class="border-1/2 my-2 w-full border-white">
+                            </a>
+                        </button>
+                    @else
+                        <button class="pl-2 pr-2 w-full transition duration-500 ease-in-out rounded-xl group hover:bg-{{ $category->color }}">
+                            <a href="/adoptions?category={{ $category->slug }}" class="w-full">
+                                <p class="text-xl font-semibold mt-2 text-left group-hover:text-white transition-colors duration-500 ease-in-out">{{ $category->name }}</p>
+                                <hr class="border-{{ $category->color }} border-1/2 w-3/6 my-2 group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
+                            </a>
+                        </button>
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -177,7 +178,7 @@
                                 <div class="w-12 h-12 bg-white border-4 border-greentua rounded-full flex justify-center items-center">
                                     <img src="{{ asset('images/after login.svg') }}" alt="Profile Owner">
                                 </div>
-                                <p class="mx-3 mt-2 font-overpass font-semibold text-xl">{{ $adoption->user->name }}</p>
+                                <p class="mx-2 mt-2 font-overpass font-semibold text-xl">{{ $adoption->user->username }}</p>
                                 <p class="mt-2 ml-auto px-2 font-montserrat_alt font-semibold"><i class="fa-solid fa-location-dot fa-xs" style="color: #cc4b4b;"></i> Tangerang</p>
                             </div>
                         </div>

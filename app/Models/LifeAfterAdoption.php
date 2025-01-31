@@ -19,4 +19,8 @@ class LifeAfterAdoption extends Model
     public function pet(): BelongsTo {
         return $this->belongsTo(Pet::class,"pet_id");
     }
+
+    public function liked_life_after_adoption(): HasMany {
+        return $this->hasMany(LikedLifeAfterAdoption::class,'laa_post_id');
+    }
 }

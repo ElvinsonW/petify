@@ -11,7 +11,6 @@
     <!-- Favicon Petify -->
     <link rel="icon" href="{{ asset('images/favicon.svg') }}" type="image/svg">
     
-
     <!-- Font Overpass, Montserrat Alternates, & Open Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

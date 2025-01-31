@@ -4,9 +4,11 @@ use App\Http\Controllers\AdoptionPostController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\LifeAfterAdoptionController;
 use App\Http\Controllers\LikedAdoptionPostController;
+use App\Http\Controllers\LikedLifeAfterAdoptionController;
 use App\Http\Middleware\CheckPostOwnership;
 use App\Models\LifeAfterAdoption;
 use App\Models\LikedAdoptionPost;
+use App\Models\LikedLifeAfterAdoption;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,9 +31,15 @@ Route::resource('/adoptions', AdoptionPostController::class);
 
 Route::resource('/life-after-adoption', LifeAfterAdoptionController::class);
     
-Route::post('/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'like']);
+Route::post('/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'like'])->middleware('auth');
 
-Route::delete('/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'unlike']);
+Route::delete('/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'unlike'])->middleware('auth');
+
+Route::post('/life-after-adoption/{post_id}/like',[LikedLifeAfterAdoptionController::class,'like'])->middleware('auth');
+
+Route::delete('/life-after-adoption/{post_id}/like',[LikedLifeAfterAdoptionController::class,'unlike'])->middleware('auth');
+
+Route::get('life-after-adoption/{post_id}/like-count',[LikedLifeAfterAdoptionController::class,'likeCount']);
 
 Route::get('/login',function (){
     return view('login');

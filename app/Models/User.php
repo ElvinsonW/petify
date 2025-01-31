@@ -58,7 +58,11 @@ class User extends Authenticatable
         return $this->hasMany(AdoptionPost::class,'user_id');
     }
 
-    public function likedAdoptionPost(): HasMany {
-        return $this->hasMany(LikedAdoptionPost::class,'adoption_post_id');
+    public function liked_adoption_post(): HasMany {
+        return $this->hasMany(LikedAdoptionPost::class,'user_id');
+    }
+
+    public function liked_life_after_adoption(): HasMany {
+        return $this->hasMany(LikedLifeAfterAdoption::class,'user_id');
     }
 }

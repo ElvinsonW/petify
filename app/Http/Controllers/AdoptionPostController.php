@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Middleware\CheckPostOwnership;
 use App\Models\AdoptionPost;
+use App\Models\LikedAdoptionPost;
 use App\Models\Pet;
 use App\Models\PetCategory;
 use Illuminate\Http\Request;
@@ -92,8 +93,16 @@ class AdoptionPostController extends Controller
      */
     public function show(string $slug)
     {
-        $adoptionPost = AdoptionPost::where('slug',$slug)->firstOrFail();
-        return view('adoption.showAdoptionPost',["adoption" => $adoptionPost]);
+        $adoptionPost = AdoptionPost::where('slug', $slug)->firstOrFail();
+
+        $isLike = LikedAdoptionPost::where('user_id', auth()->user()->id)
+            ->where('adoption_post_id', $adoptionPost->id)
+            ->exists();
+
+        return view('adoption.showAdoptionPost', [
+            'adoption' => $adoptionPost,
+            'isLiked' => $isLike, 
+        ]);
     }
 
     /**
