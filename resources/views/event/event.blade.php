@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -591,18 +592,4 @@
 </body>
 </html>
 
-// app/Http/Controllers/EventController.php
-
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-
-class EventController extends Controller
-{
-    public function index()
-    {
-        // Logic untuk menampilkan data events
-        return view('event.index'); // Menampilkan view event.index
-    }
-}
 
