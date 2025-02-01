@@ -39,13 +39,13 @@
         </div>
   
     @endif
-    <div class="flex bg-no-repeat bg-center bg-contain" style="background-image: url(../src/images/adopt-bg.png)">
+    <div class="flex bg-no-repeat bg-center bg-contain h-[150vw]" style="background-image: url(../src/images/adopt-bg.png)">
         <!-- Bagian Kiri (Sidebar) Start -->
-        <div class="w-80 h-full shadow-lg pl-10 pt-10">
+        <div class="w-80 h-full shadow-lg pl-10 pt-10 ">
             <!-- Greetings -->
             <div class="font-montserrat_alt">
-                <h4 class="text-lg">Hello Dodoidoy,</h4>
-                <h2 class="text-xl font-bold">Good Afternoon!</h2>
+                <h4 class="text-lg">Hello {{ auth()->user()->username }},</h4>
+                <h2 class="text-xl font-bold" id="sapaan">Good Afternoon!</h2>
             </div>
             
             <!-- Search Bar -->
@@ -165,8 +165,12 @@
                             <div class="flex flex-row font-montserrat_alt font-semibold w-full">
                                 <p class="text-2xl">{{ $adoption->name }}</p>    
                                 <!-- Like -->
+                                @php
+                                    $likedPostIds = $likedPosts->pluck('adoption_post_id')->toArray();
+                                    $isLiked = in_array($adoption->id,$likedPostIds);
+                                @endphp
                                 <div class="mt-1 ml-auto pr-3">
-                                    <i class="fa-solid fa-heart fa-lg likeIcon" style="color: #a6a6a6; cursor: pointer;"></i>
+                                    <i class="fa-solid fa-heart fa-lg likeIcon {{ $isLiked ? 'filled-heart' : '' }}" style="color: #a6a6a6; cursor: pointer;"></i>
                                 </div> 
                             </div>
         
@@ -202,4 +206,25 @@
     closeButton.addEventListener('click', function() {
        alert.style.display = "none"; 
     });
+
+    const sapaan = document.getElementById('sapaan');
+
+    
+    function updateSapaan(){
+        const now = new Date();
+        const hours = now.getHours();
+
+        let greeting;
+        if (hours >= 6 && hours < 12) {
+            greeting = "Good Morning!";
+        } else if (hours >= 12 && hours < 18) {
+            greeting = "Good Afternoon!";
+        } else {
+            greeting = "Good Night!";
+        }
+
+        sapaan.textContent = greeting;
+    }
+    
+    setInterval(updateSapaan(),10000);
 </script>

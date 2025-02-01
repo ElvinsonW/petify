@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="flex bg-no-repeat bg-center bg-contain h-[100vw]" style="background-image: url(../src/images/adopt-bg.png)">
+    <div class="flex bg-no-repeat bg-center bg-contain h-[100vw]" style="background-image: url({{ asset('images/adopt-bg.png') }})">
         <!-- Bagian Kiri (Sidebar) Start -->
         <div class="w-80 h-full shadow-lg pl-10 pt-10">
             <!-- Judul Page -->
@@ -205,7 +205,7 @@
         <!-- Bagian Kanan (Adoption Data) Start -->
         <div class="w-80 h-full shadow-lg pl-10 pt-10">
             <!-- NYALAIN KOMEN DI BAWAH INI KALO MISALNYA BELOM ADA PET YANG DIADOPSI (START) -->
-            <div class="w-5/6 shadow-2xl rounded-lg border-1/2 border-gray-400 p-4 font-montserrat_alt text-left">
+            {{-- <div class="w-5/6 shadow-2xl rounded-lg border-1/2 border-gray-400 p-4 font-montserrat_alt text-left">
                 <h4 class="mb-4 text-left text-lg font-montserrat_alt font-semibold text-green">You have no Pet that has been Adopted</h4>
                 <i class="fa-solid fa-paw fa-5x text-center w-full my-5" style="color: #166b68;"></i>
                 <p class="text-sm">Have a pet that's up for adoption? Click the button below to create an adoption post!</p>
@@ -213,11 +213,11 @@
                 <a href="/adoptions/create">
                     <button class="mt-4 w-full text-white bg-orenmuda rounded-2xl shadow-lg transform hover:scale-95 hover:bg-orange-400 transition duration-300 ease-in-out text-lg font-semibold px-3 py-2.5 font-overpass"><i class="fa-solid fa-plus mr-2" style="color: #ffffff;"></i>Adoption Post</button>
                 </a>
-            </div>
+            </div> --}}
             <!-- NYALAIN KOMEN DI BAWAH INI KALO MISALNYA BELOM ADA PET YANG DIADOPSI (END) -->
 
             <!-- NYALAIN KOMEN DI BAWAH INI KALO MISALNYA UDAH ADA PET YANG DIADOPSI (START) -->
-            <!-- <div class="w-5/6 shadow-2xl rounded-lg border-1/2 border-gray-400 p-4 mb-10">
+            <div class="w-5/6 shadow-2xl rounded-lg border-1/2 border-gray-400 p-4 mb-10">
                 <h4 class="mb-4 text-left text-lg font-montserrat_alt font-semibold text-green">Your Pet that has been Adopted</h4>
 
                 <div class="flex flex-row mb-5">
@@ -274,7 +274,7 @@
                         <p class="mx-3 text-sm">Pitbull</p>
                     </div>
                 </div>
-            </div> -->
+            </div>
             <!-- NYALAIN KOMEN DI BAWAH INI KALO MISALNYA UDAH ADA PET YANG DIADOPSI (END) -->
         </div>
         <!-- Bagian Kanan (Adoption Data) Start -->

@@ -1,11 +1,11 @@
 <x-layout>
-    <div class="flex bg-no-repeat bg-center bg-contain" style="background-image: url(images/adopt-bg.png)">
+    <div class="flex bg-no-repeat bg-center bg-contain h-[140vw]" style="background-image: url(images/adopt-bg.png)">
         <!-- Bagian Kiri (Sidebar) Start -->
         <div class="w-80 h-full shadow-lg pl-10 pt-10">
             <!-- Greetings -->
             <div class="font-montserrat_alt">
-                <h4 class="text-lg">Hello Dodoidoy,</h4>
-                <h2 class="text-xl font-bold">Good Afternoon!</h2>
+                <h4 class="text-lg">Hello {{ auth()->user()->username }},</h4>
+                <h2 class="text-xl font-bold" id="sapaan">Good Afternoon!</h2>
             </div>
             
             <!-- Search Bar -->
@@ -123,3 +123,26 @@
         </div>
     </div>
 </x-layout>
+
+<script>
+    const sapaan = document.getElementById('sapaan');
+
+    
+    function updateSapaan(){
+        const now = new Date();
+        const hours = now.getHours();
+
+        let greeting;
+        if (hours >= 6 && hours < 12) {
+            greeting = "Good Morning!";
+        } else if (hours >= 12 && hours < 18) {
+            greeting = "Good Afternoon!";
+        } else {
+            greeting = "Good Night!";
+        }
+
+        sapaan.textContent = greeting;
+    }
+    
+    setInterval(updateSapaan(),10000);
+</script>
