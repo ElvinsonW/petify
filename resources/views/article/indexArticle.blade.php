@@ -94,7 +94,7 @@
                             
                             <!-- Category & Days -->
                             <div class="flex flex-row font-montserrat_alt font-semibold w-full">
-                                <p href="/articles?category={{ $article->articleCategory->slug }}" class="w-fit rounded-xl bg-{{  $article->articleCategory->color }} text-xl text-center text-white my-4 py-1.5 px-2">{{ $article->articleCategory->name }}</p>     
+                                <p href="/articles?category={{ $article->article_category->slug }}" class="w-fit rounded-xl bg-{{  $article->article_category->color }} text-xl text-center text-white my-4 py-1.5 px-2">{{ $article->article_category->name }}</p>     
                                 <p class="text-slate-400 my-4 ml-auto py-1.5 px-2">{{ $article->created_at->diffForHumans() }}</p>
                             </div>
         

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('pet_id')->constrained('pets')->onDelete('cascade')->onUpdate('cascade');
             $table->string('image');
             $table->string('description')->nullable();
+            $table->integer('like_count')->default(0);
             $table->timestamps();
         });
     }

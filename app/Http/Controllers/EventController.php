@@ -14,6 +14,6 @@ class EventController extends Controller
         // $events = Event::all();  // Ambil semua data event dari database
         
         // Jika tidak ada data dari database, bisa kirim data statis atau kosong
-        return view('event');  // Menampilkan view event.blade.php
+        return view('event.event');  // Menampilkan view event.blade.php
     }
 }

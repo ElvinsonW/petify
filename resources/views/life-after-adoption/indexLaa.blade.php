@@ -132,19 +132,21 @@
                 
                 @foreach ($categories as $category)
                     @php
-                        $isActive = request()->query('category') == $category->id;
+                        $isActive = request()->query('category') == $category->slug; 
+                        $queryParams = request()->query();
+                        $queryParams["category"] = $category->slug;
                     @endphp
                     
                     @if ($isActive)
                         <button class="pl-2 pr-2 w-full rounded-xl group bg-{{ $category->color }}">
-                            <a href="/adoptions?category={{ $category->id }}" class="w-full">
+                            <a href="{{ url('/life-after-adoption') . '?' . http_build_query($queryParams) }}" class="w-full">
                                 <p class="text-xl font-semibold mt-2 text-left text-white">{{ $category->name }}</p>
                                 <hr class="border-1/2 my-2 w-full border-white">
                             </a>
                         </button>
                     @else
                         <button class="pl-2 pr-2 w-full transition duration-500 ease-in-out rounded-xl group hover:bg-{{ $category->color }}">
-                            <a href="/adoptions?category={{ $category->id }}" class="w-full">
+                            <a href="{{ url('/life-after-adoption') . '?' . http_build_query($queryParams) }}" class="w-full">
                                 <p class="text-xl font-semibold mt-2 text-left group-hover:text-white transition-colors duration-500 ease-in-out">{{ $category->name }}</p>
                                 <hr class="border-{{ $category->color }} border-1/2 w-3/6 my-2 group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
                             </a>
@@ -160,7 +162,6 @@
             <!-- Life After Adoption Posts -->
             <div class="grid grid-cols-1 gap-16 mx-12 mt-10 mb-14 justify-items-center">
                 <!-- Post -->
-
                 @php
                     $likedPostIds = $likedPosts->pluck('laa_post_id')->toArray();
                 @endphp
@@ -204,78 +205,39 @@
 
         <!-- Bagian Kanan (Adoption Data) Start -->
         <div class="w-80 h-full shadow-lg pl-10 pt-10">
-            <!-- NYALAIN KOMEN DI BAWAH INI KALO MISALNYA BELOM ADA PET YANG DIADOPSI (START) -->
-            {{-- <div class="w-5/6 shadow-2xl rounded-lg border-1/2 border-gray-400 p-4 font-montserrat_alt text-left">
-                <h4 class="mb-4 text-left text-lg font-montserrat_alt font-semibold text-green">You have no Pet that has been Adopted</h4>
-                <i class="fa-solid fa-paw fa-5x text-center w-full my-5" style="color: #166b68;"></i>
-                <p class="text-sm">Have a pet that's up for adoption? Click the button below to create an adoption post!</p>
+            @if ($pets)
+                <!-- NYALAIN KOMEN DI BAWAH INI KALO MISALNYA UDAH ADA PET YANG DIADOPSI (START) -->
+                <div class="w-5/6 shadow-2xl rounded-lg border-1/2 border-gray-400 p-4 mb-10">
+                    <h4 class="mb-4 text-left text-lg font-montserrat_alt font-semibold text-green">Your Pet that has been Adopted</h4>
 
-                <a href="/adoptions/create">
-                    <button class="mt-4 w-full text-white bg-orenmuda rounded-2xl shadow-lg transform hover:scale-95 hover:bg-orange-400 transition duration-300 ease-in-out text-lg font-semibold px-3 py-2.5 font-overpass"><i class="fa-solid fa-plus mr-2" style="color: #ffffff;"></i>Adoption Post</button>
-                </a>
-            </div> --}}
-            <!-- NYALAIN KOMEN DI BAWAH INI KALO MISALNYA BELOM ADA PET YANG DIADOPSI (END) -->
+                    @foreach ($pets as $pet)
+                        <div class="flex flex-row mb-5">
+                            <div class="w-16 h-16 bg-white border-4 border-greentua rounded-full flex justify-center items-center">
+                                <img src="{{ asset('images/after login.svg') }}" alt="Profile Owner" class="w-12">
+                            </div>
+            
+                            <div class="flex flex-col font-montserrat_alt">
+                                <p class="mx-3 mt-2 font-semibold text-md w-[4vw]">{{ Str::of($pet->name)->explode(' ')[0] }}</p>
+                                <p class="mx-3 text-sm">{{ $pet->breed }}</p>
+                            </div>
+                        </div>
+                    @endforeach
 
-            <!-- NYALAIN KOMEN DI BAWAH INI KALO MISALNYA UDAH ADA PET YANG DIADOPSI (START) -->
-            <div class="w-5/6 shadow-2xl rounded-lg border-1/2 border-gray-400 p-4 mb-10">
-                <h4 class="mb-4 text-left text-lg font-montserrat_alt font-semibold text-green">Your Pet that has been Adopted</h4>
-
-                <div class="flex flex-row mb-5">
-                    <div class="w-16 h-16 bg-white border-4 border-greentua rounded-full flex justify-center items-center">
-                        <img src="../src/images/after login.svg" alt="Profile Owner" class="w-12">
-                    </div>
-    
-                    <div class="flex flex-col font-montserrat_alt">
-                        <p class="mx-3 mt-2 font-semibold text-xl">Whiskey</p>
-                        <p class="mx-3 text-sm">Pomeranian</p>
-                    </div>
                 </div>
-
-                <div class="flex flex-row mb-5">
-                    <div class="w-16 h-16 bg-white border-4 border-greentua rounded-full flex justify-center items-center">
-                        <img src="../src/images/after login.svg" alt="Profile Owner" class="w-12">
-                    </div>
+                <!-- NYALAIN KOMEN DI BAWAH INI KALO MISALNYA UDAH ADA PET YANG DIADOPSI (END) -->
+            @else
+                <!-- NYALAIN KOMEN DI BAWAH INI KALO MISALNYA BELOM ADA PET YANG DIADOPSI (START) --> 
+                <div class="w-5/6 shadow-2xl rounded-lg border-1/2 border-gray-400 p-4 font-montserrat_alt text-left">
+                    <h4 class="mb-4 text-left text-lg font-montserrat_alt font-semibold text-green">You have no Pet that has been Adopted</h4>
+                    <i class="fa-solid fa-paw fa-5x text-center w-full my-5" style="color: #166b68;"></i>
+                    <p class="text-sm">Have a pet that's up for adoption? Click the button below to create an adoption post!</p>
     
-                    <div class="flex flex-col font-montserrat_alt">
-                        <p class="mx-3 mt-2 font-semibold text-xl">Vinson</p>
-                        <p class="mx-3 text-sm">Chihuahua</p>
-                    </div>
+                    <a href="/adoptions/create">
+                        <button class="mt-4 w-full text-white bg-orenmuda rounded-2xl shadow-lg transform hover:scale-95 hover:bg-orange-400 transition duration-300 ease-in-out text-lg font-semibold px-3 py-2.5 font-overpass"><i class="fa-solid fa-plus mr-2" style="color: #ffffff;"></i>Adoption Post</button>
+                    </a>
                 </div>
-
-                <div class="flex flex-row mb-5">
-                    <div class="w-16 h-16 bg-white border-4 border-greentua rounded-full flex justify-center items-center">
-                        <img src="../src/images/after login.svg" alt="Profile Owner" class="w-12">
-                    </div>
-    
-                    <div class="flex flex-col font-montserrat_alt">
-                        <p class="mx-3 mt-2 font-semibold text-xl">Kiel</p>
-                        <p class="mx-3 text-sm">Beagle</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-row mb-5">
-                    <div class="w-16 h-16 bg-white border-4 border-greentua rounded-full flex justify-center items-center">
-                        <img src="../src/images/after login.svg" alt="Profile Owner" class="w-12">
-                    </div>
-    
-                    <div class="flex flex-col font-montserrat_alt">
-                        <p class="mx-3 mt-2 font-semibold text-xl">Angel</p>
-                        <p class="mx-3 text-sm">Bulldog</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-row mb-5">
-                    <div class="w-16 h-16 bg-white border-4 border-greentua rounded-full flex justify-center items-center">
-                        <img src="../src/images/after login.svg" alt="Profile Owner" class="w-12">
-                    </div>
-    
-                    <div class="flex flex-col font-montserrat_alt">
-                        <p class="mx-3 mt-2 font-semibold text-xl">Chelsea</p>
-                        <p class="mx-3 text-sm">Pitbull</p>
-                    </div>
-                </div>
-            </div>
-            <!-- NYALAIN KOMEN DI BAWAH INI KALO MISALNYA UDAH ADA PET YANG DIADOPSI (END) -->
+                <!-- NYALAIN KOMEN DI BAWAH INI KALO MISALNYA BELOM ADA PET YANG DIADOPSI (END) -->
+            @endif
         </div>
         <!-- Bagian Kanan (Adoption Data) Start -->
     </div>

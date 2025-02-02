@@ -26,7 +26,7 @@ class AdoptionPostController extends Controller
      */
     public function index()
     {
-        $filters = ["category","like","search"];
+        $filters = ["search","like","category"];
 
         $likedPosts = LikedAdoptionPost::where('user_id',auth()->user()->id)->get();
 

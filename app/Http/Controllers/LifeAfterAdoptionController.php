@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdoptionPost;
 use App\Models\LifeAfterAdoption;
 use App\Models\LikedAdoptionPost;
 use App\Models\LikedLifeAfterAdoption;
+use App\Models\Pet;
 use App\Models\PetCategory;
 use Illuminate\Http\Request;
 
@@ -15,16 +17,22 @@ class LifeAfterAdoptionController extends Controller
      */
     public function index()
     {
+        $filters = ['category'];
+
         $likedPost = LikedLifeAfterAdoption::where('user_id',auth()->user()->id)->get();
-        
-        $post = LifeAfterAdoption::all()->map(function($post){
-            $post->like_count = LikedLifeAfterAdoption::where('laa_post_id',$post->id)->count();
-            return $post;
-        });
+
+        $petIds = AdoptionPost::where('user_id',auth()->user()->id)
+                            ->pluck('pet_id')
+                            ->toArray();
+
+        $pets = Pet::whereIn('id',$petIds)->get();
+
+
         return view('life-after-adoption.indexLaa',[
             "categories" => PetCategory::all(),
-            "posts" => $post,
-            "likedPosts" => $likedPost
+            "posts" => LifeAfterAdoption::filter($filters)->get(),
+            "likedPosts" => $likedPost,
+            "pets" => $pets, 
         ]);
     }
 
