@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+use Ramsey\Uuid\Type\Integer;
 
 class AdoptionPostController extends Controller
 {
@@ -89,7 +90,7 @@ class AdoptionPostController extends Controller
         }
         
         AdoptionPost::create($postValidatedData);
-        return redirect('/adoptions')->with('createSuccess','Adoption Post Successfully');
+        return redirect('adoptions')->with('createSuccess','Adoption Post Successfully');
     }
 
     /**
@@ -204,9 +205,21 @@ class AdoptionPostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $slug)
     {
-        //
+        $post = AdoptionPost::where('slug',$slug)->firstOrFail();
+
+        for ($i = 1; $i <= 3; $i++) {
+            $property = "image_" . $i;
+            if (!empty($post->$property)) {
+                Storage::delete($post->$property);
+            }
+        }
+    
+        $post->delete();
+    
+        return redirect('adoptions')->with('deleteSuccess', "Post deleted successfully!");
+
     }
 
     public function createSlug(Request $request){

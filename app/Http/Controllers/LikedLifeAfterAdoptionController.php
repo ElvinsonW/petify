@@ -34,7 +34,7 @@ class LikedLifeAfterAdoptionController extends Controller
 
         $isExist = LikedLifeAfterAdoption::where('user_id',$user_id)
                                          ->where('laa_post_id',$post_id)
-                                         ->exist();
+                                         ->exists();
 
         if($isExist){
             LikedLifeAfterAdoption::where('user_id',$user_id)
@@ -42,7 +42,7 @@ class LikedLifeAfterAdoptionController extends Controller
                 ->delete();
     
             LifeAfterAdoption::where('id', $post_id)
-                            ->decrement('like_count',1);
+                             ->decrement('like_count',1);
         } else {
             return redirect('life-after-adoption')->with('likeError',"You can't unlike non existing post");
         }

@@ -18,11 +18,19 @@ class LifeAfterAdoption extends Model
     public function scopeFilter(Builder $query, array $filters): void {
         $query->when(
             $filters['category'] ?? false,
-            fn ($query, $category) => 
+            fn($query, $category) =>
                 $query->whereHas('pet', fn(Builder $petQuery) =>
-                    $petQuery->whereHas('pet_category', fn(Builder $categoryQuery) => 
-                        $categoryQuery->where('slug',$category)
+                    $petQuery->whereHas('pet_category', fn(Builder $categoryQuery) =>
+                        $categoryQuery->where('slug', $category)
                     )
+                )
+        );      
+        
+        $query->when(
+            $filters['pet'] ?? false,
+            fn($query, $pet) => 
+                $query->whereHas('pet', fn (Builder $petQuery) => 
+                    $petQuery->where('name',$pet)
                 )
         );
     }

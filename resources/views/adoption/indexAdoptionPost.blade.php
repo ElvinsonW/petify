@@ -1,8 +1,4 @@
 <x-layout>
-    @php
-        $queryParams = request()->query();
-        $queryParams["like"] = 'true';
-    @endphp
     @if (session('ownerError'))
         
         <div id="alert-2" class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
@@ -77,6 +73,10 @@
             </div>
             
             <!-- Button Filter & Your Like -->
+            @php
+                $queryParams = request()->query();
+                $queryParams["like"] = 'true';
+            @endphp
             <div class="flex flex-row">
                 <button class="mt-4 text-white bg-greenpetify rounded-2xl shadow-lg transform hover:scale-95 hover:bg-greentua transition duration-300 ease-in-out text-lg font-semibold px-2.5 py-2.5 font-overpass"><i class="fa-solid fa-sliders mr-2" style="color: #ffffff;"></i>Filter</button>
                 <button class="mt-4 ml-4 text-white bg-oren rounded-2xl shadow-lg transform hover:scale-95 hover:bg-orange-800 transition duration-300 ease-in-out text-lg font-semibold px-3 py-2.5 font-overpass"><i class="fa-solid fa-heart mr-2" style="color: #ffffff;"><a href="{{ url('adoptions') . '?' . http_build_query($queryParams) }}"></i>Your Like</a></button>
@@ -96,6 +96,9 @@
                 
                 <!-- ALL CATEGORY -->
                 @if (request()->is('adoptions') && !request()->query('category')) 
+                    @php
+                        $queryParams = request()->query();
+                    @endphp
 
                     <button class="clear-category pl-2 pr-2 w-full transition duration-500 ease-in-out rounded-xl group bg-orenmuda">
                         <a href="{{ url('adoptions/') . '?' . http_build_query($queryParams) }}">
@@ -106,6 +109,7 @@
 
                 @else
                     @php
+                        $queryParams = request()->query();
                         unset($queryParams['category']); 
                     @endphp
                     <button class="clear-category pl-2 pr-2 w-full transition duration-500 ease-in-out rounded-xl group hover:bg-orenmuda">
@@ -127,7 +131,9 @@
                     @endphp
 
                     @if ($isActive)
-                        
+                        @php
+                            unset($queryParams["category"]);
+                        @endphp
                         <button class="pl-2 pr-2 w-full rounded-xl group bg-{{ $category->color }}">
                             <a href="{{ url('/adoptions') . '?' . http_build_query($queryParams) }}" class="w-full">
                                 <p class="text-xl font-semibold mt-2 text-left text-white">{{ $category->name }}</p>

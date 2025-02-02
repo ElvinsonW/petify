@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\AdoptionPostController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\LifeAfterAdoptionController;
 use App\Http\Controllers\LikedAdoptionPostController;
 use App\Http\Controllers\LikedLifeAfterAdoptionController;
-use app\Http\Controllers\EventController;
+// use app\Http\Controllers\EventController;
 use App\Http\Middleware\CheckPostOwnership;
 use App\Models\LifeAfterAdoption;
 use App\Models\LikedAdoptionPost;

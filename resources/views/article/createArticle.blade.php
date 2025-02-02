@@ -23,8 +23,6 @@
                             @enderror
                         </div>
 
-                        
-
                         <!-- Category Article -->
                         <div>
                             <label for="category_id" class="block mb-2 text-lg font-semibold w-fit">Article Category</label>
