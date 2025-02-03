@@ -54,7 +54,7 @@ class User extends Authenticatable
         return $this->hasMany(Article::class,'user_id');
     }
 
-    public function adoptionPosts(): HasMany {
+    public function adoption_posts(): HasMany {
         return $this->hasMany(AdoptionPost::class,'user_id');
     }
 

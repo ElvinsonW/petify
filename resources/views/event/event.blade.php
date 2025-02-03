@@ -1,5 +1,4 @@
 <x-layout>
-
     <!-- container -->
     <div class="container mx-auto py-8 my-8 px-4 overflow-hidden bg-no-repeat bg-center bg-contain" style="background-image: url(../src/images/adopt-bg.png)">
         <!-- Main Content -->
@@ -308,5 +307,185 @@
         </div>
     </div>
 
-</x-layout>
+
+    <!-- Footer Start -->
+    <footer class="bg-greentua shadow font-montserrat_alt text-white text-sm mt-0">
+        <div class="w-full max-w-screen-xl mx-auto py-8">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-start px-4 md:px-8">
+                <!-- Logo dan Deskripsi -->
+                <div class="flex flex-col mb-6 mr-32 sm:mb-0 sm:w-1/3">
+                    <a href="../pages/index.html" class="space-x-3 rtl:space-x-reverse">
+                        <img src="../src/images/Logo-White.svg" class="w-2/5 h-auto" alt="Petify Logo"/>
+                    </a>
+                    <p class="ml-2 mt-4 sm:text-left">
+                        Find your perfect new companion, learn the best ways to care for them, and join a community dedicated to promoting animal welfare.
+                    </p>
+                </div>
+    
+                <!-- Contact Us -->
+                <div class="w-full sm:w-1/3 mb-6 sm:mb-0 sm:text-left">
+                    <h2 class="font-semibold tracking-wider text-2xl mb-3">Contact Us</h2>
+                    <p>Feel free to contact us!</p>
+                    <p class="my-4 flex sm:justify-start">
+                        <i class="fa-solid fa-phone mr-4 text-xl" style="color: #ffffff;"></i>0852 - 6350 - 6419
+                    </p>
+                    <p class="my-4 flex sm:justify-start">
+                        <i class="fa-solid fa-envelope mr-4 text-xl" style="color: #ffffff;"></i>Dodoidoy@gmail.com
+                    </p>
+                    <p class="flex sm:justify-start">
+                        <i class="fa-solid fa-location-dot mr-4 text-xl" style="color: #ffffff;"></i>
+                        Sentul City, Jl. Pakuan no 3, Sumur Batu, Babakan Madang, Bogor Regency, West Java 16810
+                    </p>
+                </div>
+    
+                <!-- Follow Us -->
+                <div class="w-full sm:w-1/3 sm:text-right">
+                    <h2 class="font-semibold tracking-wider text-2xl mb-3">Follow Us</h2>
+                    <p class="mb-4">Let's connect on</p>
+                    <div class="flex sm:justify-end space-x-4">
+                        <a href="https://www.instagram.com/pptibca.18?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+                            <i class="fa-brands fa-instagram text-3xl" style="color: #ffffff;"></i>
+                        </a>
+                        <a href="https://www.instagram.com/pptibca.18?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+                            <i class="fa-brands fa-facebook text-3xl" style="color: #ffffff;"></i>
+                        </a>
+                        <a href="https://www.instagram.com/pptibca.18?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+                            <i class="fa-brands fa-twitter text-3xl" style="color: #ffffff;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Separator -->
+            <hr class="my-5 border-white sm:mx-auto lg:my-8" />
+            
+            <!-- Footer Text -->
+            <span class="block tracking-wide text-center">
+                © 2024 Petify | All Rights Reserved | Developed with love by Dodoidoy
+            </span>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <script>
+        const buttonToogle = document.querySelector('.buttonToogle');
+        const mobileMenu = document.querySelector('.mobileMenu');
+    
+        buttonToogle.addEventListener('click', function () {
+            mobileMenu.classList.toggle('hidden');
+            
+            const icon = buttonToogle.querySelector('.icon');
+            
+            // Toggle antara hamburger dan X
+            if (icon.classList.contains('icon-hamburger')) {
+                // ganti path
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
+                icon.classList.remove('icon-hamburger');
+                icon.classList.add('icon-close');
+                icon.style.transform = 'rotate(90deg)'; // rotation effect
+            } else {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+                icon.classList.remove('icon-close');
+                icon.classList.add('icon-hamburger');
+                icon.style.transform = 'rotate(0deg)'; // Reset rotation
+            }
+        });
+
+    const monthNames = [
+    "January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"
+    ];
+
+    const events = [
+        { date: "2025-01-16", title: "Perkin Jaya All Breed Dog Show 2025", location: "Jeep Station Indonesia (JSI) Resort, Bogor" },
+        { date: "2025-01-17", title: "Perkin Jaya All Breed Dog Show 2025", location: "Jeep Station Indonesia (JSI) Resort, Bogor" },
+        { date: "2025-01-28", title: "Perkin Jaya All Breed Dog Show 2025", location: "Jeep Station Indonesia (JSI) Resort, Bogor" }
+    ];
+
+    const today = new Date();
+    let currentMonth = today.getMonth();
+    let currentYear = today.getFullYear();
+
+    const monthYearElement = document.getElementById("month-year");
+    const datesElement = document.getElementById("dates");
+    const eventListElement = document.getElementById("event-list");
+
+    function renderCalendar(month, year) {
+        datesElement.innerHTML = ""; // Clear previous dates
+        const firstDay = new Date(year, month, 1).getDay(); // Day of the week
+        const daysInMonth = new Date(year, month + 1, 0).getDate(); // Days in the month
+
+        // Update month and year
+        monthYearElement.textContent = `${monthNames[month]} ${year}`;
+
+        // Add blank spaces for days before the first of the month
+        for (let i = 0; i < firstDay; i++) {
+            const blank = document.createElement("div");
+            datesElement.appendChild(blank);
+        }
+
+        // Add the days of the month
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            const dayElement = document.createElement("div");
+            dayElement.textContent = day;
+            dayElement.className =
+            "p-2 rounded-2xl cursor-pointer hover:bg-gray-300";
+
+            // Highlight the current day
+            if (
+            day === today.getDate() &&
+            month === today.getMonth() &&
+            year === today.getFullYear()
+            ) {
+            dayElement.classList.add("bg-gray-200", "font-bold");
+            }
+
+            // Highlight days with events
+            const event = events.find(e => e.date === dateStr);
+            if (event) {
+            dayElement.classList.add("bg-blue-500", "text-white", "font-bold");
+            dayElement.addEventListener("click", () => showEvent(event));
+            }
+
+            datesElement.appendChild(dayElement);
+        }
+    }
+
+    function showEvent(event) {
+        eventListElement.innerHTML = `
+            <div class="p-4 bg-gray-50 rounded-md shadow">
+            <h4 class="font-semibold text-lg">${event.title}</h4>
+            <p class="text-sm text-gray-600">${event.location}</p>
+            <p class="text-sm text-gray-500">${event.date}</p>
+            </div>
+        `;
+    }
+
+    // Navigation buttons
+    document.getElementById("prev").addEventListener("click", () => {
+        currentMonth--;
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        }
+        renderCalendar(currentMonth, currentYear);
+        eventListElement.innerHTML = ""; // Clear event list
+    });
+
+    document.getElementById("next").addEventListener("click", () => {
+        currentMonth++;
+        if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+        renderCalendar(currentMonth, currentYear);
+        eventListElement.innerHTML = ""; // Clear event list
+    });
+
+    // Initial render
+    renderCalendar(currentMonth, currentYear);
+    </script>  
+</body>
+</html>
+
 

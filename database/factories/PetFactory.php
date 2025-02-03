@@ -22,7 +22,7 @@ class PetFactory extends Factory
             "user_id" => User::factory(),
             "pet_category_id" => PetCategory::factory(),
             "name" => fake()->name(),
-            "breed" => fake()->sentence(2),
+            "breed" => fake()->word(),
             "gender" => fake()->randomElement(["male","female"]),
         ];
     }

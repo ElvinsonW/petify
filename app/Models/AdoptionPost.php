@@ -14,7 +14,7 @@ class AdoptionPost extends Model
     use HasFactory, Sluggable;
 
     protected $fillable = ["user_id","pet_id","name","slug", "age", "location","vaccinated","weight", "status","description","requirement","image_1","image_2","image_3"];
-    protected $with = ["user","pet","likedAdoptionPost"];
+    protected $with = ["user","pet","liked_adoption_post"];
 
     public function user(): BelongsTo {
         return $this->belongsTo(User::class,"user_id");
@@ -24,7 +24,7 @@ class AdoptionPost extends Model
         return $this->belongsTo(Pet::class,"pet_id");
     }
 
-    public function likedAdoptionPost(): HasMany {
+    public function liked_adoption_post(): HasMany {
         return $this->hasMany(LikedAdoptionPost::class,'adoption_post_id');
     }
 
@@ -51,7 +51,7 @@ class AdoptionPost extends Model
         $query->when(
             $filters["like"] ?? false,
             fn($query, $like) =>
-            $query->whereHas('likedAdoptionPost', fn(Builder $petQuery) => 
+            $query->whereHas('liked_adoption_post', fn(Builder $petQuery) => 
                 $petQuery->where('user_id',auth()->user()->id)
             ) 
         );

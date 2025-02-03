@@ -1,4 +1,4 @@
-<footer class="bg-greentua shadow font-montserrat_alt text-white text-sm mt-0">
+<footer class="bg-greentua shadow font-montserrat_alt text-white text-sm mt-[5vw]">
     <div class="w-full max-w-screen-xl mx-auto py-8">
         <div class="flex flex-col sm:flex-row justify-between sm:items-start px-4 md:px-8">
             <!-- Logo dan Deskripsi -->

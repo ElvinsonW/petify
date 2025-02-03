@@ -13,13 +13,13 @@ class Article extends Model
     use HasFactory, Sluggable;
 
     protected $fillable = ["title","slug","user_id","article_category_id","content","image"];
-    protected $with = ["user","articleCategory"];
+    protected $with = ["user","article_category"];
 
     public function user(): BelongsTo {
         return $this->belongsTo(User::class,"user_id");
     }
 
-    public function articleCategory(): BelongsTo {
+    public function article_category(): BelongsTo {
         return $this->belongsTo(ArticleCategory::class,"article_category_id");
     }
 
@@ -35,7 +35,7 @@ class Article extends Model
             $filter['category'] ?? false,
             fn ($query, $category) =>
             $query->whereHas(
-                'articleCategory',
+                'article_category',
                 fn($query) => 
                 $query->where('slug',$category)
             )
