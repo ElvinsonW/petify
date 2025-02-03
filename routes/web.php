@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\AdoptionPostController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\LifeAfterAdoptionController;
 use App\Http\Controllers\LikedAdoptionPostController;
 use App\Http\Controllers\LikedLifeAfterAdoptionController;
-use app\Http\Controllers\EventController;
+// use app\Http\Controllers\EventController;
 use App\Http\Middleware\CheckPostOwnership;
 use App\Models\LifeAfterAdoption;
 use App\Models\LikedAdoptionPost;
@@ -16,31 +17,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/articles/createSlug',[ArticleController::class,'createSlug'])->name('articles.createSlug');
-
-Route::resource('/articles', ArticleController::class)->middleware('auth');
-
-Route::get('/adoptions/createSlug',[ArticleController::class,'createSlug'])->name('adoptions.createSlug');
-
-Route::resource('/adoptions', AdoptionPostController::class);
-
-Route::resource('/life-after-adoption', LifeAfterAdoptionController::class);
-    
-Route::post('/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'like'])->middleware('auth');
-
-Route::delete('/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'unlike'])->middleware('auth');
-
-Route::post('/life-after-adoption/{post_id}/like',[LikedLifeAfterAdoptionController::class,'like'])->middleware('auth');
-
-Route::delete('/life-after-adoption/{post_id}/like',[LikedLifeAfterAdoptionController::class,'unlike'])->middleware('auth');
-
-Route::get('life-after-adoption/{post_id}/like-count',[LikedLifeAfterAdoptionController::class,'likeCount']);
 
 Route::get('/login',function (){
     return view('login');
@@ -80,5 +56,29 @@ Route::post('/register', function(Request $request){
     
     return redirect('/login')->with('registerSuccess','Registration Success, Please Login!');
 })->middleware('guest');
+
+Route::get('/', function () {
+    return view('homepage');
+});
+
+Route::get('/articles/createSlug',[ArticleController::class,'createSlug'])->name('articles.createSlug');
+
+Route::resource('/articles', ArticleController::class)->middleware('auth');
+
+Route::get('/adoptions/createSlug',[ArticleController::class,'createSlug'])->name('adoptions.createSlug');
+
+Route::resource('/adoptions', AdoptionPostController::class);
+
+Route::resource('/life-after-adoption', LifeAfterAdoptionController::class);
+    
+Route::post('/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'like'])->middleware('auth');
+
+Route::delete('/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'unlike'])->middleware('auth');
+
+Route::post('/life-after-adoption/{post_id}/like',[LikedLifeAfterAdoptionController::class,'like'])->middleware('auth');
+
+Route::delete('/life-after-adoption/{post_id}/like',[LikedLifeAfterAdoptionController::class,'unlike'])->middleware('auth');
+
+Route::get('life-after-adoption/{post_id}/like-count',[LikedLifeAfterAdoptionController::class,'likeCount']);
 
 Route::get('/events', [EventController::class, 'index'])->middleware('auth');

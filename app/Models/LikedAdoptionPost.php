@@ -26,7 +26,7 @@ class LikedAdoptionPost extends Model
         return $this->belongsTo(User::class,'user_id');
     }
 
-    public function adoptionPost(): BelongsTo {
+    public function adoption_post(): BelongsTo {
         return $this->belongsTo(AdoptionPost::class,'adoption_post_id');
     }
 }   

@@ -23,6 +23,20 @@
                             <img src="{{ asset('images/petpict.svg') }}" alt="Pet Picture" class="w-full h-auto rounded-b-4xl">
                         </div>
                     </div>
+
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <div class="h-auto">
+                            <img src="{{ asset('images/petpict.svg') }}" alt="Pet Picture" class="w-full h-auto rounded-b-4xl">
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <div class="h-auto">
+                            <img src="{{ asset('images/petpict.svg') }}" alt="Pet Picture" class="w-full h-auto rounded-b-4xl">
+                        </div>
+                    </div>
                 @endif
             </div>
 

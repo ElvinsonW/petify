@@ -39,42 +39,47 @@
         </div>
   
     @endif
-    <div class="flex bg-no-repeat bg-center bg-contain" style="background-image: url(../src/images/adopt-bg.png)">
+    <div class="flex bg-no-repeat bg-center bg-contain h-[150vw]" style="background-image: url(../src/images/adopt-bg.png)">
         <!-- Bagian Kiri (Sidebar) Start -->
-        <div class="w-80 h-full shadow-lg pl-10 pt-10">
+        <div class="w-80 h-full shadow-lg pl-10 pt-10 ">
             <!-- Greetings -->
             <div class="font-montserrat_alt">
-                <h4 class="text-lg">Hello Dodoidoy,</h4>
-                <h2 class="text-xl font-bold">Good Afternoon!</h2>
+                <h4 class="text-lg">Hello {{ auth()->user()->username }},</h4>
+                <h2 class="text-xl font-bold" id="sapaan">Good Afternoon!</h2>
             </div>
             
             <!-- Search Bar -->
             <div>
-                <form class="max-w-md w-5/6 mt-4">
+                <form class="max-w-md w-5/6 mt-4" method="GET" action="{{ url('adoptions') }}">
                     @php
                         $params = ['category', 'liked'];
                     @endphp
+
                     @foreach($params as $param)
                         @if(request($param))
                             <input type="hidden" name="{{ $param }}" value="{{ request($param) }}">
                         @endif
                     @endforeach
-
+            
                     <label for="search" class="mb-2 text-sm text-gray-900 sr-only !font-overpass font-semibold">Search</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
-                        <input type="search" id="search" name="search" class="block w-full p-4 ps-10 !font-overpass font-semibold text-slate-400 border-1/2 border-gray-400 rounded-lg bg-white shadow-md" placeholder="Search Here..." required>
+                        <input type="search" id="search" name="search" class="block w-full p-4 ps-10 !font-overpass font-semibold border-1/2 border-gray-400 rounded-lg bg-white shadow-md" value="{{ request('search') }}" placeholder="Search Here...">
                         <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-lg px-2 py-2 !font-overpass">Search</button>
                     </div>
                 </form>
             </div>
             
             <!-- Button Filter & Your Like -->
+            @php
+                $queryParams = request()->query();
+                $queryParams["like"] = 'true';
+            @endphp
             <div class="flex flex-row">
                 <button class="mt-4 text-white bg-greenpetify rounded-2xl shadow-lg transform hover:scale-95 hover:bg-greentua transition duration-300 ease-in-out text-lg font-semibold px-2.5 py-2.5 font-overpass"><i class="fa-solid fa-sliders mr-2" style="color: #ffffff;"></i>Filter</button>
-                <button class="mt-4 ml-4 text-white bg-oren rounded-2xl shadow-lg transform hover:scale-95 hover:bg-orange-800 transition duration-300 ease-in-out text-lg font-semibold px-3 py-2.5 font-overpass"><i class="fa-solid fa-heart mr-2" style="color: #ffffff;"><a href="/adoptions?like=true"></i>Your Like</a></button>
+                <button class="mt-4 ml-4 text-white bg-oren rounded-2xl shadow-lg transform hover:scale-95 hover:bg-orange-800 transition duration-300 ease-in-out text-lg font-semibold px-3 py-2.5 font-overpass"><i class="fa-solid fa-heart mr-2" style="color: #ffffff;"><a href="{{ url('adoptions') . '?' . http_build_query($queryParams) }}"></i>Your Like</a></button>
             </div>
             
             <!-- Button Adoption Post -->
@@ -91,18 +96,24 @@
                 
                 <!-- ALL CATEGORY -->
                 @if (request()->is('adoptions') && !request()->query('category')) 
+                    @php
+                        $queryParams = request()->query();
+                    @endphp
 
-                    <button class="pl-2 pr-2 w-full transition duration-500 ease-in-out rounded-xl group bg-orenmuda">
-                        <a href="/adoptions" class="w-full">
+                    <button class="clear-category pl-2 pr-2 w-full transition duration-500 ease-in-out rounded-xl group bg-orenmuda">
+                        <a href="{{ url('adoptions/') . '?' . http_build_query($queryParams) }}">
                             <p class="text-xl font-semibold mt-2 text-left text-white">All Category</p>
                             <hr class="border-1/2 my-2 w-full border-white">
                         </a>
                     </button>         
 
                 @else
-
-                    <button class="pl-2 pr-2 w-full transition duration-500 ease-in-out rounded-xl group hover:bg-orenmuda">
-                        <a href="/adoptions" class="w-full">
+                    @php
+                        $queryParams = request()->query();
+                        unset($queryParams['category']); 
+                    @endphp
+                    <button class="clear-category pl-2 pr-2 w-full transition duration-500 ease-in-out rounded-xl group hover:bg-orenmuda">
+                        <a href="{{ url('adoptions/') . '?' . http_build_query($queryParams) }}">
                             <p class="text-xl font-semibold mt-2 text-left group-hover:text-white transition-colors duration-500 ease-in-out">All Category</p>
                             <hr class="border-orenmuda border-1/2 w-3/6 my-2 group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
                         </a>
@@ -115,18 +126,24 @@
                 @foreach ($categories as $category)
                     @php
                         $isActive = request()->query('category') == $category->slug;
+                        $queryParams = request()->query();
+                        $queryParams["category"] = $category->slug;
                     @endphp
-                    
+
                     @if ($isActive)
+                        @php
+                            unset($queryParams["category"]);
+                        @endphp
                         <button class="pl-2 pr-2 w-full rounded-xl group bg-{{ $category->color }}">
-                            <a href="/adoptions?category={{ $category->slug }}" class="w-full">
+                            <a href="{{ url('/adoptions') . '?' . http_build_query($queryParams) }}" class="w-full">
                                 <p class="text-xl font-semibold mt-2 text-left text-white">{{ $category->name }}</p>
                                 <hr class="border-1/2 my-2 w-full border-white">
                             </a>
                         </button>
+                
                     @else
                         <button class="pl-2 pr-2 w-full transition duration-500 ease-in-out rounded-xl group hover:bg-{{ $category->color }}">
-                            <a href="/adoptions?category={{ $category->slug }}" class="w-full">
+                            <a href="{{ url('/adoptions') . '?' . http_build_query($queryParams) }}" class="w-full">
                                 <p class="text-xl font-semibold mt-2 text-left group-hover:text-white transition-colors duration-500 ease-in-out">{{ $category->name }}</p>
                                 <hr class="border-{{ $category->color }} border-1/2 w-3/6 my-2 group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
                             </a>
@@ -165,8 +182,12 @@
                             <div class="flex flex-row font-montserrat_alt font-semibold w-full">
                                 <p class="text-2xl">{{ $adoption->name }}</p>    
                                 <!-- Like -->
+                                @php
+                                    $likedPostIds = $likedPosts->pluck('adoption_post_id')->toArray();
+                                    $isLiked = in_array($adoption->id,$likedPostIds);
+                                @endphp
                                 <div class="mt-1 ml-auto pr-3">
-                                    <i class="fa-solid fa-heart fa-lg likeIcon" style="color: #a6a6a6; cursor: pointer;"></i>
+                                    <i class="fa-solid fa-heart fa-lg likeIcon {{ $isLiked ? 'filled-heart' : '' }}" style="color: #a6a6a6; cursor: pointer;"></i>
                                 </div> 
                             </div>
         
@@ -199,7 +220,31 @@
     const closeButton = document.getElementById('close-button');
     const alert = document.getElementById('alert');
 
-    closeButton.addEventListener('click', function() {
-       alert.style.display = "none"; 
-    });
+    if (closeButton) {
+        closeButton.addEventListener('click', function() {
+        alert.style.display = "none"; 
+        });
+    }
+
+
+    const sapaan = document.getElementById('sapaan');
+
+    function updateSapaan(){
+        const now = new Date();
+        const hours = now.getHours();
+
+        let greeting;
+        if (hours >= 6 && hours < 12) {
+            greeting = "Good Morning!";
+        } else if (hours >= 12 && hours < 18) {
+            greeting = "Good Afternoon!";
+        } else {
+            greeting = "Good Night!";
+        }
+
+        sapaan.textContent = greeting;
+    }
+    
+    setInterval(updateSapaan(),10000);
+
 </script>

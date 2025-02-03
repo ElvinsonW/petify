@@ -1,11 +1,11 @@
 <x-layout>
-    <div class="flex bg-no-repeat bg-center bg-contain" style="background-image: url(images/adopt-bg.png)">
+    <div class="flex bg-no-repeat bg-center bg-contain h-[140vw]" style="background-image: url(images/adopt-bg.png)">
         <!-- Bagian Kiri (Sidebar) Start -->
         <div class="w-80 h-full shadow-lg pl-10 pt-10">
             <!-- Greetings -->
             <div class="font-montserrat_alt">
-                <h4 class="text-lg">Hello Dodoidoy,</h4>
-                <h2 class="text-xl font-bold">Good Afternoon!</h2>
+                <h4 class="text-lg">Hello {{ auth()->user()->username }},</h4>
+                <h2 class="text-xl font-bold" id="sapaan">Good Afternoon!</h2>
             </div>
             
             <!-- Search Bar -->
@@ -46,20 +46,23 @@
                 @foreach ($categories as $category)
                     @php
                         $isActive = request()->query('category') == $category->slug;
-                        
+                        $queryParams = request()->query();
+                        $queryParams["category"] = $category->slug
                     @endphp
                     
                     @if ($isActive)
-                        
+                        @php
+                            unset($queryParams["category"]);
+                        @endphp
                         <button class="pl-2 pr-2 w-full transition duration-500 ease-in-out rounded-xl group bg-{{ $category->color }}">
-                            <a href="/articles?category={{ $category->slug }}" class="w-full">
+                            <a href="{{ url('/articles') . '?' . http_build_query($queryParams) }}" class="w-full">
                                 <p class="text-xl font-semibold mt-2 text-left text-white">{{ $category->name }}</p>
                                 <hr class="border-1/2 my-2 w-full border-white">
                             </a>
                         </button>
                     @else
                         <button class="pl-2 pr-2 w-full transition duration-500 ease-in-out rounded-xl group hover:bg-{{ $category->color }}">
-                            <a href="/articles?category={{ $category->slug }}" class="w-full">
+                            <a href="{{ url('/articles') . '?' . http_build_query($queryParams) }}" class="w-full">
                                 <p class="text-xl font-semibold mt-2 text-left group-hover:text-white transition-colors duration-500 ease-in-out">{{ $category->name }}</p>
                                 <hr class="border-{{ $category->color }} border-1/2 w-3/6 my-2 group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
                             </a>
@@ -91,10 +94,9 @@
                                 <img src="{{ asset('images/articlepict.svg') }}" alt="Article Picture" class="w-full h-[30vh] object-cover rounded-md">
                             @endif
                             
-                            
                             <!-- Category & Days -->
                             <div class="flex flex-row font-montserrat_alt font-semibold w-full">
-                                <p href="/articles?category={{ $article->articleCategory->slug }}" class="w-fit rounded-xl bg-{{  $article->articleCategory->color }} text-xl text-center text-white my-4 py-1.5 px-2">{{ $article->articleCategory->name }}</p>     
+                                <p href="/articles?category={{ $article->article_category->slug }}" class="w-fit rounded-xl bg-{{  $article->article_category->color }} text-xl text-center text-white my-4 py-1.5 px-2">{{ $article->article_category->name }}</p>     
                                 <p class="text-slate-400 my-4 ml-auto py-1.5 px-2">{{ $article->created_at->diffForHumans() }}</p>
                             </div>
         
@@ -109,7 +111,7 @@
                                 <div class="w-12 h-12 bg-white border-4 border-greentua rounded-full flex justify-center items-center">
                                     <img src="images/after login.svg" alt="Profile Writer">
                                 </div>
-                                <p class="mx-3 mt-2 font-overpass font-semibold text-xl">{{ $article->user->name }}</p>
+                                <p class="mx-3 mt-2 font-overpass font-semibold text-xl">{{ $article->user->username }}</p>
                             </div>
                         </div>
                     </a>
@@ -123,3 +125,26 @@
         </div>
     </div>
 </x-layout>
+
+<script>
+    const sapaan = document.getElementById('sapaan');
+
+    
+    function updateSapaan(){
+        const now = new Date();
+        const hours = now.getHours();
+
+        let greeting;
+        if (hours >= 6 && hours < 12) {
+            greeting = "Good Morning!";
+        } else if (hours >= 12 && hours < 18) {
+            greeting = "Good Afternoon!";
+        } else {
+            greeting = "Good Night!";
+        }
+
+        sapaan.textContent = greeting;
+    }
+    
+    setInterval(updateSapaan(),10000);
+</script>

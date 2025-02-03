@@ -5,7 +5,7 @@
             @if($article->image)
                 <img src="{{ asset('storage/' . $article->image ) }}" alt="Article Picture" class="w-full h-[70vh] object-cover">
             @else
-                <img src="{{ asset('images/articleCatDetail.svg') }}" alt="Cat Article" class="w-full h-[70vh] object-cover">
+                <img src="{{ asset('images/article Cat Detail.svg') }}" alt="Cat Article" class="w-full h-[70vh] object-cover">
             @endif
         </div>
     

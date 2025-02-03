@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdoptionPost;
 use App\Models\LifeAfterAdoption;
 use App\Models\LikedAdoptionPost;
 use App\Models\LikedLifeAfterAdoption;
+use App\Models\Pet;
 use App\Models\PetCategory;
 use Illuminate\Http\Request;
 
@@ -15,16 +17,21 @@ class LifeAfterAdoptionController extends Controller
      */
     public function index()
     {
+        $filters = ['category', 'pet'];
+
         $likedPost = LikedLifeAfterAdoption::where('user_id',auth()->user()->id)->get();
-        
-        $post = LifeAfterAdoption::all()->map(function($post){
-            $post->like_count = LikedLifeAfterAdoption::where('laa_post_id',$post->id)->count();
-            return $post;
-        });
+
+        $petIds = AdoptionPost::where('user_id',auth()->user()->id)
+                            ->pluck('pet_id')
+                            ->toArray();
+
+        $pets = Pet::whereIn('id',$petIds)->get();
+
         return view('life-after-adoption.indexLaa',[
             "categories" => PetCategory::all(),
-            "posts" => $post,
-            "likedPosts" => $likedPost
+            "posts" => LifeAfterAdoption::filter(request($filters))->get(),
+            "likedPosts" => $likedPost,
+            "pets" => $pets, 
         ]);
     }
 
@@ -33,7 +40,14 @@ class LifeAfterAdoptionController extends Controller
      */
     public function create()
     {
-        
+        $petIds = AdoptionPost::where('user_id',auth()->user()->id)
+                              ->pluck('pet_id')
+                              ->toArray();
+
+        $pets = Pet::whereIn('id',$petIds)->get();
+        return view('life-after-adoption.createLaa',[
+            "pets" => $pets
+        ]);
     }
 
     /**
@@ -41,8 +55,25 @@ class LifeAfterAdoptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request
+        $validatedData = $request->validate([
+            "pet_id" => ["required", "exists:pets,id"],
+            "image" => ["required", "image", "mimes:jpeg,png,jpg,gif,svg", "max:1024"], // "file" is redundant
+            "description" => ["nullable", "max:255"]
+        ]);        
+
+        // Store the uploaded image in "storage/app/public/life-after-adoption-image"
+        $validatedData['image'] = $request->file('image')->store('life-after-adoption-image', 'public');
+
+        // Assign the authenticated user's ID
+        $validatedData["user_id"] = auth()->id(); // Shorter and cleaner
+
+        // Create a new record in the database
+        LifeAfterAdoption::create($validatedData);
+
+        return redirect('life-after-adoption')->with('createSuccess', "Post Successfully created");
     }
+
 
     /**
      * Display the specified resource.
