@@ -30,7 +30,7 @@ class AdoptionPostController extends Controller
         return view('adoption.indexAdoptionPost',[
             "adoptions" => AdoptionPost::filter(request($filters))->paginate(9)->withQueryString(),
             "categories" => PetCategory::all(),
-        ]);
+        ]); 
     }
 
     /**
