@@ -1,8 +1,7 @@
 <x-layout>
     
     <!-- container -->
-    <img src="{{ asset('images/homepage-dog.svg') }}">
-    <div class="container mx-auto py-8 my-8 px-4 overflow-hidden bg-no-repeat bg-center bg-contain" style="background-image: url(../src/images/adopt-bg.png)">
+    <div class="container mx-auto py-8 my-8 px-4 overflow-hidden bg-no-repeat bg-center bg-contain" style="background-image: url('{{ asset('images/adopt-bg.png') }}')">
         <!-- Main Content -->
         <div class="flex flex-col lg:flex-row lg:space-x-12">
             <!-- Left Section (Judul, Search, Filter, and Event List) -->
