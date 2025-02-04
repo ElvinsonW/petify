@@ -36,12 +36,14 @@ class EventController extends Controller
      */
     public function show(string $slug)
     {
-        // $event = Event::where('slug', $slug)->firstOrFail();
+        $event = Event::where('slug', $slug)->firstOrFail();
 
         return view('event.eventSingle', [
-            // 'event' => $event,
+            'event' => $event,
         ]);
     }
+
+    
 
     /**
      * Show the form for editing the specified resource.

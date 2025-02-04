@@ -24,4 +24,20 @@ return new class extends Migration
     {
         Schema::dropIfExists('event');
     }
+
+    public function up()
+{
+    Schema::create('events', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Assumed it has a user association
+        $table->string('title');
+        $table->string('location');
+        $table->string('ticket');
+        $table->date('date');
+        $table->text('image');
+        $table->text('description');
+        $table->timestamps();
+    });
+}
+
 };
