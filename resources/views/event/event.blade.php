@@ -64,6 +64,7 @@
                     <a href="../pages/event-single.html" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
                         <div class="flex flex-col md:flex-row items-start space-x-0 md:space-x-6">
                             <img
+                                src ="{{asset('images/articlepict.svg')}}"
                                 src="../src/images/articlepict.svg"
                                 alt="Event Image"
                                 class="w-full md:w-36 h-36 rounded-2xl object-cover"
@@ -79,14 +80,18 @@
                                 <div class="flex flex-col text-xs text-black font-open_sans font-semibold mt-3 leading-snug space-y-2">
                                     <!-- Lokasi -->
                                     <span class="flex items-center space-x-2">
-                                        <img src="../src/images/location event.svg" alt="Location Icon" class="w-4 h-4">
+                                        <img 
+                                        src ="{{asset('images/location event.svg')}}"
+                                        src="../src/images/location event.svg" alt="Location Icon" class="w-4 h-4">
                                         <span>
                                             Lamin Tonyoi, Sendawar Cultural Park, Barong Tongkok District, West Kutai Regency
                                         </span>
                                     </span>
                                     <!-- Tanggal -->
                                     <span class="flex items-center space-x-2">
-                                        <img src="../src/images/uim_calendar.svg" alt="Calendar Icon" class="w-4 h-4">
+                                        <img 
+                                        src ="{{asset('images/uim_calendar.svg')}}"
+                                        src="../src/images/uim_calendar.svg" alt="Calendar Icon" class="w-4 h-4">
                                         <span>28 October 2024</span>
                                     </span>
                                 </div>
@@ -98,6 +103,7 @@
                         <a href="../pages/event-single.html" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
                             <div class="flex flex-col md:flex-row items-start space-x-0 md:space-x-6">
                                 <img
+                                    src ="{{asset('images/articlepict.svg')}}"
                                     src="../src/images/articlepict.svg"
                                     alt="Event Image"
                                     class="w-full md:w-36 h-36 rounded-2xl object-cover"
@@ -113,14 +119,18 @@
                                     <div class="flex flex-col text-xs text-black font-open_sans font-semibold mt-3 leading-snug space-y-2">
                                         <!-- Lokasi -->
                                         <span class="flex items-center space-x-2">
-                                            <img src="../src/images/location event.svg" alt="Location Icon" class="w-4 h-4">
+                                            <img 
+                                            src ="{{asset('images/location event.svg')}}"
+                                            src="../src/images/location event.svg" alt="Location Icon" class="w-4 h-4">
                                             <span>
                                                 Lamin Tonyoi, Sendawar Cultural Park, Barong Tongkok District, West Kutai Regency
                                             </span>
                                         </span>
                                         <!-- Tanggal -->
                                         <span class="flex items-center space-x-2">
-                                            <img src="../src/images/uim_calendar.svg" alt="Calendar Icon" class="w-4 h-4">
+                                            <img 
+                                            src ="{{asset('images/uim_calendar.svg')}}"
+                                            src="../src/images/uim_calendar.svg" alt="Calendar Icon" class="w-4 h-4">
                                             <span>28 October 2024</span>
                                         </span>
                                     </div>
@@ -131,6 +141,7 @@
                         <a href="../pages/event-single.html" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
                             <div class="flex flex-col md:flex-row items-start space-x-0 md:space-x-6">
                                 <img
+                                    src ="{{asset('images/articlepict.svg')}}"
                                     src="../src/images/articlepict.svg"
                                     alt="Event Image"
                                     class="w-full md:w-36 h-36 rounded-2xl object-cover"
@@ -146,14 +157,18 @@
                                     <div class="flex flex-col text-xs text-black font-open_sans font-semibold mt-3 leading-snug space-y-2">
                                         <!-- Lokasi -->
                                         <span class="flex items-center space-x-2">
-                                            <img src="../src/images/location event.svg" alt="Location Icon" class="w-4 h-4">
+                                            <img 
+                                            src ="{{asset('images/location event.svg')}}"
+                                            src="../src/images/location event.svg" alt="Location Icon" class="w-4 h-4">
                                             <span>
                                                 Lamin Tonyoi, Sendawar Cultural Park, Barong Tongkok District, West Kutai Regency
                                             </span>
                                         </span>
                                         <!-- Tanggal -->
                                         <span class="flex items-center space-x-2">
-                                            <img src="../src/images/uim_calendar.svg" alt="Calendar Icon" class="w-4 h-4">
+                                            <img 
+                                            src ="{{asset('images/uim_calendar.svg')}}"
+                                            src="../src/images/uim_calendar.svg" alt="Calendar Icon" class="w-4 h-4">
                                             <span>28 October 2024</span>
                                         </span>
                                     </div>
@@ -163,6 +178,7 @@
                         <a href="../pages/event-single.html" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
                             <div class="flex flex-col md:flex-row items-start space-x-0 md:space-x-6">
                                 <img
+                                    src ="{{asset('images/articlepict.svg')}}"
                                     src="../src/images/articlepict.svg"
                                     alt="Event Image"
                                     class="w-full md:w-36 h-36 rounded-2xl object-cover"
@@ -178,14 +194,18 @@
                                     <div class="flex flex-col text-xs text-black font-open_sans font-semibold mt-3 leading-snug space-y-2">
                                         <!-- Lokasi -->
                                         <span class="flex items-center space-x-2">
-                                            <img src="../src/images/location event.svg" alt="Location Icon" class="w-4 h-4">
+                                            <img 
+                                            src ="{{asset('images/location event.svg')}}"
+                                            src="../src/images/location event.svg" alt="Location Icon" class="w-4 h-4">
                                             <span>
                                                 Lamin Tonyoi, Sendawar Cultural Park, Barong Tongkok District, West Kutai Regency
                                             </span>
                                         </span>
                                         <!-- Tanggal -->
                                         <span class="flex items-center space-x-2">
-                                            <img src="../src/images/uim_calendar.svg" alt="Calendar Icon" class="w-4 h-4">
+                                            <img 
+                                            src ="{{asset('images/uim_calendar.svg')}}"
+                                            src="../src/images/uim_calendar.svg" alt="Calendar Icon" class="w-4 h-4">
                                             <span>28 October 2024</span>
                                         </span>
                                     </div>
@@ -222,6 +242,7 @@
                         <a href="../pages/event-single.html">
                             <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-4">
                                 <img
+                                    src ="{{asset('images/petpict.svg')}}"
                                     src="../src/images/petpict.svg"
                                     alt="Upcoming Event"
                                     class="w-full md:w-24 h-24 rounded-2xl object-cover"
@@ -230,14 +251,18 @@
                                     <h4 class="mb-2 text-lg font-semibold text-black font-montserrat_alt leading-snug">Perkin Jaya All Breed Dog Show 2025</h4>
                                     <!-- location -->
                                     <span class="mb-1 flex items-center space-x-2">
-                                        <img src="../src/images/location event.svg" alt="Location Icon" class="w-4 h-4">
+                                        <img 
+                                        src ="{{asset('images/location event.svg')}}"
+                                        src="../src/images/location event.svg" alt="Location Icon" class="w-4 h-4">
                                         <span class="text-xs font-open_sans leading-snug font-normal text-black">
                                             Jeep Station Indonesia (JSI) Resort, Bogor
                                         </span>
                                     </span>
                                     <!-- date -->
                                     <span class="flex items-center space-x-2">
-                                        <img src="../src/images/uim_calendar.svg" alt="Location Icon" class="w-4 h-4">
+                                        <img 
+                                        src ="{{asset('images/uim_calendar.svg')}}"
+                                        src="../src/images/uim_calendar.svg" alt="Location Icon" class="w-4 h-4">
                                         <span class="text-xs font-open_sans leading-snug font-normal text-black">
                                             16 - 18 January 2025
                                         </span>
@@ -251,6 +276,7 @@
                         <a href="../pages/event-single.html">
                             <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-4">
                                 <img
+                                    src ="{{asset('images/petpict.svg')}}"
                                     src="../src/images/petpict.svg"
                                     alt="Upcoming Event"
                                     class="w-full md:w-24 h-24 rounded-2xl object-cover"
@@ -259,14 +285,18 @@
                                     <h4 class="mb-2 text-lg font-semibold text-black font-montserrat_alt leading-snug">Perkin Jaya All Breed Dog Show 2025</h4>
                                     <!-- location -->
                                     <span class="mb-1 flex items-center space-x-2">
-                                        <img src="../src/images/location event.svg" alt="Location Icon" class="w-4 h-4">
+                                        <img 
+                                        src ="{{asset('images/location event.svg')}}"
+                                        src="../src/images/location event.svg" alt="Location Icon" class="w-4 h-4">
                                         <span class="text-xs font-open_sans leading-snug font-normal text-black">
                                             Jeep Station Indonesia (JSI) Resort, Bogor
                                         </span>
                                     </span>
                                     <!-- date -->
                                     <span class="flex items-center space-x-2">
-                                        <img src="../src/images/uim_calendar.svg" alt="Location Icon" class="w-4 h-4">
+                                        <img 
+                                        src ="{{asset('images/uim_calender.svg')}}"
+                                        src="../src/images/uim_calendar.svg" alt="Location Icon" class="w-4 h-4">
                                         <span class="text-xs font-open_sans leading-snug font-normal text-black">
                                             16 - 18 January 2025
                                         </span>
@@ -279,6 +309,7 @@
                         <a href="../pages/event-single.html">
                             <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-4">
                                 <img
+                                    src ="{{asset('images/petpict.svg')}}"
                                     src="../src/images/petpict.svg"
                                     alt="Upcoming Event"
                                     class="w-full md:w-24 h-24 rounded-2xl object-cover"
@@ -287,14 +318,18 @@
                                     <h4 class="mb-2 text-lg font-semibold text-black font-montserrat_alt leading-snug">Perkin Jaya All Breed Dog Show 2025</h4>
                                     <!-- location -->
                                     <span class="mb-1 flex items-center space-x-2">
-                                        <img src="../src/images/location event.svg" alt="Location Icon" class="w-4 h-4">
+                                        <img 
+                                        src ="{{asset('images/location event.svg')}}"
+                                        src="../src/images/location event.svg" alt="Location Icon" class="w-4 h-4">
                                         <span class="text-xs font-open_sans leading-snug font-normal text-black">
                                             Jeep Station Indonesia (JSI) Resort, Bogor
                                         </span>
                                     </span>
                                     <!-- date -->
                                     <span class="flex items-center space-x-2">
-                                        <img src="../src/images/uim_calendar.svg" alt="Location Icon" class="w-4 h-4">
+                                        <img 
+                                        src ="{{asset('images/uim_calendar.svg')}}"
+                                        src="../src/images/uim_calendar.svg" alt="Location Icon" class="w-4 h-4">
                                         <span class="text-xs font-open_sans leading-snug font-normal text-black">
                                             16 - 18 January 2025
                                         </span>
