@@ -485,7 +485,6 @@
     // Initial render
     renderCalendar(currentMonth, currentYear);
     </script>  
-</body>
-</html>
+</x-layout>
 
 
