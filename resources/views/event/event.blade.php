@@ -389,7 +389,7 @@
                 icon.classList.add('icon-hamburger');
                 icon.style.transform = 'rotate(0deg)'; // Reset rotation
             }
-        });
+        };
 
     const monthNames = [
     "January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"
