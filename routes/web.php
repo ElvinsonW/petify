@@ -6,7 +6,6 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\LifeAfterAdoptionController;
 use App\Http\Controllers\LikedAdoptionPostController;
 use App\Http\Controllers\LikedLifeAfterAdoptionController;
-// use app\Http\Controllers\EventController;
 use App\Http\Middleware\CheckPostOwnership;
 use App\Models\LifeAfterAdoption;
 use App\Models\LikedAdoptionPost;
@@ -17,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
+
 
 Route::get('/login',function (){
     return view('login');
@@ -82,3 +82,6 @@ Route::delete('/life-after-adoption/{post_id}/like',[LikedLifeAfterAdoptionContr
 Route::get('life-after-adoption/{post_id}/like-count',[LikedLifeAfterAdoptionController::class,'likeCount']);
 
 Route::get('/events', [EventController::class, 'index'])->middleware('auth');
+
+Route::resource('/events', EventController::class);
+

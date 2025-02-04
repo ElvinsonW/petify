@@ -61,7 +61,7 @@
 
                 <!-- Event Card -->
                 <div class="event card overflow-y-auto scrollbar-thin max-h-screen scrollbar-track-gray-200 scrollbar-thumb-gray-400 mb-10">
-                    <a href="../pages/event-single.html" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
+                    <a href="/events/blabla" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
                         <div class="flex flex-col md:flex-row items-start space-x-0 md:space-x-6">
                             <img
                                 src ="{{asset('images/articlepict.svg')}}"

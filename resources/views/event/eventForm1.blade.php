@@ -129,5 +129,4 @@
         </div>  
     </div>
     <!-- Event Container End -->
-
 </x-layout>
