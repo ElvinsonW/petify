@@ -1,19 +1,24 @@
 <div class="w-full mt-10 mb-32 bg-no-repeat bg-center bg-contain px-4" style="background-image: url(../src/images/form-bg.png)">
     <!-- Judul Page -->
     <div class="text-center mb-8">
-        <p class="text-3xl sm:text-4xl lg:text-6xl font-montserrat_alt font-bold text-green">Event Post</p>
+        <p class="text-3xl sm:text-4xl lg:text-6xl font-montserrat_alt font-bold text-greenpetify">Event Post</p>
     </div>
 
     <!-- Steps -->
     <div id="steps" class="flex justify-center items-center gap-4 font-open_sans">
         <div id="step-1" class="flex flex-col items-center">
-            <div class="w-8 h-8 flex items-center justify-center rounded-full {{ $step > 1 ? 'bg-greenpetify' : 'border-black' }} bg-white text-white font-bold">1</div>
+            <div class="w-8 h-8 flex items-center justify-center rounded-full 
+                {{ $step > 1 ? 'bg-greenpetify text-white' : 'border-2 border-greenpetify bg-white text-greenpetify' }} 
+                font-bold transition-all duration-500">
+                1
+            </div>
+
         </div>
         <div class="flex items-center">
             <div class="w-16 border-t-2 border-dashed {{ $step > 1 ? 'border-greenpetify' : 'border-gray-300' }} "></div>
         </div>
         <div id="step-2" class="flex flex-col items-center">
-            <div class="{{ $step == 2 ? 'w-12 h-12' : 'w-8 h-8' }}  flex items-center justify-center rounded-full {{ $step > 2 ? 'bg-greenpetify' : 'bg-gray-300' }}  text-white font-bold">2</div>
+            <div class="w-8 h-8 flex items-center justify-center rounded-full {{ $step > 2 ? 'bg-greenpetify text-white' : '' }} {{ $step == 2 ? 'border-2 border-greenpetify bg-white text-greenpetify' : 'bg-white border-2 border-gray-300 text-gray-300' }} font-bold transition-all duration-500">2</div>
         </div>
     </div>
 
