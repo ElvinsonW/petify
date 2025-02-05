@@ -28,8 +28,8 @@
         <div class="w-80 h-full shadow-lg pl-10 pt-10">
             <!-- Judul Page -->
             <div class="text-left">
-                <h4 class="text-4xl font-montserrat_alt font-bold text-green">Life After</h4>
-                <h2 class="text-5xl font-montserrat_alt font-bold text-green">Adoption</h2>
+                <h4 class="text-4xl font-montserrat_alt font-bold text-greenpetify">Life After</h4>
+                <h2 class="text-5xl font-montserrat_alt font-bold text-greenpetify">Adoption</h2>
             </div>
             
             <!-- Search Bar -->
@@ -140,7 +140,7 @@
             @if ($pets)
                 <!-- NYALAIN KOMEN DI BAWAH INI KALO MISALNYA UDAH ADA PET YANG DIADOPSI (START) -->
                 <div class="w-5/6 shadow-2xl rounded-lg border-1/2 border-gray-400 p-4 mb-10">
-                    <h4 class="mb-4 text-left text-lg font-montserrat_alt font-semibold text-green">Your Pet that has been Adopted</h4>
+                    <h4 class="mb-4 text-left text-lg font-montserrat_alt font-semibold text-greenpetify">Your Pet that has been Adopted</h4>
 
                     @foreach ($pets as $pet)
                         @php
@@ -164,7 +164,7 @@
             @else
                 <!-- NYALAIN KOMEN DI BAWAH INI KALO MISALNYA BELOM ADA PET YANG DIADOPSI (START) --> 
                 <div class="w-5/6 shadow-2xl rounded-lg border-1/2 border-gray-400 p-4 font-montserrat_alt text-left">
-                    <h4 class="mb-4 text-left text-lg font-montserrat_alt font-semibold text-green">You have no Pet that has been Adopted</h4>
+                    <h4 class="mb-4 text-left text-lg font-montserrat_alt font-semibold text-greenpetify">You have no Pet that has been Adopted</h4>
                     <i class="fa-solid fa-paw fa-5x text-center w-full my-5" style="color: #166b68;"></i>
                     <p class="text-sm">Have a pet that's up for adoption? Click the button below to create an adoption post!</p>
     

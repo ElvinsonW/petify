@@ -81,7 +81,6 @@
                     }
                 </style>
                 
-
                 <button type="submit" class="mt-10 inline-flex items-center px-3 py-2.5 text-lg font-semibold font-overpass text-center text-white bg-orenmuda rounded-2xl shadow-lg transform hover:scale-95 hover:bg-orange-400 transition duration-300 ease-in-out">Create Post</button>
             </form>
         </div>

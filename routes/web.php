@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdoptionPostController;
+use App\Http\Controllers\AdoptionRequestController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LifeAfterAdoptionController;
@@ -83,5 +84,9 @@ Route::get('life-after-adoption/{post_id}/like-count',[LikedLifeAfterAdoptionCon
 
 Route::get('/events', [EventController::class, 'index'])->middleware('auth');
 
+<<<<<<< Updated upstream
 Route::resource('/events', EventController::class);
 
+=======
+Route::resource('/adoption-request', AdoptionRequestController::class);
+>>>>>>> Stashed changes

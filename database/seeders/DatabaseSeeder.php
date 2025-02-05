@@ -8,6 +8,7 @@ use App\Models\ArticleCategory;
 use App\Models\LifeAfterAdoption;
 use App\Models\Pet;
 use App\Models\PetCategory;
+use App\Models\Tag;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;

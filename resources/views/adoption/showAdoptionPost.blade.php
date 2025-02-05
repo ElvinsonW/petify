@@ -185,7 +185,7 @@
 
         @if ($adoption->status == "0")    
             <!-- Button Adopt Me (kalo belom diadopt)-->
-            <a href="/adoption-form">
+            <a href="/adoption-request/create">
                 <button class="mt-10 text-white bg-greentipis rounded-2xl shadow-lg transform hover:scale-95 hover:bg-greentua transition duration-300 ease-in-out text-xl font-semibold px-5 py-2.5 font-overpass">Adopt Me</button>
             </a>
         @else

@@ -25,8 +25,8 @@
         <!-- Main Section Start -->
         <div class="mt-0 p-0 flex flex-row">
             <div class="mx-16 mt-16 w-1/2">
-                <h1 class="font-bold text-green font-montserrat_alt text-8xl tracking-wide mb-4">Things</h1>
-                <h1 class="font-bold text-green font-montserrat_alt text-8xl tracking-wide mb-4">About Pet!</h1>
+                <h1 class="font-bold text-greenpetify font-montserrat_alt text-8xl tracking-wide mb-4">Things</h1>
+                <h1 class="font-bold text-greenpetify font-montserrat_alt text-8xl tracking-wide mb-4">About Pet!</h1>
                 <p class="text-greentua font-open_sans tracking-wide text-xl mb-6">Find your perfect new companion, learn the best ways to care for them, and join a community dedicated to promoting animal welfare.</p>
                 <p class="text-greentua font-open_sans tracking-wide text-xl mb-6">Ready to Find your Destined Companion?</p>
                 <a href="/adoptions">
@@ -43,7 +43,7 @@
         <div class="m-6 md:m-14">
             <!-- Section Header -->
             <div class="mb-10">
-                <h4 class="font-montserrat_alt font-bold text-3xl text-green mb-2">Our Services</h4>
+                <h4 class="font-montserrat_alt font-bold text-3xl text-greenpetify mb-2">Our Services</h4>
                 <p class="font-open_sans text-greentua">Here are some of the services on this website</p>
             </div>
     
@@ -51,7 +51,7 @@
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <div>
                     <i class="fa-solid fa-paw fa-5x" style="color: #166b68;"></i>
-                    <h4 class="font-montserrat_alt text-2xl font-semibold text-green my-4">Adopt your Pet!</h4>
+                    <h4 class="font-montserrat_alt text-2xl font-semibold text-greenpetify my-4">Adopt your Pet!</h4>
                     <p class="font-open_sans tracking-wide w-3/4">Each animal will have a special profile that contains detailed information about the animal and allows users to initiate the adoption process by filling out an adoption application form.</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
                     <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 relative">
@@ -63,7 +63,7 @@
     
                 <div>
                     <i class="fa-solid fa-book fa-5x" style="color: #166b68;"></i>
-                    <h4 class="font-montserrat_alt text-2xl font-semibold text-green my-4">Article</h4>
+                    <h4 class="font-montserrat_alt text-2xl font-semibold text-greenpetify my-4">Article</h4>
                     <p class="font-open_sans tracking-wide w-3/4">This education section provides articles about animal care, adoption tips, food, and other information related to animals.</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
                     <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 relative">
@@ -75,7 +75,7 @@
     
                 <div>
                     <i class="fa-solid fa-calendar-day fa-5x" style="color: #166b68;"></i>
-                    <h4 class="font-montserrat_alt text-2xl font-semibold text-green my-4">Event</h4>
+                    <h4 class="font-montserrat_alt text-2xl font-semibold text-greenpetify my-4">Event</h4>
                     <p class="font-open_sans tracking-wide">A feature that showcases information about animal-related events, such as adoption campaigns, pet exhibitions, and community meetups, to raise awareness and foster interaction within the animal adoption community.</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
                     <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 relative">
@@ -88,7 +88,7 @@
                 <div>
                     <!-- <i class="fa-solid fa-dog fa-5x" style="color: #166b68;"></i> -->
                     <img src="{{ asset('images/Find.svg') }}" alt="Find My Pet">
-                    <h4 class="font-montserrat_alt text-2xl font-semibold text-green my-4">Find your Pet!</h4>
+                    <h4 class="font-montserrat_alt text-2xl font-semibold text-greenpetify my-4">Find your Pet!</h4>
                     <p class="font-open_sans tracking-wide w-3/4">Users can upload/post information about their missing pets, including the pet's characteristics (color, breed, last known location).</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
                     <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 relative">
@@ -100,7 +100,7 @@
     
                 <div>
                     <i class="fa-brands fa-gratipay fa-5x" style="color: #166b68;"></i>
-                    <h4 class="font-montserrat_alt text-2xl font-semibold text-green my-4">Life After Adoption</h4>
+                    <h4 class="font-montserrat_alt text-2xl font-semibold text-greenpetify my-4">Life After Adoption</h4>
                     <p class="font-open_sans tracking-wide w-3/4">Users can create posts sharing the life journey of their pets after adoption.</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
                     <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 relative">
@@ -115,7 +115,7 @@
         
         <!-- About Section Start -->
         <div class="rounded-3xl w-4/5 bg-greenabout mx-auto m-14 p-16 bg-no-repeat bg-center bg-cover" style="background-image: url({{ asset('images/about-bg.svg') }})">
-            <h4 class="text-3xl text-green font-montserrat_alt text-center font-bold m-4 tracking-wide">What's Petify?</h4>
+            <h4 class="text-3xl text-greenpetify font-montserrat_alt text-center font-bold m-4 tracking-wide">What's Petify?</h4>
             <p class="font-open_sans text-greentua text-center tracking-wide text-lg m-4">Petify is a website established by Dodoidoy Company in 2024, with the aim of becoming a comprehensive source of information about pets. We believe that every animal deserves proper care and a loving home. Petify not only provides information on how to care for pets but also serves as a shelter for abandoned animals. 
                 Our main mission is to give a second chance to animals in need by providing them with a safe and comfortable new home. Through our platform, we hope to raise public awareness about the importance of pet care, as well as create a supportive community where people can share their experiences in caring for animals. 
                 With the support of our users, we are committed to helping more animals find loving families and enrich their lives.</p>
@@ -126,7 +126,7 @@
         <div class="m-6 md:m-14">
             <!-- Section Header -->
             <div class="mb-10">
-                <h4 class="font-montserrat_alt font-bold text-3xl text-green mb-2">Our Shelter Partner</h4>
+                <h4 class="font-montserrat_alt font-bold text-3xl text-greenpetify mb-2">Our Shelter Partner</h4>
                 <p class="font-open_sans text-greentua">Here are the partners who support and assists us</p>
             </div>
     
@@ -163,7 +163,7 @@
         <div class="m-6 md:m-14">
             <!-- Section Header -->
             <div class="mb-10">
-                <h4 class="font-montserrat_alt font-bold text-3xl text-green mb-2">Feedback</h4>
+                <h4 class="font-montserrat_alt font-bold text-3xl text-greenpetify mb-2">Feedback</h4>
                 <p class="font-open_sans text-greentua">Response from previous users</p>
             </div>
     
@@ -197,12 +197,12 @@
                 </div>
     
                 <!-- Navigation Buttons -->
-                <button id="slider-button-left" class="swiper-button-prev group !p-2 flex justify-center items-center border border-solid border-green !w-12 !h-12 transition-all duration-500 rounded-full !top-1/2 !-translate-y-1/2 !left-5 hover:bg-greentua" data-carousel-prev>
+                <button id="slider-button-left" class="swiper-button-prev group !p-2 flex justify-center items-center border border-solid border-greenpetify !w-12 !h-12 transition-all duration-500 rounded-full !top-1/2 !-translate-y-1/2 !left-5 hover:bg-greentua" data-carousel-prev>
                     <svg class="h-5 w-5 text-greentua group-hover:text-white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <path d="M10.0002 11.9999L6 7.99971L10.0025 3.99719" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </button>
-                <button id="slider-button-right" class="swiper-button-next group !p-2 flex justify-center items-center border border-solid border-green !w-12 !h-12 transition-all duration-500 rounded-full !top-1/2 !-translate-y-1/2 !right-5 hover:bg-greentua" data-carousel-next>
+                <button id="slider-button-right" class="swiper-button-next group !p-2 flex justify-center items-center border border-solid border-greenpetify !w-12 !h-12 transition-all duration-500 rounded-full !top-1/2 !-translate-y-1/2 !right-5 hover:bg-greentua" data-carousel-next>
                     <svg class="h-5 w-5 text-greentua group-hover:text-white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <path d="M5.99984 4.00012L10 8.00029L5.99748 12.0028" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
@@ -221,14 +221,14 @@
             <div class="flex-col">
                 <!-- Divider Lines and Paw Icon -->
                 <div class="flex items-center justify-center space-x-4">
-                    <hr class="w-1/2 border-2 border-green">
+                    <hr class="w-1/2 border-2 border-greenpetify">
                     <img src="{{ asset('images/Vector.svg') }}" alt="Paw" class="h-8 w-8">
-                    <hr class="w-1/2 border-2 border-green">
+                    <hr class="w-1/2 border-2 border-greenpetify">
                 </div>
     
                 <!-- Text Content -->
                 <div class="mt-8">
-                    <h2 class="font-bold text-green text-5xl mb-4">JOIN US!</h2>
+                    <h2 class="font-bold text-greenpetify text-5xl mb-4">JOIN US!</h2>
                     <h4 class="font-semibold text-lg text-slate-700 max-w-2xl mx-auto w-2/3">
                         Together we build a community that cares for and supports the well-being of animals
                     </h4>
