@@ -55,7 +55,7 @@
                     <p class="font-open_sans tracking-wide w-3/4">Each animal will have a special profile that contains detailed information about the animal and allows users to initiate the adoption process by filling out an adoption application form.</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
                     <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 relative">
-                        <a href="../pages/adopt.html" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
+                        <a href="/adoptions" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
                             See More
                         </a>
                     </p>                                                                         
@@ -67,7 +67,7 @@
                     <p class="font-open_sans tracking-wide w-3/4">This education section provides articles about animal care, adoption tips, food, and other information related to animals.</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
                     <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 relative">
-                        <a href="../pages/article.html" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
+                        <a href="articles" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
                             See More
                         </a>
                     </p>                
@@ -79,7 +79,7 @@
                     <p class="font-open_sans tracking-wide">A feature that showcases information about animal-related events, such as adoption campaigns, pet exhibitions, and community meetups, to raise awareness and foster interaction within the animal adoption community.</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
                     <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 relative">
-                        <a href="../pages/event.html" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
+                        <a href="events" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
                             See More
                         </a>
                     </p>                
@@ -92,7 +92,7 @@
                     <p class="font-open_sans tracking-wide w-3/4">Users can upload/post information about their missing pets, including the pet's characteristics (color, breed, last known location).</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
                     <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 relative">
-                        <a href="../pages/find-my-pet.html" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
+                        <a href="find-my-pet" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
                             See More
                         </a>
                     </p>                
@@ -104,7 +104,7 @@
                     <p class="font-open_sans tracking-wide w-3/4">Users can create posts sharing the life journey of their pets after adoption.</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
                     <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 relative">
-                        <a href="../pages/life-after-adoption.html" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
+                        <a href="life-after-adoption" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
                             See More
                         </a>
                     </p>                
@@ -244,6 +244,19 @@
 </x-layout>
 
 <script>
+    // Script untuk inisialisasi Swiper.js
+    const swiper = new Swiper('.swiper', {
+        loop: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
+
     const closeButton = document.getElementById('close-button');
     const alert = document.getElementById('alert');
 
