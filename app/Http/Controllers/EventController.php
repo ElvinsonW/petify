@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Event;
 
 class EventController extends Controller
 {
@@ -34,10 +35,16 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        //
+        $event = Event::where('slug', $slug)->firstOrFail();
+
+        return view('event.eventSingle', [
+            'event' => $event,
+        ]);
     }
+
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -63,3 +70,4 @@ class EventController extends Controller
         //
     }
 }
+
