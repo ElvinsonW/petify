@@ -48,7 +48,7 @@
             </div>
     
             <!-- Services Container -->
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mx-12">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <div>
                     <i class="fa-solid fa-paw fa-5x" style="color: #166b68;"></i>
                     <h4 class="font-montserrat_alt text-2xl font-semibold text-green my-4">Adopt your Pet!</h4>

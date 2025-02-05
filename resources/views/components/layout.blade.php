@@ -58,6 +58,9 @@
             display: none
         }
     </style>
+
+    <!-- Livewire -->
+    @livewireStyles
 </head>
     <body>
         <x-navbar></x-navbar>
