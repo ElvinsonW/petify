@@ -8,7 +8,7 @@ class Schedule extends Model
 {
     public function event()
     {
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo(Event::class,'event_id');
     }
 }
 
