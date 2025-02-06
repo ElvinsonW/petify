@@ -25,7 +25,10 @@ class LifeAfterAdoptionController extends Controller
                             ->pluck('pet_id')
                             ->toArray();
 
-        $pets = Pet::whereIn('id',$petIds)->get();
+        $pets = Pet::whereIn('id',$petIds)->get()->map( function($pet) {
+            $pet->total_posts = LifeAfterAdoption::where('pet_id',$pet->id)->count();
+            return $pet;
+        });
 
         return view('life-after-adoption.indexLaa',[
             "categories" => PetCategory::all(),

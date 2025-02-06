@@ -14,7 +14,7 @@
                 <div class="flex flex-col">
                     <!-- search -->
                     <form>
-                        <div class="relative mb-8">
+                        <div class="relative mb-8 border border-black rounded-md drop-shadow">
                             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </div>
@@ -27,7 +27,7 @@
                             />
                             <button
                                 type="submit"
-                                class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua transition duration-300 rounded-lg px-2 py-2"
+                                class="text-white absolute end-2.5 bottom-2 bg-greentipis hover:bg-greentua transition duration-300 rounded-lg px-2 py-2"
                             >
                                 Search
                             </button>
@@ -226,13 +226,13 @@
                         <button id="next" class="text-green hover:bg-gray-300 px-3 py-1 font-bold transition duration-300">&gt;</button>
                     </div>
                     <div class="grid grid-cols-7 gap-2 text-center font-open_sans text-black">
-                        <div>SUN</div>
-                        <div>MON</div>
-                        <div>TUE</div>
-                        <div>WED</div>
-                        <div>THU</div>
-                        <div>FRI</div>
-                        <div>SAT</div>
+                        <div class="font-bold">SUN</div>
+                        <div class="font-bold">MON</div>
+                        <div class="font-bold">TUE</div>
+                        <div class="font-bold">WED</div>
+                        <div class="font-bold">THU</div>
+                        <div class="font-bold">FRI</div>
+                        <div class="font-bold">SAT</div>
                     </div>
                     <div id="dates" class="grid grid-cols-7 gap-2 text-center mt-4 font-open_sans"></div>
                     
@@ -411,18 +411,18 @@
 
             // Highlight the current day
             if (
-            day === today.getDate() &&
-            month === today.getMonth() &&
-            year === today.getFullYear()
+                day === today.getDate() &&
+                month === today.getMonth() &&
+                year === today.getFullYear()
             ) {
-            dayElement.classList.add("bg-gray-200", "font-bold");
+                dayElement.classList.add("bg-gray-200", "font-bold");
             }
 
             // Highlight days with events
             const event = events.find(e => e.date === dateStr);
             if (event) {
-            dayElement.classList.add("bg-blue-500", "text-white", "font-bold");
-            dayElement.addEventListener("click", () => showEvent(event));
+                dayElement.classList.add("bg-blue-500", "text-white", "font-bold");
+                dayElement.addEventListener("click", () => showEvent(event));
             }
 
             datesElement.appendChild(dayElement);
