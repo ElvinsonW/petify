@@ -11,7 +11,7 @@
         </div>
 
         <!-- Feature -->
-        <ul class="text-greenpetify lg:flex gap-10 hidden align-middle text-center justify-center">
+        <ul class="text-greenpetify lg:flex gap-10 hidden align-middle text-center justify-center list-none">
             <x-nav-link href="/adoptions" :active="request()->is(['adoptions', 'adoptions/*'])">Adoption</x-nav-link>  
             <x-nav-link href="/articles" :active="request()->is(['articles','articles/*'])">Articles</x-nav-link>  
             <x-nav-link href="/events" :active="request()->is(['events','events/*'])">Events</x-nav-link>  

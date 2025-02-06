@@ -13,7 +13,7 @@ class EventController extends Controller
     public function index()
     {
         
-        return view('event.createEvent');  
+        return view('event.event');  
     }
 
     /**
@@ -21,7 +21,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('event.createEvent');
     }
 
     /**

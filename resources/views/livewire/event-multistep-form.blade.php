@@ -12,7 +12,6 @@
                 font-bold transition-all duration-500">
                 1
             </div>
-
         </div>
         <div class="flex items-center">
             <div class="w-16 border-t-2 border-dashed {{ $step > 1 ? 'border-greenpetify' : 'border-gray-300' }} "></div>

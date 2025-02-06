@@ -2,13 +2,25 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    protected $fillable = ["event_id", "user_id","title","location","ticket","date", "image", "description"];
+    use HasFactory, Sluggable;
+    protected $fillable = ["user_id","title","slug","location","ticket","start_date","end_date", "image", "description"];
     public function schedules()
     {
         return $this->hasMany(Schedule::class,'event_id');
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }

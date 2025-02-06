@@ -2,17 +2,17 @@
 
 namespace App\Livewire;
 
+use App\Models\Event;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class EventMultistepForm extends Component
 {
     use WithFileUploads;
 
     public $step = 1;
-
-    // Properti untuk setiap step
-    public $title, $location, $ticket, $start_date, $end_date, $image, $description;
+    public $title, $slug, $location, $ticket, $start_date, $end_date, $image, $description;
     public $days = [];
     public $sessions = [];
 
@@ -21,6 +21,7 @@ class EventMultistepForm extends Component
         if ($this->step == 1) {
             $this->validate([
                 'title' => ['required', 'max:100'],
+                'slug' => ['required', 'unique:events'],
                 'location' => ['required', 'max:100'],
                 'ticket' => ['required', 'numeric', 'min:0'],
                 'start_date' => ['required', 'date'],
@@ -28,20 +29,34 @@ class EventMultistepForm extends Component
                 'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
                 'description' => ['required', 'max:255']
             ]);
+
+            if ($this->image instanceof \Illuminate\Http\UploadedFile) {
+                $this->image = $this->image->store('event_images', 'public');
+            }
         } elseif ($this->step == 2) {
             $this->validate([
                 'days.*.date' => ['required', 'date'],
-                'sessions.*.*.time' => ['required', 'date_format:H:i'],
+                'sessions.*.*.time' => ['required', 'date_format:g:i a'],
                 'sessions.*.*.title' => ['required', 'max:100'],
                 'sessions.*.*.description' => ['required', 'max:255']
             ]);
         }
     }
 
+    public function deleteImage()
+    {
+        if ($this->image && is_string($this->image) && Storage::disk('public')->exists($this->image)) {
+            // dd('halo');
+            Storage::disk('public')->delete($this->image);
+        }
+
+        $this->image = null; 
+    }
+
     public function nextStep()
     {
-        // $this->validateData(); // Validasi sebelum lanjut ke langkah berikutnya
-        // dd($this->step);
+        $this->validateData();
+        
         if ($this->step < 2) {
             $this->step++;
         } else {
@@ -58,8 +73,32 @@ class EventMultistepForm extends Component
 
     public function submitForm()
     {
-        // Simpan data di database (contoh)
-        // Event::create([...]);
+        $event = Event::create([
+            'title' => $this->title,
+            'slug' => $this->slug,
+            'location' => $this->location,
+            'ticket' => $this->ticket,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'image' => $this->image, 
+            'description' => $this->description
+        ]);
+
+        foreach ($this->days as $dayIndex => $dayData) {
+            $day = $event->days()->create([
+                'date' => $dayData['date'],
+            ]);
+    
+            if (isset($this->sessions[$dayIndex])) {
+                foreach ($this->sessions[$dayIndex] as $sessionData) {
+                    $day->sessions()->create([
+                        'time' => $sessionData['time'],
+                        'title' => $sessionData['title'],
+                        'description' => $sessionData['description']
+                    ]);
+                }
+            }
+        }
 
         session()->flash('message', 'Form submitted successfully!');
     }
