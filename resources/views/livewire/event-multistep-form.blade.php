@@ -37,7 +37,7 @@
         sessionCount[dayIndex]++;
         
         // Get the sessions container for the current day
-        const sessionsContainer = document.getElementById(input-day-${dayIndex + 1});
+        const sessionsContainer = document.getElementById(`input-day-${dayIndex + 1}`);
         
         // Create new session HTML
         const newSession = document.createElement('div');
@@ -78,7 +78,7 @@
         // Create new Day HTML block
         const newDay = document.createElement('div');
         newDay.classList.add('w-full', 'p-4', 'bg-gray-50', 'shadow', 'rounded-xl', 'flex', 'flex-col', 'items-center');
-        newDay.id = day-session-${dayCount};
+        newDay.id = `day-session-${dayCount}`;
         newDay.setAttribute("data-day-index", dayCount);
         newDay.addEventListener("click", function () {
             const index = this.getAttribute("data-day-index");
@@ -108,7 +108,7 @@
         const sessionsContainer = document.getElementById('session-container');
         const newSessionBlock = document.createElement('div');
         newSessionBlock.classList.add('w-full',"session", "hidden");
-        newSessionBlock.id = sessions-day-${dayCount};
+        newSessionBlock.id = `sessions-day-${dayCount}`;
 
         newSessionBlock.innerHTML = `
             <div class="w-full flex flex-col gap-5" id="input-day-${dayCount}">
@@ -146,7 +146,7 @@
 
     // Toggle visibility of the selected day's sessions
     function toggleSessions(dayIndex) {
-        const sessionsContainer = document.getElementById(sessions-day-${dayIndex});
+        const sessionsContainer = document.getElementById(`sessions-day-${dayIndex}`);
         
         // Hide other sessions
         document.querySelectorAll('.session').forEach(item => item.classList.add('hidden'));
