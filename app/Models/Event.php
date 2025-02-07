@@ -10,9 +10,10 @@ class Event extends Model
 {
     use HasFactory, Sluggable;
     protected $fillable = ["user_id","title","slug","location","ticket","start_date","end_date", "image", "description"];
-    public function schedules()
+    
+    public function days()
     {
-        return $this->hasMany(Schedule::class,'event_id');
+        return $this->hasMany(Day::class,'event_id');
     }
 
     public function sluggable(): array

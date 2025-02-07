@@ -14,7 +14,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
+        // Filter berdasarkan beberapa parameter
         $filters = ["category","search"];
+
+        // Mengambalikan view yang sesuai dan beberapa parameter
         return view("article.indexArticle",[
             "articles" => Article::filter(request($filters))->paginate(9)->withQueryString(),
             "categories" => ArticleCategory::all()
@@ -26,6 +29,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        // Mengambalikan view yang sesuai dan beberapa parameter
         return view("article.createArticle", ["categories" => ArticleCategory::all()]);
     }
 
@@ -34,6 +38,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        // Validasi input yang dikirim oleh user
         $validatedData = $request->validate([
             'title' => ['required','max:255'],
             'slug' => ['required','unique:articles'],
@@ -42,14 +47,19 @@ class ArticleController extends Controller
             'content' => ['required']
         ]);
 
+        // Simpan user_id dari user yang login saat ini
         $validatedData['user_id'] = auth()->user()->id;    
 
+        // Simpan image ke storage lokal dan validatedData
         if($request->file('image')){
             $validatedData['image'] = $request->file('image')->store('articles-image','public');
         }
         
+        // Simpan Artikel ke dalam Database
         Article::create($validatedData);
-        return redirect('/articles');
+
+        // Direct user ke Halaman Artikel dengan pesan berhasil
+        return redirect('/articles')->with('articleSuccess','Article Post Created Successfully');
     }
 
     /**
@@ -57,8 +67,14 @@ class ArticleController extends Controller
      */
     public function show(string $slug)
     {
+        // Mencari Article Post yang sesuai dengan slug yang dikirim
         $article = Article::where('slug',$slug)->firstOrFail();
-        return view('article.showArticle',["article" => $article]);
+
+        if($article){
+            // Mengembalikan view yang sesuai dan article post yang terpilih
+            return view('article.showArticle',["article" => $article]);
+        }
+        return redirect('/articles')->with('articleError','Post Not Found!');
     }
 
     /**
@@ -85,6 +101,7 @@ class ArticleController extends Controller
         //
     }
 
+    // Fungsi untuk membuat slug secara otomatis
     public function createSlug(Request $request){
         $slug = SlugService::createSlug(Article::class, 'slug', $request->title,["unique" => true]);
         return response()->json(['slug' => $slug]);

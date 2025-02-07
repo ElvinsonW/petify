@@ -19,7 +19,7 @@ class AdoptionRequestController extends Controller
      */
     public function create()
     {
-        return view('/adoption-request.createAdoptionRequest');
+        return view('adoption-request.requestForm2');
     }
 
     /**

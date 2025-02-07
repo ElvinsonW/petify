@@ -86,3 +86,5 @@ Route::get('/events', [EventController::class, 'index'])->middleware('auth');
 
 Route::resource('/events', EventController::class)->middleware('auth');
 
+Route::resource('/adoption-request', AdoptionRequestController::class)->middleware('auth');
+

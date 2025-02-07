@@ -21,14 +21,10 @@
         </div>
     </div>
 
-    @if ($step == 1)
+    @if ($step == 2)
         @include('event.eventForm1')
-    @elseif ($step == 2)
+    @elseif ($step == 1)
         @include('event.eventForm2')
-    @endif
-
-    @if (session()->has('message'))
-        <div class="success-message">{{ session('message') }}</div>
     @endif
 </div>
 
@@ -54,18 +50,18 @@
                 </div>
                 <input 
                     type="time" 
-                    name="sessions[${dayIndex}][${sessionCount[dayIndex]}][time]" 
+                    wire:model="sessions.${dayIndex}.${sessionCount[dayIndex]}.time"
                     class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
                     placeholder="Time input here...">
             </div>
             <div class="flex flex-col gap-4">
                 <input 
                     type="text" 
-                    name="sessions[${dayIndex}][${sessionCount[dayIndex]}][title]" 
+                    wire:model="sessions.${dayIndex}.${sessionCount[dayIndex]}.title" 
                     class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
                     placeholder="Session Title">
                 <textarea 
-                    name="sessions[${dayIndex}][${sessionCount[dayIndex]}][description]" 
+                    wire:model="sessions.${dayIndex}.${sessionCount[dayIndex]}.description" 
                     class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
                     rows="3" placeholder="Description here..."></textarea>
             </div>
@@ -97,7 +93,7 @@
                     <p class="text-lg font-semibold font-montserrat_alt">Day ${dayCount}</p>
                     <input 
                         type="date" 
-                        name="days[${dayCount - 1}][date]" 
+                        wire:model="days.${dayCount - 1}.date" 
                         class="w-full mt-2 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
                         placeholder="Input date here..."
                         id="date-selector-${dayCount}">
@@ -123,18 +119,18 @@
                         </div>
                         <input 
                             type="time" 
-                            name="sessions[${dayCount-1}][0][time]" 
+                            wire:model="sessions.${dayCount-1}.${sessionCount}.time" 
                             class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
                             placeholder="Time input here...">
                     </div>
                     <div class="flex flex-col gap-4">
                         <input 
                             type="text" 
-                            name="sessions[${dayCount-1}][0][title]" 
+                            wire:model="sessions.${dayCount-1}.${sessionCount}.title" 
                             class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
                             placeholder="Session Title">
                         <textarea 
-                            name="sessions[${dayCount-1}][0][description]" 
+                            wire:model="sessions.${dayCount-1}.${sessionCount}.description"
                             class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
                             rows="3" placeholder="Description here...">
                         </textarea>
@@ -143,6 +139,7 @@
             </div>
             <button type="button" class="mt-5 bg-kuning text-black rounded-lg px-4 py-2 hover:bg-kuninggelap transition font-montserrat_alt text-base font-semibold" onclick="addNewSession(${dayCount-1})">+ New Session</button>
         `;
+
 
         sessionsContainer.appendChild(newSessionBlock);
     }
