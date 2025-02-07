@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class EventController extends Controller
 {
@@ -13,7 +14,7 @@ class EventController extends Controller
     public function index()
     {
         
-        return view('event.createEvent');  
+        return view('event.event');  
     }
 
     /**
@@ -21,7 +22,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('event.createEvent');
     }
 
     /**
@@ -69,5 +70,9 @@ class EventController extends Controller
     {
         //
     }
-}
 
+    public function createSlug(Request $request){
+        $slug = SlugService::createSlug(Event::class, 'slug', $request->title,["unique" => true]);
+        return response()->json(['slug' => $slug]);
+    }
+}

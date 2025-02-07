@@ -15,9 +15,11 @@ return new class extends Migration
         $table->id();
         $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); 
         $table->string('title');
+        $table->string('slug')->unique();
         $table->string('location');
-        $table->string('ticket');
-        $table->date('date');
+        $table->integer('ticket');
+        $table->date('start_date');
+        $table->date('end_date');
         $table->text('image');
         $table->text('description');
         $table->timestamps();

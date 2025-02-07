@@ -14,11 +14,10 @@
                                     <p class="text-lg font-semibold font-montserrat_alt">Day 1</p>
                                     <input 
                                         type="date" 
-                                        name="days[0][date]" 
+                                        wire:model="days.0.date"
                                         class="w-full mt-2 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
                                         placeholder="Input date here..."
                                         id="date-selector-1">
-                                        
                                 </div>
                             </div>
                         </div>
@@ -37,18 +36,18 @@
                                     </div>
                                     <input 
                                         type="time" 
-                                        name="sessions[0][0][time]" 
+                                        wire:model="sessions.0.0.time" 
                                         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
                                         placeholder="Time input here...">
                                 </div>
                                 <div class="flex flex-col gap-4">
                                     <input 
                                         type="text" 
-                                        name="sessions[0][0][title]" 
+                                        wire:model="sessions.0.0.title" 
                                         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
                                         placeholder="Session Title">
                                     <textarea 
-                                        name="sessions[0][0][description]" 
+                                        wire:model="sessions.0.0.description" 
                                         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
                                         rows="3" placeholder="Description here..."></textarea>
                                 </div>
