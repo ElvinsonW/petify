@@ -94,8 +94,8 @@
 
                     <div>
                         <label for="content" class="block mb-3 text-lg font-semibold w-fit">Content</label>
-                        {{-- <trix-toolbar></trix-toolbar> --}}
-                        <div id="custom-toolbar">
+                        <trix-toolbar></trix-toolbar>
+                        {{-- <div id="custom-toolbar">
                             <span class="trix-button-group trix-button-group--text-tools">
                                 <button type="button" class="trix-button" data-trix-attribute="bold" title="Bold">Bold</button>
                                 <button type="button" class="trix-button" data-trix-attribute="italic" title="Italic">Italic</button>
@@ -103,7 +103,7 @@
                                 <button type="button" class="trix-button" data-trix-attribute="heading1" title="Heading 1">H1</button>
                                 <button type="button" class="trix-button" data-trix-attribute="heading2" title="Heading 2">H2</button>
                             </span>
-                        </div>
+                        </div> --}}
                         <input id="content" type="hidden" name="content" value="{{ old('content') }}" required>
                         <trix-editor toolbar="custom-toolbar" input="content" class="h-[250px]"></trix-editor>
         

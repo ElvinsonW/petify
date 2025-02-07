@@ -152,14 +152,11 @@
                     @enderror
                 </div>
 
-                
-
                 <!-- Description -->
                 <div class="mb-6">
                     <label for="description" class="block mb-2 text-lg font-semibold">Add Description</label>
-                    <trix-toolbar id="my_toolbar"></trix-toolbar>
-                    <input id="description" type="text" name="description" value="{{ old('description') }}">
-                    <trix-editor toolbar="my_toolbar" input="description" class="h-[250px]"></trix-editor>
+                    <input id="description" type="hidden" name="description" value="{{ old('description') }}">
+                    <trix-editor input="description" class="h-[250px]"></trix-editor>
     
                     @error('description')
                         <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
@@ -171,18 +168,8 @@
                 <!-- Requirement Criteria -->
                 <div class="mb-6">
                     <label for="requirement" class="block mb-2 text-lg font-semibold">Add Requirement Criteria (Optional)</label>
-                    {{-- <trix-toolbar></trix-toolbar> --}}
-                    <div id="custom-toolbar">
-                        <span class="trix-button-group trix-button-group--text-tools">
-                            <button type="button" class="trix-button" data-trix-attribute="bold" title="Bold">Bold</button>
-                            <button type="button" class="trix-button" data-trix-attribute="italic" title="Italic">Italic</button>
-                            <button type="button" class="trix-button" data-trix-attribute="underline" title="Underline">Underline</button>
-                            <button type="button" class="trix-button" data-trix-attribute="heading1" title="Heading 1">H1</button>
-                            <button type="button" class="trix-button" data-trix-attribute="heading2" title="Heading 2">H2</button>
-                        </span>
-                    </div>
                     <input id="requirement" type="hidden" name="requirement" value="{{ old('content') }}">
-                    <trix-editor toolbar="custom-toolbar" input="requirement" class="h-[250px]"></trix-editor>
+                    <trix-editor input="requirement" class="h-[250px]"></trix-editor>
     
                     @error('requirement')
                         <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
@@ -299,3 +286,5 @@
             }
         });
 </script>
+
+

@@ -6,7 +6,6 @@
             <div class="swiper-wrapper">
                 @if ($adoption->image_1)
                     @for ($i = 1 ; $i <= 3 ; $i++)
-                        <p>{{ $i }}</p>
                         @if($adoption->{'image_' . $i})
                             <div class="swiper-slide">
                                 <div class="h-auto">

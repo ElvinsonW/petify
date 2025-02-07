@@ -36,9 +36,9 @@ class EventMultistepForm extends Component
         } elseif ($this->step == 2) {
             $this->validate([
                 'days.*.date' => ['required', 'date'],
-                'sessions...time' => ['required', 'date_format:g:i a'],
-                'sessions...title' => ['required', 'max:100'],
-                'sessions...description' => ['required', 'max:255']
+                'sessions.*.*.time' => ['required', 'date_format:g:i a'],
+                'sessions.*.*.title' => ['required', 'max:100'],
+                'sessions.*.*.description' => ['required', 'max:255']
             ]);
         }
     }
@@ -84,6 +84,22 @@ class EventMultistepForm extends Component
             'description' => $this->description,
             'user_id' => auth()->user()->id
         ]);
+
+        foreach ($this->days as $dayIndex => $dayData) {
+            $day = $event->days()->create([
+                'date' => $dayData['date'],
+            ]);
+    
+            if (isset($this->sessions[$dayIndex])) {
+                foreach ($this->sessions[$dayIndex] as $sessionData) {
+                    $day->sessions()->create([
+                        'time' => $sessionData['time'],
+                        'title' => $sessionData['title'],
+                        'description' => $sessionData['description']
+                    ]);
+                }
+            }
+        }
 
         // dd($this->days);
         foreach ($this->days as $dayIndex => $dayData) {

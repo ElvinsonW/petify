@@ -25,11 +25,12 @@
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
-                        <input type="search" id="search" name="search" class="block w-full p-4 ps-10 !font-overpass font-semibold text-slate-400 border-1/2 border-gray-400 rounded-lg bg-white shadow-md" placeholder="Search Here..." required>
+                        <input type="search" id="search" name="search" class="block w-full p-4 ps-10 !font-overpass font-semibold text-black border-1/2 border-gray-400 rounded-lg bg-white shadow-md" placeholder="Search Here..." value="{{ request('search') }}">
                         <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-lg px-2 py-2 !font-overpass">Search</button>
                     </div>
                 </form>
             </div>
+
             
             <!-- Button Article Post -->
             <a href="/articles/create">

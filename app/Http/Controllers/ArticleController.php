@@ -14,7 +14,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $filters = ["category"];
+        $filters = ["category","search"];
         return view("article.indexArticle",[
             "articles" => Article::filter(request($filters))->paginate(9)->withQueryString(),
             "categories" => ArticleCategory::all()

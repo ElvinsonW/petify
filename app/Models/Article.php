@@ -27,8 +27,8 @@ class Article extends Model
         $query->when(
             $filter['search'] ?? false,
             fn($query, $search) =>
-            $query->where('title','like','%',$search,'%')
-                  ->orWhere('content','like','%',$search,'%')
+            $query->where('title','like','%' . $search . '%')
+                  ->orWhere('content','like','%' . $search . '%')
         );
 
         $query->when(

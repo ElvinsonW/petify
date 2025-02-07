@@ -152,9 +152,12 @@
                                 <img src="{{ asset('images/after login.svg') }}" alt="Profile Owner" class="w-12">
                             </div>
             
-                            <div class="flex flex-col font-montserrat_alt">
-                                <p class="mx-3 mt-2 font-semibold text-md w-[4vw]">{{ Str::of($pet->name)->explode(' ')[0] }}</p>
-                                <p class="mx-3 text-sm">{{ $pet->breed }}</p>
+                            <div class="flex flex-col justify-center font-montserrat_alt">
+                                <p class="mx-3 font-semibold text-md w-[4vw]">{{ Str::of($pet->name)->explode(' ')[0] }}</p>
+                                <div class="mx-3 flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-image text-sm w-fit h-fit text-greenpetify"></i>
+                                    <p class="text-sm text-greenpetify font-bold">{{ $pet->total_posts }} Posts</p>
+                                </div>
                             </div>
                         </a>
                     @endforeach

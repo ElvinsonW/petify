@@ -228,18 +228,18 @@
 
             // Highlight the current day
             if (
-            day === today.getDate() &&
-            month === today.getMonth() &&
-            year === today.getFullYear()
+                day === today.getDate() &&
+                month === today.getMonth() &&
+                year === today.getFullYear()
             ) {
-            dayElement.classList.add("bg-gray-200", "font-bold");
+                dayElement.classList.add("bg-gray-200", "font-bold");
             }
 
             // Highlight days with events
             const event = events.find(e => e.date === dateStr);
             if (event) {
-            dayElement.classList.add("bg-blue-500", "text-white", "font-bold");
-            dayElement.addEventListener("click", () => showEvent(event));
+                dayElement.classList.add("bg-blue-500", "text-white", "font-bold");
+                dayElement.addEventListener("click", () => showEvent(event));
             }
 
             datesElement.appendChild(dayElement);
