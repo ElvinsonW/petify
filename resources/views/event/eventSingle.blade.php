@@ -2,7 +2,7 @@
     <!-- container -->
     <div class="container mx-auto py-8 px-4">
         <!-- title -->
-        <h1 class="font-bold text-4xl md:text-5xl lg:text-6xl text-green font-montserrat_alt py-8 text-center">
+        <h1 class="font-bold text-4xl md:text-5xl lg:text-6xl text-greenpetify text-center font-montserrat_alt py-8 w-full md:w-3/4 my-8 text-center mx-auto">
             {{ $event->title }}
         </h1>
 
@@ -17,61 +17,107 @@
             <div class="lg:w-1/2 w-full">
                 <div class="space-y-6">
                     <!-- Event Location -->
-                    <div class="flex items-center space-x-4">
-                        <img src="{{ asset('images/location event.svg') }}" alt="Location Icon" class="w-6 h-6">
-                        <span class="text-lg">{{ $event->location }}</span>
-                    </div>
+                    <div class="flex flex-col lg:flex-row items-center lg:space-x-10 text-lg md:text-xl tracking-wide text-black font-open_sans text-justify">
+                        <div class="mb-8 font-semibold space-y-4">
+                            <div class="flex items-center space-x-4 md:space-x-6">
+                                <img src="{{ asset('images/location event.svg') }}" alt="Location Icon" class="w-6 h-6">
+                                <span class="text-lg">{{ $event->location }}</span>
+                            </div>
 
-                    <!-- Event Date -->
-                    <div class="flex items-center space-x-4">
-                        <img src="{{ asset('images/uim_calendar.svg') }}" alt="Calendar Icon" class="w-6 h-6">
-                        <span class="text-lg">
-                            {{ \Carbon\Carbon::parse($event->start_date)->format('d F Y') }} - 
-                            {{ \Carbon\Carbon::parse($event->end_date)->format('d F Y') }}
-                        </span>
-                    </div>
+                            <!-- Event Date -->
+                            <div class="flex items-center space-x-4 md:space-x-6">
+                                <img src="{{ asset('images/uim_calendar.svg') }}" alt="Calendar Icon" class="w-6 h-6">
+                                <span class="text-lg">
+                                    {{ \Carbon\Carbon::parse($event->start_date)->format('d F Y') }} - 
+                                    {{ \Carbon\Carbon::parse($event->end_date)->format('d F Y') }}
+                                </span>
+                            </div>
 
-                    <!-- Event Description -->
-                    <div class="text-lg text-gray-700">
-                        <p>{{ $event->description }}</p>
+                            <div class="flex items-center space-x-4 md:space-x-6">
+                                <img src="{{ asset('images/ticket event.svg') }}" alt="Ticket icon" class="w-6 h-6">
+                                <span>
+                                    @if($event->ticket == 0)
+                                        Free
+                                    @else
+                                        Rp.{{ $event->ticket }}
+                                    @endif
+                                </span>
+                            </div>
+                            <div class="content leading-7 md:leading-8">
+                                <p>{{ $event->description }}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Schedule Section -->
-        <div class="mt-16">
-            <h2 class="text-3xl font-bold text-center mb-6">Event Schedule</h2>
+        <!-- schedule section -->
 
-            <!-- Loop through days and sessions -->
-            @foreach ($event->days as $day)
-                <div class="mb-10">
-                    <h3 class="text-xl font-semibold mb-3">{{ \Carbon\Carbon::parse($day->date)->format('l, d F Y') }}</h3>
-                    
-                    @if ($day->sessions->count() == 1)
-                        <!-- If only one session -->
-                        <div class="p-4 rounded-lg bg-gray-100 mb-4">
-                            <div class="flex justify-between items-center">
-                                <p class="text-lg font-semibold">{{ $day->sessions->first()->time }}</p>
-                                <span class="text-sm text-gray-500">{{ $day->sessions->first()->title }}</span>
-                            </div>
-                            <p class="text-gray-600 mt-2">{{ $day->sessions->first()->description }}</p>
+        <div class="mt-28">
+        <div class="flex md:flex-row justify-center items-center mb-12">
+            <div class="w-1/4 hidden md:block border-t-2 border-black"></div>
+            <h2 class="text-3xl md:text-4xl font-bold font-montserrat_alt leading-snug text-center mx-8">
+                Schedule Of The Event
+            </h2>
+            <div class="w-1/4 hidden md:block border-t-2 border-black"></div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row lg:space-x-6">
+            <!-- Days -->
+            <div class="w-full lg:w-3/4 space-y-10">
+                @foreach ($event->days as $day)
+                    <button onclick="showSessions('{{ \Carbon\Carbon::parse($day->date)->format('Y-m-d') }}')" 
+                        class="p-4 rounded-lg bg-gray-100 flex items-center hover:bg-green hover:text-white transition duration-300 w-full md:w-3/4">
+                        <img src="{{ asset('images/uim_calendar.svg') }}" alt="Calendar Icon" class="w-22 h-22 mr-4">
+                        <div class="text-lg md:text-xl font-montserrat_alt font-semibold leading-snug">
+                            <p class="text-gray-400 inline-block mr-4">Day {{ $loop->iteration }}</p>
+                            <p></p>
+                            <p class="text-black inline-block">{{ \Carbon\Carbon::parse($day->date)->format('d F Y') }}</p>
                         </div>
-                    @elseif ($day->sessions->count() > 1)
-                        <!-- If more than one session -->
+                    </button>
+                @endforeach
+            </div>
+
+            <!-- Schedule Details -->
+            <div class="flex-grow space-y-10 px-8 lg:px-12 py-8 mt-10 lg:mt-0 mb-24 overflow-y-auto scrollbar-thin max-h-screen scrollbar-track-gray-200 scrollbar-thumb-gray-400">
+                @foreach ($event->days as $day)
+                    <div id="sessions-{{ \Carbon\Carbon::parse($day->date)->format('Y-m-d') }}" class="sessions" style="display: none;">
                         @foreach ($day->sessions as $session)
-                            <div class="p-4 rounded-lg bg-gray-100 mb-4">
-                                <div class="flex justify-between items-center">
-                                    <p class="text-lg font-semibold">{{ $session->time }}</p>
-                                    <span class="text-sm text-gray-500">{{ $session->title }}</span>
+                            <div class="p-6 rounded-lg bg-gray-100">
+                                <div class="inline-block rounded-full px-4 py-2 bg-greenabout border mb-3">
+                                    <p class="text-base font-semibold text-greentua font-montserrat_alt">{{ \Carbon\Carbon::parse($session->time)->format('h:i A') }}</p>
                                 </div>
-                                <p class="text-gray-600 mt-2">{{ $session->description }}</p>
+                                <h3 class="text-black text-lg md:text-2xl font-montserrat_alt leading-snug font-semibold">{{ $session->title }}</h3>
+                                <p class="text-gray-500 mt-2 text-xl font-open_sans font-normal text-justify leading-6 md:leading-7">
+                                    {{ $session->description }}
+                                </p>
                             </div>
                         @endforeach
-                    @endif
-                </div>
-            @endforeach
+                    </div>
+                @endforeach
+            </div>
         </div>
+    </div>
+
+
+    <script>
+        // Fungsi untuk menampilkan sesi berdasarkan tanggal yang dipilih
+        function showSessions(date) {
+            // Menyembunyikan semua sesi
+            const allSessions = document.querySelectorAll('.sessions');
+            allSessions.forEach(session => session.style.display = 'none');
+            
+            // Menampilkan sesi berdasarkan tanggal yang dipilih
+            const selectedSessions = document.getElementById(`sessions-${date}`);
+            if (selectedSessions) {
+                selectedSessions.style.display = 'block';
+            }
+        }
+    </script>
+
+
+
 
 
         <!-- Additional Information Section -->
@@ -82,7 +128,7 @@
             </div>
         @endif
     </div>
-</x-layout>
+
 
 <script>
         const buttonToogle = document.querySelector('.buttonToogle');
@@ -108,3 +154,5 @@
             }
         });
 </script>  
+
+</x-layout>
