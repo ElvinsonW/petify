@@ -122,4 +122,13 @@
         const imgText = document.getElementById('img-text');
         imgText.style.display = "none"; // Sembunyikan teks upload
     }
+
+    const name = document.getElementById('title');
+    const slug = document.getElementById('slug');
+    
+    name.addEventListener('change',function() {
+        fetch('/events/createSlug?title=' + name.value)
+        .then(response => response.json())
+        .then(data => slug.value = data.slug);
+    });
 </script>
