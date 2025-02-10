@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 
-// Login Routes
-Route::get('/login',function () {
-    return view('login');
+
+Route::get('/login',function (){
+    return view('GuestMode');
 });
 
 Route::post('/login', function(Request $request) {
@@ -34,12 +34,12 @@ Route::post('/login', function(Request $request) {
     }
 
     return redirect('/login')->with('loginError','The provided password do not match our records.');
-})->name('login');
+})->name('GuestMode');
 
 // Registration Routes
 Route::get('/register',function(){
     return view('register');
-})->middleware('guest');
+})->middleware('GuestMode');
 
 Route::post('/register', function(Request $request){
     $validatedData = $request->validate([
@@ -56,7 +56,7 @@ Route::post('/register', function(Request $request){
     User::create($validatedData);
     
     return redirect('/login')->with('registerSuccess','Registration Success, Please Login!');
-})->middleware('guest');
+})->middleware('GuestMode');
 
 // Home page
 Route::get('/', function () {
