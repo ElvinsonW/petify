@@ -7,7 +7,6 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\LifeAfterAdoptionController;
 use App\Http\Controllers\LikedAdoptionPostController;
 use App\Http\Controllers\LikedLifeAfterAdoptionController;
-use App\Http\Middleware\CheckPostOwnership;
 use App\Models\LifeAfterAdoption;
 use App\Models\LikedAdoptionPost;
 use App\Models\LikedLifeAfterAdoption;
@@ -18,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 
-
-Route::get('/login',function (){
+// Login Routes
+Route::get('/login',function () {
     return view('login');
 });
 
@@ -37,6 +36,7 @@ Route::post('/login', function(Request $request) {
     return redirect('/login')->with('loginError','The provided password do not match our records.');
 })->name('login');
 
+// Registration Routes
 Route::get('/register',function(){
     return view('register');
 })->middleware('guest');
@@ -58,37 +58,31 @@ Route::post('/register', function(Request $request){
     return redirect('/login')->with('registerSuccess','Registration Success, Please Login!');
 })->middleware('guest');
 
+// Home page
 Route::get('/', function () {
     return view('homepage');
 });
 
+// Article Routes
 Route::get('/articles/createSlug',[ArticleController::class,'createSlug'])->name('articles.createSlug')->middleware('auth');
-
 Route::resource('/articles', ArticleController::class)->middleware('auth');
 
+// Adoption Routes
 Route::get('/adoptions/createSlug',[ArticleController::class,'createSlug'])->name('adoptions.createSlug')->middleware('auth');
-
 Route::resource('/adoptions', AdoptionPostController::class)->middleware('auth');
 
+// Life After Adoption Routes
 Route::resource('/life-after-adoption', LifeAfterAdoptionController::class)->middleware('auth');
     
 Route::post('/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'like'])->middleware('auth');
-
 Route::delete('/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'unlike'])->middleware('auth');
-
 Route::post('/life-after-adoption/{post_id}/like',[LikedLifeAfterAdoptionController::class,'like'])->middleware('auth');
-
 Route::delete('/life-after-adoption/{post_id}/like',[LikedLifeAfterAdoptionController::class,'unlike'])->middleware('auth');
-
 Route::get('life-after-adoption/{post_id}/like-count',[LikedLifeAfterAdoptionController::class,'likeCount'])->middleware('auth');
 
+// Event Routes
 Route::get('/events', [EventController::class, 'index'])->middleware('auth');
+Route::get('/events/{slug}', [EventController::class, 'show'])->middleware('auth');
 
-<<<<<<< Updated upstream
-Route::resource('/events', EventController::class)->middleware('auth');
-
-Route::resource('/adoption-request', AdoptionRequestController::class)->middleware('auth');
-
-=======
+// Adoption Request Routes
 Route::resource('/adoption-request', AdoptionRequestController::class);
->>>>>>> Stashed changes

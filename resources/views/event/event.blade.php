@@ -61,7 +61,7 @@
             @if ($mainEvent->isNotEmpty()) <!-- Check if there are any events -->
                 @foreach ($mainEvent as $mainEvent)
                     <div class="event card overflow-y-auto scrollbar-thin max-h-screen scrollbar-track-gray-200 scrollbar-thumb-gray-400 mb-10">
-                        <a href="/events/{{ $mainEvent->slug }}" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
+                          <a href="/events/{{ $mainEvent->slug }}" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
                             <div class="flex flex-col md:flex-row items-start space-x-0 md:space-x-6">
                                 <img
                                     src="{{ asset('storage/' . $mainEvent->image) }}"
@@ -86,7 +86,7 @@
                                             <img 
                                                 src="{{ asset('images/uim_calendar.svg') }}" 
                                                 alt="Calendar Icon" class="w-4 h-4">
-                                            <span>{{ \Carbon\Carbon::parse($mainEvent->start_date)->format('d F Y') }}</span>
+                                            <span>{{ \Carbon\Carbon::parse($mainEvent->today)->format('d F Y') }}</span>
                                         </span>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                 </div>
                 <div id="dates" class="grid grid-cols-7 gap-2 text-center mt-4 font-open_sans"></div>
 
-                <!-- Upcoming Events (Next 5 Closest Events) -->
+                <!-- Upcoming Events (Next 2 Weeks Events) -->
                 <h3 class="text-xl font-bold font-open_sans leading-snug text-green mb-4 mt-16">Upcoming Event</h3>
                 @foreach ($upcomingEvents as $upcomingEvent)
                     <div class="bg-white p-3 rounded-2xl hover:shadow-lg transition duration-300 mb-5">

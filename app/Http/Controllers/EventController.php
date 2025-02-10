@@ -7,7 +7,6 @@ use App\Models\Event;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Carbon\Carbon;
 
-
 class EventController extends Controller
 {
     /**
@@ -20,24 +19,23 @@ class EventController extends Controller
         // Get the main event for today (event that starts and ends today)
         $mainEvent = Event::whereDate('start_date', '<=', $today) // Start date is before or today
                           ->whereDate('end_date', '>=', $today) // End date is after or today
-                          ->get(); 
-    
+                          ->get(); // Use ->get() to return all events for today (if there are multiple)
+
         $twoWeeks = Carbon::today()->addWeeks(2);
         // Get the next 5 closest upcoming events from tomorrow
         $upcomingEvents = Event::where('start_date', '>', $today)  // Events happening after today
                                 ->where('start_date', '<=', $twoWeeks)
                                 ->orderBy('start_date', 'asc')  // Sort by nearest first
                                 ->get();
-    
+
         // Get all events for the current month for the calendar
         $calendarEvents = Event::whereMonth('start_date', $today->month)
                                ->whereYear('start_date', $today->year)
                                ->get();
-    
+
         return view('event.event', compact('mainEvent', 'upcomingEvents', 'calendarEvents'));
     }
 
-    
     /**
      * Show the form for creating a new resource.
      */
@@ -51,7 +49,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // This method can be used to store event data if necessary
     }
 
     /**
@@ -59,21 +57,19 @@ class EventController extends Controller
      */
     public function show(string $slug)
     {
+        // Fetch the event by its slug
         $event = Event::where('slug', $slug)->firstOrFail();
 
-        return view('event.eventSingle', [
-            'event' => $event,
-        ]);
+        // Return the event details to the view
+        return view('event.eventSingle', compact('event'));
     }
-
-    
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        // This method can be used for editing event data
     }
 
     /**
@@ -81,7 +77,7 @@ class EventController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // This method can be used to update event data
     }
 
     /**
@@ -89,11 +85,18 @@ class EventController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // This method can be used to delete an event
     }
 
-    public function createSlug(Request $request){
-        $slug = SlugService::createSlug(Event::class, 'slug', $request->title,["unique" => true]);
+    /**
+     * Generate a unique slug for an event.
+     */
+    public function createSlug(Request $request)
+    {
+        // Generate a unique slug for the event title
+        $slug = SlugService::createSlug(Event::class, 'slug', $request->title, ["unique" => true]);
+
+        // Return the generated slug as JSON
         return response()->json(['slug' => $slug]);
     }
 }
