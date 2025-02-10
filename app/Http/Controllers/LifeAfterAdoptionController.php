@@ -17,19 +17,24 @@ class LifeAfterAdoptionController extends Controller
      */
     public function index()
     {
+        // Filter berdasarkan beberapa parameter
         $filters = ['category', 'pet'];
 
+        // Mencari post yang diliked oleh user
         $likedPost = LikedLifeAfterAdoption::where('user_id',auth()->user()->id)->get();
 
+        // Mencari pet_id dari user yang telah diadopsi oleh orang lain
         $petIds = AdoptionPost::where('user_id',auth()->user()->id)
                             ->pluck('pet_id')
                             ->toArray();
 
+        // Mencari pet berdasarkan id yand ada dan menambahkan total post dari tiap pet
         $pets = Pet::whereIn('id',$petIds)->get()->map( function($pet) {
             $pet->total_posts = LifeAfterAdoption::where('pet_id',$pet->id)->count();
             return $pet;
         });
 
+        // Mengembalikan view yang sesuai dan beberapa parameter
         return view('life-after-adoption.indexLaa',[
             "categories" => PetCategory::all(),
             "posts" => LifeAfterAdoption::filter(request($filters))->get(),
@@ -43,11 +48,10 @@ class LifeAfterAdoptionController extends Controller
      */
     public function create()
     {
-        $petIds = AdoptionPost::where('user_id',auth()->user()->id)
-                              ->pluck('pet_id')
-                              ->toArray();
+        // Mencari pet yang telah diadopsi oleh user
+        $pets = Pet::where('user_id',auth()->user()->id)->get();
 
-        $pets = Pet::whereIn('id',$petIds)->get();
+        // Mengembalikan view yang sesuai dan beberapa parameter
         return view('life-after-adoption.createLaa',[
             "pets" => $pets
         ]);
@@ -58,22 +62,23 @@ class LifeAfterAdoptionController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the request
+        // Validasi input yang dikirim oleh user
         $validatedData = $request->validate([
             "pet_id" => ["required", "exists:pets,id"],
             "image" => ["required", "image", "mimes:jpeg,png,jpg,gif,svg", "max:1024"], // "file" is redundant
             "description" => ["nullable", "max:255"]
         ]);        
 
-        // Store the uploaded image in "storage/app/public/life-after-adoption-image"
+        // Simpan image di local storage
         $validatedData['image'] = $request->file('image')->store('life-after-adoption-image', 'public');
 
-        // Assign the authenticated user's ID
-        $validatedData["user_id"] = auth()->id(); // Shorter and cleaner
+        // Simpan user id
+        $validatedData["user_id"] = auth()->user()->id;
 
-        // Create a new record in the database
+        // Simpan Post ke dalam Database
         LifeAfterAdoption::create($validatedData);
 
+        // Direct user ke halaman Life After Adoption dan kirim pesan berhasil
         return redirect('life-after-adoption')->with('createSuccess', "Post Successfully created");
     }
 

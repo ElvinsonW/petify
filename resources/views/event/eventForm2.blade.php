@@ -69,6 +69,6 @@
         <div class="gap-6 flex flex-row mt-8">
             <button type="submit" wire:click="submitForm" class="text-white bg-greentipis rounded-2xl shadow-lg transform hover:scale-95 hover:bg-greentua transition duration-300 ease-in-out text-xl font-semibold px-5 py-2.5 font-overpass">Submit</button>
         </div>
-    </div> 
-    
+    </div> 
+    
 </div>

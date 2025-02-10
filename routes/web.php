@@ -84,5 +84,11 @@ Route::get('life-after-adoption/{post_id}/like-count',[LikedLifeAfterAdoptionCon
 
 Route::get('/events', [EventController::class, 'index'])->middleware('auth');
 
+<<<<<<< Updated upstream
 Route::resource('/events', EventController::class)->middleware('auth');
 
+Route::resource('/adoption-request', AdoptionRequestController::class)->middleware('auth');
+
+=======
+Route::resource('/adoption-request', AdoptionRequestController::class);
+>>>>>>> Stashed changes

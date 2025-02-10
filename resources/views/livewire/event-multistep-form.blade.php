@@ -21,9 +21,9 @@
         </div>
     </div>
 
-    @if ($step == 1)
+    @if ($step == 2)
         @include('event.eventForm1')
-    @elseif ($step == 2)
+    @elseif ($step == 1)
         @include('event.eventForm2')
     @endif
 </div>
