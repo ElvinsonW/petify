@@ -109,7 +109,7 @@ class EventMultistepForm extends Component
             
             if (isset($this->sessions[$dayIndex])) {
                 foreach ($this->sessions[$dayIndex] as $sessionData) {
-                    $day->schedules()->create([
+                    $day->sessions()->create([
                         'time' => $sessionData['time'],
                         'title' => $sessionData['title'],
                         'description' => $sessionData['description']

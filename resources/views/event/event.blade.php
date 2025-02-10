@@ -59,40 +59,42 @@
             </div>
 
             <!-- Main Event (Today) -->
-            @if ($mainEvent)
-                <div class="event card overflow-y-auto scrollbar-thin max-h-screen scrollbar-track-gray-200 scrollbar-thumb-gray-400 mb-10">
-                    <a href="/events/{{ $mainEvent->slug }}" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
-                        <div class="flex flex-col md:flex-row items-start space-x-0 md:space-x-6">
-                            <img
-                                src="{{ asset('storage/' . $mainEvent->image) }}"
-                                alt="Event Image"
-                                class="w-full md:w-36 h-36 rounded-2xl object-cover"
-                            />
-                            <div>
-                                <h2 class="text-2xl font-semibold font-montserrat_alt text-black leading-snug">
-                                    {{ $mainEvent->title }}
-                                </h2>
-                                <p class="mt-2 text-sm font-open_sans leading-snug text-black font-normal">
-                                    {{ \Illuminate\Support\Str::limit($mainEvent->description, 100) }}
-                                </p>
-                                <div class="flex flex-col text-xs text-black font-open_sans font-semibold mt-3 leading-snug space-y-2">
-                                    <span class="flex items-center space-x-2">
-                                        <img 
-                                            src="{{ asset('images/location event.svg') }}" 
-                                            alt="Location Icon" class="w-4 h-4">
-                                        <span>{{ $mainEvent->location }}</span>
-                                    </span>
-                                    <span class="flex items-center space-x-2">
-                                        <img 
-                                            src="{{ asset('images/uim_calendar.svg') }}" 
-                                            alt="Calendar Icon" class="w-4 h-4">
-                                        <span>{{ \Carbon\Carbon::parse($mainEvent->start_date)->format('d F Y') }}</span>
-                                    </span>
+            @if ($mainEvent->isNotEmpty()) <!-- Check if there are any events -->
+                @foreach ($mainEvent as $mainEvent)
+                    <div class="event card overflow-y-auto scrollbar-thin max-h-screen scrollbar-track-gray-200 scrollbar-thumb-gray-400 mb-10">
+                        <a href="/events/{{ $mainEvent->slug }}" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
+                            <div class="flex flex-col md:flex-row items-start space-x-0 md:space-x-6">
+                                <img
+                                    src="{{ asset('storage/' . $mainEvent->image) }}"
+                                    alt="Event Image"
+                                    class="w-full md:w-36 h-36 rounded-2xl object-cover"
+                                />
+                                <div>
+                                    <h2 class="text-2xl font-semibold font-montserrat_alt text-black leading-snug">
+                                        {{ $mainEvent->title }}
+                                    </h2>
+                                    <p class="mt-2 text-sm font-open_sans leading-snug text-black font-normal">
+                                        {{ \Illuminate\Support\Str::limit($mainEvent->description, 100) }}
+                                    </p>
+                                    <div class="flex flex-col text-xs text-black font-open_sans font-semibold mt-3 leading-snug space-y-2">
+                                        <span class="flex items-center space-x-2">
+                                            <img 
+                                                src="{{ asset('images/location event.svg') }}" 
+                                                alt="Location Icon" class="w-4 h-4">
+                                            <span>{{ $mainEvent->location }}</span>
+                                        </span>
+                                        <span class="flex items-center space-x-2">
+                                            <img 
+                                                src="{{ asset('images/uim_calendar.svg') }}" 
+                                                alt="Calendar Icon" class="w-4 h-4">
+                                            <span>{{ \Carbon\Carbon::parse($mainEvent->start_date)->format('d F Y') }}</span>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                @endforeach
             @else
                 <p>No events today.</p>
             @endif
@@ -158,6 +160,7 @@
         </div>
     </div> <!-- Main Content -->
 </div> <!-- container -->
+
 
 
 

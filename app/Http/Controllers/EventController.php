@@ -15,19 +15,21 @@ class EventController extends Controller
      */
     public function index()
     {
-        // Get today's date
         $today = Carbon::today();
+
+        // Get the main event for today (event that starts and ends today)
+        $mainEvent = Event::whereDate('start_date', '<=', $today) // Start date is before or today
+                          ->whereDate('end_date', '>=', $today) // End date is after or today
+                          ->get(); 
     
-        // Get the main event for today (if any)
-        $mainEvent = Event::whereDate('start_date', $today)->first();
-    
+        $twoWeeks = Carbon::today()->addWeeks(2);
         // Get the next 5 closest upcoming events from tomorrow
         $upcomingEvents = Event::where('start_date', '>', $today)  // Events happening after today
+                                ->where('start_date', '<=', $twoWeeks)
                                 ->orderBy('start_date', 'asc')  // Sort by nearest first
-                                ->limit(5)  // Get only the next 5 events
                                 ->get();
     
-        // Get all events for the current month for calendar
+        // Get all events for the current month for the calendar
         $calendarEvents = Event::whereMonth('start_date', $today->month)
                                ->whereYear('start_date', $today->year)
                                ->get();

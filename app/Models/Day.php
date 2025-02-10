@@ -15,7 +15,7 @@ class Day extends Model
         return $this->belongsTo(Event::class,'event_id');
     }
 
-    public function schedules(): HasMany {
+    public function sessions(): HasMany {
         return $this->hasMany(DaySession::class,'day_id');
     }
 }
