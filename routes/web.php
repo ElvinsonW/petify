@@ -81,8 +81,7 @@ Route::delete('/life-after-adoption/{post_id}/like',[LikedLifeAfterAdoptionContr
 Route::get('life-after-adoption/{post_id}/like-count',[LikedLifeAfterAdoptionController::class,'likeCount'])->middleware('auth');
 
 // Event Routes
-Route::get('/events', [EventController::class, 'index'])->middleware('auth');
-Route::get('/events/{slug}', [EventController::class, 'show'])->middleware('auth');
+Route::resource('/events', EventController::class)->middleware('auth');
 
 // Adoption Request Routes
 Route::resource('/adoption-request', AdoptionRequestController::class);
