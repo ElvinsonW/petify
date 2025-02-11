@@ -2,67 +2,54 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdoptionRequest;
 use Illuminate\Http\Request;
 
 class AdoptionRequestController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Show a listing of the adoption requests
     public function index()
     {
-        
+        $adoptionRequests = AdoptionRequest::all();
+        return view('adoption-requests.index', compact('adoptionRequests'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Show the form for creating a new adoption request
     public function create()
     {
-<<<<<<< Updated upstream
-        return view('adoption-request.requestForm2');
-=======
-        return view('/adoption-request.createAdoptionRequest');
->>>>>>> Stashed changes
+        return view('adoption-request.createAdoptionRequest');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Store a newly created adoption request in the database
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'field_name' => 'required|string',  // Add validation rules as per your fields
+        ]);
+
+        AdoptionRequest::create($request->all());
+        return redirect()->route('adoption-request.index')->with('success', 'Adoption request created successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    // Show the form for editing the specified adoption request
+    public function edit($id)
     {
-        //
+        $adoptionRequest = AdoptionRequest::findOrFail($id);
+        return view('adoption-requests.edit', compact('adoptionRequest'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    // Update the specified adoption request in the database
+    public function update(Request $request, $id)
     {
-        //
+        $adoptionRequest = AdoptionRequest::findOrFail($id);
+        $adoptionRequest->update($request->all());
+        return redirect()->route('adoption-request.index')->with('success', 'Adoption request updated successfully!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    // Remove the specified adoption request from the database
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        AdoptionRequest::findOrFail($id)->delete();
+        return redirect()->route('adoption-request.index')->with('success', 'Adoption request deleted successfully!');
     }
 }

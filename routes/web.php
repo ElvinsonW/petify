@@ -87,3 +87,4 @@ Route::resource('/events', EventController::class)->middleware('auth');
 
 // Adoption Request Routes
 Route::resource('/adoption-request', AdoptionRequestController::class);
+
