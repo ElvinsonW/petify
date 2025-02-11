@@ -7,6 +7,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\LifeAfterAdoptionController;
 use App\Http\Controllers\LikedAdoptionPostController;
 use App\Http\Controllers\LikedLifeAfterAdoptionController;
+use App\Http\Middleware\GuestMode;
 use App\Models\LifeAfterAdoption;
 use App\Models\LikedAdoptionPost;
 use App\Models\LikedLifeAfterAdoption;
@@ -19,8 +20,8 @@ use Illuminate\Http\RedirectResponse;
 
 
 Route::get('/login',function (){
-    return view('GuestMode');
-});
+    return view('login');
+})->name("login")->middleware(GuestMode::class);
 
 Route::post('/login', function(Request $request) {
     $credentials = $request->validate([
@@ -34,12 +35,12 @@ Route::post('/login', function(Request $request) {
     }
 
     return redirect('/login')->with('loginError','The provided password do not match our records.');
-})->name('GuestMode');
+})->name('login')->middleware(GuestMode::class);
 
 // Registration Routes
 Route::get('/register',function(){
     return view('register');
-})->middleware('GuestMode');
+})->middleware(GuestMode::class);
 
 Route::post('/register', function(Request $request){
     $validatedData = $request->validate([
@@ -56,7 +57,7 @@ Route::post('/register', function(Request $request){
     User::create($validatedData);
     
     return redirect('/login')->with('registerSuccess','Registration Success, Please Login!');
-})->middleware('GuestMode');
+})->middleware(GuestMode::class);
 
 // Home page
 Route::get('/', function () {
@@ -81,6 +82,7 @@ Route::delete('/life-after-adoption/{post_id}/like',[LikedLifeAfterAdoptionContr
 Route::get('life-after-adoption/{post_id}/like-count',[LikedLifeAfterAdoptionController::class,'likeCount'])->middleware('auth');
 
 // Event Routes
+Route::get('/events/createSlug',[EventController::class,'createSlug'])->name('adoptions.createSlug')->middleware('auth');
 Route::resource('/events', EventController::class)->middleware('auth');
 
 // Adoption Request Routes

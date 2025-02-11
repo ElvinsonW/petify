@@ -24,8 +24,8 @@ class CheckPostOwnership
         $post = AdoptionPost::where('slug',$slug)->firstOrFail();
 
         // Cek apakah user merupakan pembuat dari post
-        if($post->user_id !== auth()->id()) {
-            return redirect()->route('adoption.index')->with('ownerError', 'You are not authorized to perform this action.');
+        if($post->user_id !== auth()->user()->id) {
+            return redirect()->route('adoptions.index')->with('ownerError', 'You are not authorized to perform this action.');
         }
 
         return $next($request);

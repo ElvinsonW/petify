@@ -22,6 +22,7 @@ class EventController extends Controller
                           ->get(); // Use ->get() to return all events for today (if there are multiple)
 
         $twoWeeks = Carbon::today()->addWeeks(2);
+        
         // Get the next 5 closest upcoming events from tomorrow
         $upcomingEvents = Event::where('start_date', '>', $today)  // Events happening after today
                                 ->where('start_date', '<=', $twoWeeks)
@@ -41,7 +42,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('event.createEvent');
+        return view('event.eventForm2');
     }
 
     /**

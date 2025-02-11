@@ -19,7 +19,7 @@
                     <!-- Slug -->
                     <div>
                         <label for="slug" class="block mb-2 text-lg font-semibold">Slug</label>
-                        <input type="text" id="slug" name="slug" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Slug..." value="{{ old('slug') }}" required />
+                        <input type="text" id="slug" name="slug" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Slug..." value="{{ old('slug') }}" readonly />
                     </div>
                 </div>
 

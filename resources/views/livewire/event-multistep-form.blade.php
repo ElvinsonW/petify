@@ -21,12 +21,13 @@
         </div>
     </div>
 
-    @if ($step == 2)
-        @include('event.eventForm1')
-    @elseif ($step == 1)
-        @include('event.eventForm2')
+    @if ($step == 1)
+        @includeIf('event.eventForm1')
+    @elseif ($step == 2)
+        @includeIf('event.eventForm2')
     @endif
 </div>
+
 
 <script>
     let dayCount = 1;
@@ -44,15 +45,20 @@
         newSession.classList.add('p-4', 'bg-gray-50', 'shadow', 'rounded-xl', 'flex', 'flex-col');
         
         newSession.innerHTML = `
-            <div class="flex items-center gap-4 mb-4">
-                <div class="w-7 h-7 bg-green-500 text-white flex items-center justify-center rounded-full">
-                    <i class="fas fa-clock"></i>
+            <div class="flex justify-between items-start gap-4 mb-4">
+                <div class="flex items-center gap-4 w-[30vw]">
+                    <div class="w-7 h-7 bg-green-500 text-white flex items-center justify-center rounded-full">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <input 
+                        type="time" 
+                        wire:model="sessions.${dayIndex}.${sessionCount[dayIndex]}.time" 
+                        class="w-1/2 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
+                        placeholder="Time input here...">
                 </div>
-                <input 
-                    type="time" 
-                    wire:model="sessions.${dayIndex}.${sessionCount[dayIndex]}.time"
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
-                    placeholder="Time input here...">
+                <button class="delete-session" onclick="deleteSession(this)">
+                    <i class="fa-solid fa-trash text-red-600"></i>
+                </button>
             </div>
             <div class="flex flex-col gap-4">
                 <input 
@@ -114,14 +120,16 @@
             <div class="w-full flex flex-col gap-5" id="input-day-${dayCount}">
                 <div class="p-4 bg-gray-50 shadow rounded-xl flex flex-col">
                     <div class="flex items-center gap-4 mb-4">
-                        <div class="w-7 h-7 bg-green-500 text-white flex items-center justify-center rounded-full">
-                            <i class="fas fa-clock"></i>
+                        <div class="flex items-center gap-4 w-[30vw]">
+                            <div class="w-7 h-7 bg-green-500 text-white flex items-center justify-center rounded-full">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <input 
+                                type="time" 
+                                wire:model="sessions.0.0.time" 
+                                class="w-1/2 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
+                                placeholder="Time input here...">
                         </div>
-                        <input 
-                            type="time" 
-                            wire:model="sessions.${dayCount-1}.${sessionCount}.time" 
-                            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
-                            placeholder="Time input here...">
                     </div>
                     <div class="flex flex-col gap-4">
                         <input 
@@ -153,4 +161,12 @@
         sessionsContainer.classList.remove('hidden');
     }
 
+function deleteSession(button) {
+    const sessionDiv = button.closest('.p-4.bg-gray-50.shadow.rounded-xl.flex.flex-col');
+
+    sessionDiv.remove();
+    
+}
+
 </script>
+

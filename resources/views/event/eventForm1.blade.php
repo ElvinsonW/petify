@@ -13,7 +13,7 @@
         <!-- SLug -->
         <div>
             <label for="slug" class="block mb-2 text-lg font-semibold">Slug</label>
-            <input type="text" wire:model="slug" id="slug" class="border border-black  text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Enter location..." required />
+            <input type="text" wire:model="slug" id="slug" class="border border-black  text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="petify-website" readonly/>
             @error('slug') 
                 <span class="text-red-500 text-sm">{{ $message }}</span> 
             @enderror
@@ -129,6 +129,9 @@
     name.addEventListener('change',function() {
         fetch('/events/createSlug?title=' + name.value)
         .then(response => response.json())
-        .then(data => slug.value = data.slug);
+        .then(data => {
+            slug.value = data.slug;
+            @this.set('slug',data.slug);
+        })
     });
 </script>
