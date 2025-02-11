@@ -96,11 +96,16 @@
             <div class="flex flex-col md:flex-row gap-2 mb-4 w-full">
                 <img src="{{ asset('images/uim_calendar.svg') }}" alt="Calendar" class="w-12 h-12">
                 <div class="flex flex-col w-full">
-                    <p class="text-lg font-semibold font-montserrat_alt">Day ${dayCount}</p>
+                    <div class="flex justify-between">
+                        <p class="text-lg font-semibold font-montserrat_alt">Day ${dayCount}</p>
+                        <button class="delete-session" onclick="deleteDay(${dayCount})">
+                            <i class="fa-solid fa-trash text-red-600"></i>
+                        </button>
+                    </div>
                     <input 
                         type="date" 
                         wire:model="days.${dayCount - 1}.date" 
-                        class="w-full mt-2 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
+                        class="w-5/6 mt-2 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
                         placeholder="Input date here..."
                         id="date-selector-${dayCount}">
                 </div>
@@ -158,15 +163,36 @@
         
         // Hide other sessions
         document.querySelectorAll('.session').forEach(item => item.classList.add('hidden'));
-        sessionsContainer.classList.remove('hidden');
+        sessionsContainer.classList.toggle('hidden');
     }
 
-function deleteSession(button) {
-    const sessionDiv = button.closest('.p-4.bg-gray-50.shadow.rounded-xl.flex.flex-col');
+    function deleteSession(button) {
+        const sessionDiv = button.closest('.p-4.bg-gray-50.shadow.rounded-xl.flex.flex-col');
+        sessionDiv.remove();
+    }
 
-    sessionDiv.remove();
-    
-}
+    function deleteDay(dayIndex) {
+        // Find the day container and session container for the specific day
+        const dayContainer = document.getElementById(`day-session-${dayIndex}`);
+        const sessionContainer = document.getElementById(`sessions-day-${dayIndex}`);
+
+        // Remove the day container and session container from the DOM
+        if (dayContainer) {
+            dayContainer.remove();
+        }
+
+        if (sessionContainer) {
+            sessionContainer.remove();
+        }
+
+        sessionCount.splice(dayIndex - 1, 1);
+        
+        for(let i = dayCount ; i > 0  ; i--){
+            if(document.getElementById(`day-session-${i}`) != null){
+                dayCount = i;
+                break;
+            }
+        }
+    }
 
 </script>
-

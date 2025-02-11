@@ -42,7 +42,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('event.eventForm2');
+        return view('event.createEvent');
     }
 
     /**
