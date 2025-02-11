@@ -23,13 +23,31 @@ class AdoptionRequestController extends Controller
     // Store a newly created adoption request in the database
     public function store(Request $request)
     {
+        // Validate form inputs
         $request->validate([
-            'field_name' => 'required|string',  // Add validation rules as per your fields
+            'description' => 'required|string',
+            'travel_plan' => 'required|string',
+            'experience' => 'required|string',
+            'yard_space' => 'required|string',
+            'adoption_reason' => 'required|string',
         ]);
 
-        AdoptionRequest::create($request->all());
+        // Store data in the database
+        $adoptionRequest = new AdoptionRequest([
+            'user_id' => auth()->id(),
+            'description' => $request->description,
+            'travel_plan' => $request->travel_plan,
+            'experience' => $request->experience,
+            'yard_space' => $request->yard_space,
+            'adoption_reason' => $request->adoption_reason,
+        ]);
+
+        $adoptionRequest->save();
+
+        // Redirect to the index page with a success message
         return redirect()->route('adoption-request.index')->with('success', 'Adoption request created successfully!');
     }
+
 
     // Show the form for editing the specified adoption request
     public function edit($id)
