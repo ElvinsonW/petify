@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\ArticleCategory;
+use App\Models\ArticleRequest;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -14,7 +15,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        // Filter berdasarkan beberapa parameter
+        // Filter berdasarkan beberapa parameter    
         $filters = ["category","search"];
 
         // Mengambalikan view yang sesuai dan beberapa parameter
@@ -56,7 +57,7 @@ class ArticleController extends Controller
         }
         
         // Simpan Artikel ke dalam Database
-        Article::create($validatedData);
+        ArticleRequest::create($validatedData);
 
         // Direct user ke Halaman Artikel dengan pesan berhasil
         return redirect('/articles')->with('articleSuccess','Article Post Created Successfully');

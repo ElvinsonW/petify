@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\AdoptionPost;
+use App\Models\AdoptionPostRequest;
 use App\Models\Article;
 use App\Models\ArticleCategory;
+use App\Models\ArticleRequest;
 use App\Models\LifeAfterAdoption;
 use App\Models\Pet;
 use App\Models\PetCategory;
@@ -29,6 +31,11 @@ class DatabaseSeeder extends Seeder
             ArticleCategory::all()
         ])->create();
 
+        ArticleRequest::factory(50)->recycle([
+            User::all(),
+            ArticleCategory::all()
+        ])->create();
+
         Pet::factory(10)->recycle([
             User::all(),
             PetCategory::all(),
@@ -37,6 +44,11 @@ class DatabaseSeeder extends Seeder
         AdoptionPost::factory(50)->recycle([
             User::all(),
             Pet::all(),
+        ])->create();
+
+        AdoptionPostRequest::factory(50)->recycle([
+            User::all(),
+            PetCategory::all(),
         ])->create();
 
         LifeAfterAdoption::factory(50)->recycle([

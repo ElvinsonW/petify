@@ -192,7 +192,7 @@
                             </div>
         
                             <!-- Desc Singkat -->
-                            <p class="font-open_sans text-slate-600 my-4 text-justify pr-2">{{ Str::limit($adoption->description,150) }}</p>
+                            <p class="font-open_sans text-slate-600 my-4 text-justify pr-2 break-words">{{ Str::limit($adoption->description,150) }}</p>
                             
                             <!-- Profile -->
                             <div class="flex flex-row">

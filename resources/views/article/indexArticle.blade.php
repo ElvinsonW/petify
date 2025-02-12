@@ -105,7 +105,9 @@
                             <h4 class="font-montserrat_alt font-semibold w-full text-xl pr-2">{{ $article->title }}</h4>    
         
                             <!-- Desc Singkat -->
-                            <p class="font-open_sans text-slate-600 my-4 text-justify pr-2">{!! Str::limit($article->content,'100') !!}</p>
+                            <p class="font-open_sans text-slate-600 my-4 text-justify pr-2 w-full break-words">
+                                {!! Str::limit(strip_tags($article->content), 100) !!}
+                            </p>
                             
                             <!-- Profile -->
                             <div class="flex flex-row">
@@ -148,4 +150,5 @@
     }
     
     setInterval(updateSapaan(),10000);
+
 </script>

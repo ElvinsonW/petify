@@ -1,13 +1,17 @@
 <?php
 
 use App\Http\Controllers\AdoptionPostController;
+use App\Http\Controllers\AdoptionPostRequestController;
 use App\Http\Controllers\AdoptionRequestController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ArticleRequestController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LifeAfterAdoptionController;
 use App\Http\Controllers\LikedAdoptionPostController;
 use App\Http\Controllers\LikedLifeAfterAdoptionController;
 use App\Http\Middleware\GuestMode;
+use App\Models\ArticleRequest;
 use App\Models\LifeAfterAdoption;
 use App\Models\LikedAdoptionPost;
 use App\Models\LikedLifeAfterAdoption;
@@ -17,7 +21,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
-
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/login',function (){
     return view('login');
@@ -87,3 +91,14 @@ Route::resource('/events', EventController::class)->middleware('auth');
 
 // Adoption Request Routes
 Route::resource('/adoption-request', AdoptionRequestController::class);
+
+// Route::resource('/dashboard', DashboardController::class);
+
+Route::resource('/dashboard/article-requests', ArticleRequestController::class);
+
+Route::get('/dashboard/article-requests/{slug}/{action}', [ArticleRequestController::class,'handleRequest']);
+
+Route::resource('/dashboard/adoption-post-requests', AdoptionPostRequestController::class);
+
+Route::get('/dashboard/adoption-post-requests/{slug}/{action}', [AdoptionPostRequestController::class,'handleRequest']);
+

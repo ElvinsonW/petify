@@ -31,7 +31,8 @@ export default {
             'merah': '#CC2E1F',
             'kuning': '#F2D785',
             'kuninggelap': '#E8C559',
-            'bluereptile': '#96BDF8'
+            'bluereptile': '#96BDF8',
+            'or-dashboard': '#ecac73'
           },
     
           fontFamily:{
@@ -75,6 +76,7 @@ export default {
         'bg-kuning',
         'bg-kuninggelap',
         'bg-bluereptile',
+        'bg-or-dashboard',
         'text-greenpetify',
         'text-greentua',
         'text-greenhover',
@@ -87,6 +89,7 @@ export default {
         'text-kuning',
         'text-kuninggelap',
         'text-bluereptile',
+        'text-or-dashboard',
         'border-greenpetify',
         'border-greentua',
         'border-greenhover',
@@ -99,6 +102,7 @@ export default {
         'border-kuning',
         'border-kuninggelap',
         'border-bluereptile',
+        'border-or-dashboard',
         'hover:bg-greenpetify',
         'hover:bg-greentua',
         'hover:bg-greenhover',
@@ -111,6 +115,7 @@ export default {
         'hover:bg-kuning',
         'hover:bg-kuninggelap',
         'hover:bg-bluereptile',
+        'hover:bg-or-dashboard',
         ],
     plugins: []
 };

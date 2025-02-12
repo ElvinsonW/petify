@@ -19,11 +19,7 @@ class AdoptionRequestController extends Controller
      */
     public function create()
     {
-<<<<<<< Updated upstream
-        return view('adoption-request.requestForm2');
-=======
         return view('/adoption-request.createAdoptionRequest');
->>>>>>> Stashed changes
     }
 
     /**

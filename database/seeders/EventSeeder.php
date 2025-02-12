@@ -23,7 +23,7 @@ class EventSeeder extends Seeder
         // Create random events
         for ($i = 0; $i < 50; $i++) {  // 50 random events
             Event::create([
-                'user_id' => $faker->randomElement($userIds),,  // Assuming the user with ID 1 is the creator, adjust if needed
+                'user_id' => $faker->randomElement($userIds),  // Assuming the user with ID 1 is the creator, adjust if needed
                 'title' => $faker->sentence,
                 'slug' => $faker->slug,
                 'location' => $faker->address,
