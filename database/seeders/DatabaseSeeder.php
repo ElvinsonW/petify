@@ -8,9 +8,7 @@ use App\Models\ArticleCategory;
 use App\Models\LifeAfterAdoption;
 use App\Models\Pet;
 use App\Models\PetCategory;
-use App\Models\Tag;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,10 +18,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Panggil seeder lain yang diperlukan
+        $this->call([
+            UserSeeder::class, 
+            ArticleCategorySeeder::class, 
+            PetCategorySeeder::class, 
+            EventSeeder::class 
+        ]);
 
-        $this->call([UserSeeder::class, ArticleCategorySeeder::class, PetCategorySeeder::class]);
-        
         Article::factory(50)->recycle([
             User::all(),
             ArticleCategory::all()
@@ -34,11 +36,13 @@ class DatabaseSeeder extends Seeder
             PetCategory::all(),
         ])->create();
 
+        // Buat 50 postingan adopsi dengan relasi ke User dan Pet
         AdoptionPost::factory(50)->recycle([
             User::all(),
             Pet::all(),
         ])->create();
 
+        // Buat 50 kehidupan setelah adopsi dengan relasi ke User dan Pet
         LifeAfterAdoption::factory(50)->recycle([
             User::all(),
             Pet::all(),
