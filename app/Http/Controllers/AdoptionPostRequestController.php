@@ -16,12 +16,12 @@ class AdoptionPostRequestController extends Controller
         return view('dashboard.adoptionDashboardAdmin',[
             "requests" => AdoptionPostRequest::filter(request($filters))
                           ->orderByRaw("
-                            CASE 
-                                WHEN approval_status = 'pending' THEN 1 
-                                WHEN approval_status = 'accepted' THEN 2 
-                                WHEN approval_status = 'rejected' THEN 3 
-                                ELSE 4 
-                            END
+                                CASE 
+                                    WHEN approval_status = 'pending' THEN 1 
+                                    WHEN approval_status = 'accepted' THEN 2 
+                                    WHEN approval_status = 'rejected' THEN 3 
+                                    ELSE 4 
+                                END
                             ")
                           ->orderBy('updated_at')
                           ->get(),

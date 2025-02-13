@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\ArticleCategory;
+use App\Models\ArticleEventCategory;
 use App\Models\ArticleRequest;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
@@ -21,7 +22,7 @@ class ArticleController extends Controller
         // Mengambalikan view yang sesuai dan beberapa parameter
         return view("article.indexArticle",[
             "articles" => Article::filter(request($filters))->paginate(9)->withQueryString(),
-            "categories" => ArticleCategory::all()
+            "categories" => ArticleEventCategory::all()
         ]);
     }
 
@@ -31,7 +32,7 @@ class ArticleController extends Controller
     public function create()
     {
         // Mengambalikan view yang sesuai dan beberapa parameter
-        return view("article.createArticle", ["categories" => ArticleCategory::all()]);
+        return view("article.createArticle", ["categories" => ArticleEventCategory::all()]);
     }
 
     /**

@@ -13,7 +13,8 @@ return new class extends Migration
 {
     Schema::create('events', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); 
+        $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade'); 
+        $table->foreignId('event_category_id')->constrained('article_event_categories')->onDelete('cascade')->onUpdate('cascade'); 
         $table->string('title');
         $table->string('slug')->unique();
         $table->string('location');
@@ -22,6 +23,7 @@ return new class extends Migration
         $table->date('end_date');
         $table->text('image');
         $table->text('description');
+        $table->enum('approval_status', ['Pending', 'Accepted', 'Rejected'])->default('Pending');
         $table->timestamps();
     });
 }

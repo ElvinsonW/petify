@@ -23,14 +23,14 @@ return new class extends Migration
             $table->boolean("vaccinated");
             $table->float("weight");
             $table->integer("age");
-            $table->string("gender");
+            $table->enum('gender', ['Male', 'Female']);
             $table->boolean("adoption_status")->default(0);
             $table->string("image_1")->nullable();
             $table->string("image_2")->nullable();
             $table->string("image_3")->nullable();
             $table->text("description");
             $table->text("requirement")->nullable();
-            $table->string("approval_status")->default("Pending");
+            $table->enum('approval_status', ['Pending', 'Accepted', 'Rejected'])->default('Pending');
             $table->timestamps();
         });
     }

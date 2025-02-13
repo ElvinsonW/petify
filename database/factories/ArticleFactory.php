@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\ArticleCategory;
+use App\Models\ArticleEventCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\User;
@@ -23,7 +23,7 @@ class ArticleFactory extends Factory
             "title" => fake()->sentence(4),
             "slug" => Str::slug(fake()->unique()->sentence(4)),
             "user_id" => User::factory(),
-            "article_category_id" => ArticleCategory::factory(),
+            "article_category_id" => ArticleEventCategory::factory(),
             "content" => fake()->paragraphs(3,true),
         ];
     }

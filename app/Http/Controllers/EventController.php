@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ArticleEventCategory;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -42,7 +43,10 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('event.createEvent');
+
+        return view('event.createEvent',[
+            "categories" => ArticleEventCategory::all(),
+        ]);
     }
 
     /**

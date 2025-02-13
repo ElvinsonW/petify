@@ -39,7 +39,7 @@ class EventSeeder extends Seeder
 
         // Optionally, you can create today's events separately
         Event::create([
-            'user_id' => $faker->randomElement($userIds),,
+            'user_id' => $faker->randomElement($userIds),
             'title' => 'Today\'s Special Event',
             'slug' => 'special-event-today',
             'location' => 'Central Park, New York',

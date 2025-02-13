@@ -545,7 +545,7 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         'App\\Models\\AdoptionPost' => __DIR__ . '/../..' . '/app/Models/AdoptionPost.php',
         'App\\Models\\AdoptionRequest' => __DIR__ . '/../..' . '/app/Models/AdoptionRequest.php',
         'App\\Models\\Article' => __DIR__ . '/../..' . '/app/Models/Article.php',
-        'App\\Models\\ArticleCategory' => __DIR__ . '/../..' . '/app/Models/ArticleCategory.php',
+        'App\\Models\\ArticleEventCategory' => __DIR__ . '/../..' . '/app/Models/ArticleEventCategory.php',
         'App\\Models\\Day' => __DIR__ . '/../..' . '/app/Models/Day.php',
         'App\\Models\\DaySession' => __DIR__ . '/../..' . '/app/Models/DaySession.php',
         'App\\Models\\Event' => __DIR__ . '/../..' . '/app/Models/Event.php',
