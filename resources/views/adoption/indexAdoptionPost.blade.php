@@ -39,7 +39,7 @@
         </div>
   
     @endif
-    <div class="flex bg-no-repeat bg-center bg-contain h-[150vw]" style="background-image: url(../src/images/adopt-bg.png)">
+    <div class="flex h-screen">
         <!-- Bagian Kiri (Sidebar) Start -->
         <div class="w-80 h-full shadow-lg pl-10 pt-10 ">
             <!-- Greetings -->
@@ -155,7 +155,7 @@
         <!-- Bagian Kiri (Sidebar) End -->
         
         <!-- Bagian Kanan (Konten) Start -->
-        <div class="ml-12 flex-1 pt-10">
+        <div class="ml-12 flex-1 overflow-y-auto pt-10">
             <!-- Judul Page -->
             <div class="text-center">
                 <h2 class="text-6xl font-montserrat_alt font-bold text-greenpetify">Adopt your Pet!</h2>
@@ -168,7 +168,7 @@
                 @foreach ($adoptions as $adoption)
 
                     <a href="/adoptions/{{ $adoption->slug }}">
-                        <div class="rounded-lg shadow-xl p-2 w-80">
+                        <div class="rounded-lg shadow-xl p-2 h-[40vw] w-[20vw]">
                             <!-- Gambar Pet -->
                             <img src="{{ asset('images/petadoptpic.svg') }}" alt="Pet Picture" class="w-full h-fit">
                             
@@ -179,7 +179,7 @@
                             </div>
         
                             <!-- Name & Like -->
-                            <div class="flex flex-row font-montserrat_alt font-semibold w-full">
+                            <div class="flex flex-row font-montserrat_alt font-semibold w-full min-h-[5vw]">
                                 <p class="text-2xl">{{ $adoption->name }}</p>    
                                 <!-- Like -->
                                 @php
@@ -192,7 +192,7 @@
                             </div>
         
                             <!-- Desc Singkat -->
-                            <p class="font-open_sans text-slate-600 my-4 text-justify pr-2 break-words">{{ Str::limit($adoption->description,150) }}</p>
+                            <p class="font-open_sans text-slate-600 mt-1 mb-6 text-justify pr-2 break-words">{{ Str::limit($adoption->description,150) }}</p>
                             
                             <!-- Profile -->
                             <div class="flex flex-row">
