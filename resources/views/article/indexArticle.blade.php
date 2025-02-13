@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="flex bg-no-repeat bg-center bg-contain h-[140vw]" style="background-image: url(images/adopt-bg.png)">
+    <div class="flex h-[145vw] overflow-hidden">
         <!-- Bagian Kiri (Sidebar) Start -->
         <div class="w-80 h-full shadow-lg pl-10 pt-10">
             <!-- Greetings -->
@@ -76,18 +76,18 @@
         <!-- Bagian Kiri (Sidebar) End -->
         
         <!-- Bagian Kanan (Konten) Start -->
-        <div class="ml-12 flex-1 pt-10">
+        <div class="ml-2 flex-1 pt-10">
             <!-- Judul Page -->
             <div class="text-center">
                 <h2 class="text-6xl font-montserrat_alt font-bold text-greenpetify">Article</h2>
-                <p class="text-sm font-open_sans font-semibold mt-4">Find anything you need about your pet here!</p>
+                <p class="text-xl font-open_sans font-semibold mt-4">Find anything you need about your pet here!</p>
             </div>
 
             <!-- Article Catalog -->
-            <div class="grid grid-cols-3 gap-6 mx-12 mt-14">        
+            <div class="grid grid-cols-3 gap-10 mx-10 mt-14">        
                 @foreach ($articles as $article)
                     <a href="/articles/{{ $article->slug }}" class="block w-full">
-                        <div class="rounded-lg shadow-xl p-2 w-80">
+                        <div class="rounded-lg shadow-xl p-2 h-[38vw] w-[22vw]">
                             <!-- Gambar Article -->
                             @if($article->image)
                                 <img src="{{ asset('storage/' . $article->image ) }}" alt="Article Picture" class="w-full h-[30vh] object-cover rounded-md">
@@ -102,10 +102,10 @@
                             </div>
         
                             <!-- Judul Article -->
-                            <h4 class="font-montserrat_alt font-semibold w-full text-xl pr-2">{{ $article->title }}</h4>    
+                            <h4 class="font-montserrat_alt font-semibold w-full text-xl pr-2 min-h-[5vw]">{{ $article->title }}</h4>    
         
                             <!-- Desc Singkat -->
-                            <p class="font-open_sans text-slate-600 my-4 text-justify pr-2 w-full break-words">
+                            <p class="font-open_sans text-slate-600 my-4 text-justify pr-2 w-full break-words min-h-[5vw]">
                                 {!! Str::limit(strip_tags($article->content), 100) !!}
                             </p>
                             

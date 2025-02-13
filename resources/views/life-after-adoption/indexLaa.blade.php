@@ -23,7 +23,7 @@
   
     @endif
 
-    <div class="flex bg-no-repeat bg-center bg-contain h-[100vw]" style="background-image: url({{ asset('images/adopt-bg.png') }})">
+    <div class="flex h-screen overflow-hidden">
         <!-- Bagian Kiri (Sidebar) Start -->
         <div class="w-80 h-full shadow-lg pl-10 pt-10">
             <!-- Judul Page -->

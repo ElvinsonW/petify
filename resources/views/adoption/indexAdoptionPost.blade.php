@@ -39,7 +39,7 @@
         </div>
   
     @endif
-    <div class="flex h-screen">
+    <div class="flex h-[150vw] overflow-hidden">
         <!-- Bagian Kiri (Sidebar) Start -->
         <div class="w-80 h-full shadow-lg pl-10 pt-10 ">
             <!-- Greetings -->
@@ -155,7 +155,7 @@
         <!-- Bagian Kiri (Sidebar) End -->
         
         <!-- Bagian Kanan (Konten) Start -->
-        <div class="ml-12 flex-1 overflow-y-auto pt-10">
+        <div class="ml-2 flex-1 pt-10">
             <!-- Judul Page -->
             <div class="text-center">
                 <h2 class="text-6xl font-montserrat_alt font-bold text-greenpetify">Adopt your Pet!</h2>
@@ -163,12 +163,12 @@
             </div>
 
             <!-- Pet Adopt Catalog -->
-            <div class="grid grid-cols-3 gap-6 mx-12 mt-14">
+            <div class="grid grid-cols-3 gap-10 mx-10 mt-14">
                 <!-- Catalog -->
                 @foreach ($adoptions as $adoption)
 
                     <a href="/adoptions/{{ $adoption->slug }}">
-                        <div class="rounded-lg shadow-xl p-2 h-[40vw] w-[20vw]">
+                        <div class="rounded-lg shadow-xl p-2 h-[40vw] w-[22vw]">
                             <!-- Gambar Pet -->
                             <img src="{{ asset('images/petadoptpic.svg') }}" alt="Pet Picture" class="w-full h-fit">
                             
@@ -192,7 +192,7 @@
                             </div>
         
                             <!-- Desc Singkat -->
-                            <p class="font-open_sans text-slate-600 mt-1 mb-6 text-justify pr-2 break-words">{{ Str::limit($adoption->description,150) }}</p>
+                            <p class="font-open_sans text-slate-600 mt-1 mb-6 text-justify pr-2 break-words min-h-[8vw]">{{ Str::limit($adoption->description,150) }}</p>
                             
                             <!-- Profile -->
                             <div class="flex flex-row">
