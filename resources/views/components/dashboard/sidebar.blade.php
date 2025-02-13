@@ -35,7 +35,7 @@
         </a>
 
         <!-- Event Post Request -->
-        <a href="./admin-event-post.html">
+        <a href="/dashboard/event-requests">
             <div class="flex flex-row items-center space-x-[1vw] hover:font-extrabold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
                 <i class="fa-solid fa-calendar-day text-[2vw] text-greenpetify group-hover:text-greentua transition duration-300"></i>
                 <p class="text-greenpetify transition duration-300">Event Post Request</p>

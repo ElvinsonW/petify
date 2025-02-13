@@ -20,7 +20,7 @@ class Article extends Model
     }
 
     public function article_category(): BelongsTo {
-        return $this->belongsTo(ArticleCategory::class,"article_category_id");
+        return $this->belongsTo(ArticleEventCategory::class,"article_category_id");
     }
 
     public function scopeFilter(Builder $query, array $filter): void {

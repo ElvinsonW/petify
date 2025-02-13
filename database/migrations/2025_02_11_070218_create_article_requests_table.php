@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string("title");
             $table->string("slug")->unique();
             $table->foreignId("user_id")->constrained('users')->onDelete('cascade')->onUpdate("cascade");
-            $table->foreignId("article_category_id")->constrained('article_categories')->onDelete('cascade')->onUpdate("cascade");
+            $table->foreignId("article_category_id")->constrained('article_event_categories')->onDelete('cascade')->onUpdate("cascade");
             $table->text("content");
             $table->string('image')->nullable();
-            $table->string('approval_status')->default("Pending");
+            $table->enum('approval_status', ['Pending', 'Accepted', 'Rejected'])->default('Pending');
             $table->timestamps();
         });
     }

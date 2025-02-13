@@ -7,6 +7,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ArticleRequestController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventRequestController;
 use App\Http\Controllers\LifeAfterAdoptionController;
 use App\Http\Controllers\LikedAdoptionPostController;
 use App\Http\Controllers\LikedLifeAfterAdoptionController;
@@ -102,3 +103,6 @@ Route::resource('/dashboard/adoption-post-requests', AdoptionPostRequestControll
 
 Route::get('/dashboard/adoption-post-requests/{slug}/{action}', [AdoptionPostRequestController::class,'handleRequest']);
 
+Route::resource('/dashboard/event-requests', EventRequestController::class);
+
+Route::get('/dashboard/event-requests/{slug}/{action}', [EventRequestController::class,'handleRequest']);

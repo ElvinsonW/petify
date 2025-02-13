@@ -41,7 +41,28 @@
     </div>
 
     <!-- Date and Attach File -->
-    <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 mb-6">
+    <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-3 mb-6">
+        <!-- Category -->
+        <div>
+            <label for="event_category_id" class="block mb-2 text-lg font-semibold">Select Event Category</label>
+            <div class="relative">
+                <select wire:model="event_category_id" id="event_category_id" class="category appearance-none border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none pr-10 text-gray-400">
+                    <option value="" disabled selected hidden>Select a category...</option>
+                    @foreach ($categories as $category)
+                        @if (old('category_id') == $category->id)
+                            <option value="{{ $category->id }}" selected class="text-black">{{ $category->name }}</option>
+                        @else
+                            <option value="{{ $category->id }}" class="text-black">{{ $category->name }}</option>
+                        @endif
+                    @endforeach
+                </select>
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+            </div>
+        </div>
         <!-- Start Date -->
         <div>
             <label for="start_date" class="block mb-2 text-lg font-semibold">Start Date</label>
@@ -133,5 +154,20 @@
             slug.value = data.slug;
             @this.set('slug',data.slug);
         })
+    });
+
+    const categories = document.querySelectorAll('.category');
+
+    categories.forEach((selectElement) => {
+        // Tambahkan event listener untuk mengatur warna teks saat ada perubahan
+        selectElement.addEventListener('change', function () {
+            if (this.value === "") {
+                this.classList.add('text-gray-400');
+                this.classList.remove('text-black');
+            } else {
+                this.classList.remove('text-gray-400');
+                this.classList.add('text-black');
+            }
+        });
     });
 </script>
