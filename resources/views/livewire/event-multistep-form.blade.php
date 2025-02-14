@@ -22,7 +22,7 @@
     </div>
 
     @if ($step == 1)
-        @includeIf('event.eventForm1')
+        @includeIf('event.eventForm1',["categories" => $categories])
     @elseif ($step == 2)
         @includeIf('event.eventForm2')
     @endif

@@ -12,9 +12,15 @@ class EventMultistepForm extends Component
     use WithFileUploads;
 
     public $step = 1;
-    public $title, $slug, $location, $ticket, $start_date, $end_date, $image, $description;
+    public $event_category_id, $title, $slug, $location, $ticket, $start_date, $end_date, $image, $description;
     public $days = [];
     public $sessions = [];
+    public $categories = [];
+
+    public function mount($categories)
+    {
+        $this->categories = $categories;
+    }
 
     // Fungsi untuk memvalidasi input yang masuk
     public function validateData()
@@ -22,6 +28,7 @@ class EventMultistepForm extends Component
         if ($this->step == 1) {
             // Validasi input yang masuk pada step 1
             $this->validate([
+                'event_category_id' => ['required'],
                 'title' => ['required', 'max:100'],
                 'slug' => ['required', 'unique:events'],
                 'location' => ['required', 'max:100'],
@@ -37,6 +44,7 @@ class EventMultistepForm extends Component
                 // Simpan image di dalam local storage
                 $this->image = $this->image->store('event_images', 'public');
             }
+
         } elseif ($this->step == 2) {
             // Validasi input yang masuk dalam step 2
             $this->validate([
@@ -99,7 +107,8 @@ class EventMultistepForm extends Component
             'end_date' => $this->end_date,
             'image' => $this->image, 
             'description' => $this->description,
-            'user_id' => auth()->user()->id
+            'user_id' => auth()->user()->id,
+            'event_category_id' => $this->event_category_id
         ]);
 
         // Looping untuk setiap hari dan menimpannya ke dalam database
@@ -114,23 +123,6 @@ class EventMultistepForm extends Component
                 // Looping untuk setiap hari pada hari ini
                 foreach ($this->sessions[$dayIndex] as $sessionData) {
                     // Simpan setiap session ke dalam database
-                    $day->sessions()->create([
-                        'time' => $sessionData['time'],
-                        'title' => $sessionData['title'],
-                        'description' => $sessionData['description']
-                    ]);
-                }
-            }
-        }
-
-        // dd($this->days);
-        foreach ($this->days as $dayIndex => $dayData) {
-            $day = $event->days()->create([
-                'date' => $dayData['date'],
-            ]);
-            
-            if (isset($this->sessions[$dayIndex])) {
-                foreach ($this->sessions[$dayIndex] as $sessionData) {
                     $day->sessions()->create([
                         'time' => $sessionData['time'],
                         'title' => $sessionData['title'],

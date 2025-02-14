@@ -22,7 +22,7 @@ class EventSeeder extends Seeder
         // Buat 50 event acak
         for ($i = 0; $i < 50; $i++) {
             Event::create([
-                'user_id' => $faker->randomElement($userIds), // Ambil user_id secara acak
+                'user_id' => $faker->randomElement($userIds),  // Assuming the user with ID 1 is the creator, adjust if needed
                 'title' => $faker->sentence,
                 'slug' => $faker->slug,
                 'location' => $faker->address,

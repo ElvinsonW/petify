@@ -2,7 +2,7 @@
     <!-- container -->
     <div class="container mx-auto py-8 px-4">
         <!-- title -->
-        <h1 class="font-bold text-4xl md:text-5xl lg:text-6xl text-greenpetify text-center font-montserrat_alt py-8 w-full md:w-3/4 my-8 text-center mx-auto">
+        <h1 class="font-bold text-4xl md:text-5xl lg:text-6xl text-greenpetify font-montserrat_alt py-8 w-full md:w-3/4 my-8 text-center mx-auto">
             {{ $event->title }}
         </h1>
 

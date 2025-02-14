@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Middleware\CheckPostOwnership;
 use App\Models\AdoptionPost;
+use App\Models\AdoptionPostRequest;
 use App\Models\LikedAdoptionPost;
 use App\Models\Pet;
 use App\Models\PetCategory;
@@ -56,15 +57,11 @@ class AdoptionPostController extends Controller
     public function store(Request $request)
     {
         // validasi input yang diberikan oleh user
-        $petValidatedData = $request->validate([
+        $validatedData = $request->validate([
             'name' => ['required','max:20'],
             'breed' => ['required','max:100'],
             'pet_category_id' => ['required'],
             'gender' => ['required'],
-        ]);
-
-        $postValidatedData = $request->validate([
-            'name' => ['required','max:20'],
             'slug' => ['required','unique:adoption_posts'],
             'age' => ['required',"numeric" ,"min:0.01"],
             'location' => ['required','max:255'],
@@ -79,24 +76,21 @@ class AdoptionPostController extends Controller
             'images.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
         ]);
 
-        $petValidatedData['user_id'] = auth()->user()->id;
-        $pet = Pet::create($petValidatedData);
+        $validatedData['user_id'] = auth()->user()->id;
         
-        $postValidatedData['user_id'] = auth()->user()->id;
-        $postValidatedData['vaccinated'] = $postValidatedData['vaccinated'] == "yes" ? 1 : 0;
-        $postValidatedData['pet_id'] = $pet->id;
+        $validatedData['vaccinated'] = $validatedData['vaccinated'] == "yes" ? 1 : 0;
         
         // Menyimpan image ke storage local
         if($request->file('images')){
             $idx = 1;
             foreach($request->file('images') as $file) {
-                $postValidatedData['image_' . $idx] = $file->store('adoption-post-image');
+                $validatedData['image_' . $idx] = $file->store('adoption-post-image');
                 $idx++;
             }
         }
         
         // Memasukkan Adoption Post ke Database
-        AdoptionPost::create($postValidatedData);
+        AdoptionPostRequest::create($validatedData);
 
         // Setelah selesai, ngedirect user ke page Adoptions dan mengirim pesan berhasil
         return redirect('adoptions')->with('createSuccess','Adoption Post Successfully');

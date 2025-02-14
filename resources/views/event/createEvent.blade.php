@@ -1,4 +1,4 @@
 <x-layout>
-    <livewire:event-multistep-form/>
+    <livewire:event-multistep-form :categories="$categories"/>
     @livewireScripts
 </x-layout>

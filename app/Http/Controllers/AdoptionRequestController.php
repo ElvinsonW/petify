@@ -17,7 +17,7 @@ class AdoptionRequestController extends Controller
     // Show the form for creating a new adoption request
     public function create()
     {
-        return view('adoption-request.createAdoptionRequest');
+        return view('/adoption-request.createAdoptionRequest');
     }
 
     // Store a newly created adoption request in the database

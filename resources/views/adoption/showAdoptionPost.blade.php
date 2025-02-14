@@ -102,7 +102,7 @@
                         <!-- Konten -->
                         <div class="flex flex-col items-center justify-center h-full font-montserrat_alt font-semibold">
                           <p class="text-oren text-xl mb-4">Breed</p>
-                          <p class="text-black text-2xl">{{ $adoption->pet->breed }}</p>
+                          <p class="text-black text-2xl">{{ $adoption->breed ? $adoption->breed : $adoption->pet->breed }}</p>
                         </div>
                     </div>
                    
@@ -112,7 +112,7 @@
                         <!-- Konten -->
                         <div class="flex flex-col items-center justify-center h-full font-montserrat_alt font-semibold">
                           <p class="text-oren text-xl mb-4">Gender</p>
-                          <p class="text-black text-2xl">{{ $adoption->pet->gender }}</p>
+                          <p class="text-black text-2xl">{{ $adoption->gender ? $adoption->gender : $adoption->pet->gender }}</p>
                         </div>
                     </div>
                    
@@ -148,7 +148,7 @@
                     </div>
                     
                     <div class="flex flex-col mt-4 ml-4">
-                        <p class="font-overpass font-semibold text-2xl">Dodoidoy</p>
+                        <p class="font-overpass font-semibold text-2xl">{{ $adoption->user->username }}</p>
                         <p class="font-overpass font-semibold text-orenmuda text-xl mt-2"><i class="fa-solid fa-paw mr-2 bg-orenmuda rounded-full bg-opacity-25 border-orenmuda border-opacity-25 border-4" style="color: #f2ae72;"></i>1900</p>
                     </div>
                 </div>
@@ -160,8 +160,8 @@
                 <hr class="border-black border-1/2 w-64">
                
                 <div class="flex flex-col mt-8">
-                    <p class="font-overpass text-xl"><i class="fa-solid fa-envelope mr-4 text-xl" style="color: #166B68;"></i>Dodoidoy@gmail.com</p>
-                    <p class="font-overpass text-xl mt-2"><i class="fa-solid fa-phone mr-4 text-xl" style="color: #166B68;"></i>0852 - 6350 - 6419</p>
+                    <p class="font-overpass text-xl"><i class="fa-solid fa-envelope mr-4 text-xl" style="color: #166B68;"></i>{{ $adoption->user->email }}</p>
+                    <p class="font-overpass text-xl mt-2"><i class="fa-solid fa-phone mr-4 text-xl" style="color: #166B68;"></i>{{ $adoption->user->phone_number }}</p>
                 </div>
             </div>
         </div>
@@ -182,7 +182,7 @@
             </div>
         @endif
 
-        @if ($adoption->status == "0")    
+        @if ($adoption->status == "0" || $adoption->adoption_status == "0")    
             <!-- Button Adopt Me (kalo belom diadopt)-->
             <a href="/adoption-request/create">
                 <button class="mt-10 text-white bg-greentipis rounded-2xl shadow-lg transform hover:scale-95 hover:bg-greentua transition duration-300 ease-in-out text-xl font-semibold px-5 py-2.5 font-overpass">Adopt Me</button>
