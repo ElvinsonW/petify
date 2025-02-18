@@ -24,7 +24,7 @@ class AdoptionRequestController extends Controller
     public function store(Request $request)
     {
         // Validate form inputs
-        $request->validate([
+        $validatedData = $request->validate([
             'description' => 'required|string',
             'travel_plan' => 'required|string',
             'experience' => 'required|string',

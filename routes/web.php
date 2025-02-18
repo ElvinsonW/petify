@@ -11,6 +11,8 @@ use App\Http\Controllers\EventRequestController;
 use App\Http\Controllers\LifeAfterAdoptionController;
 use App\Http\Controllers\LikedAdoptionPostController;
 use App\Http\Controllers\LikedLifeAfterAdoptionController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserDashboardController;
 use App\Http\Middleware\GuestMode;
 use App\Models\ArticleRequest;
 use App\Models\LifeAfterAdoption;
@@ -54,10 +56,13 @@ Route::post('/register', function(Request $request){
         "address" => ['required','max:255'],
         "email" => ['required','email'],
         'phone_number' => ['required'],
-        'password' => ['required','min:8','regex:/[A-Z]/','regex:/[a-z]/', 'regex:/[0-9]/']
+        'password' => ['required','min:8','regex:/[A-Z]/','regex:/[a-z]/', 'regex:/[0-9]/'],
+        'role' => ['prohibited']
     ]);
 
     $validatedData['password'] = Hash::make($validatedData['password']);
+
+    unset($validatedData['role']);
 
     User::create($validatedData);
     
@@ -91,7 +96,7 @@ Route::get('/events/createSlug',[EventController::class,'createSlug'])->name('ad
 Route::resource('/events', EventController::class)->middleware('auth');
 
 // Adoption Request Routes
-Route::resource('/adoption-request', AdoptionRequestController::class);
+Route::resource('/adoptions/{slug}/adoption-request', AdoptionRequestController::class);
 
 // Route::resource('/dashboard', DashboardController::class);
 
@@ -106,3 +111,21 @@ Route::get('/dashboard/adoption-post-requests/{slug}/{action}', [AdoptionPostReq
 Route::resource('/dashboard/event-requests', EventRequestController::class);
 
 Route::get('/dashboard/event-requests/{slug}/{action}', [EventRequestController::class,'handleRequest']);
+
+Route::fallback(function () {
+    return view('homepage');  
+});
+
+Route::get('/dashboard/my-posts',[UserDashboardController::class,'indexPost']);
+
+Route::get('/dashboard/my-adoption-requests',[UserDashboardController::class,'indexAdoptionRequest']);
+
+Route::get('/dashboard/my-liked-posts',[UserDashboardController::class,'indexLikedPost']);
+
+Route::get('/dashboard/my-post-requests',[UserDashboardController::class,'indexPostRequest']);
+
+// Route::get('/dashboard/update-profile',[UserDashboardController::class,'indexUpdateProfile']);
+
+Route::get("/dashboard/profile",[UserController::class,"index"]);
+
+Route::put("/dashboard/profile",[UserController::class,"update"]);

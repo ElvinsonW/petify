@@ -27,5 +27,16 @@ class AdoptionPostRequest extends Model
             fn($query, $status) =>
                 $query->where('approval_status',$status)
         );
+
+        $query->when(
+            $filters['search'] ?? false,
+            fn ($query, $search) =>
+                $query->where(
+                    fn($q) =>
+                        $q->where('name', 'like', "%" . $search . "%")
+                          ->orWhere('description', 'like', "%" . $search . "%")
+                )
+        );
+        
     }
 }

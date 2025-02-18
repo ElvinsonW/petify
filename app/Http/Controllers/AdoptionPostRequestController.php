@@ -13,7 +13,7 @@ class AdoptionPostRequestController extends Controller
     public function index(){
         $filters = ["status"];
 
-        return view('dashboard.adoptionDashboardAdmin',[
+        return view('dashboard.admin.adoptionDashboardAdmin',[
             "requests" => AdoptionPostRequest::filter(request($filters))
                           ->orderByRaw("
                                 CASE 
