@@ -63,6 +63,7 @@ export default {
           },
         },
       },
+      
       safelist: [
         'bg-greenpetify',
         'bg-greentua',
@@ -117,5 +118,7 @@ export default {
         'hover:bg-bluereptile',
         'hover:bg-or-dashboard',
         ],
-    plugins: []
+        plugins: [
+          require('tailwind-scrollbar'), // Tambahkan ini
+        ],
 };

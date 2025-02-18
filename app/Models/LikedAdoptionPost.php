@@ -13,6 +13,7 @@ class LikedAdoptionPost extends Model
     protected $fillable = ['user_id','adoption_post_id'];
     public $incrementing = false;
     protected $primaryKey = ['user_id', 'adoption_post_id'];
+    protected $with = ['user'];
 
     public function getKey()
     {

@@ -36,7 +36,7 @@ class EventMultistepForm extends Component
                 'start_date' => ['required', 'date'],
                 'end_date' => ['required', 'date', 'after_or_equal:start_date'],
                 'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
-                'description' => ['required', 'max:255']
+                'description' => ['required']
             ]);
 
             // Cek apakah image memiliki tipe data UploadedFile
@@ -49,9 +49,9 @@ class EventMultistepForm extends Component
             // Validasi input yang masuk dalam step 2
             $this->validate([
                 'days.*.date' => ['required', 'date'],
-                'sessions.*.*.time' => ['required', 'date_format:g:i a'],
+                'sessions.*.*.time' => ['required', 'date_format:g:i A'],
                 'sessions.*.*.title' => ['required', 'max:100'],
-                'sessions.*.*.description' => ['required', 'max:255']
+                'sessions.*.*.description' => ['required']
             ]);
         }
     }

@@ -21,12 +21,12 @@
 
         @auth
             <!-- AFTER LOGIN -->
-            <div class="lg:flex hidden items-center justify-center space-x-3 font-semibold">
+            <a href="/dashboard" class="lg:flex hidden items-center justify-center space-x-3 font-semibold">
                 <p class="text-greenpetify text-center">{{ auth()->user()->username }}</p>
                 <div class="w-12 h-12 bg-white border-4 border-greentua rounded-full flex justify-center items-center">
                     <img src="{{ asset('images/after login.svg') }}" alt="After Login logo">
                 </div>
-            </div>
+            </a>
         @else
             <!-- BEFORE LOGIN -->
             <!-- Login/signin -->
@@ -35,7 +35,6 @@
                 <a href="/register" class="px-4 py-4rem text-white bg-greenpetify rounded-2xl border border-greentua shadow-lg transform hover:scale-95 hover:bg-greentua transition duration-300 ease-in-out"><button class="w-full h-full">Sign In</button></a>
             </div>
         @endauth
-
             
         <!-- hamburger icon -->
         <button class="buttonToogle lg:hidden block mr-3">

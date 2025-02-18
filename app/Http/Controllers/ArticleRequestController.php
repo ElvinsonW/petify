@@ -11,7 +11,7 @@ class ArticleRequestController extends Controller
     public function index() {
         $filters = ["status"];
 
-        return view('dashboard.articleDashboardAdmin',[
+        return view('dashboard.admin.articleDashboardAdmin',[
             "requests" => ArticleRequest::filter(request($filters))->orderByRaw('
                 CASE
                     WHEN approval_status = "pending" THEN 1

@@ -27,5 +27,15 @@ class ArticleRequest extends Model
             fn($query, $status) =>
                 $query->where('approval_status',$status)
         );
+        
+        $query->when(
+            $filters['search'] ?? false,
+            fn($query, $search) => 
+                $query->where(
+                    fn($q) =>
+                        $q->where('title', 'like', '%'. $search . '%')
+                          ->orWhere('content', 'like', '%' . $search . '%')
+                )
+        );
     }
 }
