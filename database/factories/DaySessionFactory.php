@@ -22,7 +22,7 @@ class DaySessionFactory extends Factory
             "day_id" => Day::factory(),
             'time' => Carbon::now()->addHours(rand(8, 16))->format('H:i'), 
             'title' => fake()->sentence(),
-            'description' => fake()->sentence(),
+            'description' => fake()->paragraph(),
         ];
     }
 }

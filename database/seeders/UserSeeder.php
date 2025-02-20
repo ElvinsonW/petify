@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'phone_number' => '082147914431',
             'address' => 'disini',
+            'role' => 'Admin',
             'remember_token' => Str::random(10),
         ]);
         

@@ -15,15 +15,21 @@ class CreateAdoptionRequestForm extends Migration
     {
         Schema::create('adoption_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->text('Q1');
+            
+            // Menambahkan foreign key user_id yang terhubung dengan users table
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            
+            // Kolom-kolom untuk pertanyaan yang disediakan
+            $table->text('Q1'); // Atau bisa menggunakan string jika teks pendek
             $table->text('Q2');
             $table->text('Q3');
             $table->text('Q4');
             $table->text('Q5');
+            
+            // Kolom timestamp untuk mencatat waktu pembuatan dan pembaruan
+            $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.

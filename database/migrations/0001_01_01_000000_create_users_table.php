@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone_number');
             $table->string('address');
+            $table->enum('role',['User','Admin'])->default('User');
+            $table->integer('point')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

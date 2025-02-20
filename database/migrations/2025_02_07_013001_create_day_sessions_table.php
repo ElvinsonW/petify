@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('day_id')->constrained('days')->onDelete('cascade')->onUpdate('cascade');
             $table->time('time');
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
         });
     }
 

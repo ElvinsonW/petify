@@ -50,11 +50,11 @@
     <div class="flex justify-center">
         <div class="w-2/3 flex flex-col justify-center">
             <div>
-                <label for="description" class="block mb-5 text-xl font-semibold text-center">
+                <label for="description1" class="block mb-5 text-xl font-semibold text-center">
                     Do you have other pets at home? If yes, what pets are they and have they been vaccinated?
                 </label>
-                <textarea wire:model="description" id="description" rows="15" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Write event description here..." required></textarea>
-                @error('description') 
+                <textarea wire:model="description1" id="description1" rows="15" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Write pet description here..." required></textarea>
+                @error('description1') 
                     <span class="text-red-500 text-sm">{{ $message }}</span> 
                 @enderror
             </div>
@@ -67,6 +67,5 @@
                 </div>
             </div> 
         </div>
-
     </div>
 </div>

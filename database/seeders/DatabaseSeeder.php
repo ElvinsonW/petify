@@ -14,7 +14,6 @@ use App\Models\LifeAfterAdoption;
 use App\Models\Pet;
 use App\Models\PetCategory;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Carbon\Carbon;
@@ -26,7 +25,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Panggil seeder lain yang diperlukan
 
         $this->call([UserSeeder::class, ArticleEventCategorySeeder::class, PetCategorySeeder::class]);
         
@@ -45,11 +44,13 @@ class DatabaseSeeder extends Seeder
             PetCategory::all(),
         ])->create();
 
+        // Buat 50 postingan adopsi dengan relasi ke User dan Pet
         AdoptionPost::factory(50)->recycle([
             User::all(),
             Pet::all(),
         ])->create();
 
+        // Buat 50 kehidupan setelah adopsi dengan relasi ke User dan Pet
         AdoptionPostRequest::factory(50)->recycle([
             User::all(),
             PetCategory::all(),

@@ -2,20 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AdoptionRequest extends Model
 {
     use HasFactory;
 
-    // Add all the fields you want to be fillable
+    // Define which fields can be mass-assigned
     protected $fillable = [
-        'user_id', 
-        'description', 
-        'travel_plan', 
-        'experience', 
-        'yard_space', 
-        'adoption_reason'
+        'user_id',
+        'Q1',
+        'Q2',
+        'Q3',
+        'Q4',
+        'Q5',
     ];
+
+    public function user(): BelongsTo {
+        return $this->belongsTo(User::class,"user_id");
+    }
 }

@@ -2,34 +2,33 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Event;
+use App\Models\User;
 use Faker\Factory as Faker;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
 
 class EventSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         $faker = Faker::create();
         $imageUrl = 'https://i.pinimg.com/736x/77/c0/c3/77c0c34983744d94a363d68a312385b8.jpg';
         $userIds = User::all()->pluck('id')->toArray();
 
-        // Create random events
-        for ($i = 0; $i < 50; $i++) {  // 50 random events
+        // Buat 50 event acak
+        for ($i = 0; $i < 50; $i++) {
             Event::create([
                 'user_id' => $faker->randomElement($userIds),  // Assuming the user with ID 1 is the creator, adjust if needed
                 'title' => $faker->sentence,
                 'slug' => $faker->slug,
                 'location' => $faker->address,
-                'ticket' => $faker->randomNumber(2),  // Random number for tickets
-                'start_date' => $faker->dateTimeBetween('now', '+1 year')->format('Y-m-d H:i:s'), // Random future date
-                'end_date' => $faker->dateTimeBetween('+1 hour', '+1 year')->format('Y-m-d H:i:s'), // Random end date
+                'ticket' => $faker->randomNumber(2), // Nomor acak untuk tiket
+                'start_date' => $faker->dateTimeBetween('now', '+1 year')->format('Y-m-d H:i:s'), // Tanggal mulai acak di masa depan
+                'end_date' => $faker->dateTimeBetween('+1 hour', '+1 year')->format('Y-m-d H:i:s'), // Tanggal berakhir acak
                 'image' => $imageUrl,
                 'description' => $faker->paragraph,
                 'created_at' => Carbon::now(),
@@ -37,7 +36,7 @@ class EventSeeder extends Seeder
             ]);
         }
 
-        // Optionally, you can create today's events separately
+        // Buat event khusus untuk hari ini
         Event::create([
             'user_id' => $faker->randomElement($userIds),
             'title' => 'Today\'s Special Event',

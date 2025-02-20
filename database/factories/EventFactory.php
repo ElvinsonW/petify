@@ -31,7 +31,7 @@ class EventFactory extends Factory
             'start_date' => $this->faker->date,
             'end_date' => $this->faker->date,
             'image' => $this->faker->imageUrl,
-            'description' => $this->faker->sentence,
+            'description' => $this->faker->paragraph(),
             'approval_status' => $this->faker->randomElement(['Pending','Accepted','Rejected'])
         ];
     }

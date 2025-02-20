@@ -12,7 +12,7 @@ class EventRequestController extends Controller
 {
     public function index() {
         $filters = ['status'];
-        return view('dashboard.eventDashboardAdmin',[
+        return view('dashboard.admin.eventDashboardAdmin',[
             "requests" => Event::filter(request($filters))
                                ->orderByRaw("
                                     CASE

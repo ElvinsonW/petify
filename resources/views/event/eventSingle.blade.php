@@ -116,10 +116,6 @@
         }
     </script>
 
-
-
-
-
         <!-- Additional Information Section -->
         @if($event->additional_info)
             <div class="mt-16 text-lg text-gray-700">
