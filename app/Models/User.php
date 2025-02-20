@@ -77,4 +77,8 @@ class User extends Authenticatable
     public function events(): HasMany {
         return $this->hasMany(Event::class,'user_id');
     }
+
+    public function adoption_requests(): HasMany {
+        return $this->hasMany(AdoptionRequest::class,"user_id");
+    }
 }

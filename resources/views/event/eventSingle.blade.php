@@ -68,7 +68,7 @@
             <div class="w-full lg:w-3/4 space-y-10">
                 @foreach ($event->days as $day)
                     <button onclick="showSessions('{{ \Carbon\Carbon::parse($day->date)->format('Y-m-d') }}')" 
-                        class="p-4 rounded-lg bg-gray-100 flex items-center hover:bg-green hover:text-white transition duration-300 w-full md:w-3/4">
+                        class="p-4 rounded-lg bg-gray-100 flex items-center hover:bg-greenpetify hover:text-white transition duration-300 w-full md:w-3/4">
                         <img src="{{ asset('images/uim_calendar.svg') }}" alt="Calendar Icon" class="w-22 h-22 mr-4">
                         <div class="text-lg md:text-xl font-montserrat_alt font-semibold leading-snug">
                             <p class="text-gray-400 inline-block mr-4">Day {{ $loop->iteration }}</p>

@@ -12,11 +12,11 @@
             <h2 class="text-[1.7vw] font-semibold font-montserrat_alt text-black leading-snug">{{ Str::limit($post->title,50) }}</h2>
             
             <!-- type -->
-            <span class="bg-greencat text-white text-[1.1vw] font-semibold font-montserrat_alt px-[0.7vw] py-[0.1vw] rounded-[0.53vw]">About Cat</span>
+            <span class="bg-{{ $post->article_category->color }} text-white text-[1.1vw] font-semibold font-montserrat_alt px-[0.7vw] py-[0.1vw] rounded-[0.53vw]">{{ $post->article_category->name }}</span>
         </div>
         <!-- detail -->
         <p class="mt-[0.2vw] text-[0.95vw] font-open_sans leading-snug text-gray-600 font-normal">
-            {{ Str::limit($post->content,350) }}
+            {!! Str::limit(strip_tags($post->content,350)) !!}
         </p>
         <div class="flex justify-between items-center text-[0.8vw] text-black font-open_sans font-semibold mt-[1vw] leading-snug">
             <!-- Tanggal dan Icon -->

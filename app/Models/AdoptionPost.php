@@ -28,6 +28,10 @@ class AdoptionPost extends Model
         return $this->hasMany(LikedAdoptionPost::class,'adoption_post_id');
     }
 
+    public function adoption_requests(): HasMany {
+        return $this->hasMany(AdoptionRequest::class,'post_id');
+    }
+
     public function scopeFilter(Builder $query, array $filters): void {
         $query->when(
             $filters['search'] ?? false,

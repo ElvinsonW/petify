@@ -17,7 +17,7 @@ class GuestMode
     public function handle(Request $request, Closure $next): Response
     {
         if(Auth::check()){
-            return redirect('/');
+            return redirect('/')->with('userError',"Only Guest Can Access This Page");
         }
         return $next($request);
     }

@@ -135,7 +135,7 @@ class EventMultistepForm extends Component
         Storage::deleteDirectory('livewire-tmp'); 
 
         // Direct ke Halaman Event dan beri pesan berhasil
-        return redirect('/events')->with('message', 'Form submitted successfully!');
+        return redirect('/events')->with('createSuccess', 'Event Post Successfully Requested');
     }
 
     public function render()

@@ -14,7 +14,7 @@
                 <div class="flex gap-[5vw]">
                     @php
                         $queryParams["post"] = "adoptions";
-                        $url = url('/dashboard/my-post-requests') . '?' . http_build_query($queryParams);
+                        $url = url('/dashboard') . '/' . $user->username . '/post-requests' . '?' . http_build_query($queryParams);
                     @endphp
                     <!-- page adoption post -->
                     <a href="{{ $url }}">
@@ -23,7 +23,7 @@
                     
                     @php
                         $queryParams["post"] = "articles";
-                        $url = url('/dashboard/my-post-requests') . '?' . http_build_query($queryParams);
+                        $url = url('/dashboard') . '/' . $user->username . '/post-requests' . '?' . http_build_query($queryParams);
                     @endphp
                     <!-- page article post -->
                     <a href="{{ $url }}">
@@ -32,7 +32,7 @@
                     
                     @php
                         $queryParams["post"] = "events";
-                        $url = url('/dashboard/my-post-requests') . '?' . http_build_query($queryParams);
+                        $url = url('/dashboard') . '/' . $user->username . '/post-requests' . '?' . http_build_query($queryParams);
                     @endphp
                     <!-- page event post -->
                     <a href="{{ $url }}">

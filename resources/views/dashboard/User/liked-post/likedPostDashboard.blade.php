@@ -4,7 +4,7 @@
         <!-- Liked Post -->
         <div class="mt-[1.6vw] items-center mb-[1vw]">
             <!-- title -->
-            <p class="text-green tracking-wide font-montserrat_alt text-[2vw] font-bold">Liked Post</p>
+            <p class="text-greenpetify tracking-wide font-montserrat_alt text-[2vw] font-bold">Liked Post</p>
             
             <!-- content -->
             <div class="flex text-[1.5vw] font-bold font-overpass w-full justify-between">
@@ -13,7 +13,7 @@
                     @php
                         $queryParams = request()->query();
                         $queryParams["post"] = "adoptions";
-                        $url = url('/dashboard/my-liked-posts') . '?' . http_build_query($queryParams);
+                        $url = url('/dashboard') . '/' . $user->username . '/liked-posts' . '?' . http_build_query($queryParams);
                     @endphp
                     <a href="{{ $url }}">
                         <p class="{{ request('post') == "adoptions" ? "text-black" : "text-black/30 hover:text-black/40 w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-black/50 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center text-[1.3vw]" }} cursor-pointer relative">Adoption Post</p>
@@ -23,7 +23,7 @@
                     @php
                         $queryParams = request()->query();
                         $queryParams["post"] = "lifeAfterAdoption";
-                        $url = url('/dashboard/my-liked-posts') . '?' . http_build_query($queryParams);
+                        $url = url('/dashboard') . '/' . $user->username . '/liked-posts' . '?' . http_build_query($queryParams);
                     @endphp
                     <a href="{{ $url }}">
                         <p class="{{ request('post') == "lifeAfterAdoption" ? "text-black" : "text-black/30 hover:text-black/40 w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-black/50 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center text-[1.3vw]" }} cursor-pointer relative">Life After Adoption Post</p>

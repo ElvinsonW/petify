@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\AdoptionPost;
 use App\Models\AdoptionPostRequest;
+use App\Models\AdoptionRequest;
 use App\Models\Article;
 use App\Models\ArticleEventCategory;
 use App\Models\ArticleRequest;
@@ -48,7 +49,10 @@ class DatabaseSeeder extends Seeder
         AdoptionPost::factory(50)->recycle([
             User::all(),
             Pet::all(),
-        ])->create();
+        ])->create([
+            'pet_id' => Pet::inRandomOrder()->first()->id,
+            "image_1" => "adoption-post-image/petadoptpic.svg"
+        ]);
 
         // Buat 50 kehidupan setelah adopsi dengan relasi ke User dan Pet
         AdoptionPostRequest::factory(50)->recycle([
@@ -82,5 +86,10 @@ class DatabaseSeeder extends Seeder
                 ]);
             });
         });
+
+        AdoptionRequest::factory(50)->recycle([
+            User::all(),
+            AdoptionPost::all()
+        ])->create();
     }
 }

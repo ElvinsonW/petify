@@ -61,7 +61,7 @@ class ArticleController extends Controller
         ArticleRequest::create($validatedData);
 
         // Direct user ke Halaman Artikel dengan pesan berhasil
-        return redirect('/articles')->with('articleSuccess','Article Post Created Successfully');
+        return redirect('/articles')->with('createSuccess','Article Post Successfully Requested');
     }
 
     /**
