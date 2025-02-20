@@ -93,7 +93,7 @@ class AdoptionPostController extends Controller
         AdoptionPostRequest::create($validatedData);
 
         // Setelah selesai, ngedirect user ke page Adoptions dan mengirim pesan berhasil
-        return redirect('adoptions')->with('createSuccess','Adoption Post Successfully');
+        return redirect('adoptions')->with('createSuccess','Adoption Post Successfully Requested');
     }
 
     /**
@@ -163,7 +163,6 @@ class AdoptionPostController extends Controller
             'images' => ['array', 'min:1', 'max:3'],
             'images.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
         ]);
-
         // Cek apakah user menginput satu atau lebih image
         if (!$request->file('images') && empty($request->existing_images)) {
             return redirect()->back()->withErrors(['images' => 'You must upload at least one image or retain an existing image.']);
@@ -175,6 +174,7 @@ class AdoptionPostController extends Controller
         }
         
         // Cek apakah input sudah sesuai dengan rules
+        // dd($request);
         $petValidatedData = $request->validate($petRules);
         $postValidatedData = $request->validate($postRules);
 
@@ -191,14 +191,14 @@ class AdoptionPostController extends Controller
         // Memasukkan data image yang tidak diubah oleh user
         for($i=0 ; $i<$idx ; $i++){
             if($request->existing_images[$i]){
-                $postValidatedData['image_' . $i+1] = $request->existing_images[$i];
+                $postValidatedData['image_' . ($i+1)] = $request->existing_images[$i];
             }
         }
-
+        
         // Hapus image yang diubah oleh user dari storage lokall
         for($i=$idx ; $i<=2 ; $i++){
             $filePath = $adoptionPost->{'image_' . ($i + 1)} ?? null;
-                if ($filePath) {
+            if ($filePath) {
                     Storage::delete($filePath);
                 } else {
                     Log::warning("No file to delete for image_" . ($i + 1));
@@ -218,7 +218,7 @@ class AdoptionPostController extends Controller
         $adoptionPost->update($postValidatedData);
 
         // Direct user ke Halaman Adoption dan mengirim pesan berhasil
-        return redirect('adoptions')->with('updateSuccess',"Update Successful!");
+        return redirect('/dashboard' . '/' . auth()->user()->username . '/posts')->with('updateSuccess',"Update Successful!");
     }
 
     /**
@@ -241,8 +241,7 @@ class AdoptionPostController extends Controller
         $post->delete();
     
         // Direct user ke Halaman Adoption dan mengirim pesan berhasil
-        return redirect('adoptions')->with('deleteSuccess', "Post deleted successfully!");
-
+        return redirect('/dashboard' . '/' . auth()->user()->username . '/posts')->with('deleteSuccess', "Post deleted successfully!");
     }
 
     // Fungsi untuk secara otomatis membuat slug

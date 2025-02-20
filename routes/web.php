@@ -13,7 +13,9 @@ use App\Http\Controllers\LikedAdoptionPostController;
 use App\Http\Controllers\LikedLifeAfterAdoptionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserDashboardController;
+use App\Http\Middleware\AdminOnly;
 use App\Http\Middleware\GuestMode;
+use App\Http\Middleware\OwnerDashboardOnly;
 use App\Models\ArticleRequest;
 use App\Models\LifeAfterAdoption;
 use App\Models\LikedAdoptionPost;
@@ -69,6 +71,8 @@ Route::post('/register', function(Request $request){
     return redirect('/login')->with('registerSuccess','Registration Success, Please Login!');
 })->middleware(GuestMode::class);
 
+Route::post('/logout',[UserController::class,"logout"])->middleware('auth');
+
 // Home page
 Route::get('/', function () {
     return view('homepage');
@@ -96,36 +100,40 @@ Route::get('/events/createSlug',[EventController::class,'createSlug'])->name('ad
 Route::resource('/events', EventController::class)->middleware('auth');
 
 // Adoption Request Routes
-Route::resource('/adoptions/{slug}/adoption-request', AdoptionRequestController::class);
+Route::get('/adoptions/{slug}/adoption-request/create', [AdoptionRequestController::class, 'create']);
 
 // Route::resource('/dashboard', DashboardController::class);
 
-Route::resource('/dashboard/article-requests', ArticleRequestController::class);
+Route::resource('/dashboard/article-requests', ArticleRequestController::class)->middleware(AdminOnly::class);
 
-Route::get('/dashboard/article-requests/{slug}/{action}', [ArticleRequestController::class,'handleRequest']);
+Route::get('/dashboard/article-requests/{slug}/{action}', [ArticleRequestController::class,'handleRequest'])->middleware(AdminOnly::class);
 
-Route::resource('/dashboard/adoption-post-requests', AdoptionPostRequestController::class);
+Route::resource('/dashboard/adoption-post-requests', AdoptionPostRequestController::class)->middleware(AdminOnly::class);
 
-Route::get('/dashboard/adoption-post-requests/{slug}/{action}', [AdoptionPostRequestController::class,'handleRequest']);
+Route::get('/dashboard/adoption-post-requests/{slug}/{action}', [AdoptionPostRequestController::class,'handleRequest'])->middleware(AdminOnly::class);
 
-Route::resource('/dashboard/event-requests', EventRequestController::class);
+Route::resource('/dashboard/event-requests', EventRequestController::class)->middleware(AdminOnly::class);
 
-Route::get('/dashboard/event-requests/{slug}/{action}', [EventRequestController::class,'handleRequest']);
+Route::get('/dashboard/event-requests/{slug}/{action}', [EventRequestController::class,'handleRequest'])->middleware(AdminOnly::class);
 
 Route::fallback(function () {
     return view('homepage');  
 });
 
-Route::get('/dashboard/my-posts',[UserDashboardController::class,'indexPost']);
+Route::get('/dashboard/{username}/posts',[UserDashboardController::class,'indexPost'])->middleware(OwnerDashboardOnly::class);
 
-Route::get('/dashboard/my-adoption-requests',[UserDashboardController::class,'indexAdoptionRequest']);
+Route::get('/dashboard/{username}/adoption-requests',[UserDashboardController::class,'indexAdoptionRequest'])->middleware(OwnerDashboardOnly::class);
 
-Route::get('/dashboard/my-liked-posts',[UserDashboardController::class,'indexLikedPost']);
+Route::get('/dashboard/{username}/liked-posts',[UserDashboardController::class,'indexLikedPost'])->middleware(OwnerDashboardOnly::class);
 
-Route::get('/dashboard/my-post-requests',[UserDashboardController::class,'indexPostRequest']);
+Route::get('/dashboard/{username}/post-requests',[UserDashboardController::class,'indexPostRequest'])->middleware(OwnerDashboardOnly::class);
 
 // Route::get('/dashboard/update-profile',[UserDashboardController::class,'indexUpdateProfile']);
 
-Route::get("/dashboard/profile",[UserController::class,"index"]);
+Route::get("/dashboard/{username}/profile",[UserController::class,"index"])->middleware(OwnerDashboardOnly::class);
 
-Route::put("/dashboard/profile",[UserController::class,"update"]);
+Route::put("/dashboard/{username}/profile",[UserController::class,"update"])->middleware(OwnerDashboardOnly::class);
+
+Route::get('/dashboard/{username}/adoption-history',[UserDashboardController::class,'indexAdoptionHistory'])->middleware(OwnerDashboardOnly::class);
+
+Route::get('/adoptions/{slug}/adoption-request/{id}/{action}',[AdoptionRequestController::class,"handleRequest"])->middleware(OwnerDashboardOnly::class);

@@ -7,7 +7,7 @@
 
         <!-- Container Pertanyaan -->  
         <div class="mx-24 mt-16">
-            <form action="/adoptions" method="post" enctype="multipart/form-data">
+            <form action="/adoptions" method="post" enctype="multipart/form-data" id="createForm">
                 @csrf
                 <div class="grid gap-6 mb-6 md:grid-cols-2 font-open_sans">
                     <!-- Name -->

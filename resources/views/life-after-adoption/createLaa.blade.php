@@ -66,7 +66,7 @@
                 <div>
                     <label for="description" class="block mb-3 text-lg font-semibold w-fit">Description</label>
                     <input id="description" type="hidden" name="description" value="{{ old('description') }}">
-                    <trix-editor input="description" class="h-[250px]"></trix-editor>
+                    <textarea input="description" rows="10" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none"></textarea>
                 
                     @error('description')
                         <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">

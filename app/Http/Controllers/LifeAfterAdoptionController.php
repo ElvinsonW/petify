@@ -25,8 +25,9 @@ class LifeAfterAdoptionController extends Controller
 
         // Mencari pet_id dari user yang telah diadopsi oleh orang lain
         $petIds = AdoptionPost::where('user_id',auth()->user()->id)
-                            ->pluck('pet_id')
-                            ->toArray();
+                              ->where('status',1)
+                              ->pluck('pet_id')
+                              ->toArray();
 
         // Mencari pet berdasarkan id yand ada dan menambahkan total post dari tiap pet
         $pets = Pet::whereIn('id',$petIds)->get()->map( function($pet) {
@@ -79,7 +80,7 @@ class LifeAfterAdoptionController extends Controller
         LifeAfterAdoption::create($validatedData);
 
         // Direct user ke halaman Life After Adoption dan kirim pesan berhasil
-        return redirect('life-after-adoption')->with('createSuccess', "Post Successfully created");
+        return redirect('life-after-adoption')->with('createSuccess', "Life After Adoption Post Successfully created");
     }
 
 

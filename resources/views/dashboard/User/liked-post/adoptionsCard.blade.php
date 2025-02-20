@@ -21,7 +21,7 @@
                 </div>
 
                 <!-- Desc Singkat -->
-                <p class="font-open_sans text-slate-600 mt-[0.5vw] mb-6 text-justify pr-2">{{ Str::limit($post->adoption_post->description,100) }}</p>
+                <p class="font-open_sans text-slate-600 mt-[0.5vw] mb-6 text-justify pr-2">{!! Str::limit(strip_tags($post->adoption_post->description),100) !!}</p>
                 
                 <!-- Profile -->
                 <div class="flex flex-row">
