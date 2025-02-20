@@ -40,7 +40,7 @@
         </div>
   
     @endif
-    <div class="flex h-[156vw] overflow-hidden">
+    <div class="flex h-[165vw] overflow-hidden">
         <!-- Bagian Kiri (Sidebar) Start -->
         <div class="w-[22vw] h-full shadow-lg pl-[3vw] pt-[3vw]">
             <!-- Greetings -->
@@ -63,12 +63,12 @@
                     @endforeach
             
                     <label for="search" class="mb-[0.5vw] text-sm text-gray-900 sr-only !font-overpass font-semibold">Search</label>
-                    <div class="relative">
+                    <div class="relative w-full border-1/2 border-gray-400 rounded-[0.1vw] bg-white shadow-md">
                         <div class="absolute inset-y-0 start-0 flex items-center ps-[0.75vw] pointer-events-none">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
-                        <input type="search" id="search" name="search" class="block w-full p-[1vw] ps-10 !font-overpass font-semibold border-1/2 border-gray-400 rounded-[0.5vw] bg-white shadow-md" value="{{ request('search') }}" placeholder="Search Here...">
-                        <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-lg px-[0.5vw] py-[0.5vw] !font-overpass">Search</button>
+                        <input type="search" id="search" name="search" class="block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold" value="{{ request('search') }}" placeholder="Search Here">
+                        <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-[0.5vw] px-[0.5vw] py-[0.5vw] !font-overpass">Search</button>
                     </div>
                 </form>
             </div>
@@ -169,19 +169,19 @@
                 @foreach ($adoptions as $adoption)
 
                     <a href="/adoptions/{{ $adoption->slug }}">
-                        <div class="rounded-[0.5vw] shadow-xl p-[0.5vw] h-[42vw] w-[24vw] mt-[2.5vw]">
+                        <div class="rounded-[0.5vw] shadow-xl p-[0.5vw] min-h-[45vw] w-[24vw] mt-[2.5vw]">
                             <!-- Gambar Pet -->
-                            <img src="{{ asset('images/petadoptpic.svg') }}" alt="Pet Picture" class="w-full h-fit">
+                            <img src="{{ asset('images/petadoptpic.svg') }}" alt="Pet Picture" class="w-[100%] h-fit">
                             
                             <!-- Category & Days -->
-                            <div class="flex flex-row font-montserrat_alt font-semibold w-full">
+                            <div class="flex flex-row font-montserrat_alt font-semibold w-[100%]">
                                 <p class="w-fit rounded-[0.75vw] bg-{{ $adoption->pet->pet_category->color }} text-[1.4vw] text-center text-white my-[1vw] py-[0.5vw] px-[0.5vw]">{{ $adoption->pet->pet_category->name }}</p>     
                                 <p class="text-slate-400 my-[1vw] ml-auto py-[0.5vw] px-[0.5vw]">{{ $adoption->created_at->diffForHumans() }}</p>
                             </div>
         
                             <!-- Name & Like -->
-                            <div class="flex flex-row font-montserrat_alt font-semibold w-full min-h-[5vw]">
-                                <p class="text-[1.6vw]">{{ $adoption->name }}</p>    
+                            <div class="flex flex-row font-montserrat_alt font-semibold w-[100%] min-h-[5vw]">
+                                <p class="text-[1.6vw] w-[16vw]">{{ $adoption->name }}</p>    
                                 <!-- Like -->
                                 @php
                                     $likedPostIds = $likedPosts->pluck('adoption_post_id')->toArray();
@@ -193,7 +193,7 @@
                             </div>
         
                             <!-- Desc Singkat -->
-                            <p class="font-open_sans text-slate-600 mt-[0.25vw] mb-[1.5vw] text-justify pr-[0.5vw] break-words min-h-[8vw]">{{ Str::limit($adoption->description,150) }}</p>
+                            <p class="font-open_sans text-slate-600 mt-[1vw] mb-[1.5vw] text-justify pr-[0.5vw] break-words min-h-[10vw]">{{ Str::limit($adoption->description,150) }}</p>
                             
                             <!-- Profile -->
                             <div class="flex flex-row">
