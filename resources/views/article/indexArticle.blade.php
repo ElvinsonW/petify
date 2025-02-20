@@ -96,7 +96,7 @@
         <!-- Bagian Kiri (Sidebar) End -->
         
         <!-- Bagian Kanan (Konten) Start -->
-        <div class="ml-2 flex-1 pt-10">
+        <div class="ml-1 flex-1 pt-10">
             <!-- Judul Page -->
             <div class="text-center">
                 <h2 class="text-6xl font-montserrat_alt font-bold text-greenpetify">Article</h2>
@@ -104,10 +104,10 @@
             </div>
 
             <!-- Article Catalog -->
-            <div class="grid grid-cols-3 gap-10 mx-10 mt-14">        
+            <div class="grid grid-cols-3 gap-15 mx-4 mt-4">        
                 @foreach ($articles as $article)
                     <a href="/articles/{{ $article->slug }}" class="block w-full">
-                        <div class="rounded-lg shadow-xl p-2 h-[38vw] w-[22vw]">
+                        <div class="rounded-lg shadow-xl p-2 h-[38vw] w-[24vw] mt-10">
                             <!-- Gambar Article -->
                             @if($article->image)
                                 <img src="{{ asset('storage/' . $article->image ) }}" alt="Article Picture" class="w-full h-[30vh] object-cover rounded-md">
