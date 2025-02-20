@@ -50,7 +50,6 @@ class DatabaseSeeder extends Seeder
             User::all(),
             Pet::all(),
         ])->create([
-            'pet_id' => Pet::inRandomOrder()->first()->id,
             "image_1" => "adoption-post-image/petadoptpic.svg"
         ]);
 

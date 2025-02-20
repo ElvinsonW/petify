@@ -209,7 +209,7 @@
                 @endforeach
                 
             </div>
-            <div class="mx-[3vw] my-[2.5vw] text-[1.4vw]">
+            <div class="ml-[1.5vw] mr-[2vw] my-[2.5vw] text-[1.4vw]">
                 {{ $adoptions->links() }}
             </div>
         </div>

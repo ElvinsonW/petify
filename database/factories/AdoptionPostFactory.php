@@ -42,7 +42,6 @@ class AdoptionPostFactory extends Factory
     private function generateUniqueSlug(string $name): string
     {   
         $slug = Str::slug(strtolower($name)) . '-' . $this->counter++;
-        
         return $slug;
     }
 }
