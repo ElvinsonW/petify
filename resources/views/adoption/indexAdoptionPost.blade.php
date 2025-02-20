@@ -39,18 +39,18 @@
         </div>
   
     @endif
-    <div class="flex h-[150vw] overflow-hidden">
+    <div class="flex h-[156vw] overflow-hidden">
         <!-- Bagian Kiri (Sidebar) Start -->
-        <div class="w-80 h-full shadow-lg pl-10 pt-10 ">
+        <div class="w-[22vw] h-full shadow-lg pl-[3vw] pt-[3vw]">
             <!-- Greetings -->
             <div class="font-montserrat_alt">
-                <h4 class="text-lg">Hello {{ auth()->user()->username }},</h4>
-                <h2 class="text-xl font-bold" id="sapaan">Good Afternoon!</h2>
+                <h4 class="text-[1.2vw]">Hello {{ auth()->user()->username }},</h4>
+                <h2 class="text-[1.4vw] font-bold" id="sapaan">Good Afternoon!</h2>
             </div>
             
             <!-- Search Bar -->
             <div>
-                <form class="max-w-md w-5/6 mt-4" method="GET" action="{{ url('adoptions') }}">
+                <form class="max-w-md w-[16vw] mt-4" method="GET" action="{{ url('adoptions') }}">
                     @php
                         $params = ['category', 'liked'];
                     @endphp
@@ -155,7 +155,7 @@
         <!-- Bagian Kiri (Sidebar) End -->
         
         <!-- Bagian Kanan (Konten) Start -->
-        <div class="ml-2 flex-1 pt-10">
+        <div class="ml-1 flex-1 pt-10">
             <!-- Judul Page -->
             <div class="text-center">
                 <h2 class="text-6xl font-montserrat_alt font-bold text-greenpetify">Adopt your Pet!</h2>
@@ -163,12 +163,12 @@
             </div>
 
             <!-- Pet Adopt Catalog -->
-            <div class="grid grid-cols-3 gap-10 mx-10 mt-14">
+            <div class="grid grid-cols-3 gap-15 mx-4 mt-4">
                 <!-- Catalog -->
                 @foreach ($adoptions as $adoption)
 
                     <a href="/adoptions/{{ $adoption->slug }}">
-                        <div class="rounded-lg shadow-xl p-2 h-[40vw] w-[22vw]">
+                        <div class="rounded-lg shadow-xl p-2 h-[42vw] w-[24vw] mt-10">
                             <!-- Gambar Pet -->
                             <img src="{{ asset('images/petadoptpic.svg') }}" alt="Pet Picture" class="w-full h-fit">
                             
