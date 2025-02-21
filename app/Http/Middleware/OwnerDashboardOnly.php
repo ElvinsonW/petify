@@ -2,12 +2,12 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminOnly
+class OwnerDashboardOnly
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,11 @@ class AdminOnly
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Auth::check() || Auth::user()->role != "Admin"){
-            return redirect('/')->with('userError',"Only Admin Can Access This Page!");
+        $owner = User::where('username',$request->route('username'))->firstOrFail();
+        if($owner->id != auth()->user()->id){
+            return redirect('/')->with('userError',"Only the Owner Can Access This Page!");
         }
+
         return $next($request);
     }
 }

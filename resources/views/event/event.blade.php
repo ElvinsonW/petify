@@ -1,4 +1,24 @@
 <x-layout>
+    @if (session('createSuccess'))
+
+        <div class="alert absolute z-40 flex items-center justify-center p-4 mb-4 w-[30vw] text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" 
+            style="top: 10%; left: 50%; transform: translate(-50%, -50%);" 
+            role="alert">
+            <svg class="shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div class="ms-3 text-[1vw] font-medium">
+                {{ session('createSuccess') }}
+            </div>
+            <button class="close-button ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-3" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                </svg>
+            </button>
+        </div>
+    @endif
     <!-- container -->
 <div class="container mx-auto py-8 my-8 px-4 overflow-hidden bg-no-repeat bg-center bg-contain" style="background-image: url(../src/images/adopt-bg.png)">
     <!-- Main Content -->
@@ -7,7 +27,7 @@
         <div class="w-full lg:w-3/5 space-y-4">
             <!-- judul -->
             <header class="mb-6">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-green font-montserrat_alt">Event</h1>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-petify font-montserrat_alt">Event</h1>
             </header>
             <!-- Search and Filter -->
             <div class="flex flex-col">
@@ -73,7 +93,7 @@
                                         {{ $mainEvent->title }}
                                     </h2>
                                     <p class="mt-2 text-sm font-open_sans leading-snug text-black font-normal">
-                                        {{ \Illuminate\Support\Str::limit($mainEvent->description, 100) }}
+                                        {!! Str::limit($mainEvent->description, 100) !!}
                                     </p>
                                     <div class="flex flex-col text-xs text-black font-open_sans font-semibold mt-3 leading-snug space-y-2">
                                         <span class="flex items-center space-x-2">
@@ -104,9 +124,9 @@
             <div class="bg-abuevent p-10 rounded-xl">
                 <!-- Calendar -->
                 <div class="flex justify-between items-center mb-4">
-                    <button id="prev" class="text-green hover:bg-gray-300 px-3 py-1 font-bold transition duration-300">&lt;</button>
-                    <h3 id="month-year" class="text-xl font-bold font-open_sans text-green">{{ Carbon\Carbon::now()->format('F Y') }}</h3>
-                    <button id="next" class="text-green hover:bg-gray-300 px-3 py-1 font-bold transition duration-300">&gt;</button>
+                    <button id="prev" class="text-greenpetify hover:bg-gray-300 px-3 py-1 font-bold transition duration-300">&lt;</button>
+                    <h3 id="month-year" class="text-xl font-bold font-open_sans text-greenpetify">{{ Carbon\Carbon::now()->format('F Y') }}</h3>
+                    <button id="next" class="text-greenpetify hover:bg-gray-300 px-3 py-1 font-bold transition duration-300">&gt;</button>
                 </div>
                 <div class="grid grid-cols-7 gap-2 text-center font-open_sans text-black">
                     <div>SUN</div>
@@ -120,7 +140,7 @@
                 <div id="dates" class="grid grid-cols-7 gap-2 text-center mt-4 font-open_sans"></div>
 
                 <!-- Upcoming Events (Next 2 Weeks Events) -->
-                <h3 class="text-xl font-bold font-open_sans leading-snug text-green mb-4 mt-16">Upcoming Event</h3>
+                <h3 class="text-xl font-bold font-open_sans leading-snug text-greenpetify mb-4 mt-16">Upcoming Event</h3>
                 @foreach ($upcomingEvents as $upcomingEvent)
                     <div class="bg-white p-3 rounded-2xl hover:shadow-lg transition duration-300 mb-5">
                         <a href="/events/{{ $upcomingEvent->slug }}">

@@ -1,3 +1,6 @@
+@php
+    $user = auth()->user()
+@endphp
 <!-- Bagian Kiri (Sidebar) Start -->
 <div class="bg-white w-[20vw] h-full shadow-lg p-[2vw] flex flex-col">
     <!-- icon logo -->
@@ -13,7 +16,7 @@
             <img class="w-[7vw] h-[7vw]" src="{{ asset('images/after login.svg') }}" alt="After Login logo">
         </div>
         <p class="text-black font-semibold tracking-wider font-montserrat_alt text-[2vw] text-center mt-[1vw]">{{ auth()->user()->username }}</p>
-        <a href="/dashboard/profile">
+        <a href="{{ '/dashboard' . '/' . $user->username . '/profile' }}">
             <p class="items-center justify-center text-center text-black/60 text-[1vw] font-bold font-overpass tracking-wide hover:underline hover:text-black/70">
                 <i class="fa-solid fa-pencil"></i> Updated Profile
             </p>
@@ -22,7 +25,7 @@
             <!-- achievement/ poin -->
             <div class="flex justify-center items-center mt-[0.8vw]">
                 <img class="w-[2vw]" src="{{ asset('images/game-icons_achievement.svg') }}" alt="">
-                <p class="text-center text-[1.2vw] font-bold font-overpass text-greentipis">1200</p>
+                <p class="text-center text-[1.2vw] font-bold font-overpass text-greentipis">{{ auth()->user()->point }}</p>
             </div>
         @else    
             <p class="text-center text-black/60 text-[1.5vw] font-bold font-overpass tracking-wide">{{ auth()->user()->role }}</p>
@@ -60,7 +63,7 @@
         @else
             <!-- dashboard -->
             <div class="flex flex-row items-center justify-items-start space-x-[1vw]">
-                <a href="./user-dashboard.html" class="flex items-center text-green ">
+                <a href="{{ '/dashboard' . '/' . $user->username . '/posts' }}" class="flex items-center text-greenpetify">
                     <svg width="40" height="40" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_1698_69)">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2.57143 0C1.88944 0 1.23539 0.270918 0.753154 0.753154C0.270918 1.23539 0 1.88944 0 2.57143L0 18C0 18.682 0.270918 19.336 0.753154 19.8183C1.23539 20.3005 1.88944 20.5714 2.57143 20.5714H12.8571C13.5391 20.5714 14.1932 20.3005 14.6754 19.8183C15.1577 19.336 15.4286 18.682 15.4286 18V2.57143C15.4286 1.88944 15.1577 1.23539 14.6754 0.753154C14.1932 0.270918 13.5391 0 12.8571 0L2.57143 0ZM20.5714 2.57143C20.5714 1.88944 20.8423 1.23539 21.3246 0.753154C21.8068 0.270918 22.4609 0 23.1429 0L33.4286 0C34.1106 0 34.7646 0.270918 35.2468 0.753154C35.7291 1.23539 36 1.88944 36 2.57143V7.74C36 8.42198 35.7291 9.07604 35.2468 9.55827C34.7646 10.0405 34.1106 10.3114 33.4286 10.3114H23.1429C22.4609 10.3114 21.8068 10.0405 21.3246 9.55827C20.8423 9.07604 20.5714 8.42198 20.5714 7.74V2.57143ZM20.5714 18C20.5714 17.318 20.8423 16.664 21.3246 16.1817C21.8068 15.6995 22.4609 15.4286 23.1429 15.4286H33.4286C34.1106 15.4286 34.7646 15.6995 35.2468 16.1817C35.7291 16.664 36 17.318 36 18V33.4286C36 34.1106 35.7291 34.7646 35.2468 35.2468C34.7646 35.7291 34.1106 36 33.4286 36H23.1429C22.4609 36 21.8068 35.7291 21.3246 35.2468C20.8423 34.7646 20.5714 34.1106 20.5714 33.4286V18ZM0 28.26C0 27.578 0.270918 26.924 0.753154 26.4417C1.23539 25.9595 1.88944 25.6886 2.57143 25.6886H12.8571C13.5391 25.6886 14.1932 25.9595 14.6754 26.4417C15.1577 26.924 15.4286 27.578 15.4286 28.26V33.4286C15.4286 34.1106 15.1577 34.7646 14.6754 35.2468C14.1932 35.7291 13.5391 36 12.8571 36H2.57143C1.88944 36 1.23539 35.7291 0.753154 35.2468C0.270918 34.7646 0 34.1106 0 33.4286V28.26Z" fill="#ECAC73"/>
@@ -76,7 +79,7 @@
             </div>
 
             <!-- adoption history -->
-            <a href="./user-dashboard-adoption-history.html">
+            <a href="{{ '/dashboard' . '/' . $user->username . '/adoption-history' }}">
                 <div class="flex flex-row items-center justify-items-start space-x-[1vw] hover:font-bold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
                     <svg width="52" height="52" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_1698_1348)">
@@ -94,23 +97,23 @@
                         </clipPath>
                         </defs>
                     </svg>
-                    <p class="text-green">Adoption History</p>
+                    <p class="text-greenpetify">Adoption History</p>
                 </div>
             </a>
 
             <!-- adoption request -->
-            <a href="./user-dashboard-adoption-requested.html">
+            <a href="{{ '/dashboard' . '/' . $user->username . '/adoption-requests' }}">
                 <div class="flex flex-row items-center justify-items-start space-x-[1.3vw] hover:font-bold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
                     <svg width="46" height="46" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.9808 17.8745C21.6419 17.8745 23.8759 19.5759 24.507 21.8764C25.3004 24.7607 25.1932 27.9217 28.6809 29.5631C31.7766 30.5571 32.9478 31.8063 32.9478 35.1553C32.9478 37.8283 30.5239 40.6696 27.3988 41.0242C23.9044 41.5194 21.1845 40.872 18.9799 39.6864C16.7753 40.872 14.0544 41.5203 10.5648 41.0242C7.43771 40.6696 5.01482 37.8185 5.01482 35.1553C5.01482 31.8779 6.2647 30.4908 9.35476 29.5407C13.1575 27.7077 12.647 24.4948 13.4954 21.7349C13.8442 20.6182 14.5674 19.6383 15.5564 18.9423C16.5454 18.2463 17.747 17.8716 18.9808 17.8745ZM36.4022 15.883C35.4598 15.1102 31.6134 18.1271 30.4034 19.6189C29.6679 20.415 29.2105 21.5093 29.2105 22.7164C29.2105 25.144 31.0516 27.1122 33.3169 27.1122C35.0404 27.1122 36.5152 25.9812 37.1254 24.373C38.3107 21.4806 38.3762 17.5002 36.4022 15.883ZM1.55749 15.883C-0.413658 17.5002 -0.350073 21.4806 0.83717 24.373C1.4474 25.9812 2.92125 27.1122 4.64375 27.1122C6.91099 27.1122 8.75022 25.144 8.75022 22.7164C8.75022 21.5093 8.29373 20.415 7.55823 19.6189C6.34726 18.1271 2.50178 15.1102 1.55749 15.883ZM24.0439 0.0269375C33.6178 1.55998 32.9459 16.774 25.2805 15.5481C23.0693 15.1935 21.4274 13.2933 21.1778 11.0233C20.9244 8.71479 20.3541 -0.562282 24.0439 0.0269375ZM13.9177 0.0269375C17.6085 -0.563177 17.0372 8.71389 16.7838 11.0224C16.5342 13.2933 14.8943 15.1926 12.683 15.5472C5.01577 16.7749 4.3448 1.55998 13.9177 0.0269375Z" fill="#166B68"/>
                         <path d="M32.4669 39.8967C33.3366 39.8978 34.1979 39.727 35.0013 39.3942C35.8048 39.0614 36.5346 38.5731 37.1487 37.9573C37.7645 37.3432 38.2528 36.6134 38.5856 35.8099C38.9184 35.0065 39.0892 34.1452 39.0881 33.2755C39.0892 32.4058 38.9184 31.5445 38.5856 30.7411C38.2528 29.9376 37.7645 29.2078 37.1487 28.5936C36.5346 27.9779 35.8048 27.4896 35.0013 27.1568C34.1979 26.824 33.3366 26.6532 32.4669 26.6543C31.5972 26.6532 30.7359 26.824 29.9325 27.1568C29.129 27.4896 28.3992 27.9779 27.7851 28.5936C27.1693 29.2078 26.681 29.9376 26.3482 30.7411C26.0154 31.5445 25.8446 32.4058 25.8457 33.2755C25.8446 34.1452 26.0154 35.0065 26.3482 35.8099C26.681 36.6134 27.1693 37.3432 27.7851 37.9573C28.3992 38.5731 29.129 39.0614 29.9325 39.3942C30.7359 39.727 31.5972 39.8978 32.4669 39.8967Z" fill="#166B68" stroke="white" stroke-width="2" stroke-linejoin="round"/>
                         <path d="M29.8184 33.2756L31.8047 35.262L35.7774 31.2893" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <p class="text-green">Adoption Request</p>
+                    <p class="text-greenpetify">Adoption Request</p>
                 </div>
             </a>
 
-            <a href="/dashboard/my-post-requests">
+            <a href="{{ '/dashboard' . '/' . $user->username . '/post-requests' }}">
                 <div class="flex flex-row items-center justify-items-start space-x-[1.3vw] hover:font-bold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
                     <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_1798_8990)">
@@ -123,13 +126,13 @@
                         </clipPath>
                         </defs>
                     </svg>
-                    <p class="text-green">Post Request</p>
+                    <p class="text-greenpetify">Post Request</p>
                 </div>
             </a>
 
             <!-- liked post -->
             <div class="flex flex-row items-center justify-items-start space-x-[1.5vw] hover:font-bold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
-                <a href="/dashboard/my-liked-posts" class="flex items-center text-green">
+                <a href="{{ '/dashboard' . '/' . $user->username . '/liked-posts' }}" class="flex items-center text-greenpetify">
                     <svg width="42" height="42" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M37.7664 22.2045C39.4132 20.5379 40.3281 18.2878 40.3097 15.9491C40.2914 13.6104 39.3414 11.3748 37.6686 9.73399C36.8404 8.92157 35.8596 8.27963 34.7823 7.84485C33.7051 7.41006 32.5524 7.19094 31.3902 7.19999C29.0429 7.21827 26.7991 8.16484 25.1523 9.83146C24.7051 10.277 24.1368 10.8239 23.4474 11.4721L21.5306 13.2705L19.6138 11.4721C18.9228 10.8223 18.3538 10.2755 17.9066 9.83146C16.2468 8.17776 13.9957 7.24873 11.6484 7.24873C9.30116 7.24873 7.05003 8.17776 5.39025 9.83146C1.9712 13.2403 1.93161 18.7516 5.26448 22.1767L21.5306 38.3833L37.7664 22.2045ZM3.41289 7.86365C4.49429 6.78592 5.77819 5.931 7.19126 5.34772C8.60433 4.76444 10.1189 4.46422 11.6484 4.46422C13.178 4.46422 14.6925 4.76444 16.1056 5.34772C17.5187 5.931 18.8026 6.78592 19.884 7.86365C20.3078 8.28753 20.8567 8.81506 21.5306 9.44625C22.2014 8.81506 22.7502 8.28676 23.1772 7.86133C25.3445 5.66881 28.2971 4.42386 31.3856 4.40036C34.4741 4.37686 37.4454 5.57673 39.646 7.73602C41.8465 9.8953 43.0961 12.8371 43.1197 15.9143C43.1432 18.9915 41.939 21.952 39.7718 24.1445L23.1772 40.6806C22.7405 41.1156 22.1482 41.36 21.5306 41.36C20.913 41.36 20.3207 41.1156 19.884 40.6806L3.28479 24.1422C1.15613 21.9548 -0.0236093 19.0211 0.000358173 15.9744C0.0243257 12.9278 1.25007 10.0128 3.41289 7.859V7.86365Z" fill="#166B68"/>
                     </svg>
@@ -141,13 +144,14 @@
     </div>
 
     <!-- logout -->
-    <div class="mt-auto flex justify-center items-center cursor-pointer space-x-[0.5vw] group">
+    <form action="/logout" method="POST" class="mt-auto flex justify-center items-center cursor-pointer space-x-[0.5vw] group">
+        @csrf
         <svg class="w-[2vw] h-[2vw] text-merah group-hover:text-red-800 transition duration-300" fill="currentColor" viewBox="0 0 24 24">
             <path d="M10 9V5L3 12l7 7v-4h4v-6h-4zM19 3h-7v2h7v14h-7v2h7a2 2 0 002-2V5a2 2 0 00-2-2z"/>
         </svg>
-        <p class="text-[1.2vw] font-bold font-overpass text-merah group-hover:text-red-800 group-hover:font-extrabold transition duration-300">
+        <button type="submit" class="text-[1.2vw] font-bold font-overpass text-merah group-hover:text-red-800 group-hover:font-extrabold transition duration-300">
             Logout
-        </p>
-    </div>
+        </button>
+    </form>
 </div>
 <!-- Bagian Kiri (Sidebar) End -->

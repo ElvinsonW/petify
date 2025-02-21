@@ -1,13 +1,19 @@
 <?php
 
 namespace App\Livewire;
+
+use App\Models\AdoptionPost;
 use App\Models\AdoptionRequest;
 use Livewire\Component;
 
 class AdoptionRequestForm extends Component
 {
     public $step = 1;  // Initialize with the first step
-    public $description1, $description2, $description3, $description4, $description5;  // Store form data here
+    public $slug, $description1, $description2, $description3, $description4, $description5;  // Store form data here
+
+    public function mount($slug){
+        $this->slug = $slug;
+    }
 
     // Function to go to the next step
     public function nextStep()
@@ -30,6 +36,7 @@ class AdoptionRequestForm extends Component
     {
         AdoptionRequest::create([
             'user_id' => auth()->user()->id,
+            'post_id' => AdoptionPost::where('slug',$this->slug)->firstOrFail()->id,
             'Q1' => $this->description1,
             'Q2' => $this->description2,
             'Q3' => $this->description3,

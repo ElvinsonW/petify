@@ -7,7 +7,7 @@
 
         <!-- Container Pertanyaan -->  
         <div class="mx-24 mt-16">
-            <form action="/adoptions/{{ $adoption->slug }}" method="post" enctype="multipart/form-data">
+            <form id="editForm" action="/adoptions/{{ $adoption->slug }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -82,16 +82,16 @@
                         <div class="relative">
                             <select id="gender" name="gender" class="category appearance-none border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none pr-10" required>
                                 <option value="" disabled selected hidden>Select a category...</option>
-                                @if (old('gender', $adoption->pet->gender) == "male")
-                                    <option value="male" selected class="text-black">Male</option>
+                                @if (old('gender', $adoption->pet->gender) == "Male")
+                                    <option value="Male" selected class="text-black">Male</option>
                                 @else
-                                    <option value="male" class="text-black">Male</option>
+                                    <option value="Male" class="text-black">Male</option>
                                 @endif
                                 
-                                @if (old('gender', $adoption->pet->gender) == "female")
-                                    <option value="female" selected class="text-black">Female</option>
+                                @if (old('gender', $adoption->pet->gender) == "Female")
+                                    <option value="Female" selected class="text-black">Female</option>
                                 @else
-                                    <option value="female" class="text-black">Female</option>
+                                    <option value="Female" class="text-black">Female</option>
                                 @endif
                             </select>
                             <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -324,4 +324,11 @@
             }
         });
     });
+
+    // document.getElementById('editForm').addEventListener('submit', function(event) {
+    //     var confirmation = confirm("Are you sure you want to submit the form?");
+    //     if (!confirmation) {
+    //         event.preventDefault();
+    //     }
+    // });
 </script>
