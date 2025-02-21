@@ -43,15 +43,15 @@ class DatabaseSeeder extends Seeder
         Pet::factory(10)->recycle([
             User::all(),
             PetCategory::all(),
-        ])->create();
+        ])->create([
+            "image_1" => "adoption-post-image/petadoptic.png"
+        ]);
 
         // Buat 50 postingan adopsi dengan relasi ke User dan Pet
         AdoptionPost::factory(50)->recycle([
             User::all(),
             Pet::all(),
-        ])->create([
-            "image_1" => "adoption-post-image/petadoptpic.svg"
-        ]);
+        ])->create();
 
         // Buat 50 kehidupan setelah adopsi dengan relasi ke User dan Pet
         AdoptionPostRequest::factory(50)->recycle([

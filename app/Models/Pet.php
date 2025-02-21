@@ -11,7 +11,7 @@ class Pet extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["user_id","pet_category_id","name","breed","gender"];
+    protected $fillable = ["user_id","pet_category_id","name","breed","gender","image_1","image_2","image_3"];
     public $timestamps = false;
 
     public function user(): BelongsTo {

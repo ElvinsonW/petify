@@ -124,6 +124,10 @@ class AdoptionPostController extends Controller
         // Mencari Post yang sesuai dengan slug yang dikirim 
         $adoptionPost = AdoptionPost::where('slug',$slug)->firstOrFail();
 
+        if($adoptionPost->status == 1){
+            return redirect('/dashboard' . '/' . auth()->user()->username . '/posts')->with("updateError","The pet has been adopted!");
+        }
+
         // Mengembalikan view yang sesuai dengan beberapa parameter
         return view('adoption.editAdoptionPost',
             [
@@ -163,6 +167,7 @@ class AdoptionPostController extends Controller
             'images' => ['array', 'min:1', 'max:3'],
             'images.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
         ]);
+
         // Cek apakah user menginput satu atau lebih image
         if (!$request->file('images') && empty($request->existing_images)) {
             return redirect()->back()->withErrors(['images' => 'You must upload at least one image or retain an existing image.']);
@@ -191,14 +196,14 @@ class AdoptionPostController extends Controller
         // Memasukkan data image yang tidak diubah oleh user
         for($i=0 ; $i<$idx ; $i++){
             if($request->existing_images[$i]){
-                $postValidatedData['image_' . ($i+1)] = $request->existing_images[$i];
+                $petValidatedData['image_' . ($i+1)] = $request->existing_images[$i];
             }
         }
         
         // Hapus image yang diubah oleh user dari storage lokall
         for($i=$idx ; $i<=2 ; $i++){
-            $filePath = $adoptionPost->{'image_' . ($i + 1)} ?? null;
-            if ($filePath) {
+            $filePath = $adoptionPost->pet->{'image_' . ($i + 1)} ?? null;
+            if ($filePath && $filePath != "adoption-post-image/petadoptic.png") {
                     Storage::delete($filePath);
                 } else {
                     Log::warning("No file to delete for image_" . ($i + 1));
@@ -209,7 +214,7 @@ class AdoptionPostController extends Controller
         if($request->file('images')){
             foreach($request->file('images') as $file){
                 $idx++;
-                $postValidatedData['image_' . $idx] = $file->store('adoption-post-image');
+                $petValidatedData['image_' . $idx] = $file->store('adoption-post-image');
             }
         }
 
@@ -229,16 +234,23 @@ class AdoptionPostController extends Controller
         // Mencari post yang sesuai dengan slug yang dikirim
         $post = AdoptionPost::where('slug',$slug)->firstOrFail();
 
+        if($post->status == 1){
+            return redirect('/dashboard' . '/' . auth()->user()->username . '/posts')->with("updateError","The pet has been adopted!");
+        }
+
         // Hapus semua image dari storage lokal
         for ($i = 1; $i <= 3; $i++) {
             $property = "image_" . $i;
-            if (!empty($post->$property)) {
-                Storage::delete($post->$property);
+            if (!empty($post->pet->$property) && $post->pet->$property != "adoption-post-image/petadoptic.png") {
+                Storage::delete($post->pet->$property);
             }
         }
-        
-        // Hapus post dari database
-        $post->delete();
+
+        if($post->status == 1){
+            $post->delete();
+        } else{
+            $post->pet->delete();
+        }
     
         // Direct user ke Halaman Adoption dan mengirim pesan berhasil
         return redirect('/dashboard' . '/' . auth()->user()->username . '/posts')->with('deleteSuccess', "Post deleted successfully!");
