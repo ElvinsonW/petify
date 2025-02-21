@@ -171,7 +171,7 @@
                     <a href="/adoptions/{{ $adoption->slug }}">
                         <div class="rounded-[0.5vw] shadow-xl p-[0.5vw] min-h-[45vw] w-[24vw] mt-[2.5vw]">
                             <!-- Gambar Pet -->
-                            <img src="{{ asset('images/petadoptpic.svg') }}" alt="Pet Picture" class="w-[100%] h-fit">
+                            <img src="{{ $adoption->pet->image_1 }}" alt="Pet Picture" class="w-[100%] h-fit">
                             
                             <!-- Category & Days -->
                             <div class="flex flex-row font-montserrat_alt font-semibold w-[100%]">

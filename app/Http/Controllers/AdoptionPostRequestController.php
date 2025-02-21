@@ -60,6 +60,9 @@ class AdoptionPostRequestController extends Controller
                         "name" => $request->name,
                         "breed" => $request->breed,
                         "gender" => $request->gender,
+                        "image_1" => $request->image_1,
+                        "image_2" => $request->image_2,
+                        "image_3" => $request->image_3,
                     ];
 
                     $pet = Pet::create($petData);
@@ -75,9 +78,6 @@ class AdoptionPostRequestController extends Controller
                     "weight" => $request->weight,
                     "age" => $request->age,
                     "status" => $request->adoption_status,
-                    "image_1" => $request->image_1,
-                    "image_2" => $request->image_2,
-                    "image_3" => $request->image_3,
                     "description" => $request->description,
                     "requirement" => $request->requirement,
                 ];

@@ -24,6 +24,7 @@ class PetFactory extends Factory
             "name" => fake()->name(),
             "breed" => fake()->word(),
             "gender" => fake()->randomElement(["male","female"]),
+            "image_1" => fake()->url()
         ];
     }
 }
