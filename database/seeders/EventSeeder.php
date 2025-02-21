@@ -23,6 +23,7 @@ class EventSeeder extends Seeder
         for ($i = 0; $i < 50; $i++) {
             Event::create([
                 'user_id' => $faker->randomElement($userIds),  // Assuming the user with ID 1 is the creator, adjust if needed
+                'event_category_id' => ArticleEventCategory::factory(),
                 'title' => $faker->sentence,
                 'slug' => $faker->slug,
                 'location' => $faker->address,
@@ -39,6 +40,7 @@ class EventSeeder extends Seeder
         // Buat event khusus untuk hari ini
         Event::create([
             'user_id' => $faker->randomElement($userIds),
+            'event_category_id' => ArticleEventCategory::factory(),
             'title' => 'Today\'s Special Event',
             'slug' => 'special-event-today',
             'location' => 'Central Park, New York',

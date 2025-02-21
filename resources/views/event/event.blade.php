@@ -81,10 +81,10 @@
             @if ($upcomingEvents->isNotEmpty()) <!-- Check if there are any events -->
                 @foreach ($upcomingEvents as $upcomingEvents)
                     <div class="event card overflow-y-auto scrollbar-thin max-h-screen scrollbar-track-gray-200 scrollbar-thumb-gray-400 mb-10">
-                          <a href="/events/{{ $mainEvent->slug }}" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
+                          <a href="/events/{{ $upcomingEvents->slug }}" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
                             <div class="flex flex-col md:flex-row items-start space-x-0 md:space-x-6">
                                 <img
-                                    src="{{ asset('storage/' . $mainEvent->image) }}"
+                                    src="{{ asset('storage/' . $upcomingEvents->image) }}"
                                     alt="Event Image"
                                     class="w-full md:w-36 h-36 rounded-2xl object-cover"
                                 />
@@ -106,7 +106,7 @@
                                             <img 
                                                 src="{{ asset('images/uim_calendar.svg') }}" 
                                                 alt="Calendar Icon" class="w-4 h-4">
-                                            <span>{{ \Carbon\Carbon::parse($upcomingEvents->$start_date)->format('d F Y') }}</span>
+                                            <span>{{ \Carbon\Carbon::parse($upcomingEvents->start_date)->format('d F Y') }}</span>
                                         </span>
                                     </div>
                                 </div>
