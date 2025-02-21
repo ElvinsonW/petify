@@ -22,11 +22,9 @@ class EventController extends Controller
                           ->whereDate('end_date', '>=', $today) // End date is after or today
                           ->get(); // Use ->get() to return all events for today (if there are multiple)
 
-        $twoWeeks = Carbon::today()->addWeeks(2);
         
         // Get the next 5 closest upcoming events from tomorrow
         $upcomingEvents = Event::where('start_date', '>', $today)  // Events happening after today
-                                ->where('start_date', '<=', $twoWeeks)
                                 ->orderBy('start_date', 'asc')  // Sort by nearest first
                                 ->get();
 

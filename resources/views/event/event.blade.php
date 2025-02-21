@@ -78,8 +78,8 @@
             </div>
 
             <!-- Main Event (Today) -->
-            @if ($mainEvent->isNotEmpty()) <!-- Check if there are any events -->
-                @foreach ($mainEvent as $mainEvent)
+            @if ($upcomingEvents->isNotEmpty()) <!-- Check if there are any events -->
+                @foreach ($upcomingEvents as $upcomingEvents)
                     <div class="event card overflow-y-auto scrollbar-thin max-h-screen scrollbar-track-gray-200 scrollbar-thumb-gray-400 mb-10">
                           <a href="/events/{{ $mainEvent->slug }}" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
                             <div class="flex flex-col md:flex-row items-start space-x-0 md:space-x-6">
@@ -90,23 +90,23 @@
                                 />
                                 <div>
                                     <h2 class="text-2xl font-semibold font-montserrat_alt text-black leading-snug">
-                                        {{ $mainEvent->title }}
+                                        {{ $upcomingEvents->title }}
                                     </h2>
                                     <p class="mt-2 text-sm font-open_sans leading-snug text-black font-normal">
-                                        {!! Str::limit($mainEvent->description, 100) !!}
+                                        {!! Str::limit($upcomingEvents->description, 100) !!}
                                     </p>
                                     <div class="flex flex-col text-xs text-black font-open_sans font-semibold mt-3 leading-snug space-y-2">
                                         <span class="flex items-center space-x-2">
                                             <img 
                                                 src="{{ asset('images/location event.svg') }}" 
                                                 alt="Location Icon" class="w-4 h-4">
-                                            <span>{{ $mainEvent->location }}</span>
+                                            <span>{{ $upcomingEvents->location }}</span>
                                         </span>
                                         <span class="flex items-center space-x-2">
                                             <img 
                                                 src="{{ asset('images/uim_calendar.svg') }}" 
                                                 alt="Calendar Icon" class="w-4 h-4">
-                                            <span>{{ \Carbon\Carbon::parse($mainEvent->today)->format('d F Y') }}</span>
+                                            <span>{{ \Carbon\Carbon::parse($upcomingEvents->$start_date)->format('d F Y') }}</span>
                                         </span>
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@
                     </div>
                 @endforeach
             @else
-                <p>No events today.</p>
+                <p>No current events.</p>
             @endif
         </div>
 
@@ -140,41 +140,45 @@
                 <div id="dates" class="grid grid-cols-7 gap-2 text-center mt-4 font-open_sans"></div>
 
                 <!-- Upcoming Events (Next 2 Weeks Events) -->
-                <h3 class="text-xl font-bold font-open_sans leading-snug text-greenpetify mb-4 mt-16">Upcoming Event</h3>
-                @foreach ($upcomingEvents as $upcomingEvent)
-                    <div class="bg-white p-3 rounded-2xl hover:shadow-lg transition duration-300 mb-5">
-                        <a href="/events/{{ $upcomingEvent->slug }}">
-                            <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-4">
-                                <img
-                                    src="{{ asset('storage/' . $upcomingEvent->image) }}"
-                                    alt="Upcoming Event"
-                                    class="w-full md:w-24 h-24 rounded-2xl object-cover"
-                                />
-                                <div>
-                                    <h4 class="mb-2 text-lg font-semibold text-black font-montserrat_alt leading-snug">{{ $upcomingEvent->title }}</h4>
-                                    <!-- location -->
-                                    <span class="mb-1 flex items-center space-x-2">
-                                        <img 
-                                        src="{{ asset('images/location event.svg') }}" 
-                                        alt="Location Icon" class="w-4 h-4">
-                                        <span class="text-xs font-open_sans leading-snug font-normal text-black">
-                                            {{ $upcomingEvent->location }}
+                <h3 class="text-xl font-bold font-open_sans leading-snug text-greenpetify mb-4 mt-16">Today's Event</h3>
+                @if ($mainEvent->isNotEmpty())
+                    @foreach ($mainEvent as $mainEvent)
+                        <div class="bg-white p-3 rounded-2xl hover:shadow-lg transition duration-300 mb-5">
+                            <a href="/events/{{ $mainEvent->slug }}">
+                                <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-4">
+                                    <img
+                                        src="{{ asset('storage/' . $mainEvent->image) }}"
+                                        alt="main Event"
+                                        class="w-full md:w-24 h-24 rounded-2xl object-cover"
+                                    />
+                                    <div>
+                                        <h4 class="mb-2 text-lg font-semibold text-black font-montserrat_alt leading-snug">{{ $mainEvent->title }}</h4>
+                                        <!-- location -->
+                                        <span class="mb-1 flex items-center space-x-2">
+                                            <img 
+                                            src="{{ asset('images/location event.svg') }}" 
+                                            alt="Location Icon" class="w-4 h-4">
+                                            <span class="text-xs font-open_sans leading-snug font-normal text-black">
+                                                {{ $mainEvent->location }}
+                                            </span>
                                         </span>
-                                    </span>
-                                    <!-- date -->
-                                    <span class="flex items-center space-x-2">
-                                        <img 
-                                        src="{{ asset('images/uim_calendar.svg') }}" 
-                                        alt="Location Icon" class="w-4 h-4">
-                                        <span class="text-xs font-open_sans leading-snug font-normal text-black">
-                                            {{ \Carbon\Carbon::parse($upcomingEvent->start_date)->format('d F Y') }}
-                                        </span>
-                                    </span>                                 
+                                        <!-- date -->
+                                        <span class="flex items-center space-x-2">
+                                            <img 
+                                            src="{{ asset('images/uim_calendar.svg') }}" 
+                                            alt="Location Icon" class="w-4 h-4">
+                                            <span class="text-xs font-open_sans leading-snug font-normal text-black">
+                                                {{ \Carbon\Carbon::parse($mainEvent->start_date)->format('d F Y') }}
+                                            </span>
+                                        </span>                                 
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
+                            </a>
+                        </div>
+                    @endforeach
+                @else
+                    <p>No Events Today.</p>
+                @endif
             </div>
         </div>
     </div> <!-- Main Content -->
