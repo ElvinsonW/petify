@@ -17,6 +17,9 @@ return new class extends Migration
             $table->foreignId("pet_category_id")->constrained("pet_categories")->onDelete("cascade")->onUpdate("cascade");
             $table->string('name');
             $table->string('breed');
+            $table->string("image_1");
+            $table->string("image_2")->nullable();
+            $table->string("image_3")->nullable();
             $table->enum('gender', ['Male', 'Female']);
         });
     }
