@@ -55,50 +55,50 @@
         <!-- schedule section -->
 
         <div class="mt-[7vw]">
-        <div class="flex md:flex-row justify-center items-center mb-[3.2vw">
-            <div class="w-1/4 hidden md:block border-t-2 border-black"></div>
-            <h2 class="text-[2.5vw] font-bold font-montserrat_alt leading-snug text-center mx-[4vw]">
-                Schedule Of The Event
-            </h2>
-            <div class="w-1/4 hidden md:block border-t-2 border-black"></div>
-        </div>
-
-        <div class="flex flex-col lg:flex-row">
-            <!-- Days -->
-            <div class="w-3/5 space-y-[2.5vw] mr-[3vw] mt-[3.5vw]">
-                @foreach ($event->days as $day)
-                    <button onclick="showSessions('{{ \Carbon\Carbon::parse($day->date)->format('Y-m-d') }}')" 
-                        class="p-[1vw] rounded-[0.5vw] bg-gray-100 flex items-center hover:bg-gray-300 hover:text-white transition duration-500 w-full">
-                        <img src="{{ asset('images/uim_calendar.svg') }}" alt="Calendar Icon" class="w-18 h-18 mr-[1vw]">
-                        <div class="text-[1.2vw] md:text-[1.4vw] font-montserrat_alt font-semibold leading-snug">
-                            <p class="text-gray-400 inline-block mr-[1vw]">Day {{ $loop->iteration }}</p>
-                            <p></p>
-                            <p class="text-black inline-block">{{ \Carbon\Carbon::parse($day->date)->format('d F Y') }}</p>
-                        </div>
-                    </button>
-                @endforeach
+            <div class="flex md:flex-row justify-center items-center mb-[3.2vw">
+                <div class="w-1/4 hidden md:block border-t-2 border-black"></div>
+                <h2 class="text-[2.5vw] font-bold font-montserrat_alt leading-snug text-center mx-[4vw]">
+                    Schedule Of The Event
+                </h2>
+                <div class="w-1/4 hidden md:block border-t-2 border-black"></div>
             </div>
 
-            <!-- Schedule Details -->
-            <div class="flex-grow space-y-[2.5vw] py-[3.5vw] overflow-y-auto scrollbar-thin max-h-screen scrollbar-track-gray-200 scrollbar-thumb-gray-400">
-                @foreach ($event->days as $day)
-                    <div id="sessions-{{ \Carbon\Carbon::parse($day->date)->format('Y-m-d') }}" class="sessions" style="display: none;">
-                        @foreach ($day->sessions as $session)
-                            <div class="p-[1.5vw] rounded-[0.5vw] bg-gray-100 mb-[2vw] ">
-                                <div class="inline-block rounded-full px-[1vw] py-[0.5vw] bg-greenabout border mb-[0.75vw]">
-                                    <p class="text-base font-semibold text-greentua font-montserrat_alt">{{ \Carbon\Carbon::parse($session->time)->format('h:i A') }}</p>
-                                </div>
-                                <h3 class="text-black text-[1.2vw] md:text-2xl font-montserrat_alt leading-snug font-semibold">{{ $session->title }}</h3>
-                                <p class="text-gray-500 mt-[0.5vw] text-[1.3vw] font-open_sans font-normal text-justify leading-6 md:leading-7">
-                                    {{ $session->description }}
-                                </p>
+            <div class="flex flex-col lg:flex-row mt-[4vw] mb-[8vw]">
+                <!-- Days -->
+                <div class="w-3/5 space-y-[2.5vw] mr-[3vw]">
+                    @foreach ($event->days as $day)
+                        <button onclick="showSessions('{{ \Carbon\Carbon::parse($day->date)->format('Y-m-d') }}')" 
+                            class="p-[1vw] rounded-[0.5vw] bg-gray-100 flex items-center hover:bg-gray-300 hover:text-white transition duration-500 w-full">
+                            <img src="{{ asset('images/uim_calendar.svg') }}" alt="Calendar Icon" class="w-18 h-18 mr-[1vw]">
+                            <div class="text-[1.2vw] md:text-[1.4vw] font-montserrat_alt font-semibold leading-snug flex flex-col items-start">
+                                <p class="text-gray-400 mr-[1vw]">Day {{ $loop->iteration }}</p>
+                                <p></p>
+                                <p class="text-black">{{ \Carbon\Carbon::parse($day->date)->format('d F Y') }}</p>
                             </div>
-                        @endforeach
-                    </div>
-                @endforeach
+                        </button>
+                    @endforeach
+                </div>
+
+                <!-- Schedule Details -->
+                <div class="flex-grow  overflow-y-auto scrollbar-thin max-h-screen scrollbar-track-gray-200 scrollbar-thumb-gray-400 w-full">
+                    @foreach ($event->days as $day)
+                        <div id="sessions-{{ \Carbon\Carbon::parse($day->date)->format('Y-m-d') }}" class="sessions" style="display: none;">
+                            @foreach ($day->sessions as $session)
+                                <div class="p-[1.5vw] rounded-[0.5vw] bg-gray-100 mb-[2vw] ">
+                                    <div class="inline-block rounded-full px-[1vw] py-[0.5vw] bg-greenabout border mb-[0.75vw]">
+                                        <p class="text-base font-semibold text-greentua font-montserrat_alt">{{ \Carbon\Carbon::parse($session->time)->format('h:i A') }}</p>
+                                    </div>
+                                    <h3 class="text-black text-[1.2vw] md:text-2xl font-montserrat_alt leading-snug font-semibold">{{ $session->title }}</h3>
+                                    <p class="text-gray-500 mt-[0.5vw] text-[1.3vw] font-open_sans font-normal text-justify leading-6 md:leading-7">
+                                        {{ $session->description }}
+                                    </p>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
-    </div>
 
 
     <script>
