@@ -122,6 +122,8 @@ Route::fallback(function () {
 });
 
 Route::resource('/find-your-pet', FindMyPetController::class)->middleware('auth');
+Route::resource('/find-my-pet', FindMyPetController::class)->middleware('auth');
+
 
 Route::get('/find-my-pet-form', [FindMyPetController::class, 'create'])->name('find-my-pet-form')->middleware('auth');
 

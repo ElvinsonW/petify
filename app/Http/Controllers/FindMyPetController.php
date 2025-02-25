@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\FindMyPet;  // Pastikan model sudah dibuat
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class FindMyPetController extends Controller
@@ -28,7 +29,38 @@ class FindMyPetController extends Controller
      */
     public function store(Request $request)
     {
-        // This method can be used to store event data if necessary
+        // Validasi inputan dari form
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'breed' => 'required|string|max:255',
+            'last_seen' => 'required|string|max:255',
+            'date_lost' => 'required|date',
+            'color' => 'required|string|max:255',
+            'category_pet' => 'required|string',
+            'color_tag' => 'required|string',
+            'attach' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'required|string',
+        ]);
+
+        // Menyimpan gambar jika ada
+        $imagePath = $request->file('attach')->store('uploads/pets', 'public');
+
+        // Menyimpan data ke dalam database
+        FindMyPet::create([
+            'user_id' => auth()->id(),  // Menyimpan ID pengguna yang sedang login
+            'name' => $request->name,
+            'breed' => $request->breed,
+            'last_seen' => $request->last_seen,
+            'date_lost' => $request->date_lost,
+            'color' => $request->color,
+            'category_pet' => $request->category_pet,
+            'color_tag' => $request->color_tag,
+            'image' => $imagePath,
+            'description' => $request->description,
+        ]);
+
+        // Mengarahkan kembali ke form dengan pesan sukses
+        return redirect()->route('find-my-pet-form')->with('success', 'Missing pet post created successfully!');
     }
 
     /**
@@ -36,7 +68,7 @@ class FindMyPetController extends Controller
      */
     public function show(string $slug)
     {
-
+        // Implementasi jika ingin menampilkan data berdasarkan slug
     }
 
     /**
@@ -44,7 +76,7 @@ class FindMyPetController extends Controller
      */
     public function edit(string $id)
     {
-        // This method can be used for editing event data
+        // Implementasi jika ingin mengedit data berdasarkan ID
     }
 
     /**
@@ -52,7 +84,7 @@ class FindMyPetController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // This method can be used to update event data
+        // Implementasi untuk memperbarui data berdasarkan ID
     }
 
     /**
@@ -60,7 +92,7 @@ class FindMyPetController extends Controller
      */
     public function destroy(string $id)
     {
-        // This method can be used to delete an event
+        // Implementasi untuk menghapus data berdasarkan ID
     }
 
     /**
