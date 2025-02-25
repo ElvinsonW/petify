@@ -20,36 +20,28 @@
         </div>
     @endif
     <!-- container -->
-<div class="container mx-auto py-8 my-8 px-4 overflow-hidden bg-no-repeat bg-center bg-contain" style="background-image: url(../src/images/adopt-bg.png)">
+<div class="container mx-auto py-8 my-8 px-[1vw] overflow-hidden bg-no-repeat bg-center bg-contain" style="background-image: url(../src/images/adopt-bg.png)">
     <!-- Main Content -->
     <div class="flex flex-col lg:flex-row lg:space-x-12">
         <!-- Left Section (Judul, Search, Filter, and Event List) -->
         <div class="w-full lg:w-3/5 space-y-4">
             <!-- judul -->
-            <header class="mb-6">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-petify font-montserrat_alt">Event</h1>
+            <header class="mb-[1.5vw]">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-greenpetify font-montserrat_alt">Event</h1>
             </header>
             <!-- Search and Filter -->
             <div class="flex flex-col">
                 <!-- search -->
-                <form>
+                <form class="mt-[1vw]">
                     <div class="relative mb-8">
-                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                            <i class="fa-solid fa-magnifying-glass"></i>
+                        <label for="search" class="mb-[0.5vw] text-sm text-gray-900 sr-only !font-overpass font-semibold">Search</label>
+                        <div class="relative w-full border-1/2 border-gray-400 rounded-[0.5vw] bg-white shadow-md">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-[0.75vw] pointer-events-none">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                            <input type="search" id="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold focus:outline-none" placeholder="Search Here..." required/>
+                            <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-[0.5vw] px-[0.5vw] py-[0.4vw] !font-overpass">Search</button>
                         </div>
-                        <input
-                            type="search"
-                            id="default-search"
-                            class="block w-full p-4 ps-10 font-semibold text-black rounded-lg bg-abuevent"
-                            placeholder="Search Here..."
-                            required
-                        />
-                        <button
-                            type="submit"
-                            class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua transition duration-300 rounded-lg px-2 py-2"
-                        >
-                            Search
-                        </button>
                     </div>
                 </form>
                 <!-- Filter Dropdowns -->
@@ -81,7 +73,7 @@
             @if ($upcomingEvents->isNotEmpty()) <!-- Check if there are any events -->
                 @foreach ($upcomingEvents as $upcomingEvents)
                     <div class="event card overflow-y-auto scrollbar-thin max-h-screen scrollbar-track-gray-200 scrollbar-thumb-gray-400 mb-10">
-                          <a href="/events/{{ $upcomingEvents->slug }}" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
+                        <a href="/events/{{ $upcomingEvents->slug }}" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
                             <div class="flex flex-col md:flex-row items-start space-x-0 md:space-x-6">
                                 <img
                                     src="{{ asset('storage/' . $upcomingEvents->image) }}"

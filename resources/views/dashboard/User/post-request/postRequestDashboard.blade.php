@@ -1,11 +1,15 @@
 <x-dashboard.layout>
     <!-- bagian kanan sidebar -->
     <div class="flex-1 px-[2.8vw] h-screen flex flex-col">
-        <!-- Contribution Overview -->
         <div class="mt-[1.5vw] items-center mb-[1.4vw]">
             <!-- title -->
-            <p class="text-greenpetify tracking-wide font-montserrat_alt text-[2vw] font-bold">Contribution Overview</p>
-            
+            <p class="text-greenpetify tracking-wide font-montserrat_alt text-[2vw] font-bold">Post Request</p>
+            <!-- date day -->
+            <div class="flex flex-row font-montserrat_alt">
+                <p class="text-black font-medium text-[1.1vw]">Wednesday</p>
+                <p class="text-black font-normal text-[1.1vw]">, 5 February 2025</p>
+            </div>
+
             <!-- content -->
             @php
                 $queryParams = request()->query();

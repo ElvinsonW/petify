@@ -94,7 +94,7 @@
 
                     <div>
                         <label for="content" class="block mb-3 text-lg font-semibold w-fit">Content</label>
-                     
+                    
                         <input id="content" type="hidden" name="content" value="{{ old('content') }}" required>
                         <trix-editor input="content" class="h-[250px]"></trix-editor>
         

@@ -1,13 +1,18 @@
 <x-dashboard.layout>
     <!-- bagian kanan sidebar -->
-    <div class="flex-1 px-[2.8vw] ">
+    <div class="flex-1 px-[2.8vw] overflow-hidden">
         <!-- Liked Post -->
-        <div class="mt-[1.6vw] items-center mb-[1vw]">
+        <div class="mt-[1.5vw] items-center mb-[1.4vw]">
             <!-- title -->
             <p class="text-greenpetify tracking-wide font-montserrat_alt text-[2vw] font-bold">Liked Post</p>
+            <!-- date day -->
+            <div class="flex flex-row font-montserrat_alt">
+                <p class="text-black font-medium text-[1.1vw]">Wednesday</p>
+                <p class="text-black font-normal text-[1.1vw]">, 5 February 2025</p>
+            </div>
             
             <!-- content -->
-            <div class="flex text-[1.5vw] font-bold font-overpass w-full justify-between">
+            <div class="flex mt-[1.5vw] text-[1.5vw] font-bold font-overpass items-center w-full justify-between">
                 <div class="flex text-[1.5vw] font-bold font-overpass w-full items-center space-x-[5vw]">
                     <!-- adoption post -->
                     @php

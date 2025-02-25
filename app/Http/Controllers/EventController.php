@@ -30,8 +30,8 @@ class EventController extends Controller
 
         // Get all events for the current month for the calendar
         $calendarEvents = Event::whereMonth('start_date', $today->month)
-                               ->whereYear('start_date', $today->year)
-                               ->get();
+                                ->whereYear('start_date', $today->year)
+                                ->get();
 
         return view('event.event', compact('mainEvent', 'upcomingEvents', 'calendarEvents'));
     }

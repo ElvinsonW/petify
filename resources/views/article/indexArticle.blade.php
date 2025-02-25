@@ -27,7 +27,6 @@
                 <h4 class="text-[1.2vw]">Hello {{ auth()->user()->username }},</h4>
                 <h2 class="text-[1.4vw] font-bold" id="sapaan">Good Afternoon!</h2>
             </div>
-            
             <!-- Search Bar -->
             <div>
                 @php
@@ -38,20 +37,18 @@
                         <input type="hidden" name="{{ $param }}" value="{{ request($param) }}">
                     @endif
                 @endforeach
-
-                <form class="max-w-md w-[16vw] mt-[1vw]">
+                <form class="max-w-md w-[16vw] mt-[1vw]">           
                     <label for="search" class="mb-[0.5vw] text-sm text-gray-900 sr-only !font-overpass font-semibold">Search</label>
                     <div class="relative w-full border-1/2 border-gray-400 rounded-[0.5vw] bg-white shadow-md">
                         <div class="absolute inset-y-0 start-0 flex items-center ps-[0.75vw] pointer-events-none">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
-                        <input type="search" id="search" name="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold" value="{{ request('search') }}" placeholder="Search Here">
+                        <input type="search" id="search" name="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold focus:outline-none" value="{{ request('search') }}" placeholder="Search Here">
                         <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-[0.5vw] px-[0.5vw] py-[0.4vw] !font-overpass">Search</button>
                     </div>
                 </form>
             </div>
-
-            
+        
             <!-- Button Article Post -->
             <a href="/articles/create">
                 <button class="mt-[1vw] w-[16vw] text-white bg-orenmuda rounded-[1vw] shadow-lg transform hover:scale-95 hover:bg-orange-400 transition duration-300 ease-in-out text-[1.2vw] font-semibold px-[0.75vw] py-[0.75vw] font-overpass"><i class="fa-solid fa-plus mr-[0.5vw]" style="color: #ffffff;"></i>Article Post</button>
