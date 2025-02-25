@@ -17,7 +17,7 @@ class ArticleController extends Controller
     public function index()
     {
         // Filter berdasarkan beberapa parameter    
-        $filters = ["category","search"];
+        $filters = ["category","search"];   
 
         // Mengambalikan view yang sesuai dan beberapa parameter
         return view("article.indexArticle",[

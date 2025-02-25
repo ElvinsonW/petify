@@ -79,34 +79,34 @@
 
             <!-- Main Event (Today) -->
             @if ($upcomingEvents->isNotEmpty()) <!-- Check if there are any events -->
-                @foreach ($upcomingEvents as $upcomingEvents)
+                @foreach ($upcomingEvents as $upcomingEvent)
                     <div class="event card overflow-y-auto scrollbar-thin max-h-screen scrollbar-track-gray-200 scrollbar-thumb-gray-400 mb-10">
-                          <a href="/events/{{ $upcomingEvents->slug }}" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
+                          <a href="/events/{{ $upcomingEvent->slug }}" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
                             <div class="flex flex-col md:flex-row items-start space-x-0 md:space-x-6">
                                 <img
-                                    src="{{ asset('storage/' . $upcomingEvents->image) }}"
+                                    src="{{ asset('storage/' . $upcomingEvent->image) }}"
                                     alt="Event Image"
                                     class="w-full md:w-36 h-36 rounded-2xl object-cover"
                                 />
                                 <div>
                                     <h2 class="text-2xl font-semibold font-montserrat_alt text-black leading-snug">
-                                        {{ $upcomingEvents->title }}
+                                        {{ $upcomingEvent->title }}
                                     </h2>
                                     <p class="mt-2 text-sm font-open_sans leading-snug text-black font-normal">
-                                        {!! Str::limit($upcomingEvents->description, 100) !!}
+                                        {!! Str::limit($upcomingEvent->description, 100) !!}
                                     </p>
                                     <div class="flex flex-col text-xs text-black font-open_sans font-semibold mt-3 leading-snug space-y-2">
                                         <span class="flex items-center space-x-2">
                                             <img 
                                                 src="{{ asset('images/location event.svg') }}" 
                                                 alt="Location Icon" class="w-4 h-4">
-                                            <span>{{ $upcomingEvents->location }}</span>
+                                            <span>{{ $upcomingEvent->location }}</span>
                                         </span>
                                         <span class="flex items-center space-x-2">
                                             <img 
                                                 src="{{ asset('images/uim_calendar.svg') }}" 
                                                 alt="Calendar Icon" class="w-4 h-4">
-                                            <span>{{ \Carbon\Carbon::parse($upcomingEvents->start_date)->format('d F Y') }}</span>
+                                            <span>{{ \Carbon\Carbon::parse($upcomingEvent->start_date)->format('d F Y') }}</span>
                                         </span>
                                     </div>
                                 </div>
@@ -114,6 +114,9 @@
                         </a>
                     </div>
                 @endforeach
+                <div class="my-[2.5vw] text-[1.2vw">
+                    {{ $upcomingEvents->links() }}
+                </div>
             @else
                 <p>No current events.</p>
             @endif
