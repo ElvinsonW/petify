@@ -5,16 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\FindMyPet;  // Pastikan model sudah dibuat
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use App\Models\PetCategory;
 
 class FindMyPetController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('find-my-pet.FindMyPet');
+        $filters = ['category', 'pet'];
+
+        // Ambil data berdasarkan filter kategori jika ada
+        $pets = FindMyPet::when($request->has('category'), function ($query) use ($request) {
+            $query->where('category_pet', $request->category);
+        })->paginate(10);
+
+        $categories = PetCategory::all();
+
+        // Kirim data ke view find-my-pet.index
+        return view('find-my-pet.FindMyPet', compact('pets', 'categories'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -60,7 +72,7 @@ class FindMyPetController extends Controller
         ]);
 
         // Mengarahkan kembali ke form dengan pesan sukses
-        return redirect()->route('find-my-pet-form')->with('success', 'Missing pet post created successfully!');
+        return redirect()->route('find-my-pet.index')->with('success', 'Missing pet post created successfully!');
     }
 
     /**
