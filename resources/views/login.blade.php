@@ -71,11 +71,11 @@
                     <form class="font-open_sans font-semibold text-base tracking-wide text-black w-[30vw]" action="/login" method="post" enctype="multipart/form-data">
                         @csrf
                         <!-- Username -->
-                        <div class="py-1 border border-black rounded-2xl flex items-center mb-8">
+                        <div class="py-[0.5vw] border border-black rounded-2xl flex items-center mb-[2vw]">
                             <div class="w-20 text-black text-sm font-semibold pl-4">Username</div>
                             <div class="text-black text-xl font-normal font-open_sans tracking-wide ml-3">|</div>
                             <div class="flex-grow">
-                                <input type="text" id="username" name="username" class="w-full text-black text-base font-normal bg-transparent placeholder:text-gray-500 focus:outline-none pl-2" placeholder="Your Username">
+                                <input type="text" id="username" name="username" class="w-full text-black text-base font-normal bg-transparent placeholder:text-gray-500 focus:outline-none pl-2" placeholder="Your Username" required>
                             </div>
                             <div class="w-10 h-10 flex items-center justify-center mr-2">
                                 <img src="{{ asset('images/login-profile.svg') }}" alt="Username Icon" class="w-6 h-6">
@@ -83,24 +83,16 @@
                         </div>
 
                         <!-- Password -->
-                        <div class="py-1 border border-black rounded-2xl flex items-center mb-4">
+                        <div class="py-[0.5vw] border border-black rounded-2xl flex items-center mb-[2vw]">
                             <div class="w-20 text-black text-sm font-semibold pl-4">Password</div>
                             <div class="text-black text-xl font-normal font-open_sans tracking-wide ml-3">|</div>
                             <div class="flex-grow">
-                                <input type="password" id="password" name="password" class="w-full text-black text-base font-normal bg-transparent placeholder:text-gray-500 focus:outline-none pl-2" placeholder="Your Password">
+                                <input type="password" id="password" name="password" class="w-full text-black text-base font-normal bg-transparent placeholder:text-gray-500 focus:outline-none pl-2" placeholder="Your Password" required>
                             </div>
                             <div class="w-10 h-10 flex items-center justify-center mr-2">
                                 <!-- Icon goes here -->
                                 <img src="{{ asset('images/login-pass-show.svg') }}" id="pass-button" alt="Username Icon" class="w-6 h-6">
                             </div>
-                        </div>
-
-                        <div class="flex items-center justify-between mb-4   font-semibold font-open_sans text-sm">
-                            <label class="flex items-center">
-                                <input type="checkbox" class="h-4 w-4 text-teal-600 border-gray-300 rounded">
-                                <span class="ml-2 text-black">Remember me</span>
-                            </label>
-                            <a href="#" class=" text-greenpetify hover:underline">Forgot Password?</a>
                         </div>
 
                         <!-- don't have account -->

@@ -10,13 +10,13 @@
         <!-- Dashboard Summary -->
         <div class="flex flex-row mt-[1.5vw] space-x-[2vw]">
             <!-- Post Request -->
-
             @php
                 $queryParams = request()->query();
                 if(request('status')){
                     unset($queryParams['status']);
                 }
             @endphp
+            
             <a href="{{ url('/dashboard/article-requests') . '?' . http_build_query($queryParams) }}" class="flex items-center {{ !request('status') ? 'bg-white' : '' }} px-[2vw] py-[1.5vw] rounded-tl-[1.5vw] rounded-tr-[1.5vw] w-[20vw]">
                 <img src="{{ asset('images/post request.svg') }}" alt="">
                 <div class="ml-[1vw]">
@@ -68,7 +68,7 @@
             <div class="divide-y divide-gray-300 overflow-y-auto overflow-x-clip scroll-m-0 flex-1">
                 @foreach ($requests as $request)
                 <div class="grid py-[0.5vw] items-center text-[1.2vw] font-bold font-overpass text-black gap-[1vw]"
-                        style="grid-template-columns: 5% 10% 45% 20% 15%;">
+                    style="grid-template-columns: 5% 10% 45% 20% 15%;">
                     <p>{{ $request->id }}</p>
                     <p>{{ $request->user->username }}</p>
                     <p>{{ $request->title }}</p>

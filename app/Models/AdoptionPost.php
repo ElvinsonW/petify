@@ -38,7 +38,10 @@ class AdoptionPost extends Model
             fn($query, $search) =>
             $query->where(function (Builder $query) use ($search) {
                 $query->where('name', 'like', '%' . $search . '%')
-                      ->orWhere('description', 'like', '%' . $search . '%');
+                      ->orWhere('description', 'like', '%' . $search . '%')
+                      ->orWhereHas('pet', fn(Builder $petQuery) =>
+                        $petQuery->where('breed', 'like', '%' . $search . '%')
+                      );
             })
         );        
 

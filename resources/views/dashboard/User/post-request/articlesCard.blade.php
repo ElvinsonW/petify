@@ -9,11 +9,11 @@
         <p>Action</p>
     </div>
 
-        <!-- Table Rows -->
+    <!-- Table Rows -->
     <div class="divide-y divide-gray-300 overflow-y-auto overflow-x-clip scroll-m-0 flex-1">
         @foreach ($requests as $request)
         <div class="grid py-[0.5vw] items-center text-[1.2vw] font-bold font-overpass text-black gap-[1vw]"
-                style="grid-template-columns: 5% 10% 45% 20% 15%;">
+            style="grid-template-columns: 5% 10% 45% 20% 15%;">
             <p>{{ $request->id }}</p>
             <p>{{ $request->user->username }}</p>
             <p>{{ $request->title }}</p>

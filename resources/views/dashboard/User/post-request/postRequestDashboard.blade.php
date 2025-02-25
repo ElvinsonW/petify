@@ -1,6 +1,6 @@
 <x-dashboard.layout>
     <!-- bagian kanan sidebar -->
-    <div class="flex-1 px-[2.8vw] overflow-hidden">
+    <div class="flex-1 px-[2.8vw] h-screen flex flex-col">
         <!-- Contribution Overview -->
         <div class="mt-[1.5vw] items-center mb-[1.4vw]">
             <!-- title -->
