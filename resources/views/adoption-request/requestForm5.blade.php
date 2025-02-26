@@ -19,7 +19,7 @@
         </div>
 
         <div id="step-2" class="flex flex-col items-center">
-            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-greenpetify text-white font-bold transition-all duration-500">2</div>
+            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-greenpetify text-white  font-bold transition-all duration-500">2</div>
         </div>
 
         <div class="flex items-center">
@@ -43,7 +43,7 @@
         </div>
 
         <div id="step-5" class="flex flex-col items-center">
-            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-greenpetify text-white font-bold transition-all duration-500">5</div>
+            <div class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-greenpetify bg-white text-greenpetify font-bold transition-all duration-500">5</div>
         </div>
     </div>
 

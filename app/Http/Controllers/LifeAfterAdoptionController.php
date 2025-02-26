@@ -82,7 +82,7 @@ class LifeAfterAdoptionController extends Controller
         $laaPost->user->addPoint(15);
 
         // Direct user ke halaman Life After Adoption dan kirim pesan berhasil
-        return redirect('life-after-adoption')->with('createSuccess', "Life After Adoption Post Successfully created");
+        return redirect('life-after-adoption')->with('createSuccess', "Life After Adoption Post Successfully Requested");
     }
 
 
