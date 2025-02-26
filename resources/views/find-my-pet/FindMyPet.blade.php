@@ -65,9 +65,9 @@
             <div class="max-h-screen h-auto overflow-y-auto space-y-[3vw] px-[5vw] pb-[7.5vw] pt-[2vw] ml-auto">
                 @foreach ($pets as $pet)
                     <div class="bg-white shadow-lg rounded-[0.75vw] p-[2.5vw] relative">
-                        <div class="absolute top-[1vw] right-[1.5vw]">
+                        <!-- <div class="absolute top-[1vw] right-[1.5vw]">
                             <i class="fa-solid fa-share-nodes text-black cursor-pointer hover:text-greenpetify"></i>
-                        </div>
+                        </div> -->
                         
                         <div class="flex flex-col md:flex-row gap-[1.5vw]">
                             <img class="w-[30vw] h-[20vw] rounded-[1vw] object-cover" src="{{ asset('storage/' . $pet->image) }}" alt="{{ $pet->name }}"/>
@@ -80,7 +80,6 @@
                                     <p>Color</p> <p>: {{ $pet->color }}</p>
                                     <p>Last Seen</p> <p>: {{ $pet->last_seen }}</p>
                                     <p>Collar & Tag</p> <p>: {{ $pet->color_tag }}</p>
-                                    <p>Size</p> <p>: {{ $pet->size ?? 'N/A' }}</p>
                                     <p>Date Lost</p> <p>: {{ $pet->date_lost}}</p>
                                 </div>
                             </div>
