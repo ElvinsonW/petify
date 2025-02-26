@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\FindMyPet;  // Pastikan model sudah dibuat
-use Cviebrock\EloquentSluggable\Services\SlugService;
+use App\Models\FindMyPet;
 use App\Models\PetCategory;
+use Illuminate\Http\Request;
 
 class FindMyPetController extends Controller
 {
@@ -14,17 +13,26 @@ class FindMyPetController extends Controller
      */
     public function index(Request $request)
     {
+        // Filter berdasarkan beberapa parameter (category dan pet)
         $filters = ['category', 'pet'];
 
         // Ambil data berdasarkan filter kategori jika ada
         $pets = FindMyPet::when($request->has('category'), function ($query) use ($request) {
-            $query->where('category_pet', $request->category);
-        })->paginate(10);
+            return $query->where('pet_category_id', $request->category);  // Filter berdasarkan pet_category_id
+        })
+        ->when($request->has('pet'), function ($query) use ($request) {
+            return $query->where('name', 'like', '%' . $request->pet . '%');  // Filter berdasarkan nama pet jika ada
+        })
+        ->paginate(10);  // Pagination untuk membatasi jumlah hasil per halaman
 
+        // Ambil semua kategori untuk ditampilkan di sidebar
         $categories = PetCategory::all();
 
         // Kirim data ke view find-my-pet.index
-        return view('find-my-pet.FindMyPet', compact('pets', 'categories'));
+        return view('find-my-pet.FindMyPet', [
+            'pets' => $pets,  // Kirim data pets yang sudah difilter
+            'categories' => $categories,  // Kirim data kategori
+        ]);
     }
 
 
@@ -105,17 +113,5 @@ class FindMyPetController extends Controller
     public function destroy(string $id)
     {
         // Implementasi untuk menghapus data berdasarkan ID
-    }
-
-    /**
-     * Generate a unique slug for an event.
-     */
-    public function createSlug(Request $request)
-    {
-        // Generate a unique slug for the event title
-        $slug = SlugService::createSlug(FindMyPet::class, 'slug', $request->title, ["unique" => true]);
-
-        // Return the generated slug as JSON
-        return response()->json(['slug' => $slug]);
     }
 }

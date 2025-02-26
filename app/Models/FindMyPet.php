@@ -30,10 +30,11 @@ class FindMyPet extends Model
     }
 
     // Relasi ke model PetCategory (kategori hewan)
-    public function petCategory()
+    public function pet_category()
     {
-        return $this->belongsTo(PetCategory::class, 'category_pet', 'slug');
+        return $this->belongsTo(PetCategory::class, 'pet_category_id');
     }
+
 
     // Menangani kolom tanggal seperti date_lost
     protected $dates = ['date_lost'];
@@ -43,4 +44,8 @@ class FindMyPet extends Model
     {
         return asset('storage/' . $this->image);
     }
+
+
+
+
 }
