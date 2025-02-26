@@ -67,7 +67,7 @@
                         <div class="absolute inset-y-0 start-0 flex items-center ps-[0.75vw] pointer-events-none">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
-                        <input type="search" id="search" name="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold focus:outline-none" value="{{ request('search') }}" placeholder="Search Here" required>
+                        <input type="search" id="search" name="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold focus:outline-none" value="{{ request('search') }}" placeholder="Search Here">
                         <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-[0.5vw] px-[0.5vw] py-[0.4vw] !font-overpass">Search</button>
                     </div>
                 </form>
@@ -234,9 +234,9 @@
                 @foreach ($adoptions as $adoption)
 
                     <a href="/adoptions/{{ $adoption->slug }}">
-                        <div class="rounded-[0.5vw] shadow-xl p-[0.5vw] min-h-[45vw] w-[24vw] mt-[2.5vw]">
+                        <div class="rounded-[0.5vw] shadow-xl p-[0.5vw] min-h-[43vw] w-[24vw] mt-[2.5vw]">
                             <!-- Gambar Pet -->
-                            <img src="{{ $adoption->pet->image_1 }}" alt="Pet Picture" class="w-[100%] h-fit">
+                            <img src="{{ $adoption->pet->image_1 }}" alt="Pet Picture" class="object-cover w-[100%] h-[30vh] rounded-md">
                             
                             <!-- Category & Days -->
                             <div class="flex flex-row font-montserrat_alt font-semibold w-[100%]">
