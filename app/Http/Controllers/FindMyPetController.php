@@ -13,27 +13,33 @@ class FindMyPetController extends Controller
      */
     public function index(Request $request)
     {
-        // Filter berdasarkan beberapa parameter (category dan pet)
-        $filters = ['category', 'pet'];
+        $pets = FindMyPet::query();
 
-        // Ambil data berdasarkan filter kategori jika ada
-        $pets = FindMyPet::when($request->has('category'), function ($query) use ($request) {
-            return $query->where('pet_category_id', $request->category);  // Filter berdasarkan pet_category_id
-        })
-        ->when($request->has('pet'), function ($query) use ($request) {
-            return $query->where('name', 'like', '%' . $request->pet . '%');  // Filter berdasarkan nama pet jika ada
-        })
-        ->paginate(10);  // Pagination untuk membatasi jumlah hasil per halaman
+        // Check if there's a category filter and apply it
+        if ($request->has('category')) {
+            // If the category query matches the current selected category, remove the filter
+            if ($request->category != 'all') {
+                $pets->whereHas('pet_category', function ($query) use ($request) {
+                    $query->where('slug', $request->category);
+                });
+            }
+        }
 
-        // Ambil semua kategori untuk ditampilkan di sidebar
+        // Paginate results
+        $pets = $pets->paginate(10);
+
+        // Fetch all categories for the sidebar
         $categories = PetCategory::all();
 
-        // Kirim data ke view find-my-pet.index
         return view('find-my-pet.FindMyPet', [
-            'pets' => $pets,  // Kirim data pets yang sudah difilter
-            'categories' => $categories,  // Kirim data kategori
+            'pets' => $pets,
+            'categories' => $categories,
+            'selectedCategory' => $request->category,
         ]);
     }
+
+
+
 
 
     /**
@@ -41,7 +47,12 @@ class FindMyPetController extends Controller
      */
     public function create()
     {
-        return view('find-my-pet.findMyPetForm'); 
+        // Ambil semua kategori pet dari database
+        $categories = PetCategory::all();
+
+        // Kirim data kategori ke view
+        return view('find-my-pet.findMyPetForm', compact('categories')); 
+
     }
 
     /**
@@ -56,7 +67,7 @@ class FindMyPetController extends Controller
             'last_seen' => 'required|string|max:255',
             'date_lost' => 'required|date',
             'color' => 'required|string|max:255',
-            'category_pet' => 'required|string',
+            'pet_category_id' => ['required', 'exists:pet_categories,id'], // Perbaikan: pastikan id kategori ada
             'color_tag' => 'required|string',
             'attach' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'description' => 'required|string',
@@ -73,7 +84,7 @@ class FindMyPetController extends Controller
             'last_seen' => $request->last_seen,
             'date_lost' => $request->date_lost,
             'color' => $request->color,
-            'category_pet' => $request->category_pet,
+            'pet_category_id' => $request->pet_category_id, // Pastikan menggunakan pet_category_id yang valid
             'color_tag' => $request->color_tag,
             'image' => $imagePath,
             'description' => $request->description,
@@ -82,6 +93,8 @@ class FindMyPetController extends Controller
         // Mengarahkan kembali ke form dengan pesan sukses
         return redirect()->route('find-my-pet.index')->with('success', 'Missing pet post created successfully!');
     }
+
+
 
     /**
      * Display the specified resource.

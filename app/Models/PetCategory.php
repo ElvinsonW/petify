@@ -16,4 +16,6 @@ class PetCategory extends Model
     public function pets(): HasMany {
         return $this->hasMany(Pet::class,'pet_category_id');
     }
+
+
 }

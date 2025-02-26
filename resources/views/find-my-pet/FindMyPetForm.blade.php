@@ -63,16 +63,29 @@
                         <input type="text" id="color" name="color" value="{{ old('color') }}" class="bg-gray-50 border-2 border-gray-300 text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Color..." required />
                     </div>
 
+                    <!-- Gender -->
+                    <div>
+                        <label for="gender" class="block mb-2 text-lg font-semibold">Gender</label>
+                        <select id="gender" name="gender" class="bg-gray-50 border-2 border-gray-300 text-sm rounded-lg block w-full p-2.5 focus:outline-none" required>
+                            <option value="" disabled selected hidden>Select gender...</option>
+                            <option value="Male" @if(old('gender') == 'Male') selected @endif>Male</option>
+                            <option value="Female" @if(old('gender') == 'Female') selected @endif>Female</option>
+                        </select>
+                    </div>
+
                     <!-- Pet Category -->
                     <div>
-                        <label for="category_pet" class="block mb-2 text-lg font-semibold">Pet Category</label>
+                        <label for="pet_category_id" class="block mb-2 text-lg font-semibold">Pet Category</label>
                         <div class="relative">
-                            <select id="category_pet" name="category_pet" class="category appearance-none bg-gray-50 border-2 border-gray-300 text-sm rounded-lg block w-full p-2.5 focus:outline-none pr-10 text-gray-400" required>
+                            <select id="pet_category_id" name="pet_category_id" class="category appearance-none bg-gray-50 border-2 border-gray-300 text-sm rounded-lg block w-full p-2.5 focus:outline-none pr-10 text-gray-400" required>
                                 <option value="" disabled selected hidden>Select a category...</option>
-                                <option value="dog" class="text-black">Dog</option>
-                                <option value="cat" class="text-black">Cat</option>
-                                <option value="reptile" class="text-black">Reptile</option>
-                                <option value="other" class="text-black">Other Pet</option>
+                                @foreach ($categories as $category)
+                                    @if (old('pet_category_id') == $category->id)
+                                        <option value="{{ $category->id }}" selected class="text-black">{{ $category->name }}</option>
+                                    @else
+                                        <option value="{{ $category->id }}" class="text-black">{{ $category->name }}</option>
+                                    @endif
+                                @endforeach
                             </select>
                             <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                                 <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -104,6 +117,12 @@
                         <label for="attach" class="block mb-2 text-lg font-semibold">Attach picture of your pet here</label>
                         <input id="attach" type="file" name="attach" class="bg-gray-50 border-2 border-gray-300 text-sm rounded-lg block w-full p-2.5 focus:outline-none cursor-pointer" required />
                     </div>
+                </div>
+
+                <!-- City -->
+                <div>
+                    <label for="city" class="block mb-2 text-lg font-semibold">City</label>
+                    <input type="text" id="city" name="city" value="{{ old('city') }}" class="bg-gray-50 border-2 border-gray-300 text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="City..." required />
                 </div>
 
                 <!-- Any Information -->

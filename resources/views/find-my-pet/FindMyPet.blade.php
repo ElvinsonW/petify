@@ -40,35 +40,33 @@
                     <hr class="border-black border-1/2 w-full my-[0.5vw]">
                 </div>
 
-                <!-- ALL CATEGORY -->
-                @php
-                    $activeCategory = request()->query('category'); 
-                @endphp
-                <button class="pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group @if(!$activeCategory) bg-orenmuda @endif hover:bg-orenmuda">
+                <!-- All Category (Cancel Category Filter) -->
+                <button class="pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group @if(!$selectedCategory || $selectedCategory == 'all') bg-orenmuda @endif hover:bg-orenmuda">
                     <a href="{{ route('find-my-pet.index') }}" class="w-full">
-                        <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left @if(!$activeCategory) text-white @endif group-hover:text-white transition-colors duration-500 ease-in-out">All Category</p>
+                        <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left @if(!$selectedCategory || $selectedCategory == 'all') text-white @endif group-hover:text-white transition-colors duration-500 ease-in-out">All Category</p>
                         <hr class="border-orenmuda border-1/2 w-[6vw] my-[0.5vw] group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
                     </a>
                 </button>
 
+                <!-- Category List -->
                 @foreach ($categories as $category)
                     @php
-                        $isActive = $activeCategory == $category->slug;
+                        $isActive = $selectedCategory == $category->slug;
                     @endphp
-
                     <button class="pl-2 pr-2 w-full transition duration-500 ease-in-out rounded-xl group @if($isActive) bg-{{ $category->color }} @endif hover:bg-{{ $category->color }}">
-                        <a href="{{ route('find-my-pet.index') . '?category=' . $category->slug }}" class="w-full">
+                        <a href="{{ route('find-my-pet.index') . '?category=' . ($isActive ? 'all' : $category->slug) }}" class="w-full">
                             <p class="text-xl font-semibold mt-2 text-left group-hover:text-white transition-colors duration-500 ease-in-out @if($isActive) text-white @else text-black @endif">{{ $category->name }}</p>
                             <hr class="border-{{ $category->color }} border-1/2 w-[6vw] my-[0.5vw] group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
                         </a>
                     </button>
                 @endforeach
+
             </div>
         </div>
         <!-- Bagian Kiri (Sidebar) End -->
 
         
-        <!-- bagian right section -->
+        <!-- Right Section (Display Pets) -->
         <div class="flex pt-[3vw] w-3/4">
             <div class="max-h-screen h-auto overflow-y-auto space-y-[3vw] px-[5vw] pb-[7.5vw] pt-[2vw] ml-auto">
                 @foreach ($pets as $pet)
@@ -77,26 +75,29 @@
                             <img class="w-[30vw] h-[20vw] rounded-[1vw] object-cover" src="{{ asset('storage/' . $pet->image) }}" alt="{{ $pet->name }}"/>
 
                             <div class="flex-1 pt-[0.5vw]">
-                                <span class="bg-{{$pet->pet_category->color}} text-white text-[1vw] font-semibold font-montserrat_alt px-[1vw] py-[0.5vw] rounded-[0.8vw] ">{{ ucfirst($pet->category_pet) }}</span>
+                                <span class="bg-{{$pet->pet_category->color}} text-white text-[1vw] font-semibold font-montserrat_alt px-[1vw] py-[0.5vw] rounded-[0.8vw] ">{{ ucfirst($pet->pet_category->name) }}</span>
                                 <div class="text-black tab text-[1vw] !font-semibold !font-open_sans !tracking-wide gap-x-[1vw] mt-[1vw] grid grid-cols-2 space-y-[0.2vw]">
-                                    <p>Name</p> <p>: {{ $pet->name }}</p>
-                                    <p>Breed</p> <p>: {{ $pet->breed }}</p>
-                                    <p>Color</p> <p>: {{ $pet->color }}</p>
-                                    <p>Last Seen</p> <p>: {{ $pet->last_seen }}</p>
-                                    <p>Collar & Tag</p> <p>: {{ $pet->color_tag }}</p>
+                                    <p>Name</p> <p>: {{ ucfirst($pet->name) }}</p>
+                                    <p>Breed</p> <p>: {{ ucfirst($pet->breed) }}</p>
+                                    <p>Color</p> <p>: {{ ucfirst($pet->color) }}</p>
+                                    <p>Last Seen</p> <p>: {{ ucfirst($pet->last_seen) }}</p>
+                                    <p>Collar & Tag</p> <p>: {{ ucfirst($pet->color_tag) }}</p>
                                     <p>Date Lost</p> <p>: {{ $pet->date_lost}}</p>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="mt-[1.2vw] font-open_sans text-justify text-sm text-black tracking-wide leading-snug">
-                            <p>{{ $pet->description }}</p>
+                            <p>{{ ucfirst($pet->description) }}</p>
                         </div>
                         
+                       
+
                         <div class="mt-[1.2vw] flex items-center">
-                            <div class="profile-image">
+                            <div class="w-9 h-9 bg-white border-[0.1vw] border-greentua rounded-full flex justify-center items-center p-[0.1vw]">
                                 <img class="profile-logo" src="{{ asset('images/after login.svg') }}" alt="Profile logo">
                             </div>
+
                             <p class="ml-[0.75vw] text-greenpetify font-semibold font-overpass text-[1.1vw] tracking-wider">{{ $pet->user->name }}</p>
                             <div class="flex items-center text-black text-[0.85vw] font-medium font-overpass ml-auto">
                                 <img class="mr-[0.5vw] telephone-icon" src="{{ asset('images/telephone-minus-fill.svg') }}" alt="Telephone Logo">

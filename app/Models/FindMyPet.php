@@ -17,7 +17,7 @@ class FindMyPet extends Model
         'last_seen',// Lokasi terakhir terlihat
         'date_lost',// Tanggal kehilangan
         'color',    // Warna hewan
-        'category_pet', // Kategori hewan
+        'pet_category_id', // Kategori hewan
         'color_tag', // Apakah ada tag atau kalung
         'image',    // Path ke gambar
         'description' // Deskripsi tambahan

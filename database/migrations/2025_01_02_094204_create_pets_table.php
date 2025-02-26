@@ -11,17 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pets', function (Blueprint $table) {
+        Schema::create('find_my_pets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
-            $table->foreignId("pet_category_id")->constrained("pet_categories")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('breed');
-            $table->string("image_1");
-            $table->string("image_2")->nullable();
-            $table->string("image_3")->nullable();
-            $table->enum('gender', ['Male', 'Female']);
+            $table->string('last_seen');
+            $table->date('date_lost');
+            $table->string('color');
+            $table->foreignId('pet_category_id')->constrained('pet_categories')->onDelete('cascade')->onUpdate('cascade'); // Correct foreign key to pet_categories
+            $table->string('color_tag');
+            $table->string('image');
+            $table->text('description');
+            $table->timestamps();
         });
+        
     }
 
     /**
