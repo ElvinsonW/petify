@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -28,5 +29,18 @@ class AdoptionRequest extends Model
 
     public function adoption_post(): BelongsTo {
         return $this->belongsTo(AdoptionPost::class,"post_id");
+    }
+
+    public function scopeFilter(Builder $query, array $filters){
+        $query->when(
+            $filters["search"] ?? false,
+            fn($query, $search) => 
+                $query->whereHas('adoption_post', fn($postQuery) => 
+                    // dd($postQuery->where('name', 'like', "%" . $search . "%"))
+                    $postQuery->where('name', 'like', "%" . $search . "%")
+                )->orWhereHas('user', fn($userQuery) => 
+                    $userQuery->where('username','like', "%" . $search . "%")
+                )
+        );
     }
 }
