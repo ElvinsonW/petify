@@ -32,6 +32,7 @@ export default {
             'kuning': '#F2D785',
             'kuninggelap': '#E8C559',
             'bluereptile': '#96BDF8',
+            'abuevent': '#ebebeb',
             'or-dashboard': '#ecac73'
           },
     
