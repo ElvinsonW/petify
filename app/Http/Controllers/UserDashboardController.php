@@ -32,7 +32,8 @@ class UserDashboardController extends Controller
 
     public function indexAdoptionRequest(string $username){
         $user = User::where('username',$username)->firstOrFail();
-        $otherRequests = AdoptionRequest::whereHas('adoption_post',fn(Builder $query) => 
+        $filters = ["search"];
+        $otherRequests = AdoptionRequest::filter(request($filters))->whereHas('adoption_post',fn(Builder $query) => 
             $query->where('user_id',$user->id)
         )->orderByRaw("
             CASE
@@ -43,7 +44,7 @@ class UserDashboardController extends Controller
             END
         ")->get();
 
-        $myRequests = AdoptionRequest::where('user_id',$user->id)->orderByRaw("
+        $myRequests = AdoptionRequest::filter(request($filters))->where('user_id',$user->id)->orderByRaw("
             CASE
                 WHEN approval_status = 'Pending' THEN 1
                 WHEN approval_status = 'Accepted' THEN 2
@@ -78,7 +79,7 @@ class UserDashboardController extends Controller
             "requests" => [
                 "adoptions" => AdoptionPostRequest::filter(request(['search']))->where('user_id',$user->id)->get(),
                 "articles" => ArticleRequest::filter(request(['search']))->where('user_id',$user->id)->get(),
-                "events" => Event::where('user_id',$user->id)
+                "events" => Event::filter(request(['search']))->where('user_id',$user->id)
                                 ->orderByRaw('
                                     CASE
                                         WHEN approval_status = "Pending" THEN 1

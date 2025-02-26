@@ -44,9 +44,9 @@
                     $queryParams = request()->query();
                 @endphp
 
-                <form method="GET" action="{{ url('/dashboard' . '/' . $user->username . '/posts') . '?' . http_build_query($queryParams) }}" class="flex bg-white shadow-md rounded-[0.5vw] px-[1.1vw] py-[1.1vw] text-black text-[1vw] font-semibold font-open_sans tracking-wide w-[25vw] justify-end">
-                    @if (request('post'))
-                        <input type="hidden" name="{{ 'post' }}" value="{{ request('post') }}">
+                <form method="GET" action="{{ url('/dashboard' . '/' . $user->username . '/adoption-requests') . '?' . http_build_query($queryParams) }}" class="flex bg-white shadow-md rounded-[0.5vw] px-[1.1vw] py-[1.1vw] text-black text-[1vw] font-semibold font-open_sans tracking-wide w-[25vw] justify-end">
+                    @if (request('request'))
+                        <input type="hidden" name="{{ 'request' }}" value="{{ request('request') }}">
                     @endif
                     <svg class="w-[1.6vw] h-[1.6vw] justify-center text-center cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4a6 6 0 100 12 6 6 0 000-12zM21 21l-4.35-4.35"></path>

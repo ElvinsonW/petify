@@ -49,7 +49,7 @@
                     @endphp
                 </div>
 
-                <form method="GET" action="{{ url('/dashboard/my-post-requests') . '?' . http_build_query($queryParams) }}" class="flex bg-white shadow-md rounded-[0.5vw] px-[1.1vw] py-[1.1vw] text-black text-[1vw] font-semibold font-open_sans tracking-wide w-[25vw] justify-end">
+                <form method="GET" action="{{ url('/dashboard' . '/' . $user->username . '/post-requests') . '?' . http_build_query($queryParams) }}" class="flex bg-white shadow-md rounded-[0.5vw] px-[1.1vw] py-[1.1vw] text-black text-[1vw] font-semibold font-open_sans tracking-wide w-[25vw] justify-end">
                     @if (request('post'))
                         <input type="hidden" name="{{ 'post' }}" value="{{ request('post') }}">
                     @endif

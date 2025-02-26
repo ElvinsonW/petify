@@ -38,7 +38,7 @@
 
                     <!-- Location -->
                     <div>
-                        <label for="location" class="block mb-2 text-lg font-semibold">Location</label>
+                        <label for="location" class="block mb-2 text-lg font-semibold">City</label>
                         <input type="text" id="location" name="location" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Location..." value="{{ old('location') }}" required />
                     </div>
                     
