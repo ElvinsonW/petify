@@ -283,7 +283,7 @@
             const isValid = validatePassword(passInput.value);
 
             if (!isValid) {
-                e.preventDefault(); // Prevent form submission
+                e.preventDefault(); 
                 alert("Password does not meet the requirements. Please fix it before submitting.");
             }
         });

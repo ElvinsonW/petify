@@ -15,6 +15,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\FindMyPetController;
 use App\Http\Middleware\AdminOnly;
+use App\Http\Middleware\CheckPostOwnership;
 use App\Http\Middleware\GuestMode;
 use App\Http\Middleware\OwnerDashboardOnly;
 use App\Models\ArticleRequest;
@@ -25,52 +26,19 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
-Route::get('/login',function (){
-    return view('login');
-})->name("login")->middleware(GuestMode::class);
+Route::get('/login',[UserController::class,"loginForm"])->name("login")->middleware(GuestMode::class);
 
-Route::post('/login', function(Request $request) {
-    $credentials = $request->validate([
-        'username' => ['required'],
-        'password' => ['required'],
-    ]);
-
-    if (Auth::attempt($credentials)) {
-        $request->session()->regenerate();
-        return redirect()->intended('')->with('loginSuccess','You have successfully logged in.');
-    }
-
-    return redirect('/login')->with('loginError','The provided password do not match our records.');
-})->name('login')->middleware(GuestMode::class);
+Route::post('/login', [UserController::class,"login"])->name('login')->middleware(GuestMode::class);
 
 // Registration Routes
 Route::get('/register',function(){
     return view('register');
 })->middleware(GuestMode::class);
 
-Route::post('/register', function(Request $request){
-    $validatedData = $request->validate([
-        "name" => ['required','max:255'],
-        "username" => ['required','max:15'],
-        "address" => ['required','max:255'],
-        "email" => ['required','email'],
-        'phone_number' => ['required'],
-        'password' => ['required','min:8','regex:/[A-Z]/','regex:/[a-z]/', 'regex:/[0-9]/'],
-        'role' => ['prohibited']
-    ]);
-
-    $validatedData['password'] = Hash::make($validatedData['password']);
-
-    unset($validatedData['role']);
-
-    User::create($validatedData);
-    
-    return redirect('/login')->with('registerSuccess','Registration Success, Please Login!');
-})->middleware(GuestMode::class);
+Route::post('/register', [UserController::class,"register"])->middleware(GuestMode::class);
 
 Route::post('/logout',[UserController::class,"logout"])->middleware('auth');
 
@@ -136,12 +104,10 @@ Route::get('/dashboard/{username}/liked-posts',[UserDashboardController::class,'
 
 Route::get('/dashboard/{username}/post-requests',[UserDashboardController::class,'indexPostRequest'])->middleware(OwnerDashboardOnly::class);
 
-// Route::get('/dashboard/update-profile',[UserDashboardController::class,'indexUpdateProfile']);
-
 Route::get("/dashboard/{username}/profile",[UserController::class,"index"])->middleware(OwnerDashboardOnly::class);
 
 Route::put("/dashboard/{username}/profile",[UserController::class,"update"])->middleware(OwnerDashboardOnly::class);
 
 Route::get('/dashboard/{username}/adoption-history',[UserDashboardController::class,'indexAdoptionHistory'])->middleware(OwnerDashboardOnly::class);
 
-Route::get('/adoptions/{slug}/adoption-request/{id}/{action}',[AdoptionRequestController::class,"handleRequest"])->middleware(OwnerDashboardOnly::class);
+Route::get('/adoptions/{slug}/adoption-request/{id}/{action}',[AdoptionRequestController::class,"handleRequest"])->middleware(CheckPostOwnership::class);;

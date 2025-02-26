@@ -25,9 +25,9 @@ class LifeAfterAdoptionController extends Controller
 
         // Mencari pet_id dari user yang telah diadopsi oleh orang lain
         $petIds = AdoptionPost::where('user_id',auth()->user()->id)
-                              ->where('status',1)
-                              ->pluck('pet_id')
-                              ->toArray();
+                                ->where('status',1)
+                                ->pluck('pet_id')
+                                ->toArray();
 
         // Mencari pet berdasarkan id yand ada dan menambahkan total post dari tiap pet
         $pets = Pet::whereIn('id',$petIds)->get()->map( function($pet) {

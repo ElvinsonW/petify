@@ -88,7 +88,8 @@ class AdoptionRequestController extends Controller
         
     }
 
-    public function handleRequest(string $id, string $action){
+    public function handleRequest(string $slug,string $id, string $action){
+        dd("halo");
         $request = AdoptionRequest::findOrFail($id);
         
         DB::transaction(function () use ($request, $action) {

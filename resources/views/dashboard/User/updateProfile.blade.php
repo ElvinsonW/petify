@@ -8,7 +8,7 @@
             <p class="text-black font-normal text-[1.3vw] font-overpass tracking-wide">manage your information wisely</p>
         </div>            
 
-        <form action="/dashboard/profile" method="POST" enctype="multipart/form-data">
+        <form action="/dashboard/{{ auth()->user()->username }}/profile" method="POST" enctype="multipart/form-data">
             @csrf
             @method("PUT")
             <!-- Profile Picture -->
@@ -31,12 +31,22 @@
                 <div>
                     <label class="text-block text-[1.3vw] font-semibold text-black font-montserrat_alt tracking-wide">Username</label>
                     <input type="text" value="{{ $user->username }}" name="username" class="mt-[0.2vw] w-full px-[0.8vw] py-[0.3vw] border border-gray-300 rounded-[0.5vw] tracking-wide text-[1.2vw] text-black/40 focus:outline-none focus:ring focus:ring-greentipis">
+                    @error('username')
+                        <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
         
                 <!-- Email -->
                 <div>
                     <label class="text-block text-[1.3vw] font-semibold text-black font-montserrat_alt tracking-wide">Email</label>
                     <input type="email" value="{{ $user->email }}" name="email" class="mt-[0.2vw] w-full px-[0.8vw] py-[0.3vw] border border-gray-300 rounded-[0.5vw] tracking-wide text-[1.2vw] text-black/40 focus:outline-none focus:ring focus:ring-greentipis">
+                    @error('email')
+                        <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
         
                 <!-- Phone Number -->
@@ -46,12 +56,22 @@
                         <span class="px-3 text-black">+62</span>
                         <input type="text" value="{{ $user->phone_number }}" name="phone_number" class="w-full px-[0.8vw] py-[0.3vw] focus:outline-none text-black/40 focus:ring focus:ring-greentipis rounded-[0.5vw]">
                     </div>
+                    @error('phone_number')
+                        <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
         
                 <!-- Address -->
                 <div>
                     <label class="text-block text-[1.3vw] font-semibold text-black font-montserrat_alt tracking-wide">Address</label>
                     <input type="text" value="{{ $user->address }}" name="address" class="mt-[0.2vw] w-full px-[0.8vw] py-[0.3vw] border border-gray-300 rounded-[0.5vw] tracking-wide text-[1.2vw] text-black/40 focus:outline-none focus:ring focus:ring-greentipis">
+                    @error('address')
+                        <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
             </div>
         

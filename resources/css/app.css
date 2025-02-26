@@ -38,6 +38,9 @@ blockquote::before {
     content: "”";
   }
 
+  .hover-brightness:hover{
+    filter: brightness(0.9);
+  }
 
   
   

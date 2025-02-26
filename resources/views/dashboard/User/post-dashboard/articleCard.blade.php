@@ -1,5 +1,5 @@
 <!-- card 1 -->
-<div class="flex flex-col md:flex-row items-start space-x-[1.5vw]">
+<a href="/articles/{{ $post->slug }}" class="flex flex-col md:flex-row items-start space-x-[1.5vw] bg-gray-50 hover-brightness">
     <!-- photo of pet -->
     <img
         src="{{ asset('images/articlepict.svg') }}"
@@ -16,42 +16,14 @@
         </div>
         <!-- detail -->
         <p class="mt-[0.2vw] text-[0.95vw] font-open_sans leading-snug text-gray-600 font-normal">
-            {!! Str::limit(strip_tags($post->content,350)) !!}
+            {!! Str::limit(strip_tags($post->content),350) !!}
         </p>
         <div class="flex justify-between items-center text-[0.8vw] text-black font-open_sans font-semibold mt-[1vw] leading-snug">
             <!-- Tanggal dan Icon -->
             <div class="flex items-center space-x-[0.5vw]">
                 <img src="{{ asset('images/uim_calendar.svg') }}" alt="Calendar Icon" class="w-[1.2vw] h-[1.2vw]">
                 <span>{{ $post->created_at->format('d F Y') }}</span>
-            </div>
-            <!-- Icons at the end -->
-            <div class="flex justify-center items-center space-x-[0.5vw] gap-[0.75vw] mt-0">
-                <!-- show -->
-                <div class="cursor-pointer">
-                    <a href="/articles/{{ $post->slug }}">
-                        <i class="fa-solid fa-eye text-blue-500 text-[1.5vw]"></i>
-                    </a>
-                </div>
-
-                <!-- pen edit -->
-                <div class="cursor-pointer">
-                    <a href="/adoptions/{{ $post->slug }}/edit">
-                        <i class="fa-solid fa-pen-nib text-yellow-500 text-[1.5vw]"></i>
-                    </a>
-                </div>
-
-                <!-- dusbin -->
-                <div class="cursor-pointer">
-                    <form action="{{ route('adoptions.destroy', $post->slug) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="bg-transparent border-none cursor-pointer">
-                            <i class="fa-solid fa-trash text-red-700 text-[1.4vw]"></i>
-                        </button>
-                    </form>
-                </div>    
-            </div>
-            
+            </div>            
         </div>
     </div>
-</div>
+</a>

@@ -46,7 +46,7 @@
 
     <!-- phone -->
     <div class="py-[2vw] mobileMenu hidden font-overpass font-medium text-lg tracking-wide-9 text-center">
-        <ul class="text-red gap-4">
+        <ul class="text-red gap-4 list-none">
             {{-- <li class="py-3 px-3 cursor-pointer hover:text-greentua hover:font-semibold"><a href="/adoptions">Adoption</a></li>  
             <li class="cursor-pointer m-7 p-2 font-semibold border-greentua text-greentua border rounded-3xl flex items-center justify-center shadow-md hover:shadow-lg transition-shadow duration-200">
                 <p class="text-center pt-1"><a href="/articles">Article</a></p>

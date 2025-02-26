@@ -67,20 +67,29 @@
                         <div class="absolute inset-y-0 start-0 flex items-center ps-[0.75vw] pointer-events-none">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
-                        <input type="search" id="search" name="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold" value="{{ request('search') }}" placeholder="Search Here">
+                        <input type="search" id="search" name="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold focus:outline-none" value="{{ request('search') }}" placeholder="Search Here">
                         <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-[0.5vw] px-[0.5vw] py-[0.4vw] !font-overpass">Search</button>
                     </div>
                 </form>
             </div>
             
             <!-- Button Filter & Your Like -->
-            @php
-                $queryParams = request()->query();
-                $queryParams["like"] = 'true';
-            @endphp
+            
             <div class="flex flex-row">
                 <button class="mt-[1vw] text-white bg-greenpetify rounded-[1vw] shadow-lg transform hover:scale-95 hover:bg-greentua transition duration-300 ease-in-out text-[1.2vw] font-semibold px-[0.75vw] py-[0.75vw] font-overpass"><i class="fa-solid fa-sliders mr-2" style="color: #ffffff;"></i>Filter</button>
-                <button class="mt-[1vw] ml-[1vw] text-white bg-oren rounded-[1vw] shadow-lg transform hover:scale-95 hover:bg-orange-800 transition duration-300 ease-in-out text-[1.2vw] font-semibold px-[0.75vw] py-[0.75vw] font-overpass"><i class="fa-solid fa-heart mr-2" style="color: #ffffff;"><a href="{{ url('adoptions') . '?' . http_build_query($queryParams) }}"></i>Your Like</a></button>
+                @if (request('like'))
+                    @php
+                        $queryParams = request()->query();
+                        unset($queryParams["like"]);
+                    @endphp
+                    <button class="mt-[1vw] ml-[1vw] text-white bg-orange-800 rounded-[1vw] shadow-lg transform hover:scale-95 hover:bg-orange-800 transition duration-300 ease-in-out text-[1.2vw] font-semibold px-[0.75vw] py-[0.75vw] font-overpass"><i class="fa-solid fa-heart mr-2" style="color: #ffffff;"><a href="{{ url('adoptions') . '?' . http_build_query($queryParams) }}"></i>Your Like</a></button>
+                @else
+                    @php
+                        $queryParams = request()->query();
+                        $queryParams["like"] = 'true';
+                    @endphp
+                    <button class="mt-[1vw] ml-[1vw] text-white bg-oren rounded-[1vw] shadow-lg transform hover:scale-95 hover:bg-orange-800 transition duration-300 ease-in-out text-[1.2vw] font-semibold px-[0.75vw] py-[0.75vw] font-overpass"><i class="fa-solid fa-heart mr-2" style="color: #ffffff;"><a href="{{ url('adoptions') . '?' . http_build_query($queryParams) }}"></i>Your Like</a></button>
+                @endif
             </div>
             
             <!-- Button Adoption Post -->
@@ -129,6 +138,7 @@
                         $isActive = request()->query('category') == $category->slug;
                         $queryParams = request()->query();
                         $queryParams["category"] = $category->slug;
+                        unset($queryParams['page']); 
                     @endphp
 
                     @if ($isActive)

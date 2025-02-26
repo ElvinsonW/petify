@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ArticleEventCategory;
 use App\Models\Event;
 use App\Models\User;
 use Faker\Factory as Faker;

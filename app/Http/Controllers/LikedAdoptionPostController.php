@@ -23,8 +23,8 @@ class LikedAdoptionPostController extends Controller
         
         // Cek apakah sudah pernah dilike
         if ($isLike = LikedAdoptionPost::where('user_id', auth()->user()->id)
-                                       ->where('adoption_post_id', $adoptionPost->id)
-                                       ->exists()
+                                        ->where('adoption_post_id', $adoptionPost->id)
+                                        ->exists()
         ){
             return redirect('/adoptions')->with('likeError',"You can't like the same post twice.");
         }
@@ -45,8 +45,8 @@ class LikedAdoptionPostController extends Controller
         if($adoptionPost){
             // Hapus post dari database like
             LikedAdoptionPost::where('user_id', auth()->user()->id)
-                             ->where('adoption_post_id', $adoptionPost->id)
-                             ->delete();
+                                ->where('adoption_post_id', $adoptionPost->id)
+                                ->delete();
         }
         return redirect('adoptions')->with('likeError',"Post doesnt exist.");
     }
