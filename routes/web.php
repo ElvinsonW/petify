@@ -13,6 +13,7 @@ use App\Http\Controllers\LikedAdoptionPostController;
 use App\Http\Controllers\LikedLifeAfterAdoptionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\FindMyPetController;
 use App\Http\Middleware\AdminOnly;
 use App\Http\Middleware\CheckPostOwnership;
 use App\Http\Middleware\GuestMode;
@@ -85,6 +86,12 @@ Route::resource('/dashboard/event-requests', EventRequestController::class)->mid
 Route::get('/dashboard/event-requests/{slug}/{action}', [EventRequestController::class,'handleRequest'])->middleware(AdminOnly::class);
 
 Route::get('/dashboard/{username}/posts',[UserDashboardController::class,'indexPost']);
+
+Route::resource('/find-your-pet', FindMyPetController::class)->middleware('auth');
+Route::resource('/find-my-pet', FindMyPetController::class)->middleware('auth');
+
+
+Route::get('/find-my-pet-form', [FindMyPetController::class, 'create'])->name('find-my-pet-form')->middleware('auth');
 
 Route::get('/dashboard/{username}/adoption-requests',[UserDashboardController::class,'indexAdoptionRequest'])->middleware(OwnerDashboardOnly::class);
 

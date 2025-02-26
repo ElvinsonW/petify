@@ -5,12 +5,12 @@
     <!-- icon logo -->
     <div class="flex justify-center items-center">
         <a href="/">
-            <img class="w-[10vw]" src="{{ asset('images/Logo.svg') }}" alt="">
+            <img class="w-[8vw]" src="{{ asset('images/Logo.svg') }}" alt="">
         </a>
     </div>
 
     <!-- profile -->
-    <div class="pt-[2vw] flex flex-col justify-center items-center">
+    <div class="pt-[1.5vw] flex flex-col justify-center items-center">
         <div class="w-[9vw] h-[9vw] bg-white border-[0.5vw] border-orenmuda rounded-full flex justify-center items-center">
             <img class="w-[7vw] h-[7vw]" src="{{ asset('images/after login.svg') }}" alt="After Login logo">
         </div>
@@ -22,7 +22,7 @@
         </a>
         @if ($user->role == "User")
             <!-- achievement/ poin -->
-            <div class="flex justify-center items-center mt-[0.8vw]">
+            <div class="flex justify-center items-center mt-[0.5vw]">
                 <img class="w-[2vw]" src="{{ asset('images/game-icons_achievement.svg') }}" alt="">
                 <p class="text-center text-[1.2vw] font-bold font-overpass text-greentipis">{{ $user->point }}</p>
             </div>
@@ -169,6 +169,7 @@
                 </div>
             </a>
 
+            <!-- post request -->
             <a href="{{ '/dashboard' . '/' . $user->username . '/post-requests' }}">
                 <div class="flex flex-row items-center justify-items-start space-x-[1.3vw] hover:font-bold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
                     @if (request()->is(['dashboard/' . $user->username . '/post-requests']))

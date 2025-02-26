@@ -26,12 +26,13 @@ class EventController extends Controller
         // Get the next 5 closest upcoming events from tomorrow
         $upcomingEvents = Event::whereDate('start_date', '>', $today)  // Events happening after today
                                 ->orderBy('start_date', 'asc')  // Sort by nearest first
-                                ->get();
+                                ->paginate(9)
+                                ->withQueryString();
 
         // Get all events for the current month for the calendar
         $calendarEvents = Event::whereMonth('start_date', $today->month)
-                               ->whereYear('start_date', $today->year)
-                               ->get();
+                                ->whereYear('start_date', $today->year)
+                                ->get();
 
         return view('event.event', compact('mainEvent', 'upcomingEvents', 'calendarEvents'));
     }

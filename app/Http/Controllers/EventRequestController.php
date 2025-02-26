@@ -14,16 +14,16 @@ class EventRequestController extends Controller
         $filters = ['status'];
         return view('dashboard.admin.eventDashboardAdmin',[
             "requests" => Event::filter(request($filters))
-                               ->orderByRaw("
+                                ->orderByRaw("
                                     CASE
                                         WHEN approval_status = 'pending' THEN 1
                                         WHEN approval_status = 'accepted' THEN 2
                                         WHEN approval_status = 'rejected' THEN 3
                                         ELSE 4
                                     END
-                               ")
-                               ->orderBy('id')
-                               ->get(),
+                                ")
+                                ->orderBy('id')
+                                ->get(),
             "total_pending_requests" => Event::where('approval_status','Pending')->count(),
             "total_accepted_requests" => Event::where('approval_status','Accepted')->count(),
             "total_rejected_requests" => Event::where('approval_status','Rejected')->count(),

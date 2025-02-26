@@ -22,9 +22,9 @@ class UserDashboardController extends Controller
         $filters = ['search'];
         return view('dashboard.user.post-dashboard.postDashboardUser',[
             "posts" => [
-               "adoption" => AdoptionPost::filter(request($filters))->where('user_id',$user->id)->get(),
-               "article" => Article::filter(request($filters))->where('user_id',$user->id)->get(),
-               "event" => Event::where('user_id',$user->id)->get(),
+                "adoption" => AdoptionPost::filter(request($filters))->where('user_id',$user->id)->get(),
+                "article" => Article::filter(request($filters))->where('user_id',$user->id)->get(),
+                "event" => Event::where('user_id',$user->id)->get(),
             ],
             "user" => $user
         ]);
@@ -79,16 +79,16 @@ class UserDashboardController extends Controller
                 "adoptions" => AdoptionPostRequest::filter(request(['search']))->where('user_id',$user->id)->get(),
                 "articles" => ArticleRequest::filter(request(['search']))->where('user_id',$user->id)->get(),
                 "events" => Event::where('user_id',$user->id)
-                                 ->orderByRaw('
+                                ->orderByRaw('
                                     CASE
                                         WHEN approval_status = "Pending" THEN 1
                                         WHEN approval_status = "Accepted" THEN 2
                                         WHEN approval_status = "Rejected" THEN 3
                                         ELSE 4
                                     END
-                                 ')
-                                 ->orderBy('id')
-                                 ->get(),
+                                ')
+                                ->orderBy('id')
+                                ->get(),
             ],
             "user" => $user,
         ]);
@@ -98,8 +98,8 @@ class UserDashboardController extends Controller
         $user = User::where('username',$username)->firstOrFail();
         return view('dashboard.User.adoptionHistoryDashboard',[
             "adoptions" => AdoptionRequest::where('user_id',$user->id)
-                                          ->where('approval_status',"Accepted")
-                                          ->get(),
+                                            ->where('approval_status',"Accepted")
+                                            ->get(),
             "lifeAfterAdoptions" => LifeAfterAdoption::whereHas("pet", 
                                         fn(Builder $query) =>
                                             $query->where("name",$request->name)
