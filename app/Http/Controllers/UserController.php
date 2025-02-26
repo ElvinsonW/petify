@@ -12,9 +12,10 @@ use PDO;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index(string $username){
+        $user = User::where('username',$username)->firstOrFail();
         return view('dashboard.User.updateProfile',[
-            "user" => auth()->user(),
+            "user" => $user,
         ]);
     }
 

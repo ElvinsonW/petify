@@ -57,6 +57,8 @@ class EventRequestController extends Controller
                 $dayIds = Day::where('event_id',$request->id)->pluck('id')->toArray();
                 DaySession::whereIn('day_id',$dayIds)->delete();
                 Day::where('event_id',$request->id)->delete();
+            } else {
+                $request->user->addPoint(10);
             }
 
             return redirect('/dashboard/event-requests');

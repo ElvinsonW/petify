@@ -159,7 +159,7 @@
         <!-- Owner & Contact -->
         <div class="mt-10 mr-16 flex flex-row">
             <!-- Owner -->
-            <div class="flex flex-col mr-36">
+            <a class="flex flex-col mr-36" href="/dashboard/{{ $adoption->user->username }}/posts">
                 <h4 class="font-montserrat_alt font-semibold text-2xl">Owner</h4>
                 <hr class="border-black border-1/2 w-64">
                 <div class="flex flex-row mt-4">
@@ -172,7 +172,7 @@
                         <p class="font-overpass font-semibold text-orenmuda text-xl mt-2"><i class="fa-solid fa-paw mr-2 bg-orenmuda rounded-full bg-opacity-25 border-orenmuda border-opacity-25 border-4" style="color: #f2ae72;"></i>1900</p>
                     </div>
                 </div>
-            </div>
+            </a>
 
             <!-- Contact -->
             <div class="flex flex-col">

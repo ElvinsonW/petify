@@ -62,6 +62,50 @@ class AdoptionPost extends Model
                 $petQuery->where('user_id',auth()->user()->id)
             ) 
         );
+
+        $query->when(
+            $filters["minWeight"] ?? false,
+            fn($query, $minWeight) =>
+                $query->where('weight', '>=', $minWeight)
+        );
+
+        $query->when(
+            $filters["maxWeight"] ?? false,
+            fn($query, $maxWeight) =>
+                $query->where('weight', '<=', $maxWeight)
+        );
+
+        $query->when(
+            $filters["minAge"] ?? false,
+            fn($query, $minAge) =>
+                $query->where('age', '>=', $minAge)
+        );
+
+        $query->when(
+            $filters["maxAge"] ?? false,
+            fn($query, $maxAge) =>
+                $query->where('age', '<=', $maxAge)
+        );
+
+        $query->when(
+            $filters["city"] ?? false,
+            fn($query, $city) =>
+                $query->where('location', 'like', '%' . $city . '%')
+        );
+
+        $query->when(
+            $filters["gender"] ?? false,
+            fn($query, $gender) =>
+                $query->whereHas('pet', fn (Builder $petQuery) => 
+                    $petQuery->where('gender', $gender)
+                )
+        );
+
+        $query->when(
+            $filters["vaccine"] ?? false,
+            fn($query, $vaccine) =>
+                $query->where('vaccinated', $vaccine == "yes" ? 1 : 0)
+        );
     }
 
     public function sluggable(): array

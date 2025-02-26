@@ -21,4 +21,8 @@ class Pet extends Model
     public function pet_category(): BelongsTo {
         return $this->belongsTo(PetCategory::class,'pet_category_id');
     }
+
+    public function life_after_adoptions(): HasMany{
+        return $this->hasMany(LifeAfterAdoption::class,"pet_id");
+    }
 }

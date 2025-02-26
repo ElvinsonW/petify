@@ -1,4 +1,4 @@
-<x-dashboard.layout>
+<x-dashboard.layout :user="$user">
     @if (session('updateSuccess'))
 
         <div class="alert absolute z-40 flex items-center justify-center p-4 mb-4 w-[30vw] text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" 
@@ -91,7 +91,7 @@
                     $queryParams = request()->query();
                 @endphp
 
-                <form method="GET" action="{{ url('/dashboard/my-posts') . '?' . http_build_query($queryParams) }}" class="flex bg-white shadow-md rounded-[0.5vw] px-[1.1vw] py-[1.1vw] text-black text-[1vw] font-semibold font-open_sans tracking-wide w-[25vw] justify-end">
+                <form method="GET" action="{{ url('/dashboard' . '/' . $user->username . '/posts') . '?' . http_build_query($queryParams) }}" class="flex bg-white shadow-md rounded-[0.5vw] px-[1.1vw] py-[1.1vw] text-black text-[1vw] font-semibold font-open_sans tracking-wide w-[25vw] justify-end">
                     @if (request('post'))
                         <input type="hidden" name="{{ 'post' }}" value="{{ request('post') }}">
                     @endif
@@ -112,12 +112,14 @@
                 @endforeach
             </div>
             
-            <!-- Floating Button Adoption Post  -->
-            <div class=" hover:bg-orange-400 fixed bottom-[1.5vw] bg-or-dashboard text-white font-montserrat_alt text-[1.3vw] font-semibold tracking-wide px-[0.8vw] py-[0.4vw] rounded-[0.6vw] shadow-white shadow-lg flex items-center space-x-[0.5vw] cursor-pointer">
-                <a href="{{ '/' . request('post') . 's/create' }}">
-                    <span>+ Create Post</span>
-                </a>
-            </div>
+            @if (auth()->user()->id == $posts[request('post')][0]->user_id)    
+                <!-- Floating Button Adoption Post  -->
+                <div class=" hover:bg-orange-400 fixed bottom-[1.5vw] bg-or-dashboard text-white font-montserrat_alt text-[1.3vw] font-semibold tracking-wide px-[0.8vw] py-[0.4vw] rounded-[0.6vw] shadow-white shadow-lg flex items-center space-x-[0.5vw] cursor-pointer">
+                    <a href="{{ '/' . request('post') . 's/create' }}">
+                        <span>+ Create Post</span>
+                    </a>
+                </div>
+            @endif
         @endif
         <!-- sidebar kanan end -->
     </div>

@@ -1,3 +1,11 @@
+@props(['user'])
+
+@php
+    if(!$user){
+        $user = auth()->user();
+    }
+@endphp
+
 <!DOCTYPE html>
 <html lang="en" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -64,7 +72,7 @@
 </head>
 <body>
     <div class="flex h-screen bg-no-repeat bg-center bg-contain bg-gray-50" style="background-image: url(../src/images/adopt-bg.png)">
-        <x-dashboard.sidebar></x-dashboard.sidebar>
+        <x-dashboard.sidebar :user="$user"></x-dashboard.sidebar>
         {{ $slot }}
     </div>    
     

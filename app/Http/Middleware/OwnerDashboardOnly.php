@@ -18,7 +18,7 @@ class OwnerDashboardOnly
     {
         $owner = User::where('username',$request->route('username'))->firstOrFail();
         if($owner->id != auth()->user()->id){
-            return redirect('/')->with('userError',"Only the Owner Can Access This Page!");
+            return redirect('/dashboard'. '/' . $owner->username . '/posts')->with('userError',"Only the Owner Can Access This Page!");
         }
 
         return $next($request);

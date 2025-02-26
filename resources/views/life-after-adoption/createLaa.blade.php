@@ -11,7 +11,7 @@
                 <div class="w-1/3 mb-6">
                     <label for="pet_id" class="block mb-2 text-lg font-semibold w-fit">Select Your Pet</label>
                     <div class="relative">
-                        <select id="pet_id" name="pet_id" class="appearance-none border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none pr-10 text-gray-400" required>
+                        <select id="pet_id" name="pet_id" class="appearance-none border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none pr-10 text-black" required>
                             <option value="" disabled selected hidden>Select a Pet...</option>
                             @foreach ($pets as $pet)
                                 @if (old('pet_id') == $pet->id)

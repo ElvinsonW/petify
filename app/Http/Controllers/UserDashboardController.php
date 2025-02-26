@@ -11,13 +11,14 @@ use App\Models\Event;
 use App\Models\LifeAfterAdoption;
 use App\Models\LikedAdoptionPost;
 use App\Models\LikedLifeAfterAdoption;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class UserDashboardController extends Controller
 { 
-    public function indexPost(){
-        $user = auth()->user();
+    public function indexPost(string $username){
+        $user = User::where('username',$username)->firstOrFail();
         $filters = ['search'];
         return view('dashboard.user.post-dashboard.postDashboardUser',[
             "posts" => [
@@ -29,21 +30,39 @@ class UserDashboardController extends Controller
         ]);
     }
 
-    public function indexAdoptionRequest(){
-        $user = auth()->user();
-        $requests = AdoptionRequest::whereHas('adoption_post',fn(Builder $query) => 
+    public function indexAdoptionRequest(string $username){
+        $user = User::where('username',$username)->firstOrFail();
+        $otherRequests = AdoptionRequest::whereHas('adoption_post',fn(Builder $query) => 
             $query->where('user_id',$user->id)
-        )->get();
+        )->orderByRaw("
+            CASE
+                WHEN approval_status = 'Pending' THEN 1
+                WHEN approval_status = 'Accepted' THEN 2
+                WHEN approval_status = 'Rejected' THEN 3
+                ELSE 4
+            END
+        ")->get();
 
+        $myRequests = AdoptionRequest::where('user_id',$user->id)->orderByRaw("
+            CASE
+                WHEN approval_status = 'Pending' THEN 1
+                WHEN approval_status = 'Accepted' THEN 2
+                WHEN approval_status = 'Rejected' THEN 3
+                ELSE 4
+            END
+        ")->get();
 
-        return view('dashboard.user.adoptionRequestDashboard',[
-            "requests" => $requests,
+        return view('dashboard.user.adoption-request.adoptionRequestDashboard',[
+            "requests" => [
+                "other-request" => $otherRequests,
+                "my-request" => $myRequests
+            ],
             "user" => $user,
         ]);
     }
 
-    public function indexLikedPost(){
-        $user = auth()->user();
+    public function indexLikedPost(string $username){
+        $user = User::where('username',$username)->firstOrFail();
         return view('dashboard.user.liked-post.likedPostDashboard',[
             "posts" => [
                 "adoptions" => LikedAdoptionPost::where('user_id',$user->id)->get(),
@@ -53,8 +72,8 @@ class UserDashboardController extends Controller
         ]);
     }
 
-    public function indexPostRequest(){
-        $user = auth()->user();
+    public function indexPostRequest(string $username){
+        $user = User::where('username',$username)->firstOrFail();
         return view('dashboard.user.post-request.postRequestDashboard',[
             "requests" => [
                 "adoptions" => AdoptionPostRequest::filter(request(['search']))->where('user_id',$user->id)->get(),
@@ -75,8 +94,8 @@ class UserDashboardController extends Controller
         ]);
     }
 
-    public function indexAdoptionHistory(Request $request){
-        $user = auth()->user();
+    public function indexAdoptionHistory(Request $request, string $username){
+        $user = User::where('username',$username)->firstOrFail();
         return view('dashboard.User.adoptionHistoryDashboard',[
             "adoptions" => AdoptionRequest::where('user_id',$user->id)
                                           ->where('approval_status',"Accepted")

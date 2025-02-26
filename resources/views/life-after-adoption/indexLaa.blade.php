@@ -54,6 +54,34 @@
                     <h4 class="text-xl font-bold">Pet Category</h4>
                     <hr class="border-black border-1/2 w-full my-2">
                 </div>
+
+                <!-- ALL CATEGORY -->
+                @if (request()->is('life-after-adoption') && !request()->query('category')) 
+                    @php
+                        $queryParams = request()->query();
+                    @endphp
+
+                    <button class="clear-category pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group bg-orenmuda">
+                        <a href="{{ url('adoptions/') . '?' . http_build_query($queryParams) }}">
+                            <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left text-white">All Category</p>
+                            <hr class="border-1/2 my-[0.5vw] w-full border-white">
+                        </a>
+                    </button>         
+
+                @else
+                    @php
+                        $queryParams = request()->query();
+                        unset($queryParams['category']); 
+                    @endphp
+
+                    <button class="clear-category pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group hover:bg-orenmuda">
+                        <a href="{{ url('adoptions/') . '?' . http_build_query($queryParams) }}">
+                            <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left group-hover:text-white transition-colors duration-500 ease-in-out">All Category</p>
+                            <hr class="border-orenmuda border-1/2 w-[6vw] my-[0.5vw] group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
+                        </a>
+                    </button>   
+
+                @endif
                 
                 @foreach ($categories as $category)
                     @php
@@ -106,13 +134,13 @@
                         <!-- Profile -->
                         <div class="flex flex-row mb-4 items-center gap-3">
                             <div class="w-12 h-12 bg-white border-4 border-greentua rounded-full flex justify-center items-center">
-                                <img src="{{ asset('images/after login.svg') }}" alt="Profile Owner" class="w-12">
+                                <img src="{{ asset('images/after login.svg') }}" alt="Profile Owner" class="w-[5vw] h-[5vw]">
                             </div>
                             <p class="mt-1 font-overpass font-semibold text-2xl">{{ $post->user->username }}</p>
                         </div>
 
                         <!-- Gambar Pet -->
-                        <img src="{{ asset("storage/" . $post->image) }}" alt="Pet Post" class="w-full h-fit">
+                        <img src="{{ asset("storage/" . $post->image) }}" alt="Pet Post" class="w-[35vw] h-[25vw] object-cover">
                         
                         <!-- Like & Days -->
                         <div class="flex flex-row mt-8 mb-4 pl-1">

@@ -25,6 +25,7 @@ class User extends Authenticatable
         'password',
         'address',
         'phone_number',
+        'point'
     ];
 
     /**
@@ -66,6 +67,10 @@ class User extends Authenticatable
         return $this->hasMany(LikedLifeAfterAdoption::class,'user_id');
     }
 
+    public function life_after_adoption(): HasMany{
+        return $this->hasMany(LifeAfterAdoption::class,"user_id");
+    }
+
     public function article_requests(): HasMany {
         return $this->hasMany(ArticleRequest::class,"user_id");
     }
@@ -80,5 +85,11 @@ class User extends Authenticatable
 
     public function adoption_requests(): HasMany {
         return $this->hasMany(AdoptionRequest::class,"user_id");
+    }
+
+    public function addPoint(int $point){
+        $this->update([
+            "point" => $this->point + $point
+        ]);
     }
 }

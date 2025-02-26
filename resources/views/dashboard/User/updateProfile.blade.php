@@ -1,4 +1,4 @@
-<x-dashboard.layout>
+<x-dashboard.layout :user="$user">
     <!-- bagian kanan sidebar -->
     <div class="flex-1 px-[2.8vw]">
         <!-- My Profile -->

@@ -19,9 +19,9 @@
         </div>
     @endif
 
-    <div class="flex h-[145vw] overflow-hidden">
+    <div class="flex overflow-hidden">
         <!-- Bagian Kiri (Sidebar) Start -->
-        <div class="w-[22vw] h-full shadow-lg pl-[3vw] pt-[3vw]">
+        <div class="w-[22vw] min-h-[100vh] shadow-lg pl-[3vw] pt-[3vw]">
             <!-- Greetings -->
             <div class="font-montserrat_alt">
                 <h4 class="text-[1.2vw]">Hello {{ auth()->user()->username }},</h4>

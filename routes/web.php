@@ -84,11 +84,7 @@ Route::resource('/dashboard/event-requests', EventRequestController::class)->mid
 
 Route::get('/dashboard/event-requests/{slug}/{action}', [EventRequestController::class,'handleRequest'])->middleware(AdminOnly::class);
 
-Route::fallback(function () {
-    return view('homepage');  
-});
-
-Route::get('/dashboard/{username}/posts',[UserDashboardController::class,'indexPost'])->middleware(OwnerDashboardOnly::class);
+Route::get('/dashboard/{username}/posts',[UserDashboardController::class,'indexPost']);
 
 Route::get('/dashboard/{username}/adoption-requests',[UserDashboardController::class,'indexAdoptionRequest'])->middleware(OwnerDashboardOnly::class);
 
@@ -100,6 +96,6 @@ Route::get("/dashboard/{username}/profile",[UserController::class,"index"])->mid
 
 Route::put("/dashboard/{username}/profile",[UserController::class,"update"])->middleware(OwnerDashboardOnly::class);
 
-Route::get('/dashboard/{username}/adoption-history',[UserDashboardController::class,'indexAdoptionHistory'])->middleware(OwnerDashboardOnly::class);
+Route::get('/dashboard/{username}/adoption-history',[UserDashboardController::class,'indexAdoptionHistory']);
 
 Route::get('/adoptions/{slug}/adoption-request/{id}/{action}',[AdoptionRequestController::class,"handleRequest"])->middleware(CheckPostOwnership::class);;

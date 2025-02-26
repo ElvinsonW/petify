@@ -57,7 +57,9 @@ class ArticleRequestController extends Controller
                     "user_id" => $request->user_id
                 ];
     
-                Article::create($articleData);
+                $article = Article::create($articleData);
+
+                $article->user->addPoint(20);
             }
 
             return redirect('/dashboard/article-requests');

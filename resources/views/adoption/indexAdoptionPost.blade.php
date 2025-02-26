@@ -40,9 +40,9 @@
         </div>
   
     @endif
-    <div class="flex h-[165vw] overflow-hidden">
+    <div class="flex overflow-hidden">
         <!-- Bagian Kiri (Sidebar) Start -->
-        <div class="w-[22vw] h-full shadow-lg pl-[3vw] pt-[3vw]">
+        <div id="sidebarLeft" class="w-[22vw] min-h-[100vh] shadow-lg pl-[3vw] pt-[3vw]">
             <!-- Greetings -->
             <div class="font-montserrat_alt">
                 <h4 class="text-[1.2vw]">Hello {{ auth()->user()->username }},</h4>
@@ -76,7 +76,12 @@
             <!-- Button Filter & Your Like -->
             
             <div class="flex flex-row">
-                <button class="mt-[1vw] text-white bg-greenpetify rounded-[1vw] shadow-lg transform hover:scale-95 hover:bg-greentua transition duration-300 ease-in-out text-[1.2vw] font-semibold px-[0.75vw] py-[0.75vw] font-overpass"><i class="fa-solid fa-sliders mr-2" style="color: #ffffff;"></i>Filter</button>
+                <!-- Filter Button -->
+                <button class="mt-[1vw] text-white bg-greenpetify rounded-[1vw] shadow-lg transform hover:scale-95 hover:bg-greentua transition duration-300 ease-in-out text-[1.2vw] font-semibold px-[0.75vw] py-[0.75vw] font-overpass" id="filterButton">
+                    <i class="fa-solid fa-sliders mr-2" style="color: #ffffff;"></i>Filter
+                </button>
+                
+                <!-- Like Button -->
                 @if (request('like'))
                     @php
                         $queryParams = request()->query();
@@ -90,15 +95,65 @@
                     @endphp
                     <button class="mt-[1vw] ml-[1vw] text-white bg-oren rounded-[1vw] shadow-lg transform hover:scale-95 hover:bg-orange-800 transition duration-300 ease-in-out text-[1.2vw] font-semibold px-[0.75vw] py-[0.75vw] font-overpass"><i class="fa-solid fa-heart mr-2" style="color: #ffffff;"><a href="{{ url('adoptions') . '?' . http_build_query($queryParams) }}"></i>Your Like</a></button>
                 @endif
+
+                <!-- Dropdown Filter -->
+                <div id="filterDropdown" class="absolute z-10 w-[16vw] mt-[5vw] bg-greenpetify text-white rounded-[1vw] shadow-lg opacity-0 scale-95 transition-all transform origin-top-left hidden font-overpass">
+                    <form class="p-[1vw] space-y-[1vw]">
+                        <!-- Weight Input -->
+                        <label class="block">
+                            <span class="text-[1vw] font-semibold">Weight (KG)</span>
+                            <div class="flex space-x-[0.5vw]">
+                                <input type="number" name="minWeight" placeholder="Min" class="w-[6.5vw] p-[0.5vw] bg-teal-700 rounded-[0.4vw]" min="1">
+                                <input type="number" name="maxWeight" placeholder="Max" class="w-[6.5vw] p-[0.5vw] bg-teal-700 rounded-[0.4vw]" min="1">
+                            </div>
+                        </label>
+
+                        <!-- Age Input -->
+                        <label class="block">
+                            <span class="text-[1vw] font-semibold">Age (Year)</span>
+                            <div class="flex space-x-[0.5vw]">
+                                <input type="number" name="minAge" placeholder="Min Age" class="w-[6.5vw] p-[0.5vw] bg-teal-700 rounded-[0.4vw]" min="1">
+                                <input type="number" name="maxAge" placeholder="Max Age" class="w-[6.5vw] p-[0.5vw] bg-teal-700 rounded-[0.4vw]" min="1">
+                            </div>
+                        </label>
+
+                        <!-- City Input -->
+                        <label class="block">
+                            <span class="text-[1vw] font-semibold">City</span>
+                            <input type="text" name="city" placeholder="Input city here" class="w-full p-[0.5vw] bg-teal-700 rounded-[0.4vw]">
+                        </label>
+
+                        <!-- Gender Select -->
+                        <label class="block">
+                            <span class="text-[1vw] font-semibold">Gender</span>
+                            <select name="gender" class="w-full mt-[0.25vw] p-[0.5vw] bg-teal-700 rounded-[0.4vw]">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="" selected>Any</option>
+                            </select>
+                        </label>
+
+                        <!-- Vaccined Select -->
+                        <label class="block">
+                            <span class="text-base font-semibold">Vaccine</span>
+                            <select name="vaccine" class="w-full mt-[0.25vw] p-[0.5vw] bg-teal-700 rounded-[0.4vw]">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                                <option value="" selected>Any</option>
+                            </select>
+                        </label>
+                        <button type="submit" class="w-full py-[0.25vw] mt-[1vw] bg-white text-greenpetify text-[1.2vw] rounded-[0.5vw] font-semibold hover:bg-gray-200 hover:scale-105 transition-all duration-300 ease-in-out font-montserrat_alt">Apply</button>
+                    </form>
+                </div>
             </div>
             
             <!-- Button Adoption Post -->
             <a href="/adoptions/create">
-                <button class="mt-[1vw] w-[16vw] text-white bg-orenmuda rounded-[1vw] shadow-lg transform hover:scale-95 hover:bg-orange-400 transition duration-300 ease-in-out text-[1.2vw] font-semibold px-[0.75vw] py-[0.75vw] font-overpass"><i class="fa-solid fa-plus mr-[0.5vw]" style="color: #ffffff;"></i>Adoption Post</button>
+                <button id="petCategoryContainer" class="relative z-0 mt-[1vw] w-[16vw] text-white bg-orenmuda rounded-[1vw] shadow-lg transform hover:scale-95 hover:bg-orange-400 transition duration-300 ease-in-out text-[1.2vw] font-semibold px-[0.75vw] py-[0.75vw] font-overpass"><i class="fa-solid fa-plus mr-[0.5vw]" style="color: #ffffff;"></i>Adoption Post</button>
             </a>
             
             <!-- Container Pet Category -->
-            <div class="mt-[1vw] w-[16vw] shadow-2xl rounded-[0.5vw] border-1/2 border-gray-400 p-[1vw] font-montserrat_alt">
+            <div id="petCategoryContainer" class="mt-[1vw] w-[16vw] shadow-2xl rounded-[0.5vw] border-1/2 border-gray-400 p-[1vw] font-montserrat_alt">
                 <div class="pl-[0.5vw]">
                     <h4 class="text-[1.4vw] font-bold">Pet Category</h4>
                     <hr class="border-black border-1/2 w-full my-[0.5vw]">
@@ -257,4 +312,44 @@
     
     setInterval(updateSapaan(),10000);
 
+    const filterButton = document.getElementById("filterButton");
+    const filterDropdown = document.getElementById("filterDropdown");
+    const petCategoryContainer = document.getElementById("petCategoryContainer");
+    const sidebarLeft = document.getElementById("sidebarLeft"); // Ambil sidebar kiri
+
+    filterButton.addEventListener("click", () => {
+            const isHidden = filterDropdown.classList.contains("hidden");
+
+            if (isHidden) {
+                // Menampilkan dropdown filter
+                filterDropdown.classList.remove("hidden");
+                filterDropdown.classList.add("opacity-100", "scale-100");
+
+                // Menambah margin bawah kategori agar turun
+                petCategoryContainer.classList.add("mt-[32vw]");
+
+                // Menambah tinggi sidebar agar tidak terpotong oleh footer
+                sidebarLeft.classList.add("h-auto");
+                sidebarLeft.style.minHeight = "calc(150vh + 200px)"; // Tinggi sidebar lebih panjang
+            } else {
+                // Menyembunyikan dropdown filter
+                filterDropdown.classList.add("hidden");
+                filterDropdown.classList.remove("opacity-100", "scale-100");
+
+                // Mengembalikan margin dan tinggi sidebar ke semula
+                petCategoryContainer.classList.remove("mt-[32vw]");
+
+                // Kembalikan tinggi sidebar agar kembali normal
+                sidebarLeft.style.minHeight = "100vh";
+            }
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!filterButton.contains(event.target) && !filterDropdown.contains(event.target)) {
+                filterDropdown.classList.add("hidden");
+                filterDropdown.classList.remove("opacity-100", "scale-100");
+                petCategoryContainer.classList.remove("mt-[32vw]");
+                sidebarLeft.style.minHeight = "100vh"; // Kembali ke tinggi normal
+            }
+        });
 </script>

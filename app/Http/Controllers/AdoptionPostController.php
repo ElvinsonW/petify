@@ -29,7 +29,7 @@ class AdoptionPostController extends Controller
     public function index()
     {
         // Filter berdasarkan beberapa parameter
-        $filters = ["search","like","category"]; 
+        $filters = ["search","like","category","minWeight","maxWeight","minAge","maxAge","city","gender","vaccine"]; 
 
         // Mendapatkan post yang telah diliked oleh user
         $likedPosts = LikedAdoptionPost::where('user_id',auth()->user()->id)->get();
