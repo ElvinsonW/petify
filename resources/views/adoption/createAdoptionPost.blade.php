@@ -14,12 +14,22 @@
                     <div>
                         <label for="name" class="block mb-2 text-lg font-semibold">Name of your Pet</label>
                         <input type="text" id="name" name="name" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Name..." value="{{ old('name') }}" required />
+                        @error('name')
+                            <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
 
                     <!-- Slug -->
                     <div>
                         <label for="slug" class="block mb-2 text-lg font-semibold">Slug</label>
                         <input type="text" id="slug" name="slug" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Slug..." value="{{ old('slug') }}" readonly />
+                        @error('slug')
+                            <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                 </div>
 
@@ -28,18 +38,33 @@
                     <div>
                         <label for="breed" class="block mb-2 text-lg font-semibold">Breed</label>
                         <input type="text" id="breed" name="breed" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Breed..." value="{{ old('breed') }}" required />
+                        @error('breed')
+                            <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
 
                     <!-- Age -->
                     <div>
                         <label for="age" class="block mb-2 text-lg font-semibold">Age</label>
                         <input type="number" id="age" name="age" step="0.01" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Age..." value="{{ old('age') }}" required />
+                        @error('age')
+                            <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
 
                     <!-- Location -->
                     <div>
                         <label for="location" class="block mb-2 text-lg font-semibold">City</label>
                         <input type="text" id="location" name="location" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Location..." value="{{ old('location') }}" required />
+                        @error('location')
+                            <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     
                     <!-- Category Vaccinated -->
@@ -66,12 +91,22 @@
                                 </svg>
                             </div>
                         </div>
+                        @error('vaccinated')
+                            <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     
                     <!-- Weight -->
                     <div>
                         <label for="weight" class="block mb-2 text-lg font-semibold">Weight (Kg)</label>
                         <input type="number" id="weight" name="weight" step="0.01" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Weight..." value="{{ old('weight') }}" required />
+                        @error('weight')
+                            <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
 
                     <!-- Category Gender -->
@@ -98,6 +133,11 @@
                                 </svg>
                             </div>
                         </div>
+                        @error('gender')
+                            <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
 
                     <!-- Category Pet -->
@@ -120,6 +160,11 @@
                                 </svg>
                             </div>
                         </div>
+                        @error('pet_category_id')
+                            <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     
                 </div>
