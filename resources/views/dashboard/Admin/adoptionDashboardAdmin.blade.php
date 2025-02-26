@@ -2,6 +2,7 @@
     $user = auth()->user();
 @endphp
 <x-dashboard.layout :user="$user">
+
     <!-- Sidebar Kanan Start -->
     <div class="flex-1 p-[2vw] h-screen flex flex-col">
         <!-- Header -->

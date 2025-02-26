@@ -2,7 +2,7 @@
 <div class="flex flex-col md:flex-row items-start space-x-[1.5vw] bg-gray-50 hover-brightness">
     <!-- photo of pet -->
     <img
-        src="{{ asset('images/articlepict.svg') }}"
+        src="{{ $post->image ? 'storage/' . $post->iamge : asset('images/articlepict.svg') }}"
         alt="Event Image"
         class="w-full md:w-[9.8vw] h-[9.8vw] rounded-[1.1vw] object-cover"
     />

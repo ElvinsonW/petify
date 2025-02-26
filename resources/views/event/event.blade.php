@@ -73,7 +73,7 @@
             @if ($upcomingEvents->isNotEmpty()) <!-- Check if there are any events -->
                 @foreach ($upcomingEvents as $upcomingEvent)
                     <div class="event card overflow-y-auto scrollbar-thin max-h-screen scrollbar-track-gray-200 scrollbar-thumb-gray-400 mb-10">
-                        <a href="/events/{{ $upcomingEvents->slug }}" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
+                        <a href="/events/{{ $upcomingEvent->slug }}" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
                             <div class="flex flex-col md:flex-row items-start space-x-0 md:space-x-6">
                                 <img
                                     src="{{ asset('storage/' . $upcomingEvent->image) }}"

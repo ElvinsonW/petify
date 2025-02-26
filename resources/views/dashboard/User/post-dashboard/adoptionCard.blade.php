@@ -31,6 +31,7 @@
                     <img src="{{ asset('images/uim_calendar.svg') }}" alt="Calendar Icon" class="w-[1.2vw] h-[1.2vw]">
                     <span>{{ $post->created_at->format('d F Y') }}</span>
                 </span>
+                
                 <!-- Icons at the end -->
                 <div class="flex justify-center space-x-[0.5vw] gap-[0.75vw]">
                     <!-- show -->
@@ -39,7 +40,6 @@
                             <i class="fa-solid fa-eye text-blue-500 text-[1.5vw]"></i>
                         </a>
                     </div>
-                    
                     @if (auth()->user()->id == $post->user_id)    
                         <!-- pen edit -->
                         <div class="cursor-pointer">

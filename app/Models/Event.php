@@ -33,6 +33,13 @@ class Event extends Model
             fn($query, $status) => 
                 $query->where('approval_status',$status)
         );
+
+        $query->when(
+            $filters['search'] ?? false,
+            fn($query, $search) => 
+                $query->where('title', 'like', "%" . $search . "%")
+                    ->orWhere('description', 'like', "%" . $search . "%")
+        );
     }
 
     public function sluggable(): array
