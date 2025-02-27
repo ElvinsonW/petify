@@ -10,7 +10,7 @@
             </div>
 
             <!-- Search Bar -->
-            <form class="max-w-md w-[16vw] mt-[1vw]">
+            <form class="max-w-md w-[16vw] mt-[1vw]" method="GET" action="{{ route('find-my-pet.index') }}">
                 <label for="search" class="mb-[0.5vw] text-sm text-gray-900 sr-only !font-overpass font-semibold">Search</label>
                 <div class="relative w-full border-1/2 border-gray-400 rounded-[0.5vw] bg-white shadow-md">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-[0.75vw] pointer-events-none">
@@ -20,6 +20,7 @@
                     <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-[0.5vw] px-[0.5vw] py-[0.4vw] !font-overpass">Search</button>
                 </div>
             </form>
+
 
             <!-- Filter & Missing Buttons -->
             <div class="flex gap-4 w-[16vw] mt-[1vw] relative justify-between">
@@ -70,7 +71,7 @@
                 </div>
             </div>
 
-            <div class="mt-[1vw] w-[16vw] shadow-2xl rounded-[0.5vw] border-1/2 border-gray-400 p-[1vw] font-montserrat_alt">
+            <div id="petCategoryContainer" class="mt-[1vw] w-[16vw] shadow-2xl rounded-[0.5vw] border-1/2 border-gray-400 p-[1vw] font-montserrat_alt">
                 <div class="pl-[0.5vw]">
                     <h4 class="text-[1.4vw] font-bold">Pet Category</h4>
                     <hr class="border-black border-1/2 w-full my-[0.5vw]">
@@ -182,13 +183,13 @@
             if (isHidden) {
                 filterDropdown.classList.remove("hidden");
                 filterDropdown.classList.add("opacity-100", "scale-100");
-                petCategoryContainer.classList.add("mt-64");
+                petCategoryContainer.classList.add("mt-[14vw]");
                 sidebarLeft.classList.add("h-auto");
                 sidebarLeft.style.minHeight = "calc(100vh + 200px)";
             } else {
                 filterDropdown.classList.add("hidden");
                 filterDropdown.classList.remove("opacity-100", "scale-100");
-                petCategoryContainer.classList.remove("mt-64");
+                petCategoryContainer.classList.remove("mt-[14vw");
                 sidebarLeft.style.minHeight = "100vh";
             }
         });
