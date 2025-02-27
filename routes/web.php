@@ -55,6 +55,12 @@ Route::get('/adoptions/createSlug',[ArticleController::class,'createSlug'])->nam
 
 Route::resource('/adoptions', AdoptionPostController::class)->middleware('auth');
 
+Route::get('/adoptions/create/before-create-1',[AdoptionPostController::class,'beforeCreate1'])->middleware('auth');
+
+Route::get('/adoptions/create/before-create-2',[AdoptionPostController::class,'beforeCreate2'])->middleware('auth');
+
+Route::get('/adoptions/create/{id}',[AdoptionPostController::class,'createWithExistPet'])->middleware('auth');
+
 // Life After Adoption Routes
 Route::resource('/life-after-adoption', LifeAfterAdoptionController::class)->middleware('auth');
     

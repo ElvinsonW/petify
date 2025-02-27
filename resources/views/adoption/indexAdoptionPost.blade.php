@@ -40,7 +40,8 @@
         </div>
 
     @endif
-    <div class="flex overflow-hidden">
+
+    <div class="flex overflow-hidden" id="adoptionContainer">
         <!-- Bagian Kiri (Sidebar) Start -->
         <div id="sidebarLeft" class="w-[22vw] min-h-[100vh] shadow-lg pl-[3vw] pt-[3vw]">
             <!-- Greetings -->
@@ -97,7 +98,7 @@
                 @endif
 
                 <!-- Dropdown Filter -->
-                <div id="filterDropdown" class="absolute z-10 w-[16vw] mt-[5vw] bg-greenpetify text-white rounded-[1vw] shadow-lg opacity-0 scale-95 transition-all transform origin-top-left hidden font-overpass">
+                <div id="filterDropdown" class="absolute z-10 w-[16.85vw] mt-[5vw] bg-greenpetify text-white rounded-[1vw] shadow-lg opacity-0 scale-95 transition-all transform origin-top-left hidden font-overpass">
                     <form class="p-[1vw] space-y-[1vw]">
                         <!-- Weight Input -->
                         <label class="block">
@@ -177,8 +178,8 @@
             </div>
             
             <!-- Button Adoption Post -->
-            <a href="/adoptions/create">
-                <button id="petCategoryContainer" class="relative z-0 mt-[1vw] w-[16vw] text-white bg-orenmuda rounded-[1vw] shadow-lg transform hover:scale-95 hover:bg-orange-400 transition duration-300 ease-in-out text-[1.2vw] font-semibold px-[0.75vw] py-[0.75vw] font-overpass"><i class="fa-solid fa-plus mr-[0.5vw]" style="color: #ffffff;"></i>Adoption Post</button>
+            <a href="/adoptions/create/before-create-1">
+                <button id="addButton" class="relative z-0 mt-[1vw] w-[16vw] text-white bg-orenmuda rounded-[1vw] shadow-lg transform hover:scale-95 hover:bg-orange-400 transition duration-300 ease-in-out text-[1.2vw] font-semibold px-[0.75vw] py-[0.75vw] font-overpass"><i class="fa-solid fa-plus mr-[0.5vw]" style="color: #ffffff;"></i>Adoption Post</button>
             </a>
             
             <!-- Container Pet Category -->
@@ -343,7 +344,7 @@
 
     const filterButton = document.getElementById("filterButton");
     const filterDropdown = document.getElementById("filterDropdown");
-    const petCategoryContainer = document.getElementById("petCategoryContainer");
+    const addButton = document.getElementById('addButton');
     const sidebarLeft = document.getElementById("sidebarLeft"); // Ambil sidebar kiri
 
     filterButton.addEventListener("click", () => {
@@ -355,7 +356,7 @@
                 filterDropdown.classList.add("opacity-100", "scale-100");
 
                 // Menambah margin bawah kategori agar turun
-                petCategoryContainer.classList.add("mt-[32vw]");
+                addButton.classList.add("mt-[32vw]");
 
                 // Menambah tinggi sidebar agar tidak terpotong oleh footer
                 sidebarLeft.classList.add("h-auto");
@@ -366,7 +367,7 @@
                 filterDropdown.classList.remove("opacity-100", "scale-100");
 
                 // Mengembalikan margin dan tinggi sidebar ke semula
-                petCategoryContainer.classList.remove("mt-[32vw]");
+                addButton.classList.remove("mt-[32vw]");
 
                 // Kembalikan tinggi sidebar agar kembali normal
                 sidebarLeft.style.minHeight = "100vh";
@@ -377,8 +378,9 @@
             if (!filterButton.contains(event.target) && !filterDropdown.contains(event.target)) {
                 filterDropdown.classList.add("hidden");
                 filterDropdown.classList.remove("opacity-100", "scale-100");
-                petCategoryContainer.classList.remove("mt-[32vw]");
+                addButton.classList.remove("mt-[32vw]");
                 sidebarLeft.style.minHeight = "100vh"; // Kembali ke tinggi normal
             }
         });
+
 </script>
