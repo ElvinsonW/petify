@@ -13,9 +13,9 @@
         </div>
 
         <!-- card -->
-        <div class="overflow-y-auto overflow-x-hidden scrollbar-thin max-h-[80vh] mb-[3vw] pr-[0.5vw]">
+        <div id="adoption-list" class="overflow-y-auto overflow-x-hidden scrollbar-thin max-h-[80vh] mb-[3vw] pr-[0.5vw]">
             @foreach ($adoptions as $adoption)    
-                <a href="{{ '/dashboard' . '/' . $user->username . '/adoption-history' . '?name=' . $adoption->adoption_post->name }}" class="flex flex-col md:flex-row items-center gap-[1.2vw] mt-[1.5vw]">
+                <a href="{{ '/dashboard' . '/' . $user->username . '/adoption-history' . '?name=' . $adoption->adoption_post->name }}" class="card-adopsi flex flex-col md:flex-row items-center gap-[1.2vw] mt-[1.5vw] p-3 transition-all duration-300 rounded-lg" id="{{ str_replace(' ', '-', $adoption->adoption_post->name) }}">
                     <!-- Pet Image -->
                     <img class="w-[16vw] h-auto object-cover rounded-lg" src="{{ asset('storage/' . $adoption->adoption_post->pet->image_1 ) }}" alt="Missing Dog" />    
                 
@@ -32,8 +32,7 @@
                         </div>
                     </div>
                 </a>
-            @endforeach
-            
+            @endforeach   
         </div>
         <!-- end card -->
     </div>
@@ -52,7 +51,7 @@
         <!-- Photo Life After Adoption -->
         <div class="overflow-y-auto scrollbar-thin max-h-[80vh] grid grid-cols-4 gap-[0.5vw] mt-[2vw]">
             @foreach ($lifeAfterAdoptions as $post)    
-                <a href="/life-after-adoption">
+                <a href="/life-after-adoption" id="{{ $post->name }}">
                     <div class="w-full h-full flex flex-col items-center">
                         <div class="w-[10w] h-[10vw] relative">
                             <img src="{{ asset('storage/' . $post->image ) }}" alt="Pet Post" class="w-full h-full object-cover">
@@ -69,4 +68,14 @@
         </div>
     </div>           
     <!-- sidebar kanan end -->
+    
+    <!-- JavaScript -->
+    <script>
+        const currentUrl = new URL(window.location.href)
+        const currentPet = currentUrl.searchParams.get('name')
+        const petSlug = currentPet.split(' ').join('-') 
+        const currentPetElement = document.getElementById(petSlug)
+
+        currentPetElement.classList.add('bg-white', 'shadow-md', 'mb-3')
+    </script>
 </x-dashboard.layout>
