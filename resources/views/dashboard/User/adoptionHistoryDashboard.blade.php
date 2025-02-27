@@ -13,7 +13,7 @@
         </div>
 
         <!-- card -->
-        <div id="adoption-list" class="overflow-y-auto overflow-x-hidden scrollbar-thin max-h-[80vh] mb-[3vw] pr-[0.5vw]">
+        <div id="adoption-list" class="overflow-y-auto overflow-x-hidden scrollbar-thin max-h-[80vh] mb-[3vw] pr-[0.5vw] ">
             @foreach ($adoptions as $adoption)    
                 <a href="{{ '/dashboard' . '/' . $user->username . '/adoption-history' . '?name=' . $adoption->adoption_post->name }}" class="card-adopsi flex flex-col md:flex-row items-center gap-[1.2vw] mt-[1.5vw] p-3 transition-all duration-300 rounded-lg" id="{{ str_replace(' ', '-', $adoption->adoption_post->name) }}">
                     <!-- Pet Image -->

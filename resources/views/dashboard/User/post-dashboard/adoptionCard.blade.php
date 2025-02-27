@@ -1,10 +1,10 @@
 <!-- card 1 -->
-<div class="flex flex-col md:flex-row items-start space-x-[1.5vw]">
+<div class="flex flex-col md:flex-row items-start space-x-[1.5vw] bg-gray-50 hover-brightness rounded-[1.1vw]">
     <!-- photo of pet -->
     <img
         src="{{ $post->image ? 'storage/' . $post->image : asset('images/articlepict.svg') }}"
         alt="Event Image"
-        class="w-full md:w-[9.8vw] h-[9.8vw] rounded-[1.1vw] object-cover"
+        class="w-full md:w-[10vw] h-[10vw] rounded-[1.1vw] object-cover"
     />
     <div class="flex flex-col justify-between flex-grow">
         <!-- name -->
