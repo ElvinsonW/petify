@@ -76,7 +76,7 @@
                             </svg>
                         </div>
                         <div class="relative">
-                            <select class="appearance-none text-[1.1vw] font-medium text-white bg-greenpetify border px-[1.2vw] py-[0.35vw] rounded-[0.5vw] w-full">
+                            <select class="appearance-none text-[1.1vw] font-medium text-white bg-greenpetify border px-[1.8vw] py-[0.35vw] rounded-[0.5vw]  pr-[2.5vw] w-full text-start">
                                 <option value="" disabled selected>Time</option>
                                 <option value="morning">Morning</option>
                                 <option value="afternoon">Afternoon</option>
