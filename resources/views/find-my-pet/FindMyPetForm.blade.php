@@ -114,7 +114,7 @@
                     
                     <!-- Attach Picture -->
                     <div>
-                        <label for="attach" class="block mb-2 text-lg font-semibold">Attach picture of your pet here</label>
+                        <label for="attach" class="block mb-2 text-lg font-semibold">Attach picture of your pet here (Max: 1mb)</label>
                         <input id="attach" type="file" name="attach" class="bg-gray-50 border-2 border-gray-300 text-sm rounded-lg block w-full p-2.5 focus:outline-none cursor-pointer" required />
                     </div>
                 </div>
