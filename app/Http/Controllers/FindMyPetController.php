@@ -73,13 +73,13 @@ class FindMyPetController extends Controller
 
         // Menyimpan data ke dalam database
         FindMyPet::create([
-            'user_id' => auth()->id(),  // Menyimpan ID pengguna yang sedang login
+            'user_id' => auth()->id(),
             'name' => $request->name,
             'breed' => $request->breed,
             'last_seen' => $request->last_seen,
             'date_lost' => $request->date_lost,
             'color' => $request->color,
-            'pet_category_id' => $request->pet_category_id, // Pastikan menggunakan pet_category_id yang valid
+            'pet_category_id' => $request->pet_category_id, 
             'color_tag' => $request->color_tag,
             'image' => $imagePath,
             'description' => $request->description,
