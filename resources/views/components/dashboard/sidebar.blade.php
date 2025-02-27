@@ -68,7 +68,7 @@
         @else
             <!-- dashboard -->
             <div class="flex flex-row items-center justify-items-start space-x-[1vw]">
-                <a href="{{ '/dashboard' . '/' . $user->username . '/posts' }}" class="flex items-center text-greenpetify">
+                <a href="{{ '/dashboard' . '/' . $user->username . '/posts?post=adoption' }}" class="flex items-center text-greenpetify">
                     @if (request()->is(['dashboard/' . $user->username . '/posts']))
 
                         <svg width="33" height="33" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -149,7 +149,7 @@
             </a>
 
             <!-- adoption request -->
-            <a href="{{ '/dashboard' . '/' . $user->username . '/adoption-requests' }}">
+            <a href="{{ '/dashboard' . '/' . $user->username . '/adoption-requests?request=other-request' }}">
                 <div class="flex flex-row items-center justify-items-start space-x-[1.2vw] hover:font-bold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
                     @if (request()->is(['dashboard/' . $user->username . '/adoption-requests']))
 
@@ -176,7 +176,7 @@
             </a>
 
             <!-- post request -->
-            <a href="{{ '/dashboard' . '/' . $user->username . '/post-requests' }}">
+            <a href="{{ '/dashboard' . '/' . $user->username . '/post-requests?post=adoptions' }}">
                 <div class="flex flex-row items-center justify-items-start space-x-[1.1vw] hover:font-bold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
                     @if (request()->is(['dashboard/' . $user->username . '/post-requests']))
                         <svg width="40" height="40" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -212,7 +212,7 @@
 
             <!-- liked post -->
             <div class="flex flex-row items-center justify-items-start space-x-[1.5vw] hover:font-bold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
-                <a href="{{ '/dashboard' . '/' . $user->username . '/liked-posts' }}" class="flex items-center text-greenpetify">
+                <a href="{{ '/dashboard' . '/' . $user->username . '/liked-posts?post=adoptions' }}" class="flex items-center text-greenpetify">
                     @if (request()->is(['dashboard/' . $user->username . '/liked-posts']))
                         
                         <svg width="35" height="35" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">

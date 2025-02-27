@@ -40,6 +40,14 @@ class Event extends Model
                 $query->where('title', 'like', "%" . $search . "%")
                     ->orWhere('description', 'like', "%" . $search . "%")
         );
+
+        $query->when(
+            $filters['category'] ?? false,
+            fn($query, $category) =>
+                $query->whereHas('pet_category', fn($categoryQuery) => 
+                    $categoryQuery->where('slug',$category)
+                )
+        );
     }
 
     public function sluggable(): array
