@@ -19,7 +19,7 @@
         @if ($user->id == auth()->user()->id)    
             <a href="{{ '/dashboard' . '/' . $user->username . '/profile' }}">
                 <p class="items-center justify-center text-center text-black/60 text-[1vw] font-bold font-overpass tracking-wide hover:underline hover:text-black/70">
-                    <i class="fa-solid fa-pencil"></i> Updated Profile
+                    <i class="fa-solid fa-pencil"></i> Update Profile
                 </p>
             </a>
         @else
