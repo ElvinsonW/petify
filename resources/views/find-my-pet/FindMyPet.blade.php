@@ -83,6 +83,8 @@
                                     <p>Last Seen</p> <p>: {{ ucfirst($pet->last_seen) }}</p>
                                     <p>Collar & Tag</p> <p>: {{ ucfirst($pet->color_tag) }}</p>
                                     <p>Date Lost</p> <p>: {{ $pet->date_lost}}</p>
+                                    <p>Gender</p> <p>: {{ ucfirst($pet->gender) }}</p>
+                                    <p>City</p> <p>: {{ ucfirst($pet->city)}}</p>
                                 </div>
                             </div>
                         </div>

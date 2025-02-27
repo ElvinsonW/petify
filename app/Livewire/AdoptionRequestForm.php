@@ -14,10 +14,43 @@ class AdoptionRequestForm extends Component
     public function mount($slug){
         $this->slug = $slug;
     }
+    // Fungsi untuk memvalidasi input yang masuk
+    public function validateData()
+    {
+        if ($this->step == 1) {
+            // Validasi input yang masuk pada step 1
+            $this->validate([
+                'description1' => ['required']
+            ]);
+
+        } elseif ($this->step == 2) {
+            // Validasi input yang masuk pada step 2
+            $this->validate([
+                'description2' => ['required']
+            ]);
+        } elseif ($this->step == 3) {
+            // Validasi input yang masuk pada step 3
+            $this->validate([
+                'description3' => ['required']
+            ]);
+        } elseif ($this->step == 4) {
+            // Validasi input yang masuk pada step 4
+            $this->validate([
+                'description4' => ['required']
+            ]);
+        } elseif ($this->step == 5) {
+            // Validasi input yang masuk pada step 5
+            $this->validate([
+                'description5' => ['required']
+            ]);
+        }
+    }
 
     // Function to go to the next step
     public function nextStep()
     {
+        // Validasi data sebelum pergi ke step selanjutnya
+        $this->validateData();
         if ($this->step < 5) {
             $this->step++;
         } 
@@ -44,9 +77,7 @@ class AdoptionRequestForm extends Component
             'Q5' => $this->description5,
         ]);
 
-        // Flash a success message to the session
-        session()->flash('message', 'Form submitted and saved successfully!');
-        return redirect('/adoptions')->with('message', 'Form submitted successfully!');
+        return redirect('/adoptions'. '/' . $this->slug)->with('requestSuccess', 'Form submitted successfully!');
     }
 
     public function render()

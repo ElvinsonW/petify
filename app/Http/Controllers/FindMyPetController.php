@@ -71,6 +71,8 @@ class FindMyPetController extends Controller
             'color_tag' => 'required|string',
             'attach' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'description' => 'required|string',
+            'city' => 'required|string',
+            'gender' => 'required|string',
         ]);
 
         // Menyimpan gambar jika ada

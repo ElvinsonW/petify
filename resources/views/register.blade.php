@@ -41,14 +41,14 @@
             <div class="flex-1 flex flex-col items-center justify-center relative min-h-screen">
                 <!-- Header di Luar Form -->
                 <div class="absolute top-7 items-start text-center">
-                    <h2 class="text-5xl font-bold font-montserrat_alt tracking-widest text-greenpetify mb-3">Sign Up</h2>
+                    <h2 class="text-5xl font-bold font-montserrat_alt tracking-widest text-greenpetify mb-[0.75vw]">Sign Up</h2>
                     <p class=" text-black text-base font-normal font-open_sans tracking-wide text-center">
                         Join us and become a community of animal lovers!
                     </p>
                 </div>
 
                 <!-- Form Section -->
-                <div class="w-full flex items-center justify-center">
+                <div class="w-full flex items-center justify-center mt-[3vw]">
                     
                     <form class="font-open_sans font-semibold text-base tracking-wide text-black w-[30vw]" action="/register" method="post" enctype="multipart/form-data">
                         @csrf

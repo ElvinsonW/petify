@@ -20,7 +20,9 @@ class FindMyPet extends Model
         'pet_category_id', // Kategori hewan
         'color_tag', // Apakah ada tag atau kalung
         'image',    // Path ke gambar
-        'description' // Deskripsi tambahan
+        'description', // Deskripsi tambahan
+        'city',
+        'gender'
     ];
 
     // Relasi ke model User (pemilik)
