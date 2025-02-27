@@ -67,7 +67,7 @@
                         <div class="absolute inset-y-0 start-0 flex items-center ps-[0.75vw] pointer-events-none">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
-                        <input type="search" id="search" name="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold focus:outline-none" value="{{ request('search') }}" placeholder="Search Here" required>
+                        <input type="search" id="search" name="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold focus:outline-none" value="{{ request('search') }}" placeholder="Search Here">
                         <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-[0.5vw] px-[0.5vw] py-[0.4vw] !font-overpass">Search</button>
                     </div>
                 </form>
@@ -103,8 +103,8 @@
                         <label class="block">
                             <span class="text-[1vw] font-semibold">Weight (KG)</span>
                             <div class="flex space-x-[0.5vw]">
-                                <input type="number" name="minWeight" placeholder="Min" class="w-[6.5vw] p-[0.5vw] bg-teal-700 rounded-[0.4vw]" min="1">
-                                <input type="number" name="maxWeight" placeholder="Max" class="w-[6.5vw] p-[0.5vw] bg-teal-700 rounded-[0.4vw]" min="1">
+                                <input type="number" name="minWeight" placeholder="Min" class="w-[6.5vw] p-[0.5vw] bg-teal-700 rounded-[0.4vw]" min="1" value="{{ request('minWeight') }}">
+                                <input type="number" name="maxWeight" placeholder="Max" class="w-[6.5vw] p-[0.5vw] bg-teal-700 rounded-[0.4vw]" min="1" value="{{ request('maxWeight') }}">
                             </div>
                         </label>
 
@@ -112,24 +112,39 @@
                         <label class="block">
                             <span class="text-[1vw] font-semibold">Age (Year)</span>
                             <div class="flex space-x-[0.5vw]">
-                                <input type="number" name="minAge" placeholder="Min Age" class="w-[6.5vw] p-[0.5vw] bg-teal-700 rounded-[0.4vw]" min="1">
-                                <input type="number" name="maxAge" placeholder="Max Age" class="w-[6.5vw] p-[0.5vw] bg-teal-700 rounded-[0.4vw]" min="1">
+                                <input type="number" name="minAge" placeholder="Min Age" class="w-[6.5vw] p-[0.5vw] bg-teal-700 rounded-[0.4vw]" min="1" value="{{ request('minAge') }}">
+                                <input type="number" name="maxAge" placeholder="Max Age" class="w-[6.5vw] p-[0.5vw] bg-teal-700 rounded-[0.4vw]" min="1" value="{{ request('maxAge') }}">
                             </div>
                         </label>
 
                         <!-- City Input -->
                         <label class="block">
                             <span class="text-[1vw] font-semibold">City</span>
-                            <input type="text" name="city" placeholder="Input city here" class="w-full p-[0.5vw] bg-teal-700 rounded-[0.4vw]">
+                            <input type="text" name="city" placeholder="Input city here" class="w-full p-[0.5vw] bg-teal-700 rounded-[0.4vw]" value="{{ request('city') }}">
                         </label>
 
                         <!-- Gender Select -->
                         <label class="block">
                             <span class="text-[1vw] font-semibold">Gender</span>
                             <select name="gender" class="w-full mt-[0.25vw] p-[0.5vw] bg-teal-700 rounded-[0.4vw]">
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="" selected>Any</option>
+                                @if (request('gender') == "male")
+                                    <option value="male" selected>Male</option> 
+                                @else   
+                                    <option value="male">Male</option> 
+                                @endif
+                                
+                                @if (request('gender') == "female")
+                                    <option value="female" selected>Female</option> 
+                                @else   
+                                    <option value="female">Female</option> 
+                                @endif
+
+                                @if (request('gender') == "")
+                                    <option value="" selected>Any</option> 
+                                @else   
+                                    <option value="">Any</option> 
+                                @endif
+                                
                             </select>
                         </label>
 
@@ -137,9 +152,23 @@
                         <label class="block">
                             <span class="text-base font-semibold">Vaccine</span>
                             <select name="vaccine" class="w-full mt-[0.25vw] p-[0.5vw] bg-teal-700 rounded-[0.4vw]">
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
-                                <option value="" selected>Any</option>
+                                @if (request('vaccine') == "yes")
+                                    <option value="yes" selected>Yes</option> 
+                                @else   
+                                    <option value="yes">Yes</option> 
+                                @endif
+
+                                @if (request('vaccine') == "no")
+                                    <option value="no" selected>No</option> 
+                                @else   
+                                    <option value="no">No</option> 
+                                @endif
+
+                                @if (request('vaccine') == "")
+                                    <option value="" selected>Any</option> 
+                                @else   
+                                    <option value="">Any</option> 
+                                @endif
                             </select>
                         </label>
                         <button type="submit" class="w-full py-[0.25vw] mt-[1vw] bg-white text-greenpetify text-[1.2vw] rounded-[0.5vw] font-semibold hover:bg-gray-200 hover:scale-105 transition-all duration-300 ease-in-out font-montserrat_alt">Apply</button>
@@ -234,9 +263,9 @@
                 @foreach ($adoptions as $adoption)
 
                     <a href="/adoptions/{{ $adoption->slug }}">
-                        <div class="rounded-[0.5vw] shadow-xl p-[0.5vw] min-h-[45vw] w-[24vw] mt-[2.5vw]">
+                        <div class="rounded-[0.5vw] shadow-xl p-[0.5vw] min-h-[43vw] w-[24vw] mt-[2.5vw]">
                             <!-- Gambar Pet -->
-                            <img src="{{ $adoption->pet->image_1 }}" alt="Pet Picture" class="w-[100%] h-fit">
+                            <img src="{{ $adoption->pet->image_1 }}" alt="Pet Picture" class="object-cover w-[100%] h-[30vh] rounded-md">
                             
                             <!-- Category & Days -->
                             <div class="flex flex-row font-montserrat_alt font-semibold w-[100%]">

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,10 +18,12 @@ class FindMyPet extends Model
         'last_seen',// Lokasi terakhir terlihat
         'date_lost',// Tanggal kehilangan
         'color',    // Warna hewan
-        'category_pet', // Kategori hewan
+        'pet_category_id', // Kategori hewan
         'color_tag', // Apakah ada tag atau kalung
         'image',    // Path ke gambar
-        'description' // Deskripsi tambahan
+        'description', // Deskripsi tambahan
+        'city',
+        'gender'
     ];
 
     // Relasi ke model User (pemilik)
@@ -30,10 +33,11 @@ class FindMyPet extends Model
     }
 
     // Relasi ke model PetCategory (kategori hewan)
-    public function petCategory()
+    public function pet_category()
     {
-        return $this->belongsTo(PetCategory::class, 'category_pet', 'slug');
+        return $this->belongsTo(PetCategory::class, 'pet_category_id');
     }
+
 
     // Menangani kolom tanggal seperti date_lost
     protected $dates = ['date_lost'];
@@ -43,4 +47,16 @@ class FindMyPet extends Model
     {
         return asset('storage/' . $this->image);
     }
+
+    public function scopeFilter(Builder $query, array $filters){
+        $query->when(
+            $filters["search"] ?? false, 
+            fn($query, $search) =>
+                $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('breed', 'like', '%' . $search . '%')
+                    ->orWhere('description', 'like', '%' . $search . '%')
+        );
+    }
+
+
 }

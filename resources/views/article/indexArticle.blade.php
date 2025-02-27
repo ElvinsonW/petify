@@ -43,7 +43,7 @@
                         <div class="absolute inset-y-0 start-0 flex items-center ps-[0.75vw] pointer-events-none">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
-                        <input type="search" id="search" name="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold focus:outline-none" value="{{ request('search') }}" placeholder="Search Here" required>
+                        <input type="search" id="search" name="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold focus:outline-none" value="{{ request('search') }}" placeholder="Search Here">
                         <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-[0.5vw] px-[0.5vw] py-[0.4vw] !font-overpass">Search</button>
                     </div>
                 </form>
@@ -79,6 +79,9 @@
                             </a>
                         </button>
                     @else
+                        @php
+                            unset($queryParams["page"])
+                        @endphp
                         <button class="pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group hover:bg-{{ $category->color }}">
                             <a href="{{ url('/articles') . '?' . http_build_query($queryParams) }}" class="w-full">
                                 <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left group-hover:text-white transition-colors duration-500 ease-in-out">{{ $category->name }}</p>

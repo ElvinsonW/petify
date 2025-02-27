@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\FindMyPet;  // Pastikan model sudah dibuat
-use Cviebrock\EloquentSluggable\Services\SlugService;
+use App\Models\FindMyPet;
 use App\Models\PetCategory;
+use Illuminate\Http\Request;
 
 class FindMyPetController extends Controller
 {
@@ -14,18 +13,33 @@ class FindMyPetController extends Controller
      */
     public function index(Request $request)
     {
-        $filters = ['category', 'pet'];
+        $pets = FindMyPet::query();
 
-        // Ambil data berdasarkan filter kategori jika ada
-        $pets = FindMyPet::when($request->has('category'), function ($query) use ($request) {
-            $query->where('category_pet', $request->category);
-        })->paginate(10);
+        // Check if there's a category filter and apply it
+        if ($request->has('category')) {
+            // If the category query matches the current selected category, remove the filter
+            if ($request->category != 'all') {
+                $pets->whereHas('pet_category', function ($query) use ($request) {
+                    $query->where('slug', $request->category);
+                });
+            }
+        }
 
+        // Paginate results
+        $pets = $pets->paginate(10);
+
+        // Fetch all categories for the sidebar
         $categories = PetCategory::all();
 
-        // Kirim data ke view find-my-pet.index
-        return view('find-my-pet.FindMyPet', compact('pets', 'categories'));
+        return view('find-my-pet.FindMyPet', [
+            'pets' => $pets,
+            'categories' => $categories,
+            'selectedCategory' => $request->category,
+        ]);
     }
+
+
+
 
 
     /**
@@ -33,7 +47,12 @@ class FindMyPetController extends Controller
      */
     public function create()
     {
-        return view('find-my-pet.findMyPetForm'); 
+        // Ambil semua kategori pet dari database
+        $categories = PetCategory::all();
+
+        // Kirim data kategori ke view
+        return view('find-my-pet.findMyPetForm', compact('categories')); 
+
     }
 
     /**
@@ -48,10 +67,12 @@ class FindMyPetController extends Controller
             'last_seen' => 'required|string|max:255',
             'date_lost' => 'required|date',
             'color' => 'required|string|max:255',
-            'category_pet' => 'required|string',
+            'pet_category_id' => ['required', 'exists:pet_categories,id'], // Perbaikan: pastikan id kategori ada
             'color_tag' => 'required|string',
             'attach' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'description' => 'required|string',
+            'city' => 'required|string',
+            'gender' => 'required|string',
         ]);
 
         // Menyimpan gambar jika ada
@@ -65,15 +86,19 @@ class FindMyPetController extends Controller
             'last_seen' => $request->last_seen,
             'date_lost' => $request->date_lost,
             'color' => $request->color,
-            'category_pet' => $request->category_pet,
+            'pet_category_id' => $request->pet_category_id, // Pastikan menggunakan pet_category_id yang valid
             'color_tag' => $request->color_tag,
             'image' => $imagePath,
             'description' => $request->description,
+            'gender' => $request->gender,
+            'city' => $request->city,
         ]);
 
         // Mengarahkan kembali ke form dengan pesan sukses
         return redirect()->route('find-my-pet.index')->with('success', 'Missing pet post created successfully!');
     }
+
+
 
     /**
      * Display the specified resource.
@@ -105,17 +130,5 @@ class FindMyPetController extends Controller
     public function destroy(string $id)
     {
         // Implementasi untuk menghapus data berdasarkan ID
-    }
-
-    /**
-     * Generate a unique slug for an event.
-     */
-    public function createSlug(Request $request)
-    {
-        // Generate a unique slug for the event title
-        $slug = SlugService::createSlug(FindMyPet::class, 'slug', $request->title, ["unique" => true]);
-
-        // Return the generated slug as JSON
-        return response()->json(['slug' => $slug]);
     }
 }

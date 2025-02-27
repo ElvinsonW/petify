@@ -23,7 +23,7 @@ class EventController extends Controller
                           ->get(); // Use ->get() to return all events for today (if there are multiple)  
 
         
-        // Get the next 5 closest upcoming events from tomorrow
+        // Get the next 5 closest upcoming events from tomorrow 
         $upcomingEvents = Event::whereDate('start_date', '>', $today)  // Events happening after today
                                 ->orderBy('start_date', 'asc')  // Sort by nearest first
                                 ->paginate(9)

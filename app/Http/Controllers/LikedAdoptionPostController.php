@@ -22,11 +22,11 @@ class LikedAdoptionPostController extends Controller
         $user_id = auth()->user()->id;
         
         // Cek apakah sudah pernah dilike
-        if ($isLike = LikedAdoptionPost::where('user_id', auth()->user()->id)
+        $isLike = LikedAdoptionPost::where('user_id', auth()->user()->id)
                                         ->where('adoption_post_id', $adoptionPost->id)
-                                        ->exists()
-        ){
-            return redirect('/adoptions')->with('likeError',"You can't like the same post twice.");
+                                        ->exists();
+        if ($isLike){
+            return redirect('adoptions/' . $slug)->with('likeError',"You can't like the same post twice.");
         }
 
         // Jika belum di like, maka simpan ke dalam database
@@ -48,6 +48,6 @@ class LikedAdoptionPostController extends Controller
                                 ->where('adoption_post_id', $adoptionPost->id)
                                 ->delete();
         }
-        return redirect('adoptions')->with('likeError',"Post doesnt exist.");
+        return redirect('adoptions/' . $slug)->with('likeError',"Post doesnt exist.");
     }
 }

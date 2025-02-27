@@ -15,10 +15,12 @@ class CreateFindMyPetsTable extends Migration
             $table->string('last_seen');
             $table->date('date_lost');
             $table->string('color');
-            $table->string('category_pet');
+            $table->string('pet_category_id');
             $table->string('color_tag');
             $table->string('image');
             $table->text('description');
+            $table->string('gender');
+            $table->string('city');
             $table->timestamps();
         });
     }

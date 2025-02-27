@@ -6,7 +6,7 @@
 
     <!-- Steps -->
     <div id="steps" class="flex justify-center items-center gap-4 font-open_sans">
-        <div id="step-1" class="flex flex-col items-center">
+        <div id="step" class="flex flex-col items-center">
             <div class="w-8 h-8 flex items-center justify-center rounded-full 
                 {{ $step > 1 ? 'bg-greenpetify text-white' : 'border-2 border-greenpetify bg-white text-greenpetify' }} 
                 font-bold transition-all duration-500">
