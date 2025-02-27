@@ -107,7 +107,7 @@
             <div class="grid grid-cols-3 gap-[0.75vw] mx-[1vw] mt-[1vw]">        
                 @foreach ($articles as $article)
                     <a href="/articles/{{ $article->slug }}" class="block w-full">
-                        <div class="rounded-[0.5vw] shadow-xl p-[0.5vw] min-h-[38vw] w-[24vw] mt-[2.5vw]">
+                        <div class="rounded-[0.5vw] shadow-xl p-[0.5vw] min-h-[38vw] w-[24vw] mt-[2.5vw] hover:bg-gray-100">
                             <!-- Gambar Article -->
                             @if($article->image)
                                 <img src="{{ asset('storage/' . $article->image ) }}" alt="Article Picture" class="w-[100%] h-[30vh] object-cover rounded-md">

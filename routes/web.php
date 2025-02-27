@@ -73,9 +73,6 @@ Route::get('/events/createSlug',[EventController::class,'createSlug'])->name('ad
 
 Route::resource('/events', EventController::class)->middleware('auth');
 
-// Adoption Request Routes
-Route::get('/adoptions/{slug}/adoption-request/create', [AdoptionRequestController::class, 'create']);
-
 Route::resource('/dashboard/article-requests', ArticleRequestController::class)->middleware(AdminOnly::class);
 
 Route::get('/dashboard/article-requests/{slug}/{action}', [ArticleRequestController::class,'handleRequest'])->middleware(AdminOnly::class);
@@ -108,4 +105,7 @@ Route::put("/dashboard/{username}/profile",[UserController::class,"update"])->mi
 
 Route::get('/dashboard/{username}/adoption-history',[UserDashboardController::class,'indexAdoptionHistory']);
 
-Route::get('/adoptions/{slug}/adoption-request/{id}/{action}',[AdoptionRequestController::class,"handleRequest"])->middleware(CheckPostOwnership::class);
+// Adoption Request Routes
+Route::get('/adoptions/{slug}/adoption-request/create', [AdoptionRequestController::class, 'create'])->middleware('auth');
+
+Route::get('/adoptions/{slug}/adoption-request/{id}/{action}',[AdoptionRequestController::class,"handleRequest"])->middleware('auth');

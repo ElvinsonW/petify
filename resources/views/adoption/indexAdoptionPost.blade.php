@@ -262,8 +262,8 @@
                 <!-- Catalog -->
                 @foreach ($adoptions as $adoption)
 
-                    <a href="/adoptions/{{ $adoption->slug }}">
-                        <div class="rounded-[0.5vw] shadow-xl p-[0.5vw] min-h-[43vw] w-[24vw] mt-[2.5vw]">
+                    <a href="/adoptions/{{ $adoption->slug }}" class="min-h-[43vw] w-[24vw] mt-[2.5vw]">
+                        <div class="rounded-[0.5vw] shadow-xl p-[0.5vw] w-full h-full hover:bg-gray-100">
                             <!-- Gambar Pet -->
                             <img src="{{ $adoption->pet->image_1 }}" alt="Pet Picture" class="object-cover w-[100%] h-[30vh] rounded-md">
                             
