@@ -5,7 +5,7 @@
         <div class="mt-[1.6vw] items-center mb-[1.4vw]">
             <!-- title -->
             <p class="text-greenpetify tracking-wide font-montserrat_alt text-[2vw] font-bold">My Profile</p>
-            <p class="text-black font-normal text-[1.3vw] font-overpass tracking-wide">manage your information wisely</p>
+            <p class="text-black font-normal text-[1.3vw] font-overpass tracking-wide">Manage your information wisely</p>
         </div>            
 
         <form action="/dashboard/{{ auth()->user()->username }}/profile" method="POST" enctype="multipart/form-data">
