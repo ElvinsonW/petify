@@ -19,6 +19,8 @@ class CreateFindMyPetsTable extends Migration
             $table->string('color_tag');
             $table->string('image');
             $table->text('description');
+            $table->string('gender');
+            $table->string('city');
             $table->timestamps();
         });
     }

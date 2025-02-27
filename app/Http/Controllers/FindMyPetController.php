@@ -90,6 +90,8 @@ class FindMyPetController extends Controller
             'color_tag' => $request->color_tag,
             'image' => $imagePath,
             'description' => $request->description,
+            'gender' => $request->gender,
+            'city' => $request->city,
         ]);
 
         // Mengarahkan kembali ke form dengan pesan sukses
