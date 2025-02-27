@@ -76,7 +76,7 @@
             
             <!-- Button Filter & Your Like -->
             
-            <div class="flex flex-row">
+            <div class="flex flex-row w-[16vw] justify-between">
                 <!-- Filter Button -->
                 <button class="mt-[1vw] text-white bg-greenpetify rounded-[1vw] shadow-lg transform hover:scale-95 hover:bg-greentua transition duration-300 ease-in-out text-[1.2vw] font-semibold px-[0.75vw] py-[0.75vw] font-overpass" id="filterButton">
                     <i class="fa-solid fa-sliders mr-2" style="color: #ffffff;"></i>Filter
@@ -98,7 +98,7 @@
                 @endif
 
                 <!-- Dropdown Filter -->
-                <div id="filterDropdown" class="absolute z-10 w-[16vw] mt-[5vw] bg-greenpetify text-white rounded-[1vw] shadow-lg opacity-0 scale-95 transition-all transform origin-top-left hidden font-overpass">
+                <div id="filterDropdown" class="absolute z-10 w-[16.85vw] mt-[5vw] bg-greenpetify text-white rounded-[1vw] shadow-lg opacity-0 scale-95 transition-all transform origin-top-left hidden font-overpass">
                     <form class="p-[1vw] space-y-[1vw]">
                         <!-- Weight Input -->
                         <label class="block">

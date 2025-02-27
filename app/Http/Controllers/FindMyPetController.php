@@ -13,30 +13,23 @@ class FindMyPetController extends Controller
      */
     public function index(Request $request)
     {
-        $pets = FindMyPet::query();
+        $filters = ['search','category','city','collar_tag'];
 
-        // Check if there's a category filter and apply it
-        if ($request->has('category')) {
-            // If the category query matches the current selected category, remove the filter
-            if ($request->category != 'all') {
-                $pets->whereHas('pet_category', function ($query) use ($request) {
-                    $query->where('slug', $request->category);
-                });
-            }
-        }
 
-        // Paginate results
-        $pets = $pets->paginate(10);
+        // Ambil hasilnya dengan pagination
+        $pets = FindMyPet::filter(request($filters))->get();
 
-        // Fetch all categories for the sidebar
+        // Ambil semua kategori untuk ditampilkan di sidebar
         $categories = PetCategory::all();
 
+        // Kirim data ke view
         return view('find-my-pet.FindMyPet', [
             'pets' => $pets,
             'categories' => $categories,
             'selectedCategory' => $request->category,
         ]);
     }
+
 
 
 
@@ -80,13 +73,13 @@ class FindMyPetController extends Controller
 
         // Menyimpan data ke dalam database
         FindMyPet::create([
-            'user_id' => auth()->id(),  // Menyimpan ID pengguna yang sedang login
+            'user_id' => auth()->id(),
             'name' => $request->name,
             'breed' => $request->breed,
             'last_seen' => $request->last_seen,
             'date_lost' => $request->date_lost,
             'color' => $request->color,
-            'pet_category_id' => $request->pet_category_id, // Pastikan menggunakan pet_category_id yang valid
+            'pet_category_id' => $request->pet_category_id, 
             'color_tag' => $request->color_tag,
             'image' => $imagePath,
             'description' => $request->description,

@@ -43,7 +43,7 @@
     <div class="bg-no-repeat bg-center bg-cover" style="background-image: url({{ asset('images/homepage-bg.png') }}">
         <!-- Main Section Start -->
         <div class="mt-0 p-0 flex flex-row">
-            <div class="mx-16 mt-16 w-[50vw]">
+            <div class="mx-[4vw] mt-[4vw] w-[50vw]">
                 <h1 class="font-bold text-greenpetify font-montserrat_alt text-8xl tracking-wide mb-4">Things</h1>
                 <h1 class="font-bold text-greenpetify font-montserrat_alt text-8xl tracking-wide mb-4">About Pet!</h1>
                 <p class="text-greentua font-open_sans tracking-wide text-xl mb-6">Find your perfect new companion, learn the best ways to care for them, and join a community dedicated to promoting animal welfare.</p>

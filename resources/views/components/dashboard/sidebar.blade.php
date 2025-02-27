@@ -19,7 +19,7 @@
         @if ($user->id == auth()->user()->id)    
             <a href="{{ '/dashboard' . '/' . $user->username . '/profile' }}">
                 <p class="items-center justify-center text-center text-black/60 text-[1vw] font-bold font-overpass tracking-wide hover:underline hover:text-black/70">
-                    <i class="fa-solid fa-pencil"></i> Updated Profile
+                    <i class="fa-solid fa-pencil"></i> Update Profile
                 </p>
             </a>
         @else
@@ -38,36 +38,36 @@
     </div>
 
     <!-- menu dashboard -->
-    <div class="mt-[2vw] flex flex-col space-y-[1.2vw] text-[1.2vw] font-bold font-overpass text-center cursor-pointer w-full flex-grow">
+    <div class="mt-[2vw] flex flex-col space-y-[1.25vw] text-[1.2vw] font-bold font-overpass text-center cursor-pointer w-full flex-grow">
         @if ($user->role == "Admin")  
 
             <!-- Adoption Post Request -->
             <a href="/dashboard/adoption-post-requests">
-                <div class="flex flex-row items-center space-x-[1vw]">
-                    <i class="fa-solid fa-paw text-[2vw] {{ request()->is(['dashboard/adoption-post-requests']) ? 'text-or-dashboard' : 'text-greenpetify' }}"></i>
-                    <p class="{{ request()->is(['dashboard/adoption-post-requests']) ? 'text-or-dashboard' : 'text-greenpetify' }} text-center">Adoption Post Request</p>
+                <div class="flex flex-row items-center space-x-[0.75vw] hover:font-extrabold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
+                    <i class="fa-solid fa-paw text-[2.2vw] {{ request()->is(['dashboard/adoption-post-requests']) ? 'text-or-dashboard' : 'text-greenpetify' }}  group-hover:text-greentua transition duration-300"></i>
+                    <p class="{{ request()->is(['dashboard/adoption-post-requests']) ? 'text-or-dashboard' : 'text-greenpetify' }} text-center transition duration-300">Adoption Post Request</p>
                 </div>
             </a>
 
             <!-- Article Post Request -->
             <a href="/dashboard/article-requests">
-                <div class="flex flex-row items-center space-x-[1vw] hover:font-extrabold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
-                    <i class="fa-solid fa-book text-[2vw] {{ request()->is(['dashboard/article-requests']) ? 'text-or-dashboard' : 'text-greenpetify' }} group-hover:text-greentua transition duration-300"></i>
-                    <p class="{{ request()->is(['dashboard/article-requests']) ? 'text-or-dashboard' : 'text-greenpetify' }} transition duration-300">Article Post Request</p>
+                <div class="flex flex-row items-center space-x-[1vw] hover:font-extrabold hover:text-greentua transition duration-300 ease-in-out cursor-pointer mt-[0.3vw]">
+                    <i class="fa-solid fa-book text-[2.2vw] {{ request()->is(['dashboard/article-requests']) ? 'text-or-dashboard' : 'text-greenpetify' }} group-hover:text-greentua transition duration-300"></i>
+                    <p class="{{ request()->is(['dashboard/article-requests']) ? 'text-or-dashboard' : 'text-greenpetify' }} text-center transition duration-300">Article Post Request</p>
                 </div>
             </a>
 
             <!-- Event Post Request -->
             <a href="/dashboard/event-requests">
-                <div class="flex flex-row items-center space-x-[1vw] hover:font-extrabold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
-                    <i class="fa-solid fa-calendar-day text-[2vw] {{ request()->is(['dashboard/event-requests']) ? 'text-or-dashboard' : 'text-greenpetify' }} group-hover:text-greentua transition duration-300"></i>
-                    <p class="{{ request()->is(['dashboard/event-requests']) ? 'text-or-dashboard' : 'text-greenpetify' }} transition duration-300">Event Post Request</p>
+                <div class="flex flex-row items-center space-x-[1vw] hover:font-extrabold hover:text-greentua transition duration-300 ease-in-out cursor-pointer mt-[0.3vw]">
+                    <i class="fa-solid fa-calendar-day text-[2.2vw] {{ request()->is(['dashboard/event-requests']) ? 'text-or-dashboard' : 'text-greenpetify' }} group-hover:text-greentua transition duration-300"></i>
+                    <p class="{{ request()->is(['dashboard/event-requests']) ? 'text-or-dashboard' : 'text-greenpetify' }} text-center transition duration-300">Event Post Request</p>
                 </div>
             </a>
 
         @else
             <!-- dashboard -->
-            <div class="flex flex-row items-center justify-items-start space-x-[1vw]">
+            <div class="flex flex-row items-center justify-items-start space-x-[1vw] hover:font-extrabold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
                 <a href="{{ '/dashboard' . '/' . $user->username . '/posts?post=adoption' }}" class="flex items-center text-greenpetify">
                     @if (request()->is(['dashboard/' . $user->username . '/posts']))
 
@@ -104,7 +104,7 @@
 
             <!-- adoption history -->
             <a href="{{ '/dashboard' . '/' . $user->username . '/adoption-history' }}">
-                <div class="flex flex-row items-center justify-items-start space-x-[0.87vw] hover:font-bold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
+                <div class="flex flex-row items-center justify-items-start space-x-[0.87vw] hover:font-extrabold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
                     @if (request()->is(['dashboard/' . $user->username . '/adoption-history']))
                         <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_1821_1164)">
@@ -150,7 +150,7 @@
 
             <!-- adoption request -->
             <a href="{{ '/dashboard' . '/' . $user->username . '/adoption-requests?request=other-request' }}">
-                <div class="flex flex-row items-center justify-items-start space-x-[1.2vw] hover:font-bold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
+                <div class="flex flex-row items-center justify-items-start space-x-[1.2vw] hover:font-extrabold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
                     @if (request()->is(['dashboard/' . $user->username . '/adoption-requests']))
 
                         <svg width="39" height="39" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -177,7 +177,7 @@
 
             <!-- post request -->
             <a href="{{ '/dashboard' . '/' . $user->username . '/post-requests?post=adoptions' }}">
-                <div class="flex flex-row items-center justify-items-start space-x-[1.1vw] hover:font-bold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
+                <div class="flex flex-row items-center justify-items-start space-x-[1.09vw] hover:font-extrabold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
                     @if (request()->is(['dashboard/' . $user->username . '/post-requests']))
                         <svg width="40" height="40" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_2067_1844)">
@@ -211,21 +211,21 @@
             </a>
 
             <!-- liked post -->
-            <div class="flex flex-row items-center justify-items-start space-x-[1.5vw] hover:font-bold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
+            <div class="flex flex-row items-center justify-items-start space-x-[1.vw] hover:font-extrabold hover:text-greentua transition duration-300 ease-in-out cursor-pointer">
                 <a href="{{ '/dashboard' . '/' . $user->username . '/liked-posts?post=adoptions' }}" class="flex items-center text-greenpetify">
                     @if (request()->is(['dashboard/' . $user->username . '/liked-posts']))
                         
                         <svg width="35" height="35" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M37.7664 22.2044C39.4132 20.5378 40.3281 18.2876 40.3097 15.949C40.2914 13.6103 39.3414 11.3746 37.6686 9.73387C36.8404 8.92144 35.8596 8.27951 34.7823 7.84473C33.7051 7.40994 32.5524 7.19082 31.3902 7.19987C29.0429 7.21815 26.7991 8.16471 25.1523 9.83133C24.7051 10.2769 24.1368 10.8237 23.4474 11.472L21.5306 13.2704L19.6138 11.472C18.9228 10.8222 18.3538 10.2753 17.9066 9.83133C16.2468 8.17764 13.9957 7.24861 11.6484 7.24861C9.30116 7.24861 7.05003 8.17764 5.39025 9.83133C1.9712 13.2402 1.93161 18.7515 5.26448 22.1766L21.5306 38.3832L37.7664 22.2044ZM3.41289 7.86352C4.49429 6.78579 5.77819 5.93087 7.19126 5.34759C8.60433 4.76432 10.1189 4.4641 11.6484 4.4641C13.178 4.4641 14.6925 4.76432 16.1056 5.34759C17.5187 5.93087 18.8026 6.78579 19.884 7.86352C20.3078 8.28741 20.8567 8.81494 21.5306 9.44613C22.2014 8.81494 22.7502 8.28663 23.1772 7.8612C25.3445 5.66869 28.2971 4.42374 31.3856 4.40024C34.4741 4.37674 37.4454 5.57661 39.646 7.73589C41.8465 9.89518 43.0961 12.837 43.1197 15.9142C43.1432 18.9914 41.939 21.9519 39.7718 24.1444L23.1772 40.6805C22.7405 41.1155 22.1482 41.3599 21.5306 41.3599C20.913 41.3599 20.3207 41.1155 19.884 40.6805L3.28479 24.1421C1.15613 21.9547 -0.0236093 19.0209 0.000358173 15.9743C0.0243257 12.9277 1.25007 10.0127 3.41289 7.85888V7.86352Z" fill="#ECAC73"/>
                         </svg>
-                        <span class="ml-[1.9vw] text-or-dashboard">Liked Post</span>
+                        <span class="ml-[1.43vw] text-or-dashboard">Liked Post</span>
 
                     @else
 
                         <svg width="35" height="35" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M37.7664 22.2045C39.4132 20.5379 40.3281 18.2878 40.3097 15.9491C40.2914 13.6104 39.3414 11.3748 37.6686 9.73399C36.8404 8.92157 35.8596 8.27963 34.7823 7.84485C33.7051 7.41006 32.5524 7.19094 31.3902 7.19999C29.0429 7.21827 26.7991 8.16484 25.1523 9.83146C24.7051 10.277 24.1368 10.8239 23.4474 11.4721L21.5306 13.2705L19.6138 11.4721C18.9228 10.8223 18.3538 10.2755 17.9066 9.83146C16.2468 8.17776 13.9957 7.24873 11.6484 7.24873C9.30116 7.24873 7.05003 8.17776 5.39025 9.83146C1.9712 13.2403 1.93161 18.7516 5.26448 22.1767L21.5306 38.3833L37.7664 22.2045ZM3.41289 7.86365C4.49429 6.78592 5.77819 5.931 7.19126 5.34772C8.60433 4.76444 10.1189 4.46422 11.6484 4.46422C13.178 4.46422 14.6925 4.76444 16.1056 5.34772C17.5187 5.931 18.8026 6.78592 19.884 7.86365C20.3078 8.28753 20.8567 8.81506 21.5306 9.44625C22.2014 8.81506 22.7502 8.28676 23.1772 7.86133C25.3445 5.66881 28.2971 4.42386 31.3856 4.40036C34.4741 4.37686 37.4454 5.57673 39.646 7.73602C41.8465 9.8953 43.0961 12.8371 43.1197 15.9143C43.1432 18.9915 41.939 21.952 39.7718 24.1445L23.1772 40.6806C22.7405 41.1156 22.1482 41.36 21.5306 41.36C20.913 41.36 20.3207 41.1156 19.884 40.6806L3.28479 24.1422C1.15613 21.9548 -0.0236093 19.0211 0.000358173 15.9744C0.0243257 12.9278 1.25007 10.0128 3.41289 7.859V7.86365Z" fill="#166B68"/>
                         </svg>
-                        <span class="ml-[1.9vw] text-greentua">Liked Post</span>
+                        <span class="ml-[1.43vw] text-greentua">Liked Post</span>
 
                     @endif
                     
