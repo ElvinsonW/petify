@@ -97,7 +97,7 @@
                 @endif
 
                 <!-- Dropdown Filter -->
-                <div id="filterDropdown" class="absolute z-10 w-[16vw] mt-[5vw] bg-greenpetify text-white rounded-[1vw] shadow-lg opacity-0 scale-95 transition-all transform origin-top-left hidden font-overpass">
+                <div id="filterDropdown" class="absolute z-10 w-[16.85vw] mt-[5vw] bg-greenpetify text-white rounded-[1vw] shadow-lg opacity-0 scale-95 transition-all transform origin-top-left hidden font-overpass">
                     <form class="p-[1vw] space-y-[1vw]">
                         <!-- Weight Input -->
                         <label class="block">
