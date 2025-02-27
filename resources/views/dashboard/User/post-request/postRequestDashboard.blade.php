@@ -14,7 +14,7 @@
             @php
                 $queryParams = request()->query();
             @endphp
-            <div class="flex mt-[1.5vw] text-[1.5vw] font-bold font-overpass w-full items-center justify-between">
+            <div class="flex mt-[1vw] text-[1.5vw] font-bold font-overpass items-center justify-between">
                 <div class="flex gap-[5vw]">
                     @php
                         $queryParams["post"] = "adoptions";
