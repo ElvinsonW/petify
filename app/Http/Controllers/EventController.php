@@ -16,15 +16,22 @@ class EventController extends Controller
     public function index()
     {
         $today = Carbon::today();
+        $mainFilters = ['search','category','date'];
+
+        $upcomingFilters = ['search','category'];
 
         // Get the main event for today (event that starts and ends today)
-        $mainEvent = Event::whereDate('start_date', '<=', $today) // Start date is before or today
-                          ->whereDate('end_date', '>=', $today) // End date is after or today
-                          ->get(); // Use ->get() to return all events for today (if there are multiple)  
-
+        $mainEvent = Event::filter(request($mainFilters))
+                            ->when(!request('date'), function ($query) use ($today) {
+                                $query->whereDate('start_date', '<=', $today)
+                                    ->whereDate('end_date', '>=', $today);
+                            })
+                            ->get();
+    
         
         // Get the next 5 closest upcoming events from tomorrow 
-        $upcomingEvents = Event::whereDate('start_date', '>', $today)  // Events happening after today
+        $upcomingEvents = Event::filter(request($upcomingFilters))
+                                ->whereDate('start_date', '>', $today)  // Events happening after today
                                 ->orderBy('start_date', 'asc')  // Sort by nearest first
                                 ->paginate(9)
                                 ->withQueryString();
@@ -34,7 +41,9 @@ class EventController extends Controller
                                 ->whereYear('start_date', $today->year)
                                 ->get();
 
-        return view('event.event', compact('mainEvent', 'upcomingEvents', 'calendarEvents'));
+        $categories = ArticleEventCategory::all();
+
+        return view('event.event', compact('mainEvent', 'upcomingEvents', 'calendarEvents','categories'));
     }
 
     /**
