@@ -56,7 +56,31 @@ class FindMyPet extends Model
                     ->orWhere('breed', 'like', '%' . $search . '%')
                     ->orWhere('description', 'like', '%' . $search . '%')
         );
+
+        $query->when(
+            $filters['category'] ?? false,
+            fn($query, $category) =>
+                $query->whereHas('pet_category', fn($categoryQuery) =>
+                    $categoryQuery->where('slug', $category)
+                )
+        );
+
+        $query->when(
+            $filters['collar_tag'] ?? false,
+            fn($query, $collarTag) => 
+                $collarTag !== 'Any' ? $query->where('color_tag', $collarTag) : $query
+        );
+
+        // Filter berdasarkan city
+        $query->when(
+            $filters['city'] ?? false,
+            fn($query, $city) => 
+                $query->where('city', 'like', '%' . $city . '%')
+        );
+
     }
 
 
 }
+
+

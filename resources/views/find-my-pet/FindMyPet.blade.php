@@ -11,15 +11,15 @@
 
             <!-- Search Bar -->
             <form class="max-w-md w-[16vw] mt-[1vw]" method="GET" action="{{ route('find-my-pet.index') }}">
-                <label for="search" class="mb-[0.5vw] text-sm text-gray-900 sr-only !font-overpass font-semibold">Search</label>
-                <div class="relative w-full border-1/2 border-gray-400 rounded-[0.5vw] bg-white shadow-md">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-[0.75vw] pointer-events-none">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                    <input type="search" id="search" name="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold focus:outline-none" value="{{ request('search') }}" placeholder="Search Here">
-                    <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-[0.5vw] px-[0.5vw] py-[0.4vw] !font-overpass">Search</button>
+            <label for="search" class="mb-[0.5vw] text-sm text-gray-900 sr-only !font-overpass font-semibold">Search</label>
+            <div class="relative w-full border-1/2 border-gray-400 rounded-[0.5vw] bg-white shadow-md">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-[0.75vw] pointer-events-none">
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
-            </form>
+                <input type="search" id="search" name="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold focus:outline-none" value="{{ request('search') }}" placeholder="Search Here">
+                <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-[0.5vw] px-[0.5vw] py-[0.4vw] !font-overpass">Search</button>
+            </div>
+        </form>
 
 
             <!-- Filter & Missing Buttons -->
@@ -88,15 +88,16 @@
                 <!-- Category List -->
                 @foreach ($categories as $category)
                     @php
-                        $isActive = $selectedCategory == $category->slug;
+                        $isActive = request('category') == $category->slug;
                     @endphp
                     <button class="pl-2 pr-2 w-full transition duration-500 ease-in-out rounded-xl group @if($isActive) bg-{{ $category->color }} @endif hover:bg-{{ $category->color }}">
-                        <a href="{{ route('find-my-pet.index') . '?category=' . ($isActive ? 'all' : $category->slug) }}" class="w-full">
+                        <a href="{{ route('find-my-pet.index', ['category' => $isActive ? 'all' : $category->slug]) }}" class="w-full">
                             <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left group-hover:text-white transition-colors duration-500 ease-in-out @if($isActive) text-white @else text-black @endif">{{ $category->name }}</p>
                             <hr class="border-{{ $category->color }} border-1/2 w-[6vw] my-[0.5vw] group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
                         </a>
                     </button>
                 @endforeach
+
             </div>
         </div>
         <!-- Bagian Kiri (Sidebar) End -->
@@ -189,7 +190,7 @@
             } else {
                 filterDropdown.classList.add("hidden");
                 filterDropdown.classList.remove("opacity-100", "scale-100");
-                petCategoryContainer.classList.remove("mt-[14vw");
+                petCategoryContainer.classList.remove("mt-[14vw]");
                 sidebarLeft.style.minHeight = "100vh";
             }
         });
@@ -198,7 +199,7 @@
             if (!filterButton.contains(event.target) && !filterDropdown.contains(event.target)) {
                 filterDropdown.classList.add("hidden");
                 filterDropdown.classList.remove("opacity-100", "scale-100");
-                petCategoryContainer.classList.remove("mt-64");
+                petCategoryContainer.classList.remove("mt-[14vw]");
                 sidebarLeft.style.minHeight = "100vh";
             }
         });
