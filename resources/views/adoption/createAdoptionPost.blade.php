@@ -15,6 +15,9 @@
                 <div class="grid gap-6 mb-6 md:grid-cols-2 font-open_sans">
                     <!-- Name -->
                     <div>
+                        {{-- @php
+                            dd($pet->name);
+                        @endphp --}}
                         <label for="name" class="block mb-2 text-lg font-semibold">Name of your Pet</label>
         
                         <input type="text" id="name" name="name" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Name..." value="{{ old('name') ?? ($pet ? $pet->name : '') }}" required />

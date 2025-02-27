@@ -26,6 +26,7 @@ class EventController extends Controller
                                 $query->whereDate('start_date', '<=', $today)
                                     ->whereDate('end_date', '>=', $today);
                             })
+                            ->orderBy('start_date', 'asc')
                             ->get();
     
         

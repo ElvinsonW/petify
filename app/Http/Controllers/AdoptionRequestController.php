@@ -113,7 +113,7 @@ class AdoptionRequestController extends Controller
             }
 
         });
-        return redirect('/dashboard' . '/' . $request->adoption_post->user->username . '/adoption-requests')->with('adoptSuccess',"Adoption Successfully Done");
+        return redirect('/dashboard' . '/' . $request->adoption_post->user->username . '/adoption-requests?request=other-request')->with('adoptSuccess',"Adoption Successfully Done");
 
     }
 }

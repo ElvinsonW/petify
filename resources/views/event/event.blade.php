@@ -154,7 +154,7 @@
                                             <img 
                                                 src="{{ asset('images/uim_calendar.svg') }}" 
                                                 alt="Calendar Icon" class="w-4 h-4">
-                                            <span>{{ \Carbon\Carbon::parse($upcomingEvent->start_date)->format('d F Y') }}</span>
+                                            <span>{{ \Carbon\Carbon::parse($upcomingEvent->start_date)->format('d F Y') }} - {{ \Carbon\Carbon::parse($upcomingEvent->end_date)->format('d F Y') }}</span>
                                         </span>
                                     </div>
                                 </div>
@@ -220,7 +220,8 @@
                                                 src="{{ asset('images/uim_calendar.svg') }}" 
                                                 alt="Location Icon" class="w-4 h-4">
                                                 <span class="text-xs font-open_sans leading-snug font-normal text-black">
-                                                    {{ \Carbon\Carbon::parse($mainEvent->start_date)->format('d F Y') }}
+                                                    {{ \Carbon\Carbon::parse($mainEvent->start_date)->format('d F Y') }} - 
+                                                    {{ \Carbon\Carbon::parse($mainEvent->end_date)->format('d F Y') }}
                                                 </span>
                                             </span>                                 
                                         </div>
@@ -358,6 +359,19 @@
 
     // Initial render
     renderCalendar(currentMonth, currentYear);
+
+    let currentUrl = new URL(window.location.href);
+    const currentDate = currentUrl.searchParams.get('date');
+
+    if(currentDate){
+        const [year, month, day] = currentDate.split('-');
+        const numericMonth = parseInt(month, 10); 
+
+        currentMonth = numericMonth-1;
+        currentYear = year;
+        
+        renderCalendar(numericMonth-1, year)
+    }
 
     const categorySelect = document.getElementById('categorySelected');
 

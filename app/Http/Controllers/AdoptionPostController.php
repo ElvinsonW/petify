@@ -284,9 +284,9 @@ class AdoptionPostController extends Controller
         ]);
     }
 
-    public function createWithExistPet()
+    public function createWithExistPet(string $id)
     {   
-        $pet = session('pet');
+        $pet = Pet::find($id);
 
         // Mengembalikan view yang sesuai 
         return view("adoption.createAdoptionPost", ["categories" => PetCategory::all(), "pet" => $pet]);
