@@ -100,7 +100,7 @@
                 
                 <!-- page Find My Pet post -->
                 @php
-                    $queryParams["post"] = "find-my-pet";
+                    $queryParams["post"] = "findMyPet";
                     $url = url('/dashboard') . '/' . $user->username . '/posts' . '?' . http_build_query($queryParams);
                 @endphp
                 <a href="{{ $url }}">

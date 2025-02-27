@@ -140,7 +140,7 @@
                         </div>
 
                         <!-- Gambar Pet -->
-                        <img src="{{ asset("storage/" . $post->image) }}" alt="Pet Post" class="w-[35vw] h-[25vw] object-cover">
+                        <img src="{{ asset('storage/' . $post->image) }}" alt="Pet Post" class="w-[35vw] h-[25vw] object-cover">
                         
                         <!-- Like & Days -->
                         <div class="flex flex-row mt-8 mb-4 pl-1">

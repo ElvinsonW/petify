@@ -8,6 +8,7 @@ use App\Models\AdoptionRequest;
 use App\Models\Article;
 use App\Models\ArticleRequest;
 use App\Models\Event;
+use App\Models\FindMyPet;
 use App\Models\LifeAfterAdoption;
 use App\Models\LikedAdoptionPost;
 use App\Models\LikedLifeAfterAdoption;
@@ -24,7 +25,8 @@ class UserDashboardController extends Controller
             "posts" => [
                 "adoption" => AdoptionPost::filter(request($filters))->where('user_id',$user->id)->get(),
                 "article" => Article::filter(request($filters))->where('user_id',$user->id)->get(),
-                "event" => Event::where('user_id',$user->id)->get(),
+                "event" => Event::filter(request($filters))->where('user_id',$user->id)->get(),
+                "findMyPet" =>  FindMyPet::filter(request($filters))->where('user_id',$user->id)->get(),
             ],
             "user" => $user
         ]);
