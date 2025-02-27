@@ -34,9 +34,7 @@ Route::get('/login',[UserController::class,"loginForm"])->name("login")->middlew
 Route::post('/login', [UserController::class,"login"])->name('login')->middleware(GuestMode::class);
 
 // Registration Routes
-Route::get('/register',function(){
-    return view('register');
-})->middleware(GuestMode::class);
+Route::get('/register',[UserController::class,"registerForm"])->middleware(GuestMode::class);
 
 Route::post('/register', [UserController::class,"register"])->middleware(GuestMode::class);
 
@@ -49,23 +47,28 @@ Route::get('/', function () {
 
 // Article Routes
 Route::get('/articles/createSlug',[ArticleController::class,'createSlug'])->name('articles.createSlug')->middleware('auth');
+
 Route::resource('/articles', ArticleController::class)->middleware('auth');
 
 // Adoption Routes
 Route::get('/adoptions/createSlug',[ArticleController::class,'createSlug'])->name('adoptions.createSlug')->middleware('auth');
+
 Route::resource('/adoptions', AdoptionPostController::class)->middleware('auth');
 
 // Life After Adoption Routes
 Route::resource('/life-after-adoption', LifeAfterAdoptionController::class)->middleware('auth');
     
-Route::post('/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'like'])->middleware('auth');
-Route::delete('/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'unlike'])->middleware('auth');
+Route::post('/tah/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'like'])->middleware('auth');
+
 Route::post('/life-after-adoption/{post_id}/like',[LikedLifeAfterAdoptionController::class,'like'])->middleware('auth');
+
 Route::delete('/life-after-adoption/{post_id}/like',[LikedLifeAfterAdoptionController::class,'unlike'])->middleware('auth');
+
 Route::get('life-after-adoption/{post_id}/like-count',[LikedLifeAfterAdoptionController::class,'likeCount'])->middleware('auth');
 
 // Event Routes
 Route::get('/events/createSlug',[EventController::class,'createSlug'])->name('adoptions.createSlug')->middleware('auth');
+
 Route::resource('/events', EventController::class)->middleware('auth');
 
 // Adoption Request Routes
@@ -105,4 +108,4 @@ Route::put("/dashboard/{username}/profile",[UserController::class,"update"])->mi
 
 Route::get('/dashboard/{username}/adoption-history',[UserDashboardController::class,'indexAdoptionHistory']);
 
-Route::get('/adoptions/{slug}/adoption-request/{id}/{action}',[AdoptionRequestController::class,"handleRequest"])->middleware(CheckPostOwnership::class);;
+Route::get('/adoptions/{slug}/adoption-request/{id}/{action}',[AdoptionRequestController::class,"handleRequest"])->middleware(CheckPostOwnership::class);

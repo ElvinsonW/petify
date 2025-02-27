@@ -79,6 +79,9 @@
                             </a>
                         </button>
                     @else
+                        @php
+                            unset($queryParams["page"])
+                        @endphp
                         <button class="pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group hover:bg-{{ $category->color }}">
                             <a href="{{ url('/articles') . '?' . http_build_query($queryParams) }}" class="w-full">
                                 <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left group-hover:text-white transition-colors duration-500 ease-in-out">{{ $category->name }}</p>
