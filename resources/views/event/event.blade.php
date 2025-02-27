@@ -46,22 +46,51 @@
                 </form>
                 <!-- Filter Dropdowns -->
                 <div class="flex flex-col space-y-4 md:space-y-0 md:flex-row items-center md:space-x-4 mb-8">
-                    <div class="flex flex-wrap gap-5 items-center">
+                    <!-- <div class="flex flex-wrap gap-5 items-center">
                         <p class="text-xl font-open_sans font-semibold text-black tracking-widest w-full md:w-auto">Filter By:</p>
-                        <select class="text-sm font-open_sans font-semibold tracking-wide text-black bg-abuevent px-3 py-1 rounded-lg focus:ring-2 focus:ring-black w-auto">
-                            <option>Pet Category</option>
+                        <select class="text-sm font-open_sans font-semibold tracking-wide text-black bg-abuevent px-3 py-1 rounded-lg focus:ring-1 focus:ring-black w-auto">
+                            <option value="" disabled selected>Pet Category</option>
+                            <option value="dog">Dog</option>
+                            <option value="cat">Cat</option>
+                            <option value="reptile">Reptile</option>
+                            <option value="reptile">Other Pet</option>
                         </select>
-                        <select class="text-sm font-open_sans font-semibold tracking-wide text-black bg-abuevent px-3 py-1 rounded-lg focus:ring-2 focus:ring-black w-auto">
+                        <select class="text-sm font-open_sans font-semibold tracking-wide text-black bg-abuevent px-3 py-1 rounded-lg focus:ring-1 focus:ring-black w-auto">
                             <option>Time</option>
                         </select>
-                        <select class="text-sm font-open_sans font-semibold tracking-wide text-black bg-abuevent px-3 py-1 rounded-lg focus:ring-2 focus:ring-black w-auto">
-                            <option>Category</option>
-                        </select>
+                    </div> -->
+                    <div class="flex flex-wrap gap-[2.5vw] items-center">
+                        <p class="text-[1.4vw] font-semibold text-black tracking-widest w-full md:w-auto items-center text-center">
+                            Filter By:
+                        </p>
+                        <div class="relative">
+                            <select class="appearance-none text-[1.1vw] font-medium text-white bg-greenpetify border px-[1.2vw] py-[0.35vw] pr-[2.5vw] rounded-[0.5vw] w-full">
+                                <option value="" disabled selected>Pet Category</option>
+                                <option value="dog">Dog</option>
+                                <option value="cat">Cat</option>
+                                <option value="reptile">Reptile</option>
+                                <option value="other">Other Pet</option>
+                            </select>
+                            <svg class="absolute right-[0.8vw] top-1/2 transform -translate-y-1/2 w-[1.1vw] h-[1.1vw] text-white pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="relative">
+                            <select class="appearance-none text-[1.1vw] font-medium text-white bg-greenpetify border px-[1.2vw] py-[0.35vw] rounded-[0.5vw] w-full">
+                                <option value="" disabled selected>Time</option>
+                                <option value="morning">Morning</option>
+                                <option value="afternoon">Afternoon</option>
+                                <option value="evening">Evening</option>
+                            </select>
+                            <svg class="absolute right-[0.8vw] top-1/2 transform -translate-y-1/2 w-[1.1vw] h-[1.1vw] text-white pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
                     </div>
                     <!-- Button -->
                     <a
                         href="../events/create"
-                        class="bg-orenmuda text-white px-4 py-2 rounded-lg shadow-sm hover:bg-orange-400 transition duration-300 inline-block text-center font-montserrat_alt tracking-wide text-base font-semibold w-full md:w-auto"
+                        class="bg-orenmuda text-white px-[1vw] py-[0.5vw] rounded-[0.5vw] shadow-sm hover:bg-orange-400 transition duration-300 inline-block text-center font-montserrat_alt tracking-wide text-base font-semibold w-full md:w-auto"
                         style="margin-left: auto;"
                     >
                         + Event Post
@@ -73,18 +102,18 @@
             @if ($upcomingEvents->isNotEmpty()) <!-- Check if there are any events -->
                 @foreach ($upcomingEvents as $upcomingEvent)
                     <div class="event card overflow-y-auto scrollbar-thin max-h-screen scrollbar-track-gray-200 scrollbar-thumb-gray-400 mb-10">
-                        <a href="/events/{{ $upcomingEvent->slug }}" class="hover:bg-gray-100 transition duration-300 block p-4 rounded-lg mb-5">
+                        <a href="/events/{{ $upcomingEvent->slug }}" class="hover:bg-gray-100 transition duration-300 block p-[1vw] rounded-lg mb-[1.4vw]">
                             <div class="flex flex-col md:flex-row items-start space-x-0 md:space-x-6">
                                 <img
                                     src="{{ asset('storage/' . $upcomingEvent->image) }}"
                                     alt="Event Image"
-                                    class="w-full md:w-36 h-36 rounded-2xl object-cover"
+                                    class="w-full md:w-36 h-36 rounded-[1vw] object-cover"
                                 />
                                 <div>
                                     <h2 class="text-2xl font-semibold font-montserrat_alt text-black leading-snug">
                                         {{ $upcomingEvent->title }}
                                     </h2>
-                                    <p class="mt-2 text-sm font-open_sans leading-snug text-black font-normal">
+                                    <p class="mt-[0.5vw] text-sm font-open_sans leading-snug text-black font-normal">
                                         {!! Str::limit($upcomingEvent->description, 100) !!}
                                     </p>
                                     <div class="flex flex-col text-xs text-black font-open_sans font-semibold mt-3 leading-snug space-y-2">
@@ -138,7 +167,7 @@
                 <h3 class="text-xl font-bold font-open_sans leading-snug text-greenpetify mb-4 mt-16">Today's Event</h3>
                 @if ($mainEvent->isNotEmpty())
                     @foreach ($mainEvent as $mainEvent)
-                        <div class="bg-white p-3 rounded-2xl hover:shadow-lg transition duration-300 mb-5">
+                        <div class="bg-white p-[0.75vw] rounded-[1vw] hover:shadow-lg transition duration-300 mb-[1.2vw]">
                             <a href="/events/{{ $mainEvent->slug }}">
                                 <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-4">
                                     <img
@@ -147,7 +176,7 @@
                                         class="w-full md:w-24 h-24 rounded-2xl object-cover"
                                     />
                                     <div>
-                                        <h4 class="mb-2 text-lg font-semibold text-black font-montserrat_alt leading-snug">{{ $mainEvent->title }}</h4>
+                                        <h4 class="mb-[0.5vw] text-lg font-semibold text-black font-montserrat_alt leading-snug">{{ $mainEvent->title }}</h4>
                                         <!-- location -->
                                         <span class="mb-1 flex items-center space-x-2">
                                             <img 
