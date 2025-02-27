@@ -13,30 +13,38 @@ class FindMyPetController extends Controller
      */
     public function index(Request $request)
     {
-        $pets = FindMyPet::query();
+        $query = FindMyPet::query();
 
-        // Check if there's a category filter and apply it
-        if ($request->has('category')) {
-            // If the category query matches the current selected category, remove the filter
-            if ($request->category != 'all') {
-                $pets->whereHas('pet_category', function ($query) use ($request) {
-                    $query->where('slug', $request->category);
-                });
-            }
+        // Filter berdasarkan kategori, jika ada
+        if ($request->has('category') && $request->category !== 'all') {
+            $query->where('pet_category_id', $request->category);
         }
 
-        // Paginate results
-        $pets = $pets->paginate(10);
+        // Filter berdasarkan Collar & Tag (Yes/No/Any)
+        if ($request->has('collar_tag') && $request->collar_tag !== 'Any') {
+            $query->where('color_tag', $request->collar_tag);
+        }
 
-        // Fetch all categories for the sidebar
+        // Filter berdasarkan city (jika ada)
+        if ($request->has('city') && $request->city !== '') {
+            $query->where('city', 'like', '%' . $request->city . '%');
+        }
+
+
+        // Ambil hasilnya dengan pagination
+        $pets = $query->paginate(10);
+
+        // Ambil semua kategori untuk ditampilkan di sidebar
         $categories = PetCategory::all();
 
+        // Kirim data ke view
         return view('find-my-pet.FindMyPet', [
             'pets' => $pets,
             'categories' => $categories,
             'selectedCategory' => $request->category,
         ]);
     }
+
 
 
 

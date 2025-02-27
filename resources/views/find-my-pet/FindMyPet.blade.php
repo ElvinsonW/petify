@@ -8,9 +8,9 @@
                 <h4 class="text-[3.2vw] font-montserrat_alt font-bold text-greenpetify">Find Your</h4>
                 <h2 class="text-[2.4vw] font-montserrat_alt font-bold text-greenpetify">Pet</h2>
             </div>
-            
+
             <!-- Search Bar -->
-            <form class="max-w-md w-[16vw] mt-[1vw]">           
+            <form class="max-w-md w-[16vw] mt-[1vw]">
                 <label for="search" class="mb-[0.5vw] text-sm text-gray-900 sr-only !font-overpass font-semibold">Search</label>
                 <div class="relative w-full border-1/2 border-gray-400 rounded-[0.5vw] bg-white shadow-md">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-[0.75vw] pointer-events-none">
@@ -32,6 +32,42 @@
                         <i class="fa-solid fa-plus mr-[0.5vw]"></i> Missing
                     </button>
                 </a>
+            </div>
+
+            <!-- dropdown filter -->
+            <div id="filterDropdown" class="absolute w-[17vw] mt-[0.7vw] bg-greenpetify text-white rounded-[1vw] shadow-lg opacity-0 scale-95 transition-all transform origin-top-left hidden font-overpass">
+                <div class="p-[1vw] space-y-[1vw]">
+                    <form action="{{ route('find-my-pet.index') }}" method="GET">
+                        <label class="block">
+                            <span class="text-[1vw] font-semibold">City</span>
+                            <input type="text" name="city" placeholder="Input city here" class="w-full p-[0.5vw] bg-teal-700 rounded-[0.4vw]" value="{{ request('city') }}">
+                        </label>
+                        <label class="block">
+                            <span class="text-[1vw] font-semibold">Collar & Tag</span>
+                            <select name="collar_tag" class="w-full mt-[0.25vw] p-[0.5vw] bg-teal-700 rounded-[0.4vw]">
+                                @if (request('collar_tag') == "Yes")
+                                    <option value="male" selected>Yes</option> 
+                                @else   
+                                    <option value="yes">Yes</option> 
+                                @endif
+                                
+                                @if (request('collar_tag') == "No")
+                                    <option value="no" selected>No</option> 
+                                @else   
+                                    <option value="No">No</option> 
+                                @endif
+
+                                @if (request('collar_tag') == "")
+                                    <option value="" selected>Any</option> 
+                                @else   
+                                    <option value="">Any</option> 
+                                @endif
+                                
+                            </select>
+                        </label>
+                        <button type="submit" class="w-full py-[0.25vw] mt-[1vw] bg-white text-greenpetify text-[1.2vw] rounded-[0.5vw] font-semibold hover:bg-gray-200 hover:scale-105 transition-all duration-300 ease-in-out font-montserrat_alt">Apply</button>
+                    </form>
+                </div>
             </div>
 
             <div class="mt-[1vw] w-[16vw] shadow-2xl rounded-[0.5vw] border-1/2 border-gray-400 p-[1vw] font-montserrat_alt">
@@ -59,15 +95,11 @@
                             <hr class="border-{{ $category->color }} border-1/2 w-[6vw] my-[0.5vw] group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
                         </a>
                     </button>
-
-                    
                 @endforeach
-
             </div>
         </div>
         <!-- Bagian Kiri (Sidebar) End -->
 
-        
         <!-- Right Section (Display Pets) -->
         <div class="flex pt-[3vw] w-3/4">
             <div class="max-h-screen h-auto overflow-y-auto space-y-[3vw] px-[5vw] pb-[7.5vw] pt-[2vw] ml-auto">
@@ -90,12 +122,10 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="mt-[1.2vw] font-open_sans text-justify text-sm text-black tracking-wide leading-snug">
                             <p>{{ ucfirst($pet->description) }}</p>
                         </div>
-                        
-                       
 
                         <div class="mt-[1.2vw] flex items-center">
                             <div class="w-9 h-9 bg-white border-[0.1vw] border-greentua rounded-full flex justify-center items-center p-[0.1vw]">
@@ -108,9 +138,68 @@
                                 <span>{{ $pet->user->phone_number }}</span>
                             </div>
                         </div>
-                    </div>           
+                    </div>
                 @endforeach
             </div>
-        </div>  
+        </div>
     </div>
+
+    <script>
+        const buttonToogle = document.querySelector('.buttonToogle');
+        const mobileMenu = document.querySelector('.mobileMenu');
+    
+        buttonToogle.addEventListener('click', function () {
+            mobileMenu.classList.toggle('hidden');
+            
+            const icon = buttonToogle.querySelector('.icon');
+            
+            // Toggle antara hamburger dan X
+            if (icon.classList.contains('icon-hamburger')) {
+                // ganti path
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
+                icon.classList.remove('icon-hamburger');
+                icon.classList.add('icon-close');
+                icon.style.transform = 'rotate(90deg)'; // rotation effect
+            } else {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+                icon.classList.remove('icon-close');
+                icon.classList.add('icon-hamburger');
+                icon.style.transform = 'rotate(0deg)'; // Reset rotation
+            }
+        });
+    </script>
+
+    <script>
+        // Dropdown filter visibility toggle
+        const filterButton = document.getElementById("filterButton");
+        const filterDropdown = document.getElementById("filterDropdown");
+        const petCategoryContainer = document.getElementById("petCategoryContainer");
+        const sidebarLeft = document.getElementById("sidebarLeft");
+
+        filterButton.addEventListener("click", () => {
+            const isHidden = filterDropdown.classList.contains("hidden");
+
+            if (isHidden) {
+                filterDropdown.classList.remove("hidden");
+                filterDropdown.classList.add("opacity-100", "scale-100");
+                petCategoryContainer.classList.add("mt-64");
+                sidebarLeft.classList.add("h-auto");
+                sidebarLeft.style.minHeight = "calc(100vh + 200px)";
+            } else {
+                filterDropdown.classList.add("hidden");
+                filterDropdown.classList.remove("opacity-100", "scale-100");
+                petCategoryContainer.classList.remove("mt-64");
+                sidebarLeft.style.minHeight = "100vh";
+            }
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!filterButton.contains(event.target) && !filterDropdown.contains(event.target)) {
+                filterDropdown.classList.add("hidden");
+                filterDropdown.classList.remove("opacity-100", "scale-100");
+                petCategoryContainer.classList.remove("mt-64");
+                sidebarLeft.style.minHeight = "100vh";
+            }
+        });
+    </script>
 </x-layout>
