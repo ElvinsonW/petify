@@ -20,7 +20,7 @@
                 }
             @endphp
             
-            <a href="{{ url('/dashboard/article-requests') . '?' . http_build_query($queryParams) }}" class="flex items-center {{ !request('status') ? 'bg-white' : '' }} px-[2vw] py-[1.5vw] rounded-tl-[1.5vw] rounded-tr-[1.5vw] w-[20vw]">
+            <a href="{{ url('/dashboard/article-requests') . '?' . http_build_query($queryParams) }}" class="flex items-center {{ !request('status') ? 'bg-white' : '' }} px-[2vw] py-[1.5vw] bg-abuevent rounded-tl-[1.5vw] rounded-tr-[1.5vw] w-[20vw]">
                 <img src="{{ asset('images/post request.svg') }}" alt="">
                 <div class="ml-[1vw]">
                     <p class="text-black font-bold font-overpass text-[1.8vw]">{{ $total_pending_requests }}</p>

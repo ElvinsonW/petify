@@ -1,12 +1,14 @@
 
 <x-dashboard.layout :user="$user">
     <!-- Sidebar Kanan Start -->
-    <div class="flex-1 p-[2vw] h-screen flex flex-col">
-        <div class="items-center mb-[1.4vw]">
-            <!-- Header -->
-            <div class="font-montserrat_alt tracking-wider">
-                <p class="text-black font-normal text-[1.5vw]">Hello Dodoidoy,</p>
-                <p class="text-black font-semibold text-[2.5vw]">Good Afternoon!</p>
+    <div class="flex-1 px-[2.8vw] h-screen flex flex-col">
+        <div class="mt-[1.5vw] items-center mb-[1.4vw]">
+            <!-- title -->
+            <p class="text-greenpetify tracking-wide font-montserrat_alt text-[2vw] font-bold">Adoption Request</p>
+            <!-- date day -->
+            <div class="flex flex-row font-montserrat_alt">
+                <p class="text-black font-medium text-[1.1vw]">Wednesday</p>
+                <p class="text-black font-normal text-[1.1vw]">, 5 February 2025</p>
             </div>
 
             <!-- content -->
@@ -14,7 +16,7 @@
                 $queryParams = request()->query();
             @endphp
             <div class="flex mt-[1vw] text-[1.5vw] font-bold font-overpass items-center justify-between">
-                <div class="flex space-x-[5vw] text-[1.5vw]">
+                <div class="flex gap-[5vw]">
                     @php
                         $queryParams["request"] = "other-request";
                         $url = url('/dashboard') . '/' . $user->username . '/adoption-requests' . '?' . http_build_query($queryParams);
