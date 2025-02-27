@@ -76,7 +76,7 @@ class DatabaseSeeder extends Seeder
             User::all(),
             ArticleEventCategory::all()
         ])->create([
-            "image" => "event-images/petEventPict.jpg",
+            "image" => "event-images/petEventPict.png",
         ])->each(function($event){
 
             $days = Day::factory(rand(1,3))->create([
