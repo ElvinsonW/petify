@@ -55,10 +55,12 @@
                     @endphp
                     <button class="pl-2 pr-2 w-full transition duration-500 ease-in-out rounded-xl group @if($isActive) bg-{{ $category->color }} @endif hover:bg-{{ $category->color }}">
                         <a href="{{ route('find-my-pet.index') . '?category=' . ($isActive ? 'all' : $category->slug) }}" class="w-full">
-                            <p class="text-xl font-semibold mt-2 text-left group-hover:text-white transition-colors duration-500 ease-in-out @if($isActive) text-white @else text-black @endif">{{ $category->name }}</p>
+                            <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left group-hover:text-white transition-colors duration-500 ease-in-out @if($isActive) text-white @else text-black @endif">{{ $category->name }}</p>
                             <hr class="border-{{ $category->color }} border-1/2 w-[6vw] my-[0.5vw] group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
                         </a>
                     </button>
+
+                    
                 @endforeach
 
             </div>
@@ -72,7 +74,7 @@
                 @foreach ($pets as $pet)
                     <div class="bg-white shadow-lg rounded-[0.75vw] p-[2.5vw] relative">
                         <div class="flex flex-col md:flex-row gap-[1.5vw]">
-                            <img class="w-[30vw] h-[20vw] rounded-[1vw] object-cover" src="{{ asset('storage/' . $pet->image) }}" alt="{{ $pet->name }}"/>
+                            <img class="w-[27vw] h-[17vw] rounded-[0.6vw] object-cover" src="{{ asset('storage/' . $pet->image) }}" alt="{{ $pet->name }}"/>
 
                             <div class="flex-1 pt-[0.5vw]">
                                 <span class="bg-{{$pet->pet_category->color}} text-white text-[1vw] font-semibold font-montserrat_alt px-[1vw] py-[0.5vw] rounded-[0.8vw] ">{{ ucfirst($pet->pet_category->name) }}</span>
