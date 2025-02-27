@@ -58,7 +58,9 @@ Route::resource('/adoptions', AdoptionPostController::class)->middleware('auth')
 // Life After Adoption Routes
 Route::resource('/life-after-adoption', LifeAfterAdoptionController::class)->middleware('auth');
     
-Route::post('/tah/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'like'])->middleware('auth');
+Route::post('/adoptions/{slug}/like', [LikedAdoptionPostController::class, 'like'])->middleware('auth');
+
+Route::post('/adoptions/{slug}/unlike', [LikedAdoptionPostController::class, 'unlike'])->middleware('auth');
 
 Route::post('/life-after-adoption/{post_id}/like',[LikedLifeAfterAdoptionController::class,'like'])->middleware('auth');
 
@@ -73,8 +75,6 @@ Route::resource('/events', EventController::class)->middleware('auth');
 
 // Adoption Request Routes
 Route::get('/adoptions/{slug}/adoption-request/create', [AdoptionRequestController::class, 'create']);
-
-// Route::resource('/dashboard', DashboardController::class);
 
 Route::resource('/dashboard/article-requests', ArticleRequestController::class)->middleware(AdminOnly::class);
 

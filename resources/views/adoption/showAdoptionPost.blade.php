@@ -278,8 +278,8 @@
 
     // Tambahkan event listener saat diklik
     likeIcon.addEventListener('click', function () {
-        const url = `/tah/adoptions/${adoptionSlug}/like`;        
-        const method = likeIcon.classList.contains('filled-heart') ? 'DELETE' : 'POST';
+        const url = likeIcon.classList.contains('filled-heart') ? `/adoptions/${adoptionSlug}/unlike` : `/adoptions/${adoptionSlug}/like`;        
+        const method = 'POST';
 
         fetch(url, {
             method: method,
