@@ -27,7 +27,7 @@
         <div class="w-[22vw] h-full shadow-lg pl-[3vw] pt-[3vw]">
             <!-- Judul Page -->
             <div class="text-left">
-                <h4 class="text-[2.4vw] font-montserrat_alt font-bold text-greenpetify">Life After</h4>
+                <h4 class="text-[2.4vw] font-montserrat_alt font-bold text-greenpetify leading-none">Life After</h4>
                 <h2 class="text-[3.2vw] font-montserrat_alt font-bold text-greenpetify">Adoption</h2>
             </div>
             
