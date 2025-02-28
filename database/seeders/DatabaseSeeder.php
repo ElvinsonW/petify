@@ -15,6 +15,7 @@ use App\Models\LifeAfterAdoption;
 use App\Models\Pet;
 use App\Models\PetCategory;
 use App\Models\User;
+use App\Models\FindMyPet;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Carbon\Carbon;
@@ -94,5 +95,9 @@ class DatabaseSeeder extends Seeder
             User::all(),
             AdoptionPost::all()
         ])->create();
+
+        $this->call([
+            FindMyPetSeeder::class,
+        ]);
     }
 }
