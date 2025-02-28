@@ -1,4 +1,4 @@
-<div class="overflow-y-auto scrollbar-thin max-h-[80vh] grid grid-cols-5 gap-[1vw]">
+<div class="overflow-y-auto scrollbar-thin max-h-[65vh] grid grid-cols-5 gap-[1vw]">
     @foreach ($posts as $post)    
         <a href="/life-after-adoption">
             <div class="w-full h-full flex flex-col items-center">

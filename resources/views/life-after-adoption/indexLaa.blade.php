@@ -27,7 +27,7 @@
         <div class="w-[22vw] h-full shadow-lg pl-[3vw] pt-[3vw]">
             <!-- Judul Page -->
             <div class="text-left">
-                <h4 class="text-[2.4vw] font-montserrat_alt font-bold text-greenpetify">Life After</h4>
+                <h4 class="text-[2.4vw] font-montserrat_alt font-bold text-greenpetify leading-none">Life After</h4>
                 <h2 class="text-[3.2vw] font-montserrat_alt font-bold text-greenpetify">Adoption</h2>
             </div>
             
@@ -62,7 +62,7 @@
                     @endphp
 
                     <button class="clear-category pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group bg-orenmuda">
-                        <a href="{{ url('adoptions/') . '?' . http_build_query($queryParams) }}">
+                        <a href="{{ url('life-after-adoption/') . '?' . http_build_query($queryParams) }}">
                             <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left text-white">All Category</p>
                             <hr class="border-1/2 my-[0.5vw] w-full border-white">
                         </a>
@@ -75,7 +75,7 @@
                     @endphp
 
                     <button class="clear-category pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group hover:bg-orenmuda">
-                        <a href="{{ url('adoptions/') . '?' . http_build_query($queryParams) }}">
+                        <a href="{{ url('life-after-adoption/') . '?' . http_build_query($queryParams) }}">
                             <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left group-hover:text-white transition-colors duration-500 ease-in-out">All Category</p>
                             <hr class="border-orenmuda border-1/2 w-[6vw] my-[0.5vw] group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
                         </a>

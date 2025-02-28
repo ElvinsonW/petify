@@ -18,6 +18,7 @@ use App\Http\Middleware\AdminOnly;
 use App\Http\Middleware\CheckPostOwnership;
 use App\Http\Middleware\GuestMode;
 use App\Http\Middleware\OwnerDashboardOnly;
+use App\Models\AdoptionRequest;
 use App\Models\ArticleRequest;
 use App\Models\LifeAfterAdoption;
 use App\Models\LikedAdoptionPost;
@@ -54,6 +55,12 @@ Route::resource('/articles', ArticleController::class)->middleware('auth');
 Route::get('/adoptions/createSlug',[ArticleController::class,'createSlug'])->name('adoptions.createSlug')->middleware('auth');
 
 Route::resource('/adoptions', AdoptionPostController::class)->middleware('auth');
+
+Route::get('/adoptions/create/before-create-1',[AdoptionPostController::class,'beforeCreate1'])->middleware('auth');
+
+Route::get('/adoptions/create/before-create-2',[AdoptionPostController::class,'beforeCreate2'])->middleware('auth');
+
+Route::get('/adoptions/create/{id}',[AdoptionPostController::class,'createWithExistPet'])->middleware('auth');
 
 // Life After Adoption Routes
 Route::resource('/life-after-adoption', LifeAfterAdoptionController::class)->middleware('auth');
@@ -109,3 +116,5 @@ Route::get('/dashboard/{username}/adoption-history',[UserDashboardController::cl
 Route::get('/adoptions/{slug}/adoption-request/create', [AdoptionRequestController::class, 'create'])->middleware('auth');
 
 Route::get('/adoptions/{slug}/adoption-request/{id}/{action}',[AdoptionRequestController::class,"handleRequest"])->middleware('auth');
+
+Route::get('/dashboard/{username}/adoption-requests/{id}/show',[AdoptionRequestController::class, 'show'])->middleware(OwnerDashboardOnly::class);

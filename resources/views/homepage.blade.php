@@ -44,13 +44,13 @@
         <!-- Main Section Start -->
         <div class="mt-0 p-0 flex flex-row">
             <div class="mx-[4vw] mt-[4vw] w-[50vw]">
-                <h1 class="font-bold text-greenpetify font-montserrat_alt text-8xl tracking-wide mb-4">Things</h1>
-                <h1 class="font-bold text-greenpetify font-montserrat_alt text-8xl tracking-wide mb-4">About Pet!</h1>
-                <p class="text-greentua font-open_sans tracking-wide text-xl mb-6">Find your perfect new companion, learn the best ways to care for them, and join a community dedicated to promoting animal welfare.</p>
-                <p class="text-greentua font-open_sans tracking-wide text-xl mb-6">Ready to Find your Destined Companion?</p>
+                <h1 class="font-bold text-greenpetify font-montserrat_alt text-[6.2vw] tracking-wide mb-0 leading-none">Things</h1>
+                <h1 class="font-bold text-greenpetify font-montserrat_alt text-[6.2vw] tracking-wide mb-[1vw] mt-0">About Pet!</h1>
+                <p class="text-greentua font-open_sans tracking-wide text-[1.4vw] mb-[1.5vw]">Find your perfect new companion, learn the best ways to care for them, and join a community dedicated to promoting animal welfare.</p>
+                <p class="text-greentua font-open_sans tracking-wide text-[1.4vw] mb-[1.5vw]">Ready to Find your Destined Companion?</p>
                 <a href="/adoptions">
                     <!-- <button type="button" class="text-white bg-gradient-to-r from-oren via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-200 rounded-xl text-xl px-5 py-2.5 text-center me-2 mb-2 font-overpass font-semibold">Explore More</button> -->
-                    <button class="text-white bg-oren rounded-2xl shadow-lg transform hover:scale-95 hover:bg-orange-800 transition duration-300 ease-in-out text-xl font-semibold px-5 py-2.5 font-overpass">Explore More</button>
+                    <button class="text-white bg-oren rounded-[1vw] shadow-lg transform hover:scale-95 hover:bg-orange-800 transition duration-300 ease-in-out text-[1.4vw] font-semibold px-[1.25vw] py-[0.75vw] font-overpass">Explore More</button>
                 </a>
             </div>
             
@@ -59,10 +59,10 @@
         <!-- Main Section End -->
     
         <!-- Services Section Start -->
-        <div class="m-6 md:m-14">
+        <div class="m-[1.5vw] md:m-[3.5vw]">
             <!-- Section Header -->
-            <div class="mb-10">
-                <h4 class="font-montserrat_alt font-bold text-3xl text-greenpetify mb-2">Our Services</h4>
+            <div class="mb-[2.5vw]">
+                <h4 class="font-montserrat_alt font-bold text-[2vw] text-greenpetify mb-[0.5vw]">Our Services</h4>
                 <p class="font-open_sans text-greentua">Here are some of the services on this website</p>
             </div>
     
@@ -70,10 +70,10 @@
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <div>
                     <i class="fa-solid fa-paw fa-5x" style="color: #166b68;"></i>
-                    <h4 class="font-montserrat_alt text-2xl font-semibold text-greenpetify my-4">Adopt your Pet!</h4>
-                    <p class="font-open_sans tracking-wide w-3/4">Each animal will have a special profile that contains detailed information about the animal and allows users to initiate the adoption process by filling out an adoption application form.</p>
+                    <h4 class="font-montserrat_alt text-[1.6vw] font-semibold text-greenpetify my-[1vw]">Adopt your Pet!</h4>
+                    <p class="font-open_sans tracking-wide w-[25vw]">Each animal will have a special profile that contains detailed information about the animal and allows users to initiate the adoption process by filling out an adoption application form.</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
-                    <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 relative">
+                    <p class="font-open_sans tracking-wide text-oren font-bold mt-[1vw] mb-[2.5vw] relative">
                         <a href="/adoptions" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
                             See More
                         </a>
@@ -82,10 +82,10 @@
     
                 <div>
                     <i class="fa-solid fa-book fa-5x" style="color: #166b68;"></i>
-                    <h4 class="font-montserrat_alt text-2xl font-semibold text-greenpetify my-4">Article</h4>
-                    <p class="font-open_sans tracking-wide w-3/4">This education section provides articles about animal care, adoption tips, food, and other information related to animals.</p>
+                    <h4 class="font-montserrat_alt text-[1.6vw] font-semibold text-greenpetify my-[1vw]">Article</h4>
+                    <p class="font-open_sans tracking-wide w-[25vw]">This education section provides articles about animal care, adoption tips, food, and other information related to animals.</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
-                    <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 relative">
+                    <p class="font-open_sans tracking-wide text-oren font-bold mt-[1vw] mb-[2.5vw] relative">
                         <a href="articles" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
                             See More
                         </a>
@@ -94,10 +94,10 @@
     
                 <div>
                     <i class="fa-solid fa-calendar-day fa-5x" style="color: #166b68;"></i>
-                    <h4 class="font-montserrat_alt text-2xl font-semibold text-greenpetify my-4">Event</h4>
+                    <h4 class="font-montserrat_alt text-[1.6vw] font-semibold text-greenpetify my-[1vw]">Event</h4>
                     <p class="font-open_sans tracking-wide">A feature that showcases information about animal-related events, such as adoption campaigns, pet exhibitions, and community meetups, to raise awareness and foster interaction within the animal adoption community.</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
-                    <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 relative">
+                    <p class="font-open_sans tracking-wide text-oren font-bold mt-[1vw] mb-[2.5vw] relative">
                         <a href="events" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
                             See More
                         </a>
@@ -107,10 +107,10 @@
                 <div>
                     <!-- <i class="fa-solid fa-dog fa-5x" style="color: #166b68;"></i> -->
                     <img src="{{ asset('images/Find.svg') }}" alt="Find My Pet">
-                    <h4 class="font-montserrat_alt text-2xl font-semibold text-greenpetify my-4">Find your Pet!</h4>
-                    <p class="font-open_sans tracking-wide w-3/4">Users can upload/post information about their missing pets, including the pet's characteristics (color, breed, last known location).</p>
+                    <h4 class="font-montserrat_alt text-[1.6vw] font-semibold text-greenpetify my-[1vw]">Find your Pet!</h4>
+                    <p class="font-open_sans tracking-wide w-[25vw]">Users can upload/post information about their missing pets, including the pet's characteristics (color, breed, last known location).</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
-                    <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 relative">
+                    <p class="font-open_sans tracking-wide text-oren font-bold mt-[1vw] mb-[2.5vw] relative">
                         <a href="find-my-pet" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
                             See More
                         </a>
@@ -119,10 +119,10 @@
     
                 <div>
                     <i class="fa-brands fa-gratipay fa-5x" style="color: #166b68;"></i>
-                    <h4 class="font-montserrat_alt text-2xl font-semibold text-greenpetify my-4">Life After Adoption</h4>
-                    <p class="font-open_sans tracking-wide w-3/4">Users can create posts sharing the life journey of their pets after adoption.</p>
+                    <h4 class="font-montserrat_alt text-[1.6vw] font-semibold text-greenpetify my-[1vw]">Life After Adoption</h4>
+                    <p class="font-open_sans tracking-wide w-[25vw]">Users can create posts sharing the life journey of their pets after adoption.</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
-                    <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 relative">
+                    <p class="font-open_sans tracking-wide text-oren font-bold mt-[1vw] mb-[2.5vw] relative">
                         <a href="life-after-adoption" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
                             See More
                         </a>
@@ -133,84 +133,84 @@
         <!-- Services Section End -->
         
         <!-- About Section Start -->
-        <div class="rounded-3xl w-4/5 bg-greenabout mx-auto m-14 p-16 bg-no-repeat bg-center bg-cover" style="background-image: url({{ asset('images/about-bg.svg') }})">
-            <h4 class="text-3xl text-greenpetify font-montserrat_alt text-center font-bold m-4 tracking-wide">What's Petify?</h4>
-            <p class="font-open_sans text-greentua text-center tracking-wide text-lg m-4">Petify is a website established by Dodoidoy Company in 2024, with the aim of becoming a comprehensive source of information about pets. We believe that every animal deserves proper care and a loving home. Petify not only provides information on how to care for pets but also serves as a shelter for abandoned animals. 
+        <div class="rounded-[1.25vw] w-[75vw] bg-greenabout mx-auto m-[3.5vw] p-[4vw] bg-no-repeat bg-center bg-cover" style="background-image: url({{ asset('images/about-bg.svg') }})">
+            <h4 class="text-[2vw] text-greenpetify font-montserrat_alt text-center font-bold m-[1vw] tracking-wide">What's Petify?</h4>
+            <p class="font-open_sans text-greentua text-center tracking-wide text-[1.2vw] m-[1vw]">Petify is a website established by Dodoidoy Company in 2024, with the aim of becoming a comprehensive source of information about pets. We believe that every animal deserves proper care and a loving home. Petify not only provides information on how to care for pets but also serves as a shelter for abandoned animals. 
                 Our main mission is to give a second chance to animals in need by providing them with a safe and comfortable new home. Through our platform, we hope to raise public awareness about the importance of pet care, as well as create a supportive community where people can share their experiences in caring for animals. 
                 With the support of our users, we are committed to helping more animals find loving families and enrich their lives.</p>
         </div>
         <!-- About Section End -->
     
         <!-- Our Partner Section Start -->
-        <div class="m-6 md:m-14">
+        <div class="m-[1.5vw] md:m-[3.5vw]">
             <!-- Section Header -->
-            <div class="mb-10">
-                <h4 class="font-montserrat_alt font-bold text-3xl text-greenpetify mb-2">Our Shelter Partner</h4>
+            <div class="mb-[2.5vw]">
+                <h4 class="font-montserrat_alt font-bold text-[2vw] text-greenpetify mb-[0.5vw]">Our Shelter Partner</h4>
                 <p class="font-open_sans text-greentua">Here are the partners who support and assists us</p>
             </div>
     
             <!-- Partner Cards Container -->
             <div class="flex flex-col justify-self-center md:flex-row md:w-full md:justify-evenly">
-                <div class="shadow-2xl rounded-3xl w-80 p-4 justify-items-center">
-                    <img src="{{ asset('images/partner1.svg') }}" alt="House of Pet" class="m-6">
-                    <h4 class="font-montserrat_alt text-2xl font-semibold text-greentipis">House of Pet</h4>
-                    <p class="font-open_sans text-center tracking-wide m-4">House of Pet is a shelter located in the Java island with various branches spread across the island of Java.</p>
+                <div class="shadow-2xl rounded-[1.25vw] w-[22vw] p-[1vw] justify-items-center">
+                    <img src="{{ asset('images/partner1.svg') }}" alt="House of Pet" class="m-[1.5vw]">
+                    <h4 class="font-montserrat_alt text-[1.6vw] font-semibold text-greentipis">House of Pet</h4>
+                    <p class="font-open_sans text-center tracking-wide m-[1vw]">House of Pet is a shelter located in the Java island with various branches spread across the island of Java.</p>
                     <p class="font-open_sans tracking-wide"><i class="fa-brands fa-instagram"></i>: @HouseOfPet</p>
-                    <p class="font-open_sans tracking-wide mb-4"><i class="fa-solid fa-envelope"></i>: HOP@gmail.com</p>
+                    <p class="font-open_sans tracking-wide mb-[1vw]"><i class="fa-solid fa-envelope"></i>: HOP@gmail.com</p>
                 </div>
     
-                <div class="shadow-2xl rounded-3xl w-80 p-4 justify-items-center">
-                    <img src="{{ asset('images/partner2.svg') }}" alt="Animal Shelter" class="m-6">
-                    <h4 class="font-montserrat_alt text-2xl font-semibold text-greentipis">Animal Shelter</h4>
-                    <p class="font-open_sans text-center tracking-wide m-4">Animal Shelter is a shelter located on the island of Borneo with various branches spread around Pontianak, Balikpapan, Samarinda, and the surrounding areas</p>
+                <div class="shadow-2xl rounded-[1.25vw] w-[22vw] p-[1vw] justify-items-center">
+                    <img src="{{ asset('images/partner2.svg') }}" alt="Animal Shelter" class="[1.5vw]">
+                    <h4 class="font-montserrat_alt text-[1.6vw] font-semibold text-greentipis">Animal Shelter</h4>
+                    <p class="font-open_sans text-center tracking-wide m-[1vw]">Animal Shelter is a shelter located on the island of Borneo with various branches spread around Pontianak, Balikpapan, Samarinda, and the surrounding areas</p>
                     <p class="font-open_sans tracking-wide"><i class="fa-brands fa-instagram"></i>: @AnimalShelter</p>
-                    <p class="font-open_sans tracking-wide mb-4"><i class="fa-solid fa-envelope"></i>: AnimalShelter@gmail.com</p>
+                    <p class="font-open_sans tracking-wide mb-[1vw]"><i class="fa-solid fa-envelope"></i>: AnimalShelter@gmail.com</p>
                 </div>
     
-                <div class="shadow-2xl rounded-3xl w-80 p-4 justify-items-center">
-                    <img src="{{ asset('images/partner3.svg') }}" alt="Garda Rescue" class="m-6">
-                    <h4 class="font-montserrat_alt text-2xl font-semibold text-greentipis">Garda Rescue</h4>
-                    <p class="font-open_sans text-center tracking-wide m-4">Garda Rescue is a shelter located on the island of Sulawesi with various branches spread around Makasar, Bitung, Manado and the surrounding areas</p>
+                <div class="shadow-2xl rounded-[1.25vw] w-[22vw] p-[1vw] justify-items-center">
+                    <img src="{{ asset('images/partner3.svg') }}" alt="Garda Rescue" class="m-[1.5vw]">
+                    <h4 class="font-montserrat_alt text-[1.6vw] font-semibold text-greentipis">Garda Rescue</h4>
+                    <p class="font-open_sans text-center tracking-wide m-[1vw]">Garda Rescue is a shelter located on the island of Sulawesi with various branches spread around Makasar, Bitung, Manado and the surrounding areas</p>
                     <p class="font-open_sans tracking-wide"><i class="fa-brands fa-instagram"></i>: @GardaRescue</p>
-                    <p class="font-open_sans tracking-wide mb-4"><i class="fa-solid fa-envelope"></i>: GardaRescue@gmail.com</p>
+                    <p class="font-open_sans tracking-wide mb-[1vw]"><i class="fa-solid fa-envelope"></i>: GardaRescue@gmail.com</p>
                 </div>
             </div>
         </div>
         <!-- Our Partner Section End -->
     
         <!-- Feedback Section Start -->
-        <div class="m-6 md:m-14">
+        <div class="m-[1.5vw] md:m-[3.5vw]">
             <!-- Section Header -->
-            <div class="mb-10">
-                <h4 class="font-montserrat_alt font-bold text-3xl text-greenpetify mb-2">Feedback</h4>
+            <div class="mb-[2.5vw]">
+                <h4 class="font-montserrat_alt font-bold text-[2vw] text-greenpetify mb-[0.5vw]">Feedback</h4>
                 <p class="font-open_sans text-greentua">Response from previous users</p>
             </div>
     
             <!-- Swiper Carousel -->
             <div class="swiper default-carousel swiper-container">
-                <div class="swiper-wrapper mb-12">
+                <div class="swiper-wrapper mb-[3vw]">
                     <!-- Slide 1 -->
                     <div class="swiper-slide flex justify-items-center">
-                        <div class="rounded-3xl w-2/3 p-4 flex flex-col justify-center items-center bg-white h-fit">
-                            <img src="{{ asset('images/alfheim.svg') }}" alt="Feedback from Alfheim" class="m-6">
-                            <h4 class="font-montserrat_alt text-2xl font-semibold text-greentipis">Alfheim Elves</h4>
-                            <p class="font-open_sans text-center tracking-wide m-4">Petify ini merupakan website yang sangat membantu ya, ternyata. Saya jadi bisa mengetahui lebih banyak lagi mengenai hewan peliharaan saya. Saya juga jadi bisa menolong hewan peliharaan yang terlantar untuk mendapatkan tempat tinggal.</p>
+                        <div class="rounded-[1.25vw] w-[60vw] p-[1vw] flex flex-col justify-center items-center bg-white h-fit">
+                            <img src="{{ asset('images/alfheim.svg') }}" alt="Feedback from Alfheim" class="m-[1.5vw]">
+                            <h4 class="font-montserrat_alt text-[1.6vw] font-semibold text-greentipis">Alfheim Elves</h4>
+                            <p class="font-open_sans text-center tracking-wide m-[1vw]">Petify ini merupakan website yang sangat membantu ya, ternyata. Saya jadi bisa mengetahui lebih banyak lagi mengenai hewan peliharaan saya. Saya juga jadi bisa menolong hewan peliharaan yang terlantar untuk mendapatkan tempat tinggal.</p>
                         </div>
                     </div>
                     <!-- Slide 2 -->
                     <div class="swiper-slide flex justify-items-center">
-                        <div class="rounded-3xl w-2/3 p-4 flex flex-col justify-items items-center bg-white h-fit">
-                            <img src="{{ asset('images/alfheim.svg') }}" alt="Feedback from Alfheim" class="m-6">
-                            <h4 class="font-montserrat_alt text-2xl font-semibold text-greentipis">Gajah 18</h4>
-                            <p class="font-open_sans text-center tracking-wide m-4">Website yang sangat luar biasa. Saya merasa puas dengan informasi dan bantuan yang diberikan. Sangat direkomendasikan untuk semua pecinta hewan.</p>
+                        <div class="rounded-[1.25vw] w-[60vw] p-[1vw] flex flex-col justify-items items-center bg-white h-fit">
+                            <img src="{{ asset('images/alfheim.svg') }}" alt="Feedback from Alfheim" class="m-[1.5vw]">
+                            <h4 class="font-montserrat_alt text-[1.6vw] font-semibold text-greentipis">Gajah 18</h4>
+                            <p class="font-open_sans text-center tracking-wide m-[1vw]">Website yang sangat luar biasa. Saya merasa puas dengan informasi dan bantuan yang diberikan. Sangat direkomendasikan untuk semua pecinta hewan.</p>
                         </div>
                     </div>
                     <!-- Slide 3 -->
                     <div class="swiper-slide flex justify-items-center">
-                        <div class="rounded-3xl w-2/3   p-4 flex flex-col justify-center items-center bg-white h-fit">
-                            <img src="{{ asset('images/alfheim.svg') }}" alt="Feedback from Alfheim" class="m-6">
-                            <h4 class="font-montserrat_alt text-2xl font-semibold text-greentipis">PPTI 18</h4>
-                            <p class="font-open_sans text-center tracking-wide m-4">Sangat membantu untuk menemukan tempat penampungan terbaik bagi hewan peliharaan saya. Timnya sangat ramah dan responsif.</p>
+                        <div class="rounded-[1.25vw] w-[60vw] p-[1vw] flex flex-col justify-center items-center bg-white h-fit">
+                            <img src="{{ asset('images/alfheim.svg') }}" alt="Feedback from Alfheim" class="m-[1.5vw]">
+                            <h4 class="font-montserrat_alt text-[1.6vw] font-semibold text-greentipis">PPTI 18</h4>
+                            <p class="font-open_sans text-center tracking-wide m-[1vw]">Sangat membantu untuk menemukan tempat penampungan terbaik bagi hewan peliharaan saya. Timnya sangat ramah dan responsif.</p>
                         </div>
                     </div>
                 </div>
@@ -234,7 +234,7 @@
         <!-- Feedback Section End -->
     
         <!-- Join Us Section Start -->
-        <div class="font-montserrat_alt text-center flex justify-between h-fit bg-white py-16 mt-0 mb-0">
+        <div class="font-montserrat_alt text-center flex justify-between h-fit bg-white py-[4vw] mt-0 mb-0">
             <img src="{{ asset('images/blob-join-us1.svg') }}" alt="Blob Join Us" class="w-40 md:w-56 hidden md:block">
             
             <div class="flex-col">
@@ -246,9 +246,9 @@
                 </div>
     
                 <!-- Text Content -->
-                <div class="mt-8">
-                    <h2 class="font-bold text-greenpetify text-5xl mb-4">JOIN US!</h2>
-                    <h4 class="font-semibold text-lg text-slate-700 max-w-2xl mx-auto w-2/3">
+                <div class="mt-[2vw]">
+                    <h2 class="font-bold text-greenpetify text-[3.2vw] mb-[1vw]">JOIN US!</h2>
+                    <h4 class="font-semibold text-[1.2vw] text-slate-700 max-w-2xl mx-auto w-2/3">
                         Together we build a community that cares for and supports the well-being of animals
                     </h4>
                 </div>

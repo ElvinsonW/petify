@@ -28,6 +28,7 @@
                     <i class="fa-solid fa-sliders mr-[0.5vw]"></i> Filter
                 </button>
 
+                <!-- missing button -->
                 <a href="{{ route('find-my-pet-form') }}">
                     <button class="text-white bg-orenmuda rounded-[1vw] shadow-lg transform hover:scale-95 hover:bg-orange-400 transition duration-300 ease-in-out text-[1.2vw] font-semibold px-[1vw] py-[0.5vw] font-overpass flex items-center">
                         <i class="fa-solid fa-plus mr-[0.5vw]"></i> Missing
@@ -36,7 +37,7 @@
             </div>
 
             <!-- dropdown filter -->
-            <div id="filterDropdown" class="absolute w-[17vw] mt-[0.7vw] bg-greenpetify text-white rounded-[1vw] shadow-lg opacity-0 scale-95 transition-all transform origin-top-left hidden font-overpass">
+            <div id="filterDropdown" class="absolute z-10 w-[16.85vw] mt-[0.7vw] bg-greenpetify text-white rounded-[1vw] shadow-lg opacity-0 scale-95 transition-all transform origin-top-left hidden font-overpass justify-between">
                 <div class="p-[1vw] space-y-[1vw]">
                     <form action="{{ route('find-my-pet.index') }}" method="GET">
                         <label class="block">
@@ -182,24 +183,25 @@
             const isHidden = filterDropdown.classList.contains("hidden");
 
             if (isHidden) {
+                // Menampilkan dropdown filter
                 filterDropdown.classList.remove("hidden");
                 filterDropdown.classList.add("opacity-100", "scale-100");
-                petCategoryContainer.classList.add("mt-[14vw]");
-                sidebarLeft.classList.add("h-auto");
-                sidebarLeft.style.minHeight = "calc(100vh + 200px)";
-            } else {
-                filterDropdown.classList.add("hidden");
-                filterDropdown.classList.remove("opacity-100", "scale-100");
-                petCategoryContainer.classList.remove("mt-[14vw]");
-                sidebarLeft.style.minHeight = "100vh";
-            }
-        });
 
-        document.addEventListener("click", (event) => {
-            if (!filterButton.contains(event.target) && !filterDropdown.contains(event.target)) {
+                // Menambah margin bawah kategori agar turun
+                petCategoryContainer.classList.add("mt-[16vw]");
+
+                // Menambah tinggi sidebar agar tidak terpotong oleh footer
+                sidebarLeft.classList.add("h-auto");
+                sidebarLeft.style.minHeight = "calc(150vh + 200px)";
+            } else {
+                // Menyembunyikan dropdown filter
                 filterDropdown.classList.add("hidden");
                 filterDropdown.classList.remove("opacity-100", "scale-100");
-                petCategoryContainer.classList.remove("mt-[14vw]");
+
+                // Mengembalikan margin dan tinggi sidebar ke semula
+                petCategoryContainer.classList.remove("mt-[16vw]");
+
+                // Kembalikan tinggi sidebar agar kembali normal
                 sidebarLeft.style.minHeight = "100vh";
             }
         });

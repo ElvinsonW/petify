@@ -33,13 +33,23 @@
             <div class="flex flex-col">
                 <!-- search -->
                 <form class="mt-[1vw]">
+                    @php
+                        $params = ["category","time"];
+                    @endphp
+
+                    @foreach($params as $param)
+                        @if(request($param))
+                            <input type="hidden" name="{{ $param }}" value="{{ request($param) }}">
+                        @endif
+                    @endforeach
+
                     <div class="relative mb-8">
                         <label for="search" class="mb-[0.5vw] text-sm text-gray-900 sr-only !font-overpass font-semibold">Search</label>
                         <div class="relative w-full border-1/2 border-gray-400 rounded-[0.5vw] bg-white shadow-md">
                             <div class="absolute inset-y-0 start-0 flex items-center ps-[0.75vw] pointer-events-none">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </div>
-                            <input type="search" id="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold focus:outline-none" placeholder="Search Here..."/>
+                            <input type="search" id="search" name="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold focus:outline-none" value="{{ request('search    ') }}" placeholder="Search Here..."/>
                             <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-[0.5vw] px-[0.5vw] py-[0.4vw] !font-overpass">Search</button>
                         </div>
                     </div>
@@ -64,23 +74,40 @@
                             Filter By:
                         </p>
                         <div class="relative">
-                            <select class="appearance-none text-[1.1vw] font-medium text-white bg-greenpetify border px-[1.2vw] py-[0.35vw] pr-[2.5vw] rounded-[0.5vw] w-full">
+                            <select id="categorySelected" class="appearance-none text-[1.1vw] font-medium text-white bg-greenpetify border px-[1.2vw] py-[0.35vw] pr-[2.5vw] rounded-[0.5vw] w-full">
                                 <option value="" disabled selected>Pet Category</option>
-                                <option value="dog">Dog</option>
-                                <option value="cat">Cat</option>
-                                <option value="reptile">Reptile</option>
-                                <option value="other">Other Pet</option>
+                                @foreach ($categories as $category)
+                                    @if (request('category') == $category->slug)
+                                        <option value="{{ $category->slug }}" class="categoryFilter" selected>{{ $category->name }}</option>
+                                    @else  
+                                        <option value="{{ $category->slug }}" class="categoryFilter">{{ $category->name }}</option>
+                                    @endif    
+                                @endforeach
                             </select>
                             <svg class="absolute right-[0.8vw] top-1/2 transform -translate-y-1/2 w-[1.1vw] h-[1.1vw] text-white pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
                             </svg>
                         </div>
                         <div class="relative">
-                            <select class="appearance-none text-[1.1vw] font-medium text-white bg-greenpetify border px-[1.2vw] py-[0.35vw] rounded-[0.5vw] w-full">
+                            <select id="timeSelected" class="appearance-none text-[1.1vw] font-medium text-white bg-greenpetify border px-[1.8vw] py-[0.35vw] rounded-[0.5vw]  pr-[2.5vw] w-full text-start">
                                 <option value="" disabled selected>Time</option>
-                                <option value="morning">Morning</option>
-                                <option value="afternoon">Afternoon</option>
-                                <option value="evening">Evening</option>
+                                @if (request('time') == "morning")
+                                    <option value="morning">Morning</option>
+                                @else
+                                    <option value="morning">Morning</option>
+                                @endif
+
+                                @if (request('time') == "afternoon")
+                                    <option value="afternoon">Afternoon</option>
+                                @else
+                                    <option value="afternoon">Afternoon</option>
+                                @endif
+
+                                @if (request('time') == "night")
+                                    <option value="night">Night</option>
+                                @else
+                                    <option value="night">Night</option>
+                                @endif
                             </select>
                             <svg class="absolute right-[0.8vw] top-1/2 transform -translate-y-1/2 w-[1.1vw] h-[1.1vw] text-white pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
@@ -89,7 +116,7 @@
                     </div>
                     <!-- Button -->
                     <a
-                        href="../events/create"
+                        href="/events/create"
                         class="bg-orenmuda text-white px-[1vw] py-[0.5vw] rounded-[0.5vw] shadow-sm hover:bg-orange-400 transition duration-300 inline-block text-center font-montserrat_alt tracking-wide text-base font-semibold w-full md:w-auto"
                         style="margin-left: auto;"
                     >
@@ -127,7 +154,7 @@
                                             <img 
                                                 src="{{ asset('images/uim_calendar.svg') }}" 
                                                 alt="Calendar Icon" class="w-4 h-4">
-                                            <span>{{ \Carbon\Carbon::parse($upcomingEvent->start_date)->format('d F Y') }}</span>
+                                            <span>{{ \Carbon\Carbon::parse($upcomingEvent->start_date)->format('d F Y') }} - {{ \Carbon\Carbon::parse($upcomingEvent->end_date)->format('d F Y') }}</span>
                                         </span>
                                     </div>
                                 </div>
@@ -165,44 +192,47 @@
 
                 <!-- Upcoming Events (Next 2 Weeks Events) -->
                 <h3 class="text-xl font-bold font-open_sans leading-snug text-greenpetify mb-4 mt-16">Today's Event</h3>
-                @if ($mainEvent->isNotEmpty())
-                    @foreach ($mainEvent as $mainEvent)
-                        <div class="bg-white p-[0.75vw] rounded-[1vw] hover:shadow-lg transition duration-300 mb-[1.2vw]">
-                            <a href="/events/{{ $mainEvent->slug }}">
-                                <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-4">
-                                    <img
-                                        src="{{ asset('storage/' . $mainEvent->image) }}"
-                                        alt="main Event"
-                                        class="w-full md:w-24 h-24 rounded-2xl object-cover"
-                                    />
-                                    <div>
-                                        <h4 class="mb-[0.5vw] text-lg font-semibold text-black font-montserrat_alt leading-snug">{{ $mainEvent->title }}</h4>
-                                        <!-- location -->
-                                        <span class="mb-1 flex items-center space-x-2">
-                                            <img 
-                                            src="{{ asset('images/location event.svg') }}" 
-                                            alt="Location Icon" class="w-4 h-4">
-                                            <span class="text-xs font-open_sans leading-snug font-normal text-black">
-                                                {{ $mainEvent->location }}
+                <div class="max-h-[40vw] overflow-auto scrollbar-none" id="main-event-container">
+                    @if ($mainEvent->isNotEmpty())
+                        @foreach ($mainEvent as $mainEvent)
+                            <div class="bg-white p-[0.75vw] rounded-[1vw] hover:shadow-lg transition duration-300 mb-[1.2vw]">
+                                <a href="/events/{{ $mainEvent->slug }}">
+                                    <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-4">
+                                        <img
+                                            src="{{ asset('storage/' . $mainEvent->image) }}"
+                                            alt="main Event"
+                                            class="w-full md:w-24 h-24 rounded-2xl object-cover"
+                                        />
+                                        <div>
+                                            <h4 class="mb-[0.5vw] text-lg font-semibold text-black font-montserrat_alt leading-snug">{{ $mainEvent->title }}</h4>
+                                            <!-- location -->
+                                            <span class="mb-1 flex items-center space-x-2">
+                                                <img 
+                                                src="{{ asset('images/location event.svg') }}" 
+                                                alt="Location Icon" class="w-4 h-4">
+                                                <span class="text-xs font-open_sans leading-snug font-normal text-black">
+                                                    {{ $mainEvent->location }}
+                                                </span>
                                             </span>
-                                        </span>
-                                        <!-- date -->
-                                        <span class="flex items-center space-x-2">
-                                            <img 
-                                            src="{{ asset('images/uim_calendar.svg') }}" 
-                                            alt="Location Icon" class="w-4 h-4">
-                                            <span class="text-xs font-open_sans leading-snug font-normal text-black">
-                                                {{ \Carbon\Carbon::parse($mainEvent->start_date)->format('d F Y') }}
-                                            </span>
-                                        </span>                                 
+                                            <!-- date -->
+                                            <span class="flex items-center space-x-2">
+                                                <img 
+                                                src="{{ asset('images/uim_calendar.svg') }}" 
+                                                alt="Location Icon" class="w-4 h-4">
+                                                <span class="text-xs font-open_sans leading-snug font-normal text-black">
+                                                    {{ \Carbon\Carbon::parse($mainEvent->start_date)->format('d F Y') }} - 
+                                                    {{ \Carbon\Carbon::parse($mainEvent->end_date)->format('d F Y') }}
+                                                </span>
+                                            </span>                                 
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
-                @else
-                    <p>No Events Today.</p>
-                @endif
+                                </a>
+                            </div>
+                        @endforeach
+                    @else
+                        <p>No Events Today.</p>
+                    @endif
+                </div>
             </div>
         </div>
     </div> <!-- Main Content -->
@@ -240,19 +270,12 @@
     "January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"
     ];
 
-    const events = [
-        { date: "2025-01-16", title: "Perkin Jaya All Breed Dog Show 2025", location: "Jeep Station Indonesia (JSI) Resort, Bogor" },
-        { date: "2025-01-17", title: "Perkin Jaya All Breed Dog Show 2025", location: "Jeep Station Indonesia (JSI) Resort, Bogor" },
-        { date: "2025-01-28", title: "Perkin Jaya All Breed Dog Show 2025", location: "Jeep Station Indonesia (JSI) Resort, Bogor" }
-    ];
-
     const today = new Date();
     let currentMonth = today.getMonth();
     let currentYear = today.getFullYear();
 
     const monthYearElement = document.getElementById("month-year");
     const datesElement = document.getElementById("dates");
-    const eventListElement = document.getElementById("event-list");
 
     function renderCalendar(month, year) {
         datesElement.innerHTML = ""; // Clear previous dates
@@ -268,42 +291,49 @@
             datesElement.appendChild(blank);
         }
 
-        // Add the days of the month
+        let currentUrl = new URL(window.location.href);
+        const currentDate = currentUrl.searchParams.get('date');
+
+
         for (let day = 1; day <= daysInMonth; day++) {
             const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
             const dayElement = document.createElement("div");
             dayElement.textContent = day;
-            dayElement.className =
-            "p-2 rounded-2xl cursor-pointer hover:bg-gray-300";
+            dayElement.id = dateStr;
+            dayElement.className = "p-2 rounded-2xl cursor-pointer hover:bg-gray-300";
 
             // Highlight the current day
             if (
                 day === today.getDate() &&
                 month === today.getMonth() &&
-                year === today.getFullYear()
+                year === today.getFullYear() &&
+                !currentDate
             ) {
-                dayElement.classList.add("bg-gray-200", "font-bold");
+                dayElement.classList.add("bg-gray-300", "font-bold");
             }
 
-            // Highlight days with events
-            const event = events.find(e => e.date === dateStr);
-            if (event) {
-                dayElement.classList.add("bg-blue-500", "text-white", "font-bold");
-                dayElement.addEventListener("click", () => showEvent(event));
+            if (dateStr === currentDate) {
+                dayElement.classList.add("bg-gray-300", "font-bold"); 
             }
+
+            dayElement.addEventListener('click', () => {
+
+                const selectedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+                if (currentDate === selectedDate) {
+                    currentUrl.searchParams.delete('date');
+                    dayElement.classList.remove("bg-gray-300", "font-bold"); 
+                } else {
+                    currentUrl.searchParams.set('date', selectedDate);
+                    dayElement.classList.add("bg-gray-300", "font-bold"); 
+                }
+
+                window.location.href = currentUrl.toString();
+            });
 
             datesElement.appendChild(dayElement);
         }
-    }
 
-    function showEvent(event) {
-        eventListElement.innerHTML = `
-            <div class="p-4 bg-gray-50 rounded-md shadow">
-            <h4 class="font-semibold text-lg">${event.title}</h4>
-            <p class="text-sm text-gray-600">${event.location}</p>
-            <p class="text-sm text-gray-500">${event.date}</p>
-            </div>
-        `;
     }
 
     // Navigation buttons
@@ -329,6 +359,48 @@
 
     // Initial render
     renderCalendar(currentMonth, currentYear);
+
+    let currentUrl = new URL(window.location.href);
+    const currentDate = currentUrl.searchParams.get('date');
+
+    if(currentDate){
+        const [year, month, day] = currentDate.split('-');
+        const numericMonth = parseInt(month, 10); 
+
+        currentMonth = numericMonth-1;
+        currentYear = year;
+        
+        renderCalendar(numericMonth-1, year)
+    }
+
+    const categorySelect = document.getElementById('categorySelected');
+
+    categorySelect.addEventListener('change', () => {
+        const selectedCategory = categorySelect.value;
+        if (selectedCategory) {
+            let currentUrl = new URL(window.location.href);
+
+            currentUrl.searchParams.set('category', selectedCategory);
+
+            window.location.href = currentUrl.toString();
+        }
+    })
+
+    const timeSelect = document.getElementById('timeSelected');
+
+    timeSelect.addEventListener('change', () => {
+        const selectedTime = timeSelect.value;
+
+        if (selectedTime) {
+            let currentUrl = new URL(window.location.href);
+
+            currentUrl.searchParams.set('time', selectedTime);
+
+            window.location.href = currentUrl.toString();
+        }
+    });
+
+
     </script>  
 </x-layout>
 

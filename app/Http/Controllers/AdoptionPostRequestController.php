@@ -66,7 +66,7 @@ class AdoptionPostRequestController extends Controller
                     ];
 
                     $pet = Pet::create($petData);
-                }
+                } 
 
                 $postData = [
                     "user_id" => $request->user_id,

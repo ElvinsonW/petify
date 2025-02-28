@@ -44,9 +44,16 @@ class Event extends Model
         $query->when(
             $filters['category'] ?? false,
             fn($query, $category) =>
-                $query->whereHas('pet_category', fn($categoryQuery) => 
+                $query->whereHas('event_category', fn($categoryQuery) => 
                     $categoryQuery->where('slug',$category)
                 )
+        );
+        
+        $query->when(
+            $filters['date'] ?? false,
+            fn($query, $date) => 
+                $query->whereDate('start_date', '<=', $date)
+                    ->whereDate('end_date', '>=', $date)
         );
     }
 

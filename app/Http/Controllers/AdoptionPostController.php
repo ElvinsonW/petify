@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Type\Integer;
 
+use function PHPUnit\Framework\isEmpty;
+
 class AdoptionPostController extends Controller
 {
 
@@ -48,7 +50,7 @@ class AdoptionPostController extends Controller
     public function create()
     {   
         // Mengembalikan view yang sesuai 
-        return view("adoption.createAdoptionPost", ["categories" => PetCategory::all()]);
+        return view("adoption.createAdoptionPost", ["categories" => PetCategory::all(), "pet" => null]);
     }
 
     /**
@@ -68,7 +70,7 @@ class AdoptionPostController extends Controller
             'vaccinated' => ['required'],
             'weight' => ['required','numeric', 'min:0.01'],
             'description' => ['required', 'max:255'],
-            'requirement' => ['max:255']
+            'requirement' => ['max:255'],
         ]);
 
         $request->validate([
@@ -77,6 +79,10 @@ class AdoptionPostController extends Controller
         ]);
 
         $validatedData['user_id'] = auth()->user()->id;
+
+        if($request->pet_id){
+            $validatedData["pet_id"] = $request->pet_id;
+        }
         
         $validatedData['vaccinated'] = $validatedData['vaccinated'] == "yes" ? 1 : 0;
         
@@ -260,5 +266,29 @@ class AdoptionPostController extends Controller
     public function createSlug(Request $request){
         $slug = SlugService::createSlug(AdoptionPost::class, 'slug', $request->name,["unique" => true]);
         return response()->json(['slug' => $slug]);
+    }
+
+    public function beforeCreate1(){
+        return view('adoption.beforeCreate1');
+    }
+
+    public function beforeCreate2(){
+        $pet = Pet::where('user_id',auth()->user()->id)->get();
+
+        if($pet->isEmpty()){
+            return redirect('/adoptions/create/before-create-1')->with('createError',"You don't have any pet!");
+        }
+
+        return view('adoption.beforeCreate2',[
+            "pets" => $pet
+        ]);
+    }
+
+    public function createWithExistPet(string $id)
+    {   
+        $pet = Pet::find($id);
+
+        // Mengembalikan view yang sesuai 
+        return view("adoption.createAdoptionPost", ["categories" => PetCategory::all(), "pet" => $pet]);
     }
 }

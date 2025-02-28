@@ -9,11 +9,18 @@
         <div class="mx-24 mt-16">
             <form action="/adoptions" method="post" enctype="multipart/form-data" id="createForm">
                 @csrf
+                @if ($pet)
+                    <input type="hidden" name="pet_id" value="{{ $pet->id }}">
+                @endif
                 <div class="grid gap-6 mb-6 md:grid-cols-2 font-open_sans">
                     <!-- Name -->
                     <div>
+                        {{-- @php
+                            dd($pet->name);
+                        @endphp --}}
                         <label for="name" class="block mb-2 text-lg font-semibold">Name of your Pet</label>
-                        <input type="text" id="name" name="name" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Name..." value="{{ old('name') }}" required />
+        
+                        <input type="text" id="name" name="name" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Name..." value="{{ old('name') ?? ($pet ? $pet->name : '') }}" required />
                         @error('name')
                             <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
                                 {{ $message }}
@@ -24,7 +31,7 @@
                     <!-- Slug -->
                     <div>
                         <label for="slug" class="block mb-2 text-lg font-semibold">Slug</label>
-                        <input type="text" id="slug" name="slug" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Slug..." value="{{ old('slug') }}" readonly />
+                        <input type="text" id="slug" name="slug" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Slug..." value="{{ old('slug') ?? ($pet ? str_replace(' ', '-', $pet->name) : '') }}" readonly />
                         @error('slug')
                             <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
                                 {{ $message }}
@@ -37,7 +44,7 @@
                     <!-- Breed -->
                     <div>
                         <label for="breed" class="block mb-2 text-lg font-semibold">Breed</label>
-                        <input type="text" id="breed" name="breed" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Breed..." value="{{ old('breed') }}" required />
+                        <input type="text" id="breed" name="breed" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Breed..." value="{{ old('breed') ?? ($pet ? $pet->breed : '') }}" required />
                         @error('breed')
                             <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
                                 {{ $message }}
@@ -113,18 +120,32 @@
                     <div>
                         <label for="gender" class="block mb-2 text-lg font-semibold">Gender</label>
                         <div class="relative">
-                            <select id="gender" name="gender" class="category appearance-none border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none pr-10 text-gray-400" required>
+                            <select id="gender" name="gender" class="category appearance-none border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none pr-10 text-black" required>
                                 <option value="" disabled selected hidden>Select a category...</option>
-                                @if (old('gender') == "male")
-                                    <option value="male" selected class="text-black">Male</option>
-                                @else
-                                    <option value="male" class="text-black">Male</option>
-                                @endif
-                                
-                                @if (old('gender') == "female")
-                                    <option value="female" selected class="text-black">Female</option>
-                                @else
-                                    <option value="female" class="text-black">Female</option>
+                                @if ($pet)
+                                    @if ($pet->gender == "Male")
+                                        <option value="male" selected class="text-black">Male</option>
+                                    @else
+                                        <option value="male" class="text-black">Male</option>
+                                    @endif
+                                    
+                                    @if ($pet->gender == "Female")
+                                        <option value="female" selected class="text-black">Female</option>
+                                    @else
+                                        <option value="female" class="text-black">Female</option>
+                                    @endif
+                                @else    
+                                    @if (old('gender') == "male")
+                                        <option value="male" selected class="text-black">Male</option>
+                                    @else
+                                        <option value="male" class="text-black">Male</option>
+                                    @endif
+                                    
+                                    @if (old('gender') == "female")
+                                        <option value="female" selected class="text-black">Female</option>
+                                    @else
+                                        <option value="female" class="text-black">Female</option>
+                                    @endif
                                 @endif
                             </select>
                             <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -144,13 +165,21 @@
                     <div>
                         <label for="pet_category_id" class="block mb-2 text-lg font-semibold">Pet Category</label>
                         <div class="relative">
-                            <select id="pet_category_id" name="pet_category_id" class="category appearance-none border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none pr-10 text-gray-400" required>
+                            <select id="pet_category_id" name="pet_category_id" class="category appearance-none border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none pr-10 text-black" required>
                                 <option value="" disabled selected hidden>Select a category...</option>
                                 @foreach ($categories as $category)
-                                    @if (old('category_id') == $category->id)
-                                        <option value="{{ $category->id }}" selected class="text-black">{{ $category->name }}</option>
+                                    @if ($pet)
+                                        @if ($pet->pet_category_id == $category->id)
+                                            <option value="{{ $category->id }}" selected class="text-black">{{ $category->name }}</option>
+                                        @else
+                                            <option value="{{ $category->id }}" class="text-black">{{ $category->name }}</option>
+                                        @endif
                                     @else
-                                        <option value="{{ $category->id }}" class="text-black">{{ $category->name }}</option>
+                                        @if (old('category_id') == $category->id)
+                                            <option value="{{ $category->id }}" selected class="text-black">{{ $category->name }}</option>
+                                        @else
+                                            <option value="{{ $category->id }}" class="text-black">{{ $category->name }}</option>
+                                        @endif
                                     @endif
                                 @endforeach
                             </select>
@@ -185,7 +214,11 @@
                                 </p>
                                 <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG (MAX. 1 MB each)</p>
                             </div>
-                            <div id="img-preview-container" class="flex flex-wrap gap-3"></div>
+                            <div id="img-preview-container" class="flex flex-wrap gap-3">
+                                @if ($pet)
+                                    
+                                @endif
+                            </div>
                             <input id="images" name="images[]" type="file" class="hidden" multiple onchange="previewImages()" value="{{ old('images[]') }}"/>
                         </label>
                     </div>

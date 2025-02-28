@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\AdoptionPost;
 use App\Models\AdoptionRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -70,6 +72,22 @@ class AdoptionRequestController extends Controller
         return redirect()->route('adoption-request.index')->with('success', 'Adoption request created successfully!');
     }
 
+    public function show(string $username, string $id){
+        $user = User::where('username',$username)->firstOrFail();
+        $request = AdoptionRequest::find($id);
+        $currUser = auth()->user()->id;
+
+        if($user->id != $currUser || $currUser != $request->adoption_post->user_id){
+            return redirect('/dashboard' . '/' . $username . '/adoption-requests?request=other-request')->with('requestError','Only The Owner Can Access!');
+        }
+
+        if(!$request){
+            return redirect('/dashboard' . '/' . $username . '/adoption-requests')->with('requestError','Adoption Request Not Found!');
+        }
+
+        return view('dashboard.User.showAdoptionRequest',["request" => $request, "user" => $user]);
+    }
+
     // Show the form for editing the specified adoption request
     public function edit($id)
     {
@@ -113,7 +131,7 @@ class AdoptionRequestController extends Controller
             }
 
         });
-        return redirect('/dashboard' . '/' . $request->adoption_post->user->username . '/adoption-requests')->with('adoptSuccess',"Adoption Successfully Done");
+        return redirect('/dashboard' . '/' . $request->adoption_post->user->username . '/adoption-requests?request=other-request')->with('adoptSuccess',"Adoption Successfully Done");
 
     }
 }
