@@ -18,6 +18,7 @@ use App\Http\Middleware\AdminOnly;
 use App\Http\Middleware\CheckPostOwnership;
 use App\Http\Middleware\GuestMode;
 use App\Http\Middleware\OwnerDashboardOnly;
+use App\Models\AdoptionRequest;
 use App\Models\ArticleRequest;
 use App\Models\LifeAfterAdoption;
 use App\Models\LikedAdoptionPost;
@@ -115,3 +116,5 @@ Route::get('/dashboard/{username}/adoption-history',[UserDashboardController::cl
 Route::get('/adoptions/{slug}/adoption-request/create', [AdoptionRequestController::class, 'create'])->middleware('auth');
 
 Route::get('/adoptions/{slug}/adoption-request/{id}/{action}',[AdoptionRequestController::class,"handleRequest"])->middleware('auth');
+
+Route::get('/dashboard/{username}/adoption-requests/{id}/show',[AdoptionRequestController::class, 'show'])->middleware(OwnerDashboardOnly::class);
