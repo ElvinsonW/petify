@@ -49,7 +49,7 @@
                             <div class="absolute inset-y-0 start-0 flex items-center ps-[0.75vw] pointer-events-none">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </div>
-                            <input type="search" id="search" name="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold focus:outline-none" value="{{ request('search    ') }}" placeholder="Search Here..."/>
+                            <input type="search" id="search" name="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold focus:outline-none" value="{{ request('search') }}" placeholder="Search Here..."/>
                             <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-[0.5vw] px-[0.5vw] py-[0.4vw] !font-overpass">Search</button>
                         </div>
                     </div>
@@ -83,31 +83,6 @@
                                         <option value="{{ $category->slug }}" class="categoryFilter">{{ $category->name }}</option>
                                     @endif    
                                 @endforeach
-                            </select>
-                            <svg class="absolute right-[0.8vw] top-1/2 transform -translate-y-1/2 w-[1.1vw] h-[1.1vw] text-white pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                            </svg>
-                        </div>
-                        <div class="relative">
-                            <select id="timeSelected" class="appearance-none text-[1.1vw] font-medium text-white bg-greenpetify border px-[1.8vw] py-[0.35vw] rounded-[0.5vw]  pr-[2.5vw] w-full text-start">
-                                <option value="" disabled selected>Time</option>
-                                @if (request('time') == "morning")
-                                    <option value="morning">Morning</option>
-                                @else
-                                    <option value="morning">Morning</option>
-                                @endif
-
-                                @if (request('time') == "afternoon")
-                                    <option value="afternoon">Afternoon</option>
-                                @else
-                                    <option value="afternoon">Afternoon</option>
-                                @endif
-
-                                @if (request('time') == "night")
-                                    <option value="night">Night</option>
-                                @else
-                                    <option value="night">Night</option>
-                                @endif
                             </select>
                             <svg class="absolute right-[0.8vw] top-1/2 transform -translate-y-1/2 w-[1.1vw] h-[1.1vw] text-white pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>

@@ -33,28 +33,28 @@
                 </span>
                 
                 <!-- Icons at the end -->
-                <div class="flex justify-center space-x-[0.5vw] gap-[0.75vw]">
+                <div class="flex justify-center space-x-[0.5vw]">
                     <!-- show -->
-                    <div class="cursor-pointer">
+                    <div class="bg-blue-200 p-[1vw] rounded-md flex items-center justify-center w-[2.2vw] h-[2.2vw] cursor-pointer">
                         <a href="/adoptions/{{ $post->slug }}">
-                            <i class="fa-solid fa-eye text-blue-500 text-[1.5vw]"></i>
+                            <i class="fa-solid fa-eye text-blue-500 text-[1.25vw]"></i>
                         </a>
                     </div>
                     @if (auth()->user()->id == $post->user_id)    
                         <!-- pen edit -->
-                        <div class="cursor-pointer">
+                        <div class="bg-yellow-300 p-[1vw] rounded-md flex items-center justify-center w-[2.2vw] h-[2.2vw]">
                             <a href="/adoptions/{{ $post->slug }}/edit">
-                                <i class="fa-solid fa-pen-nib text-yellow-500 text-[1.5vw]"></i>
+                                <i class="fa-solid fa-pen-nib text-yellow-500 text-[1.25vw]"></i>
                             </a>
                         </div>
 
                         <!-- dusbin -->
-                        <div class="cursor-pointer">
+                        <div class="bg-red-300 p-[1vw] rounded-md flex items-center justify-center w-[2.2vw] h-[2.2vw]">
                             <form action="{{ route('adoptions.destroy', $post->slug) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="bg-transparent border-none cursor-pointer">
-                                    <i class="fa-solid fa-trash text-red-700 text-[1.4vw]"></i>
+                                    <i class="fa-solid fa-trash text-red-700 text-[1.15vw]"></i>
                                 </button>
                             </form>
                         </div>                    

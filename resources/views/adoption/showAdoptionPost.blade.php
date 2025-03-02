@@ -199,12 +199,12 @@
         <!-- Owner & Contact -->
         <div class="mt-10 mr-16 flex flex-row">
             <!-- Owner -->
-            <a class="flex flex-col mr-36" href="/dashboard/{{ $adoption->user->username }}/posts">
+            <a class="flex flex-col mr-36" href="/dashboard/{{ $adoption->user->username }}/posts?post=adoption">
                 <h4 class="font-montserrat_alt font-semibold text-2xl">Owner</h4>
                 <hr class="border-black border-1/2 w-64">
                 <div class="flex flex-row mt-4">
                     <div class="w-24 h-24 bg-white border-4 border-greentua rounded-full flex justify-center items-center">
-                        <img src="{{ asset('images/after login.svg') }}" alt="Dodoidoy Profile" class="w-20">
+                        <img src="{{ asset('storage/' . $adoption->user->image) ?? asset('images/after login.svg') }}" alt="Dodoidoy Profile" class="w-[6vw] h-[6vw] rounded-full">
                     </div>
                     
                     <div class="flex flex-col mt-4 ml-4">

@@ -132,7 +132,7 @@
                             <!-- Profile -->
                             <div class="flex flex-row">
                                 <div class="w-[3.2vw] h-[3.2vw] bg-white border-4 border-greentua rounded-full flex justify-center items-center">
-                                    <img src="images/after login.svg" alt="Profile Writer">
+                                    <img src="{{ asset('storage/' . $article->user->image) ?? asset('images/after login.svg') }}" alt="Profile Writer" class="rounded-full">
                                 </div>
                                 <p class="mx-[0.5vw] mt-[0.5vw] font-overpass font-semibold text-[1.4vw]">{{ $article->user->username }}</p>
                             </div>

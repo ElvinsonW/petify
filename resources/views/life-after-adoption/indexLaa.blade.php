@@ -134,7 +134,7 @@
                         <!-- Profile -->
                         <div class="flex flex-row mb-4 items-center gap-3">
                             <div class="w-[4.2vw] h-[4.2vw] bg-white border-4 border-greentua rounded-full flex justify-center items-center">
-                                <img src="{{ asset('images/after login.svg') }}" alt="Profile Owner" class="w-[3.2vw] h-[3.2vw]">
+                                <img src="{{ asset('storage/' . $post->user->image) ?? asset('images/after login.svg') }}" alt="Profile Owner" class="w-[3.2vw] h-[3.2vw] rounded-full">
                             </div>
                             <p class="mt-[0.25vw] font-overpass font-semibold text-[1.6vw]">{{ $post->user->username }}</p>
                         </div>

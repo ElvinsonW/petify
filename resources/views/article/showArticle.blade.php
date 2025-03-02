@@ -16,7 +16,7 @@
                 <div class="w-full md:w-1/4">
                     <!-- writer -->
                     <p class="text-lg sm:text-xl lg:text-2xl font-bold mb-2 font-montserrat_alt text-greenpetify">Writer</p>
-                    <a class="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 font-overpass" href="/dashboard/{{ $article->user->username }}/posts">{{ $article->user->name }} - ({{ $article->user->username }})</a>
+                    <a class="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 font-overpass" href="/dashboard/{{ $article->user->username }}/posts?post=adoption">{{ $article->user->name }} - ({{ $article->user->username }})</a>
                     <!-- date -->
                     <p class="text-lg sm:text-xl lg:text-2xl font-bold mb-2 font-montserrat_alt text-greenpetify">Date</p>
                     <p class="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 font-overpass">11 Jan 2024</p>

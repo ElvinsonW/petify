@@ -292,8 +292,8 @@
                             
                             <!-- Profile -->
                             <div class="flex flex-row">
-                                <div class="w-[3.2vw] h-[3.2vw] bg-white border-4 border-greentua rounded-full flex justify-center items-center">
-                                    <img src="{{ asset('images/after login.svg') }}" alt="Profile Owner">
+                                <div class="w-[3.2vw] h-[3.2vw] rounded-full bg-white border-4 border-greentua flex justify-center items-center">
+                                    <img src="{{ asset('storage/' . $adoption->user->image) ?? asset('images/after login.svg') }}" alt="Profile Owner" class="rounded-full">
                                 </div>
                                 <p class="mx-[0.5vw] mt-[0.5vw] font-overpass font-semibold text-[1.4vw]">{{ $adoption->user->username }}</p>
                                 <p class="mt-[0.5vw] ml-auto px-[0.5vw] font-montserrat_alt font-semibold"><i class="fa-solid fa-location-dot fa-xs" style="color: #cc4b4b;"></i> Tangerang</p>

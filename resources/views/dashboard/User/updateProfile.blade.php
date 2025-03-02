@@ -13,7 +13,7 @@
             @method("PUT")
             <!-- Profile Picture -->
             <div class="flex flex-col items-center space-y-[0.5vw]">
-                <img src="{{ asset('images/after login.svg') }}" id="profile-picture" alt="Profile Picture" class="w-28 h-28 rounded-full object-cover border-[0.1vw] border-gray-300">
+                <img src="{{ asset('storage/' . $user->image) ?? asset('images/after login.svg') }}" id="profile-picture" alt="Profile Picture" class="w-28 h-28 rounded-full object-cover border-[0.1vw] border-gray-300">
                 <div class="flex space-x-[1vw] text-black/50 text-[1vw] font-semibold font-open_sans tracking-wide">
                     <label for="image" class="bg-white border border-gray-400 p-[0.5vw] px-[1vw] cursor-pointer">Change Profile Image</label>
                     <input type="file" id="image" name="image" class="hidden" onchange="previewProfile()">

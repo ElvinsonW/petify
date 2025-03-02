@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use PDO;
 
 class UserController extends Controller
@@ -26,7 +27,8 @@ class UserController extends Controller
             $rules = [
                 "address" => ['required','max:255'],
                 'phone_number' => ['required'],
-                'role' => ['prohibited']
+                'role' => ['prohibited'],
+                'image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024']
             ];
 
             if($request->email != $user->email){
@@ -36,6 +38,14 @@ class UserController extends Controller
             }
 
             $validatedData = $request->validate($rules);
+
+            if($request->image){
+                if($user->image && $user->image != "profile-image/profile.png"){
+                    Storage::delete($user->image);
+                }
+                $validatedData["image"] = $request->image->store('profile-image');
+            }   
+            
             $user->update(Arr::except($validatedData, ['role']));
             return redirect('/dashboard' . '/' . $user->username .'/profile')->with('userSuccess',"User successfully updated");
         }

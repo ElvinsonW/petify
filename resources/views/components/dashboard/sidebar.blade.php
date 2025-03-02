@@ -12,7 +12,7 @@
     <!-- profile -->
     <div class="pt-[1.5vw] flex flex-col justify-center items-center">
         <div class="w-[9vw] h-[9vw] bg-white border-[0.5vw] border-orenmuda rounded-full flex justify-center items-center">
-            <img class="w-[7vw] h-[7vw]" src="{{ asset('images/after login.svg') }}" alt="After Login logo">
+            <img class="w-[7vw] h-[7vw] rounded-full" src="{{ asset('storage/' . $user->image) ?? asset('images/after login.svg') }}" alt="After Login logo">
         </div>
         <p class="text-black font-semibold tracking-wider font-montserrat_alt text-[1.9vw] text-center mt-[0.5vw]">{{ $user->username }}</p>
         

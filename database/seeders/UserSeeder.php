@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
             'phone_number' => '082147914431',
             'address' => 'disini',
             'role' => 'Admin',
+            'image' => 'profile-image/profile.png',
             'remember_token' => Str::random(10),
         ]);
 
@@ -37,10 +38,12 @@ class UserSeeder extends Seeder
             'address' => 'disana',
             'role' => 'User',
             'point' => 1000,
+            'image' => 'profile-image/profile.png',
             'remember_token' => Str::random(10),
         ]);
 
         User::factory(5)->create([
+            'image' => 'profile-image/profile.png',
             'password' => Hash::make('password'),
         ]);
     }
