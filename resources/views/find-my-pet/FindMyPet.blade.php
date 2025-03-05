@@ -77,27 +77,61 @@
                     <h4 class="text-[1.4vw] font-bold">Pet Category</h4>
                     <hr class="border-black border-1/2 w-full my-[0.5vw]">
                 </div>
+                
+                <!-- ALL CATEGORY -->
+                @if (request()->is('find-my-pet') && !request()->query('category')) 
+                    @php
+                        $queryParams = request()->query();
+                    @endphp
 
-                <!-- All Category (Cancel Category Filter) -->
-                <button class="pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group @if(!$selectedCategory || $selectedCategory == 'all') bg-orenmuda @endif hover:bg-orenmuda">
-                    <a href="{{ route('find-my-pet.index') }}" class="w-full">
-                        <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left @if(!$selectedCategory || $selectedCategory == 'all') text-white @endif group-hover:text-white transition-colors duration-500 ease-in-out">All Category</p>
-                        <hr class="border-orenmuda border-1/2 w-[6vw] my-[0.5vw] group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
-                    </a>
-                </button>
+                    <button class="clear-category pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group bg-orenmuda">
+                        <a href="{{ url('find-my-pet') . '?' . http_build_query($queryParams) }}">
+                            <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left text-white">All Category</p>
+                            <hr class="border-1/2 my-[0.5vw] w-full border-white">
+                        </a>
+                    </button>         
+                @else
+                    @php
+                        $queryParams = request()->query();
+                        unset($queryParams['category']); 
+                    @endphp
+                    <button class="clear-category pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group hover:bg-orenmuda">
+                        <a href="{{ url('find-my-pet') . '?' . http_build_query($queryParams) }}">
+                            <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left group-hover:text-white transition-colors duration-500 ease-in-out">All Category</p>
+                            <hr class="border-orenmuda border-1/2 w-[6vw] my-[0.5vw] group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
+                        </a>
+                    </button>   
+                @endif
 
-                <!-- Category List -->
+                <!-- Display Categories for "Find My Pet" -->
                 @foreach ($categories as $category)
                     @php
-                        $isActive = request('category') == $category->slug;
+                        $isActive = request()->query('category') == $category->slug;
+                        $queryParams = request()->query();
+                        $queryParams["category"] = $category->slug;
+                        unset($queryParams['page']); 
                     @endphp
-                    <button class="pl-2 pr-2 w-full transition duration-500 ease-in-out rounded-xl group @if($isActive) bg-{{ $category->color }} @endif hover:bg-{{ $category->color }}">
-                        <a href="{{ route('find-my-pet.index', ['category' => $isActive ? 'all' : $category->slug]) }}" class="w-full">
-                            <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left group-hover:text-white transition-colors duration-500 ease-in-out @if($isActive) text-white @else text-black @endif">{{ $category->name }}</p>
-                            <hr class="border-{{ $category->color }} border-1/2 w-[6vw] my-[0.5vw] group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
-                        </a>
-                    </button>
+
+                    @if ($isActive)
+                        @php
+                            unset($queryParams["category"]);
+                        @endphp
+                        <button class="pl-[0.5vw] pr-[0.5vw] w-full rounded-[0.75vw] group bg-{{ $category->color }}">
+                            <a href="{{ url('find-my-pet') . '?' . http_build_query($queryParams) }}" class="w-full">
+                                <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left text-white">{{ $category->name }}</p>
+                                <hr class="border-1/2 my-[0.5vw] w-full border-white">
+                            </a>
+                        </button>
+                    @else
+                        <button class="pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group hover:bg-{{ $category->color }}">
+                            <a href="{{ url('find-my-pet') . '?' . http_build_query($queryParams) }}" class="w-full">
+                                <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left group-hover:text-white transition-colors duration-500 ease-in-out">{{ $category->name }}</p>
+                                <hr class="border-{{ $category->color }} border-1/2 w-[6vw] my-[0.5vw] group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
+                            </a>
+                        </button>
+                    @endif
                 @endforeach
+
 
             </div>
         </div>

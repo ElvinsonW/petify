@@ -25,8 +25,8 @@ class FindMyPetSeeder extends Seeder
         
         FindMyPet::create([
             "user_id" =>  $faker->randomElement($users),
-            "name" => "vinson",
-            "breed" => "cihuahua",
+            "name" => "jojo",
+            "breed" => "bulldog",
             "last_seen" => "Di Komplek Daan Mogot 9",
             'last_seen' => $faker->city(), // Last seen location
             'date_lost' => $faker->date(), // Date lost
