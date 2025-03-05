@@ -94,8 +94,6 @@ Route::get('/dashboard/event-requests/{slug}/{action}', [EventRequestController:
 
 Route::get('/dashboard/{username}/posts',[UserDashboardController::class,'indexPost']);
 
-Route::resource('/find-your-pet', FindMyPetController::class)->middleware('auth');
-
 Route::resource('/find-my-pet', FindMyPetController::class)->middleware('auth');
 
 Route::get('/find-my-pet-form', [FindMyPetController::class, 'create'])->name('find-my-pet-form')->middleware('auth');
