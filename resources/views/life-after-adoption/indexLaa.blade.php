@@ -31,7 +31,7 @@
                 <h2 class="text-[3.2vw] font-montserrat_alt font-bold text-greenpetify">Adoption</h2>
             </div>
             
-            <!-- Search Bar -->
+            {{-- <!-- Search Bar -->
             <form class="max-w-md w-[16vw] mt-[1vw]">           
                 <label for="search" class="mb-[0.5vw] text-sm text-gray-900 sr-only !font-overpass font-semibold">Search</label>
                     <div class="relative w-full border-1/2 border-gray-400 rounded-[0.5vw] bg-white shadow-md">
@@ -41,7 +41,7 @@
                     <input type="search" id="search" name="search" class="rounded-[0.5vw] block w-full max-w-[calc(100%-5.2vw)] p-[1vw] ps-10 !font-overpass font-semibold focus:outline-none" value="{{ request('search') }}" placeholder="Search Here">
                     <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-greentipis hover:bg-greentua rounded-[0.5vw] px-[0.5vw] py-[0.4vw] !font-overpass">Search</button>
                 </div>
-            </form>
+            </form> --}}
             
             <!-- Button Life After Adoption Post -->
             <a href="/life-after-adoption/create">
