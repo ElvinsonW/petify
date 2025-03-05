@@ -169,7 +169,8 @@
 
                             <div class="flex-1 pt-[0.5vw]">
                                 <span class="bg-{{$pet->pet_category->color}} text-white text-[1vw] font-semibold font-montserrat_alt px-[1vw] py-[0.5vw] rounded-[0.8vw] ">{{ ucfirst($pet->pet_category->name) }}</span>
-                                <div class="text-black text-[0.9vw]  font-semibold font-overpass tracking-wide gap-x-[1vw]  mt-[1vw]">
+                                <div class="text-black tab text-[0.9vw] !font-semibold font-overpass !tracking-wide gap-x-[1vw] mt-[1vw] grid grid-cols-2 space-y-[0.2vw]">
+                                   
                                     <p>Name</p> <p>: {{ ucfirst($pet->name) }}</p>
                                     <p>Breed</p> <p>: {{ ucfirst($pet->breed) }}</p>
                                     <p>Color</p> <p>: {{ ucfirst($pet->color) }}</p>
