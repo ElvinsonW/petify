@@ -230,13 +230,18 @@
             if (isHidden) {
                 filterDropdown.classList.remove("hidden");
                 filterDropdown.classList.add("opacity-100", "scale-100");
-                petCategoryContainer.classList.add("mt-[16vw]");
+                // petCategoryContainer.classList.add("mt-[16vw]");
+                // Move the pet category container down
+                petCategoryContainer.style.transform = "translateY(15vw)";
+                // petCategoryContainer.style.transition = "transform 0.3s ease-in-out";
                 sidebarLeft.classList.add("h-auto");
                 sidebarLeft.style.minHeight = "calc(150vh + 200px)";
             } else {
                 filterDropdown.classList.add("hidden");
                 filterDropdown.classList.remove("opacity-100", "scale-100");
-                petCategoryContainer.classList.remove("mt-[16vw]");
+                // petCategoryContainer.classList.remove("mt-[16vw]");
+                // Reset the pet category container position
+                petCategoryContainer.style.transform = "translateY(0)";
                 sidebarLeft.style.minHeight = "100vh";
             }
         });
