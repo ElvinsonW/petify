@@ -29,7 +29,7 @@ class FindMyPet extends Model
     // Relasi ke model User (pemilik)
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
     }
 
     // Relasi ke model PetCategory (kategori hewan)
