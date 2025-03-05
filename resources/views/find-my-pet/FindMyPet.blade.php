@@ -98,11 +98,11 @@
                     <h4 class="text-[1.4vw] font-bold">Pet Category</h4>
                     <hr class="border-black border-1/2 w-full my-[0.5vw]">
                 </div>
-                
+
                 <!-- ALL CATEGORY -->
-                @if (request()->is('find-my-pet') && !request()->query('category')) 
+                @if (!request()->has('category') || request()->query('category') == '') 
                     @php
-                        $queryParams = request()->query();
+                        $queryParams = request()->query(); 
                     @endphp
 
                     <button class="clear-category pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group bg-orenmuda">
@@ -123,6 +123,7 @@
                         </a>
                     </button>   
                 @endif
+
 
                 <!-- Display Categories for "Find My Pet" -->
                 @foreach ($categories as $category)
