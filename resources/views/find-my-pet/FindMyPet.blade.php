@@ -26,7 +26,7 @@
         <div class="w-[22vw] min-h-screen h-auto shadow-lg pl-[3vw] pt-[3vw] transition-all duration-300">
             <!-- Judul Page -->
             <div class="text-left">
-                <h4 class="text-4xl font-montserrat_alt font-bold text-greenpetify">Find Your</h4>
+                <h4 class="text-4xl font-montserrat_alt font-bold text-greenpetify">Find My</h4>
                 <h2 class="text-5xl font-montserrat_alt font-bold text-greenpetify">Pet</h2>
             </div>
 
