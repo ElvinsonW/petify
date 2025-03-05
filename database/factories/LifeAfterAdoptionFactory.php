@@ -21,6 +21,7 @@ class LifeAfterAdoptionFactory extends Factory
         return [
             "user_id" => User::factory(),
             "pet_id" => Pet::factory(),
+            "description" => fake()->paragraph(),
         ];
     }
 }

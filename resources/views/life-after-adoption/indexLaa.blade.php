@@ -176,7 +176,7 @@
                         @endphp
                         <a href="{{ url('/life-after-adoption') . '?' . http_build_query($queryParams) }}" class="flex flex-row mb-[1.25vw]">
                             <div class="w-[4.2vw] h-[4.2vw] bg-white border-4 border-greentua rounded-full flex justify-center items-center">
-                                <img src="{{ asset('images/after login.svg') }}" alt="Profile Owner" class="w-[3.2vw]">
+                                <img src="{{ asset('storage/' . $pet->user->image) ?? asset('images/after login.svg') }}" alt="Profile Owner" class="w-[3.2vw]">
                             </div>
             
                             <div class="flex flex-col justify-center font-montserrat_alt">

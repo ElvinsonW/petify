@@ -113,13 +113,13 @@
 
                             <div class="flex-1 pt-[0.5vw]">
                                 <span class="bg-{{$pet->pet_category->color}} text-white text-[1vw] font-semibold font-montserrat_alt px-[1vw] py-[0.5vw] rounded-[0.8vw] ">{{ ucfirst($pet->pet_category->name) }}</span>
-                                <div class="text-black tab text-[1vw] !font-semibold !font-open_sans !tracking-wide gap-x-[1vw] mt-[1vw] grid grid-cols-2 space-y-[0.2vw]">
+                                <div class="text-black text-[0.9vw]  font-semibold font-overpass tracking-wide gap-x-[1vw]  mt-[1vw]">
                                     <p>Name</p> <p>: {{ ucfirst($pet->name) }}</p>
                                     <p>Breed</p> <p>: {{ ucfirst($pet->breed) }}</p>
                                     <p>Color</p> <p>: {{ ucfirst($pet->color) }}</p>
                                     <p>Last Seen</p> <p>: {{ ucfirst($pet->last_seen) }}</p>
                                     <p>Collar & Tag</p> <p>: {{ ucfirst($pet->color_tag) }}</p>
-                                    <p>Date Lost</p> <p>: {{ $pet->date_lost}}</p>
+                                    <p>Date Lost</p> <p>: {{ \Carbon\Carbon::parse($pet->date_lost)->format('d F Y') }}</p>
                                     <p>Gender</p> <p>: {{ ucfirst($pet->gender) }}</p>
                                     <p>City</p> <p>: {{ ucfirst($pet->city)}}</p>
                                 </div>
@@ -131,11 +131,13 @@
                         </div>
 
                         <div class="mt-[1.2vw] flex items-center">
-                            <div class="w-9 h-9 bg-white border-[0.1vw] border-greentua rounded-full flex justify-center items-center p-[0.1vw]">
-                                <img class="profile-logo" src="{{ asset('images/after login.svg') }}" alt="Profile logo">
-                            </div>
-
-                            <p class="ml-[0.75vw] text-greenpetify font-semibold font-overpass text-[1.1vw] tracking-wider">{{ $pet->user->name }}</p>
+                            <a href="/dashboard/{{ $pet->user->username }}/posts?post=adoption" class="flex items-center">
+                                <div class="w-9 h-9 bg-white border-[0.1vw] border-greentua rounded-full flex justify-center items-center p-[0.1vw]">
+                                    <img class="profile-logo" src="{{ asset('storage/' . $pet->user->image) ?? asset('images/after login.svg') }}" alt="Profile logo">
+                                </div>
+    
+                                <p class="ml-[0.75vw] mt-0 text-greenpetify font-semibold font-overpass text-[1.1vw] tracking-wider">{{ $pet->user->name }}</p>
+                            </a>
                             <div class="flex items-center text-black text-[0.85vw] font-medium font-overpass ml-auto">
                                 <img class="mr-[0.5vw] telephone-icon" src="{{ asset('images/telephone-minus-fill.svg') }}" alt="Telephone Logo">
                                 <span>{{ $pet->user->phone_number }}</span>
@@ -146,31 +148,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        const buttonToogle = document.querySelector('.buttonToogle');
-        const mobileMenu = document.querySelector('.mobileMenu');
-    
-        buttonToogle.addEventListener('click', function () {
-            mobileMenu.classList.toggle('hidden');
-            
-            const icon = buttonToogle.querySelector('.icon');
-            
-            // Toggle antara hamburger dan X
-            if (icon.classList.contains('icon-hamburger')) {
-                // ganti path
-                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
-                icon.classList.remove('icon-hamburger');
-                icon.classList.add('icon-close');
-                icon.style.transform = 'rotate(90deg)'; // rotation effect
-            } else {
-                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
-                icon.classList.remove('icon-close');
-                icon.classList.add('icon-hamburger');
-                icon.style.transform = 'rotate(0deg)'; // Reset rotation
-            }
-        });
-    </script>
 
     <script>
         // Dropdown filter visibility toggle

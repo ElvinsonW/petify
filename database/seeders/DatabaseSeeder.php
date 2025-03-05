@@ -69,7 +69,6 @@ class DatabaseSeeder extends Seeder
             Pet::all(),
         ])->create([
             "image" => 'life-after-adoption-post-image/laaPict.png',
-            "description" => fake()->paragraph(),
         ]);
 
 

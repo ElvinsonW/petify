@@ -124,7 +124,7 @@
             </div>
         </div>            
 
-        @if (request('post') == "adoption" || request('post') == "article" || request('post') == 'event')    
+        @if (request('post') == "adoption" || request('post') == "article" || request('post') == 'event' || request('post') == 'findMyPet')    
             <div class="overflow-y-auto scrollbar-thin max-h-[80vh] mb-[3vw] pr-[0.5vw] flex flex-col gap-[1vw]">
                 @foreach ($posts[request('post')] as $post)    
                     <div class="last:mb-[6vw]">
