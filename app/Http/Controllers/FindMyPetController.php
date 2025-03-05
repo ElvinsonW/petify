@@ -62,14 +62,14 @@ class FindMyPetController extends Controller
             'color' => 'required|string|max:255',
             'pet_category_id' => ['required', 'exists:pet_categories,id'], // Perbaikan: pastikan id kategori ada
             'color_tag' => 'required|string',
-            'attach' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'description' => 'required|string',
             'city' => 'required|string',
             'gender' => 'required|string',
         ]);
 
         // Menyimpan gambar jika ada
-        $imagePath = $request->file('attach')->store('uploads/pets', 'public');
+        $imagePath = $request->file('image')->store('uploads/pets', 'public');
 
         // Menyimpan data ke dalam database
         FindMyPet::create([
@@ -88,7 +88,7 @@ class FindMyPetController extends Controller
         ]);
 
         // Mengarahkan kembali ke form dengan pesan sukses
-        return redirect()->route('find-my-pet.index')->with('success', 'Missing pet post created successfully!');
+        return redirect()->route('find-my-pet.index')->with('createSuccess', 'Missing pet post created successfully!');
     }
 
 
