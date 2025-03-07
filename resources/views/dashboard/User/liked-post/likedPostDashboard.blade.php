@@ -6,9 +6,12 @@
             <!-- title -->
             <p class="text-greenpetify tracking-wide font-montserrat_alt text-[2vw] font-bold">Liked Post</p>
             <!-- date day -->
+            @php
+                $date = \Carbon\Carbon::now();
+            @endphp
             <div class="flex flex-row font-montserrat_alt">
-                <p class="text-black font-medium text-[1.1vw]">Wednesday</p>
-                <p class="text-black font-normal text-[1.1vw]">, 5 February 2025</p>
+                <p class="text-black font-medium text-[1.1vw]">{{ ucfirst($date->format('l')) }}</p>
+                <p class="text-black font-normal text-[1.1vw]">, {{ $date->format('j F Y') }}</p>
             </div>
             
             <!-- content -->
