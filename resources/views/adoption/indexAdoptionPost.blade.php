@@ -283,7 +283,7 @@
         
                             <!-- Name & Like -->
                             <div class="flex flex-row font-montserrat_alt font-semibold w-[100%] min-h-[5vw]">
-                                <p class="text-[1.6vw] w-[16vw]">{{ $adoption->name }}</p>    
+                                <p class="text-[1.6vw] w-[18vw]">{{ $adoption->name }}</p>    
                                 <!-- Like -->
                                 @php
                                     $likedPostIds = $likedPosts->pluck('adoption_post_id')->toArray();
