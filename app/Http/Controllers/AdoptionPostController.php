@@ -70,7 +70,7 @@ class AdoptionPostController extends Controller
             'vaccinated' => ['required'],
             'weight' => ['required','numeric', 'min:0.01'],
             'description' => ['required', 'max:255'],
-            'requirement' => ['max:255'],
+            'requirement',
         ]);
 
         $request->validate([
@@ -166,7 +166,7 @@ class AdoptionPostController extends Controller
             'vaccinated' => ['required'],
             'weight' => ['required','numeric', 'min:0.01'],
             'description' => ['required'],
-            'requirement' => ['nullable','max:255']
+            'requirement' => ['nullable']
         ];
 
         $request->validate([

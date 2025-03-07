@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('address');
             $table->enum('role',['User','Admin'])->default('User');
             $table->integer('point')->default(0);
-            $table->string('image')->nullable();
+            $table->string('image')->default("profile-image/profile.png");
             $table->rememberToken();
             $table->timestamps();
         });

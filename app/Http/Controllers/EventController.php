@@ -26,6 +26,8 @@ class EventController extends Controller
                                 $query->whereDate('start_date', '<=', $today)
                                     ->whereDate('end_date', '>=', $today);
                             })
+                            ->where('approval_status',"Accepted")
+                            ->orWhere('approval_status',"Rejectes")
                             ->orderBy('start_date', 'asc')
                             ->orderBy('end_date','asc')
                             ->get();
@@ -34,6 +36,8 @@ class EventController extends Controller
         // Get the next 5 closest upcoming events from tomorrow 
         $upcomingEvents = Event::filter(request($upcomingFilters))
                                 ->whereDate('start_date', '>', $today)  // Events happening after today
+                                ->where('approval_status',"Accepted")
+                                ->orWhere('approval_status',"Rejectes")
                                 ->orderBy('start_date', 'asc')  // Sort by nearest first
                                 ->orderBy('end_date','asc')
                                 ->paginate(9)

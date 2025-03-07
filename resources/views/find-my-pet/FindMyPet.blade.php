@@ -26,12 +26,22 @@
         <div class="w-[22vw] min-h-screen h-auto shadow-lg pl-[3vw] pt-[3vw] transition-all duration-300">
             <!-- Judul Page -->
             <div class="text-left">
-                <h4 class="text-4xl font-montserrat_alt font-bold text-greenpetify">Find Your</h4>
+                <h4 class="text-4xl font-montserrat_alt font-bold text-greenpetify">Find My</h4>
                 <h2 class="text-5xl font-montserrat_alt font-bold text-greenpetify">Pet</h2>
             </div>
 
             <!-- Search Bar -->
             <form class="max-w-md w-[16vw] mt-[1vw]" method="GET" action="{{ route('find-my-pet.index') }}">
+                @php
+                    $params = ["category","city","collar_tag"]
+                @endphp
+
+                @foreach ($params as $param)
+                    @if($param)
+                        <input type="hidden" name={{ $param }} value="{{ request($param) }}">
+                    @endif
+                @endforeach
+                
                 <label for="search" class="mb-[0.5vw] text-sm text-gray-900 sr-only !font-overpass font-semibold">Search</label>
                 <div class="relative w-full border-1/2 border-gray-400 rounded-[0.5vw] bg-white shadow-md">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-[0.75vw] pointer-events-none">
@@ -58,6 +68,11 @@
             <div id="filterDropdown" class="absolute z-10 w-[16.85vw] mt-[0.7vw] bg-greenpetify text-white rounded-[1vw] shadow-lg opacity-0 scale-95 transition-all transform origin-top-left hidden font-overpass justify-between">
                 <div class="p-[1vw] space-y-[1vw]">
                     <form action="{{ route('find-my-pet.index') }}" method="GET">
+                        @foreach ($params as $param)
+                            @if($param)
+                                <input type="hidden" name="{{ $param }}" value="{{ request($param) }}">
+                            @endif
+                        @endforeach
                         <label class="block">
                             <span class="text-[1vw] font-semibold">City</span>
                             <input type="text" name="city" placeholder="Input city here" class="w-full p-[0.5vw] bg-teal-700 rounded-[0.4vw]" value="{{ request('city') }}">
@@ -124,7 +139,6 @@
                         $isActive = request()->query('category') == $category->slug;
                         $queryParams = request()->query();
                         $queryParams["category"] = $category->slug;
-                        unset($queryParams['page']); 
                     @endphp
 
                     @if ($isActive)
@@ -195,30 +209,6 @@
     </div>
 
     <script>
-        const buttonToogle = document.querySelector('.buttonToogle');
-        const mobileMenu = document.querySelector('.mobileMenu');
-    
-        buttonToogle.addEventListener('click', function () {
-            mobileMenu.classList.toggle('hidden');
-            
-            const icon = buttonToogle.querySelector('.icon');
-            
-            // Toggle antara hamburger dan X
-            if (icon.classList.contains('icon-hamburger')) {
-                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
-                icon.classList.remove('icon-hamburger');
-                icon.classList.add('icon-close');
-                icon.style.transform = 'rotate(90deg)';
-            } else {
-                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
-                icon.classList.remove('icon-close');
-                icon.classList.add('icon-hamburger');
-                icon.style.transform = 'rotate(0deg)';
-            }
-        });
-    </script>
-
-    <script>
         const filterButton = document.getElementById("filterButton");
         const filterDropdown = document.getElementById("filterDropdown");
         const petCategoryContainer = document.getElementById("petCategoryContainer");
@@ -230,6 +220,7 @@
             if (isHidden) {
                 filterDropdown.classList.remove("hidden");
                 filterDropdown.classList.add("opacity-100", "scale-100");
+                petCategoryContainer.classList.remove("mt-[1vw]");
                 petCategoryContainer.classList.add("mt-[16vw]");
                 sidebarLeft.classList.add("h-auto");
                 sidebarLeft.style.minHeight = "calc(150vh + 200px)";
@@ -237,6 +228,7 @@
                 filterDropdown.classList.add("hidden");
                 filterDropdown.classList.remove("opacity-100", "scale-100");
                 petCategoryContainer.classList.remove("mt-[16vw]");
+                petCategoryContainer.classList.add("mt-[1vw]");
                 sidebarLeft.style.minHeight = "100vh";
             }
         });
