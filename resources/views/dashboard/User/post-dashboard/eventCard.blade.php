@@ -1,5 +1,5 @@
 <!-- card 1 -->
-<div class="flex flex-col md:flex-row items-start space-x-[1.5vw] bg-gray-50 hover-brightness rounded-[1.1vw]">
+<a href="/events/{{ $post->slug }}" class="flex flex-col md:flex-row items-start space-x-[1.5vw] bg-gray-50 hover-brightness rounded-[1.1vw]">
     <!-- photo of pet -->
     <img
         src="{{ $post->image ? asset('storage/' . $post->image) : asset('images/articlepict.svg') }}"
@@ -36,4 +36,4 @@
             </div>
         </div>
     </div>
-</div>
+</a>
