@@ -3,9 +3,11 @@
 namespace App\Livewire;
 
 use App\Models\Event;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class EventMultistepForm extends Component
 {
@@ -13,11 +15,12 @@ class EventMultistepForm extends Component
 
     public $step = 1;
     public $event_category_id, $title, $slug, $location, $ticket, $start_date, $end_date, $image, $description;
+    public $dayLength;
     public $days = [];
     public $sessions = [];
     public $categories = [];
 
-    public function mount($categories)
+    public function mount($categories, $event = null)
     {
         $this->categories = $categories;
         $this->event_category_id = $event->event_category_id ?? '';
@@ -25,39 +28,50 @@ class EventMultistepForm extends Component
 
     // Fungsi untuk memvalidasi input yang masuk
     public function validateData()
-    {
-        if ($this->step == 1) {
-            // Validasi input yang masuk pada step 1
-            $this->validate([
-                'event_category_id' => ['required'],
-                'title' => ['required', 'max:100'],
-                'slug' => ['required', 'unique:events'],
-                'location' => ['required', 'max:100'],
-                'ticket' => ['required', 'numeric', 'min:0'],
-                'start_date' => ['required', 'date'],
-                'end_date' => ['required', 'date', 'after_or_equal:start_date'],
-                'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
-                'description' => ['required']
-            ]);
-            
-            // Cek apakah image memiliki tipe data UploadedFile
-            if ($this->image instanceof \Illuminate\Http\UploadedFile) {
-                // Simpan image di dalam local storage
-                $this->image = $this->image->store('event_images', 'public');
-            }
+{
+    if ($this->step == 1) {
+        $this->validate([
+            'event_category_id' => ['required'],
+            'title' => ['required', 'max:100'],
+            'slug' => ['required', Rule::unique('events')->ignore($this->event->id ?? null)],
+            'location' => ['required', 'max:100'],
+            'ticket' => ['required', 'numeric', 'min:0'],
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date', 'after_or_equal:start_date'],
+            'image' => ($this->image instanceof \Illuminate\Http\UploadedFile) ? ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'] : ['nullable'],
+            'description' => ['required']
+        ]);
 
-        } elseif ($this->step == 2) {
-            // Validasi input yang masuk dalam step 2
-            $this->validate([
-                'days' => ['required', 'array', 'min:1'],
-                'days.*.date' => ['required', 'date'],
-                'sessions' => ['nullable', 'array'],
-                'sessions.*.*.time' => ['required', 'date_format:H:i'],
-                'sessions.*.*.title' => ['required', 'max:100'],
-                'sessions.*.*.description' => ['required']
-            ]);            
+        if ($this->image instanceof \Illuminate\Http\UploadedFile) {
+            $this->image = $this->image->store('event_images', 'public');
         }
+
+        if ($this->start_date && $this->end_date) {
+            $this->start_date = Carbon::parse($this->start_date);
+            $this->end_date = Carbon::parse($this->end_date);
+            $this->dayLength = $this->start_date->diffInDays($this->end_date) + 1;
+        }
+
+        if ($this->start_date && $this->end_date) {
+            $this->start_date = Carbon::parse($this->start_date)->format('Y-m-d');
+            $this->end_date = Carbon::parse($this->end_date)->format('Y-m-d');
+        }
+
+        $this->days = collect(range(0, $this->dayLength - 1))->map(function ($i) {
+            return ['date' => Carbon::parse($this->start_date)->addDays($i)->format('Y-m-d')];
+        })->toArray();
+    } elseif ($this->step == 2) {
+        $this->validate([
+            'days' => ['required', 'array', 'min:1'],
+            'days.*.date' => ['required', 'date'],
+            'sessions' => ['nullable', 'array'],
+            'sessions.*.*.time' => ['required', 'date_format:H:i'],
+            'sessions.*.*.title' => ['required', 'max:100'],
+            'sessions.*.*.description' => ['required']
+        ]);
     }
+}
+
     
     // Fungsi untuk menghapu image dari local storage
     public function deleteImage()
