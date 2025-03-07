@@ -7,11 +7,11 @@
         class="w-full md:w-[10vw] h-[10vw] rounded-[1.1vw] object-cover"
     />
     <div class="flex flex-col justify-between flex-grow">
-        <!-- name -->
-        <div class="flex flex-row space-x-[0.7vw] text-center items-center justify-between">
+        <div class="flex flex-row  w-full space-x-[0.7vw] items-start justify-between">
+            <!-- name -->
             <h2 class="text-[1.7vw] font-semibold font-montserrat_alt text-black leading-snug">{{ $post->name }}</h2>
             <!-- type -->
-            <span class="bg-{{ $post->pet->pet_category->color }} text-white text-[1.2vw] font-semibold font-montserrat_alt px-[0.7vw] rounded-[0.53vw]">
+            <span class="bg-{{ $post->pet->pet_category->color }} text-white text-[1.2vw] font-semibold font-montserrat_alt px-[0.7vw] py-[0.1vw] rounded-[0.53vw]">
                 {{ $post->pet->pet_category->name }}
             </span>
         </div>
