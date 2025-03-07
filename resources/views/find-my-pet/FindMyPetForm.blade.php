@@ -9,7 +9,7 @@
         <!-- Container Pertanyaan -->  
         <div class="mx-24 mt-16">
             <!-- Form untuk Mengirim Data -->
-            <form action="{{ route('find-my-pet.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="/find-my-pets" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <!-- Pesan Sukses -->

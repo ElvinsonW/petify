@@ -30,7 +30,7 @@
             <!-- achievement/ poin -->
             <div class="flex justify-center items-center mt-[0.5vw]">
                 <i class="fa-solid fa-paw mr-2 bg-orenmuda rounded-full bg-opacity-25 border-orenmuda border-opacity-25 border-4" style="color: #f2ae72;"></i>
-                <p class="text-center text-[1.2vw] font-bold font-overpass text-greentipis">{{ $user->point }}</p>
+                <p class="text-center text-[1.2vw] font-bold font-overpass text-orenmuda">{{ $user->point }}</p>
             </div>
         @else    
             <p class="text-center text-black/60 text-[1.3vw] font-bold font-overpass tracking-wide">{{ $user->role }}</p>
