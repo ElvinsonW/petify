@@ -54,7 +54,7 @@
             <div>
                 <form class="max-w-md w-[16vw] mt-[1vw]" method="GET" action="{{ url('adoptions') }}">
                     @php
-                        $params = ['category', 'liked'];
+                        $params = ['category', 'liked', 'minWeight','maxWeight','minAge','maxAge','city','gender','vaccine'];
                     @endphp
 
                     @foreach($params as $param)
@@ -100,6 +100,13 @@
                 <!-- Dropdown Filter -->
                 <div id="filterDropdown" class="absolute z-10 w-[16.85vw] mt-[5vw] bg-greenpetify text-white rounded-[1vw] shadow-lg opacity-0 scale-95 transition-all transform origin-top-left hidden font-overpass">
                     <form class="p-[1vw] space-y-[1vw]">
+
+                        @foreach ($params as $param)
+                            @if ($param)
+                                <input type="hidden" name="{{ $param }}" value="{{ request($param) }}" >    
+                            @endif
+                        @endforeach
+
                         <!-- Weight Input -->
                         <label class="block">
                             <span class="text-[1vw] font-semibold">Weight (KG)</span>
@@ -296,7 +303,7 @@
                                     <img src="{{ asset('storage/' . $adoption->user->image) ?? asset('images/after login.svg') }}" alt="Profile Owner" class="rounded-full">
                                 </div>
                                 <p class="mx-[0.5vw] mt-[0.5vw] font-overpass font-semibold text-[1.4vw]">{{ $adoption->user->username }}</p>
-                                <p class="mt-[0.5vw] ml-auto px-[0.5vw] font-montserrat_alt font-semibold"><i class="fa-solid fa-location-dot fa-xs" style="color: #cc4b4b;"></i> Tangerang</p>
+                                <p class="mt-[0.5vw] ml-auto px-[0.5vw] font-montserrat_alt font-semibold"><i class="fa-solid fa-location-dot fa-xs" style="color: #cc4b4b;"></i> {{ Str::limit($adoption->location,10) }}</p>
                             </div>
                         </div>
                     </a>

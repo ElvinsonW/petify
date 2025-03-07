@@ -209,7 +209,7 @@
                     
                     <div class="flex flex-col mt-4 ml-4">
                         <p class="font-overpass font-semibold text-2xl">{{ $adoption->user->username }}</p>
-                        <p class="font-overpass font-semibold text-orenmuda text-xl mt-2"><i class="fa-solid fa-paw mr-2 bg-orenmuda rounded-full bg-opacity-25 border-orenmuda border-opacity-25 border-4" style="color: #f2ae72;"></i>1900</p>
+                        <p class="font-overpass font-semibold text-orenmuda text-xl mt-2"><i class="fa-solid fa-paw mr-2 bg-orenmuda rounded-full bg-opacity-25 border-orenmuda border-opacity-25 border-4" style="color: #f2ae72;"></i>{{ $adoption->user->point }}</p>
                     </div>
                 </div>
             </a>

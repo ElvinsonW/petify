@@ -29,7 +29,7 @@
         @if ($user->role == "User")
             <!-- achievement/ poin -->
             <div class="flex justify-center items-center mt-[0.5vw]">
-                <img class="w-[2vw]" src="{{ asset('images/game-icons_achievement.svg') }}" alt="">
+                <i class="fa-solid fa-paw mr-2 bg-orenmuda rounded-full bg-opacity-25 border-orenmuda border-opacity-25 border-4" style="color: #f2ae72;"></i>
                 <p class="text-center text-[1.2vw] font-bold font-overpass text-greentipis">{{ $user->point }}</p>
             </div>
         @else    

@@ -67,7 +67,7 @@ class LifeAfterAdoptionController extends Controller
         $validatedData = $request->validate([
             "pet_id" => ["required", "exists:pets,id"],
             "image" => ["required", "image", "mimes:jpeg,png,jpg,gif,svg", "max:1024"], // "file" is redundant
-            "description" => ["nullable", "max:255"]
+            "description" => ["nullable"]
         ]);        
 
         // Simpan image di local storage

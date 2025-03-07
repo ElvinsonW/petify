@@ -31,7 +31,7 @@
                     <!-- Slug -->
                     <div>
                         <label for="slug" class="block mb-2 text-lg font-semibold">Slug</label>
-                        <input type="text" id="slug" name="slug" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Slug..." value="{{ old('slug') ?? ($pet ? str_replace(' ', '-', $pet->name) : '') }}" readonly />
+                        <input type="text" id="slug" name="slug" class="bg-gray-100 border border-gray-400 text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Slug..." value="{{ old('slug') ?? ($pet ? str_replace(' ', '-', $pet->name) : '') }}" readonly />
                         @error('slug')
                             <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
                                 {{ $message }}
@@ -204,7 +204,7 @@
                         Attach pictures of your pet here
                     </label>
                     <div class="flex flex-col items-center justify-center w-full">
-                        <label for="images" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
+                        <label for="images" class="flex flex-col items-center justify-center w-full min-h-[20vw] p-[2vw] border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
                             <div id="img-text" class="flex flex-col items-center justify-center pt-5 pb-6">
                                 <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
@@ -215,9 +215,6 @@
                                 <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG (MAX. 1 MB each)</p>
                             </div>
                             <div id="img-preview-container" class="flex flex-wrap gap-3">
-                                @if ($pet)
-                                    
-                                @endif
                             </div>
                             <input id="images" name="images[]" type="file" class="hidden" multiple onchange="previewImages()" value="{{ old('images[]') }}"/>
                         </label>
@@ -282,7 +279,9 @@
         const previewContainer = document.getElementById('img-preview-container');
         const files = Array.from(fileInput.files); // Mengubah FileList menjadi Array
 
-        imgText.style.display = "none";
+        // imgText.classList.remove('flex')
+        // imgText.classList.add('hidden')
+
         // Loop semua file
         files.forEach((file) => {
             // Cek apakah file tersebut sudah ada sebelumnya
@@ -309,7 +308,7 @@
 
                 const img = document.createElement('img');
                 img.src = e.target.result;
-                img.className = 'img-fluid w-auto h-[20vh] mb-3'; 
+                img.className = 'img-fluid w-auto w-[40vw] h-[10vw] mb-3 object-cover'; 
                 img.alt = file.name;
 
                 // Remove Button untuk menghapus file yang tidak diinginkan
@@ -322,6 +321,10 @@
                         uploadedFiles.splice(index, 1);
                     }
 
+                    if(uploadedFiles.length == 0){
+                        imgText.style.display = "flex"
+                    }
+
                     previewDiv.remove();
                 };
 
@@ -331,6 +334,10 @@
             };
 
             reader.readAsDataURL(file);
+
+            if(uploadedFiles.length > 0){
+                imgText.style.display = "none";
+            }
         });
     }
 

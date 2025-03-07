@@ -3,7 +3,7 @@
         <div class="flex flex-col sm:flex-row justify-between sm:items-start px-4 md:px-8">
             <!-- Logo dan Deskripsi -->
             <div class="flex flex-col mb-6 mr-32 sm:mb-0 sm:w-1/3">
-                <a href="../pages/index.html" class="space-x-3 rtl:space-x-reverse">
+                <a href="/" class="space-x-3 rtl:space-x-reverse">
                     <img src="{{ asset('images/Logo-White.svg') }}" class="w-2/5 h-auto" alt="Petify Logo"/>
                 </a>
                 <p class="ml-2 mt-4 sm:text-left">
