@@ -17,27 +17,27 @@
 
             <div class="mb-[1.5vw]">
                 <p class="font-bold text-gray-500 text-[1.2vw] mb-[1vw]">Do you have other pets at home? If yes, what pets are they and have they been vaccinated?</p>
-                <textarea class="w-full border border-black p-[1vw] rounded-[1vw]" rows="5">{{ $request->Q1 }}</textarea>
+                <textarea class="w-full border border-black p-[1vw] rounded-[1vw]" rows="5" disabled>{{ $request->Q1 }}</textarea>
             </div>
 
             <div class="mb-[1.5vw]">
                 <p class="font-bold text-gray-500 text-[1.2vw] mb-[1vw]">What will you do with the pet when you travel or are away?</p>
-                <textarea class="w-full border border-black p-[1vw] rounded-[1vw]" rows="5">{{ $request->Q2 }}</textarea>
+                <textarea class="w-full border border-black p-[1vw] rounded-[1vw]" rows="5" disabled>{{ $request->Q2 }}</textarea>
             </div>
 
             <div class="mb-[1.5vw]">
                 <p class="font-bold text-gray-500 text-[1.2vw] mb-[1vw]">Do you have any previous experience keeping animals?     </p>
-                <textarea class="w-full border border-black p-[1vw] rounded-[1vw]" rows="5">{{ $request->Q3 }}</textarea>
+                <textarea class="w-full border border-black p-[1vw] rounded-[1vw]" rows="5" disabled>{{ $request->Q3 }}</textarea>
             </div>
 
             <div class="mb-[1.5vw]">
                 <p class="font-bold text-gray-500 text-[1.2vw] mb-[1vw]">Do you have a yard or outdoor space for animals? </p>
-                <textarea class="w-full border border-black p-[1vw] rounded-[1vw]" rows="5">{{ $request->Q4 }}</textarea>
+                <textarea class="w-full border border-black p-[1vw] rounded-[1vw]" rows="5" disabled>{{ $request->Q4 }}</textarea>
             </div>
 
             <div class="mb-[1.5vw]">
                 <p class="font-bold text-gray-500 text-[1.2vw] mb-[1vw]">What’s your reason for adopting?  </p>
-                <textarea class="w-full border border-black p-[1vw] rounded-[1vw]" rows="5">{{ $request->Q5 }}</textarea>
+                <textarea class="w-full border border-black p-[1vw] rounded-[1vw]" rows="5" disabled>{{ $request->Q5 }}</textarea>
             </div>
         </div>
 
