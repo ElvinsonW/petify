@@ -49,13 +49,12 @@
                 <select wire:model="event_category_id" id="event_category_id" class="category appearance-none border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none pr-10 text-gray-400">
                     <option value="" disabled selected hidden>Select a category...</option>
                     @foreach ($categories as $category)
-                        @if (old('category_id') == $category->id)
-                            <option value="{{ $category->id }}" selected class="text-black">{{ $category->name }}</option>
-                        @else
-                            <option value="{{ $category->id }}" class="text-black">{{ $category->name }}</option>
-                        @endif
+                        <option value="{{ $category->id }}" class="text-black">
+                            {{ $category->name }}
+                        </option>
                     @endforeach
                 </select>
+                
                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                     <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />

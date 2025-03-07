@@ -20,6 +20,7 @@ class EventMultistepForm extends Component
     public function mount($categories)
     {
         $this->categories = $categories;
+        $this->event_category_id = $event->event_category_id ?? '';
     }
 
     // Fungsi untuk memvalidasi input yang masuk
@@ -38,7 +39,7 @@ class EventMultistepForm extends Component
                 'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
                 'description' => ['required']
             ]);
-
+            
             // Cek apakah image memiliki tipe data UploadedFile
             if ($this->image instanceof \Illuminate\Http\UploadedFile) {
                 // Simpan image di dalam local storage
@@ -48,11 +49,13 @@ class EventMultistepForm extends Component
         } elseif ($this->step == 2) {
             // Validasi input yang masuk dalam step 2
             $this->validate([
+                'days' => ['required', 'array', 'min:1'],
                 'days.*.date' => ['required', 'date'],
-                'sessions.*.*.time' => ['required', 'date_format:g:i A'],
+                'sessions' => ['nullable', 'array'],
+                'sessions.*.*.time' => ['required', 'date_format:H:i'],
                 'sessions.*.*.title' => ['required', 'max:100'],
                 'sessions.*.*.description' => ['required']
-            ]);
+            ]);            
         }
     }
     
@@ -97,6 +100,7 @@ class EventMultistepForm extends Component
     // Fungsi untuk submit form dan menyimpan data ke dalam database
     public function submitForm()
     {
+        $this->validateData();
         // Simpan event ke dalam database
         $event = Event::create([
             'title' => $this->title,

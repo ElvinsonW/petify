@@ -213,33 +213,15 @@
     </div> <!-- Main Content -->
 </div> <!-- container -->
 
-
-
-
-
-    <script>
-        const buttonToogle = document.querySelector('.buttonToogle');
-        const mobileMenu = document.querySelector('.mobileMenu');
+<script>
+    const closeButtons = document.querySelectorAll('.close-button');
     
-        buttonToogle.addEventListener('click', function () {
-            mobileMenu.classList.toggle('hidden');
-            
-            const icon = buttonToogle.querySelector('.icon');
-            
-            // Toggle antara hamburger dan X
-            if (icon.classList.contains('icon-hamburger')) {
-                // ganti path
-                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
-                icon.classList.remove('icon-hamburger');
-                icon.classList.add('icon-close');
-                icon.style.transform = 'rotate(90deg)'; // rotation effect
-            } else {
-                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
-                icon.classList.remove('icon-close');
-                icon.classList.add('icon-hamburger');
-                icon.style.transform = 'rotate(0deg)'; // Reset rotation
-            }
+    closeButtons.forEach((button) => {
+        button.addEventListener('click', function() {
+            const alert = button.closest('.alert')
+            alert.style.display = "none";
         });
+    });
 
     const monthNames = [
     "January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"

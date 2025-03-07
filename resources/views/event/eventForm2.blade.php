@@ -17,13 +17,16 @@
                                     </div>
                                     <input 
                                         type="date" 
-                                        wire:model="days.0.date"
+                                        wire:model.defer="days.0.date"
                                         class="w-5/6 mt-2 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
                                         placeholder="Input date here..."
-                                        id="date-selector-1">
+                                        id="date-selector-1" required>
                                 </div>
                             </div>
                         </div>
+                        @error('days') 
+                            <span class="text-red-500 text-sm mt-[-1vw]">{{ $message }}</span> 
+                        @enderror
                     </div>
                     <button type="button" class="mt-5 bg-kuning text-black rounded-lg px-4 py-2 hover:bg-kuninggelap transition font-montserrat_alt text-base font-semibold" onclick="addNewDay()">+ New Day</button>
                 </div>
@@ -42,7 +45,8 @@
                                             type="time" 
                                             wire:model="sessions.0.0.time" 
                                             class="w-1/2 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
-                                            placeholder="Time input here...">
+                                            placeholder="Time input here..."
+                                            required>
                                     </div>
                                 </div>
                                 <div class="flex flex-col gap-4">
@@ -50,13 +54,17 @@
                                         type="text" 
                                         wire:model="sessions.0.0.title" 
                                         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
-                                        placeholder="Session Title">
+                                        placeholder="Session Title"
+                                        required>
                                     <textarea 
                                         wire:model="sessions.0.0.description" 
                                         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
                                         rows="3" placeholder="Description here..."></textarea>
                                 </div>
                             </div>
+                            @error('sessions') 
+                                <span class="text-red-500 text-sm mt-[-1vw]">{{ $message }}</span> 
+                            @enderror
                         </div>
                         <button type="button" class="mt-5 bg-kuning text-black rounded-lg px-4 py-2 hover:bg-kuninggelap transition font-montserrat_alt text-base font-semibold" onclick="addNewSession(0)">+ New Session</button>
                     </div>

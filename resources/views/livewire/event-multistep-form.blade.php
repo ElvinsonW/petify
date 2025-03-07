@@ -54,7 +54,8 @@
                         type="time" 
                         wire:model="sessions.${dayIndex}.${sessionCount[dayIndex]}.time" 
                         class="w-1/2 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
-                        placeholder="Time input here...">
+                        placeholder="Time input here..."
+                        required>
                 </div>
                 <button class="delete-session" onclick="deleteSession(this)">
                     <i class="fa-solid fa-trash text-red-600"></i>
@@ -65,7 +66,8 @@
                     type="text" 
                     wire:model="sessions.${dayIndex}.${sessionCount[dayIndex]}.title" 
                     class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
-                    placeholder="Session Title">
+                    placeholder="Session Title"
+                    required>
                 <textarea 
                     wire:model="sessions.${dayIndex}.${sessionCount[dayIndex]}.description" 
                     class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
@@ -131,7 +133,7 @@
                             </div>
                             <input 
                                 type="time" 
-                                wire:model="sessions.0.0.time" 
+                                wire:model="sessions.${dayCount-1}.0.time" 
                                 class="w-1/2 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
                                 placeholder="Time input here...">
                         </div>
@@ -139,11 +141,11 @@
                     <div class="flex flex-col gap-4">
                         <input 
                             type="text" 
-                            wire:model="sessions.${dayCount-1}.${sessionCount}.title" 
+                            wire:model="sessions.${dayCount-1}.0.title" 
                             class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
                             placeholder="Session Title">
                         <textarea 
-                            wire:model="sessions.${dayCount-1}.${sessionCount}.description"
+                            wire:model="sessions.${dayCount-1}.0.description"
                             class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green" 
                             rows="3" placeholder="Description here...">
                         </textarea>
