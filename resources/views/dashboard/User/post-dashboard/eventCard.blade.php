@@ -13,7 +13,7 @@
                 {{ Str::limit($post->title,50) }}
             </h2>
             <!-- type -->
-            <span class="bg-{{ $post->event_category->color }} text-white text-[1.1vw] font-semibold font-montserrat_alt px-[0.7vw] py-[0.1vw] rounded-[0.53vw]">
+            <span class="bg-{{ $post->event_category->color }} text-white text-[1.2vw] font-semibold font-montserrat_alt px-[0.7vw] py-[0.1vw] rounded-[0.53vw]">
                 {{ $post->event_category->name }}
             </span>
         </div>
