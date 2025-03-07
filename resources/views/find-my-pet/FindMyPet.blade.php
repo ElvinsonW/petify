@@ -31,7 +31,7 @@
             </div>
 
             <!-- Search Bar -->
-            <form class="max-w-md w-[16vw] mt-[1vw]" method="GET" action="{{ route('find-my-pet.index') }}">
+            <form class="max-w-md w-[16vw] mt-[1vw]" method="GET" action="{{ route('find-my-pets.index') }}">
                 @php
                     $params = ["category","city","collar_tag"]
                 @endphp
@@ -57,7 +57,7 @@
                 <button id="filterButton" class="text-white bg-greenpetify rounded-[1vw] shadow-lg transform hover:bg-greentua transition duration-300 ease-in-out text-[1.2vw] font-semibold px-[1.25vw] py-[0.5vw] font-overpass flex items-center">
                     <i class="fa-solid fa-sliders mr-[0.5vw]"></i> Filter
                 </button>
-                <a href="{{ route('find-my-pet-form') }}">
+                <a href="{{ route('find-my-pets.create') }}">
                     <button class="text-white bg-orenmuda rounded-[1vw] shadow-lg transform hover:scale-95 hover:bg-orange-400 transition duration-300 ease-in-out text-[1.2vw] font-semibold px-[1vw] py-[0.5vw] font-overpass flex items-center">
                         <i class="fa-solid fa-plus mr-[0.5vw]"></i> Missing
                     </button>
@@ -67,7 +67,7 @@
             <!-- Dropdown Filter -->
             <div id="filterDropdown" class="absolute z-10 w-[16.85vw] mt-[0.7vw] bg-greenpetify text-white rounded-[1vw] shadow-lg opacity-0 scale-95 transition-all transform origin-top-left hidden font-overpass justify-between">
                 <div class="p-[1vw] space-y-[1vw]">
-                    <form action="{{ route('find-my-pet.index') }}" method="GET">
+                    <form action="{{ route('find-my-pets.index') }}" method="GET">
                         @foreach ($params as $param)
                             @if($param)
                                 <input type="hidden" name="{{ $param }}" value="{{ request($param) }}">
@@ -115,7 +115,7 @@
                         $queryParams = request()->query();
                     @endphp
                     <button class="clear-category pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group bg-orenmuda">
-                        <a href="{{ url('find-my-pet') . '?' . http_build_query($queryParams) }}">
+                        <a href="{{ url('find-my-pets') . '?' . http_build_query($queryParams) }}">
                             <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left text-white">All Category</p>
                             <hr class="border-1/2 my-[0.5vw] w-full border-white">
                         </a>
@@ -126,7 +126,7 @@
                         unset($queryParams['category']);
                     @endphp
                     <button class="clear-category pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group hover:bg-orenmuda">
-                        <a href="{{ url('find-my-pet') . '?' . http_build_query($queryParams) }}">
+                        <a href="{{ url('find-my-pets') . '?' . http_build_query($queryParams) }}">
                             <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left group-hover:text-white transition-colors duration-500 ease-in-out">All Category</p>
                             <hr class="border-orenmuda border-1/2 w-[6vw] my-[0.5vw] group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
                         </a>
@@ -146,14 +146,14 @@
                             unset($queryParams["category"]);
                         @endphp
                         <button class="pl-[0.5vw] pr-[0.5vw] w-full rounded-[0.75vw] group bg-{{ $category->color }}">
-                            <a href="{{ url('find-my-pet') . '?' . http_build_query($queryParams) }}" class="w-full">
+                            <a href="{{ url('find-my-pets') . '?' . http_build_query($queryParams) }}" class="w-full">
                                 <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left text-white">{{ $category->name }}</p>
                                 <hr class="border-1/2 my-[0.5vw] w-full border-white">
                             </a>
                         </button>
                     @else
                         <button class="pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group hover:bg-{{ $category->color }}">
-                            <a href="{{ url('find-my-pet') . '?' . http_build_query($queryParams) }}" class="w-full">
+                            <a href="{{ url('find-my-pets') . '?' . http_build_query($queryParams) }}" class="w-full">
                                 <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left group-hover:text-white transition-colors duration-500 ease-in-out">{{ $category->name }}</p>
                                 <hr class="border-{{ $category->color }} border-1/2 w-[6vw] my-[0.5vw] group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
                             </a>

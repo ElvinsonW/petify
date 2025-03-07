@@ -54,7 +54,7 @@
             <div>
                 <form class="max-w-md w-[16vw] mt-[1vw]" method="GET" action="{{ url('adoptions') }}">
                     @php
-                        $params = ['category', 'liked', 'minWeight','maxWeight','minAge','maxAge','city','gender','vaccine'];
+                        $params = ['category', 'like', 'minWeight','maxWeight','minAge','maxAge','city','gender','vaccine'];
                     @endphp
 
                     @foreach($params as $param)

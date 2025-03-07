@@ -31,10 +31,6 @@ class FindMyPetController extends Controller
     }
 
 
-
-
-
-
     /**
      * Show the form for creating a new resource.
      */
@@ -88,7 +84,7 @@ class FindMyPetController extends Controller
         ]);
 
         // Mengarahkan kembali ke form dengan pesan sukses
-        return redirect()->route('find-my-pet.index')->with('createSuccess', 'Missing pet post created successfully!');
+        return redirect()->route('find-my-pets.index')->with('createSuccess', 'Missing pet post created successfully!');
     }
 
 

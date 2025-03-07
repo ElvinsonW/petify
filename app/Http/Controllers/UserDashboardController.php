@@ -26,7 +26,7 @@ class UserDashboardController extends Controller
                 "adoption" => AdoptionPost::filter(request($filters))->where('user_id',$user->id)->get(),
                 "article" => Article::filter(request($filters))->where('user_id',$user->id)->get(),
                 "event" => Event::filter(request($filters))->where('user_id',$user->id)->get(),
-                "findMyPet" =>  FindMyPet::filter(request($filters))->where('user_id',$user->id)->get(),
+                "find-my-pet" =>  FindMyPet::filter(request($filters))->where('user_id',$user->id)->get(),
             ],
             "user" => $user
         ]);

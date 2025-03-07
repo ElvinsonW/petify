@@ -15,7 +15,7 @@
             <x-nav-link href="/adoptions" :active="request()->is(['adoptions', 'adoptions/*'])">Adoption</x-nav-link>  
             <x-nav-link href="/articles" :active="request()->is(['articles','articles/*'])">Articles</x-nav-link>  
             <x-nav-link href="/events" :active="request()->is(['events','events/*'])">Events</x-nav-link>  
-            <x-nav-link href="/find-my-pet" :active="request()->is(['find-my-pet','find-my-pet/*'])">Find My Pet</x-nav-link>  
+            <x-nav-link href="/find-my-pets" :active="request()->is(['find-my-pets','find-my-pets/*'])">Find My Pet</x-nav-link>  
             <x-nav-link href="/life-after-adoption" :active="request()->is(['life-after-adoption','life-after-adoption/*'])">Life After Adoption</x-nav-link>   
         </ul>
 
@@ -58,7 +58,7 @@
             <x-nav-link href="/adoptions" :active="request()->is(['adoptions', 'adoptions/*'])" class="mb-2">Adoption</x-nav-link>  
             <x-nav-link href="/articles" :active="request()->is(['articles','articles/*'])">Articles</x-nav-link>  
             <x-nav-link href="/events" :active="request()->is(['events','events/*'])">Events</x-nav-link>  
-            <x-nav-link href="/find-my-pet" :active="request()->is(['find-my-pet','find-my-pet/*'])">Find My Pet</x-nav-link>  
+            <x-nav-link href="/find-my-pets" :active="request()->is(['find-my-pets','find-my-pets/*'])">Find My Pet</x-nav-link>  
             <x-nav-link href="/life-after-adoption" :active="request()->is(['life-after-adoption','life-after-adoption/*'])">Life After Adoption</x-nav-link>   
 
         </ul>
