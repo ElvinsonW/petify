@@ -6,9 +6,12 @@
             <!-- title -->
             <p class="text-greenpetify tracking-wide font-montserrat_alt text-[2vw] font-bold">Adoption History</p>
             <!-- date day -->
+            @php
+                $date = \Carbon\Carbon::now();
+            @endphp
             <div class="flex flex-row font-montserrat_alt">
-                <p class="text-black font-medium text-[1.1vw]">Wednesday</p>
-                <p class="text-black font-normal text-[1.1vw]">, 5 February 2025</p>
+                <p class="text-black font-medium text-[1.1vw]">{{ ucfirst($date->format('l')) }}</p>
+                <p class="text-black font-normal text-[1.1vw]">, {{ $date->format('j F Y') }}</p>
             </div>
         </div>
 
@@ -45,7 +48,7 @@
         <div class="mt-[2vw] items-center mb-[1vw]">
             <!-- title -->
             <p class="text-greenpetify tracking-wide font-montserrat_alt text-[1.3vw] font-bold">Life After Adoption</p>
-            <p class="text-black tracking-wider font-montserrat_alt text-[1vw] font-medium">Whiskey</p>
+            <p class="text-black tracking-wider font-montserrat_alt text-[1vw] font-medium">{{ request('name') ?? '' }}</p>
         </div>
 
         <!-- Photo Life After Adoption -->
