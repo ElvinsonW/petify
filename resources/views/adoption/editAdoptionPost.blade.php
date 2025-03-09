@@ -21,7 +21,7 @@
                     <!-- Slug -->
                     <div>
                         <label for="slug" class="block mb-2 text-lg font-semibold">Slug</label>
-                        <input type="text" id="slug" name="slug" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Slug..." value="{{ old('slug', $adoption->slug) }}" required />
+                        <input type="text" id="slug" name="slug" class="bg-gray-100 border border-gray-400 text-sm rounded-lg block w-full p-2.5 focus:outline-none" placeholder="Slug..." value="{{ old('slug', $adoption->slug) }}" required readonly/>
                     </div>
                 </div>
 

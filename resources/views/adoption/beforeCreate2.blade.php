@@ -3,8 +3,8 @@
     <div class="w-full mt-[2.5vw] mb-32">
         <!-- Judul Page -->
         <div class="text-center">
-            <h2 class="text-6xl font-montserrat_alt font-bold text-green">Adoption Post</h2>
-            <p class="text-xl font-open_sans font-semibold mt-4">Pet You have Adopted from Petify</p>
+            <h2 class="text-6xl font-montserrat_alt font-bold text-greenpetify">Adoption Post</h2>
+            <p class="text-xl font-open_sans font-semibold mt-4 text-greenpetify">Pet You have Adopted from Petify</p>
         </div>
 
         <!-- Container Pet Adopted -->  

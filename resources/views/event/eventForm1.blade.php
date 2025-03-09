@@ -146,7 +146,7 @@
     const name = document.getElementById('title');
     const slug = document.getElementById('slug');
     
-    name.addEventListener('change',function() {
+    name.addEventListener('input',function() {
         fetch('/events/createSlug?title=' + name.value)
         .then(response => response.json())
         .then(data => {

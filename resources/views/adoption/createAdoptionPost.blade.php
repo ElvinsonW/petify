@@ -264,9 +264,15 @@
 <script>
     const name = document.getElementById('name');
     const slug = document.getElementById('slug');
+
+    if(name){
+        fetch('/adoptions/createSlug?name=' + name.value)
+            .then(response => response.json())
+            .then(data => slug.value = data.slug);
+    }
     
-    name.addEventListener('change',function() {
-        fetch('/adoptions/createSlug?title=' + name.value)
+    name.addEventListener('input',function() {
+        fetch('/adoptions/createSlug?name=' + name.value)
         .then(response => response.json())
         .then(data => slug.value = data.slug);
     });

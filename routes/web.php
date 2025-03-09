@@ -52,7 +52,7 @@ Route::get('/articles/createSlug',[ArticleController::class,'createSlug'])->name
 Route::resource('/articles', ArticleController::class)->middleware('auth');
 
 // Adoption Routes
-Route::get('/adoptions/createSlug',[ArticleController::class,'createSlug'])->name('adoptions.createSlug')->middleware('auth');
+Route::get('/adoptions/createSlug',[AdoptionPostController::class,'createSlug'])->name('adoptions.createSlug')->middleware('auth');
 
 Route::resource('/adoptions', AdoptionPostController::class)->middleware('auth');
 
