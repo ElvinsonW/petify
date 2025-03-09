@@ -21,6 +21,7 @@ class CreateFindMyPetsTable extends Migration
             $table->text('description');
             $table->string('gender');
             $table->string('city');
+            $table->enum('status',[1,0])->default(0);
             $table->timestamps();
         });
     }

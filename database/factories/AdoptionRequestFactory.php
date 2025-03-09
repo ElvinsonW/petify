@@ -26,7 +26,6 @@ class AdoptionRequestFactory extends Factory
             "Q3" => fake()->paragraph(),
             "Q4" => fake()->paragraph(),
             "Q5" => fake()->paragraph(),
-            "approval_status" => fake()->randomElement(["Pending","Accepted","Rejected"]),
         ];
     }
 }

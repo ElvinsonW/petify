@@ -43,7 +43,7 @@ class EventMultistepForm extends Component
         ]);
 
         if ($this->image instanceof \Illuminate\Http\UploadedFile) {
-            $this->image = $this->image->store('event_images', 'public');
+            $this->image = $this->image->store('event-images', 'public');
         }
 
         if ($this->start_date && $this->end_date) {

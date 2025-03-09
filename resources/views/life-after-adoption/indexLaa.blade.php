@@ -140,7 +140,7 @@
                         </div>
 
                         <!-- Gambar Pet -->
-                        <img src="{{ asset('storage/' . $post->image) }}" alt="Pet Post" class="w-[100%] h-[25vw] rounded-sm object-cover">
+                        <img src="{{ asset('storage/' . $post->image) }}" alt="Pet Post" class="w-[100%] h-[35vw] rounded-sm object-cover">
                         
                         <!-- Like & Days -->
                         <div class="flex flex-row mt-[2vw] mb-[1vw] pl-[0.25vw]">
@@ -168,13 +168,16 @@
                 <!-- NYALAIN KOMEN DI BAWAH INI KALO MISALNYA UDAH ADA PET YANG DIADOPSI (START) -->
                 <div class="w-[16vw] shadow-2xl rounded-[0.5vw] border-1/2 border-gray-400 p-[1vw] mb-[2.5vw]">
                     <h4 class="mb-[1vw] text-left text-[1.2vw] font-montserrat_alt font-semibold text-greenpetify">Your Pet that has been Adopted</h4>
-
                     @foreach ($pets as $pet)
                         @php
                             $queryParams = request()->query();
-                            $queryParams['pet'] = $pet->name;
+                            $queryParams['pet'] = $pet->name;            
+                            $isActive = request('pet') == $pet->name;
+                            if($isActive){
+                                unset($queryParams['pet']);
+                            }
                         @endphp
-                        <a href="{{ url('/life-after-adoption') . '?' . http_build_query($queryParams) }}" class="flex flex-row mb-[1.25vw]">
+                        <a href="{{ url('/life-after-adoption') . '?' . http_build_query($queryParams) }}" class="flex flex-row mb-[0.5vw] p-[0.5vw] rounded-[0.75vw] {{ $isActive ? 'bg-gray-200' : '' }}">
                             <div class="w-[4.2vw] h-[4.2vw] bg-white border-4 border-greentua rounded-full flex justify-center items-center">
                                 <img src="{{ asset('storage/' . $pet->user->image) ?? asset('images/after login.svg') }}" alt="Profile Owner" class="w-[3.2vw]">
                             </div>

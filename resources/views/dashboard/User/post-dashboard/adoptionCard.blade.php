@@ -1,13 +1,13 @@
 <!-- card 1 -->
-<div class="flex flex-col md:flex-row items-start space-x-[1.5vw] bg-gray-50 hover-brightness rounded-[1.1vw]">
+<div class="flex md:flex-row items-start space-x-[1.5vw] bg-gray-50 hover-brightness rounded-[1.1vw]">
     <!-- photo of pet -->
     <img
-        src="{{ $post->image ? 'storage/' . $post->image : asset('images/articlepict.svg') }}"
-        alt="Event Image"
+        src="{{ $post->pet->image_1 ? asset('storage/' . $post->pet->image_1) : asset('images/articlepict.svg') }}"
+        alt="Pet Image"
         class="w-full md:w-[10vw] h-[10vw] rounded-[1.1vw] object-cover"
     />
-    <div class="flex flex-col justify-between flex-grow">
-        <div class="flex flex-row  w-full space-x-[0.7vw] items-start justify-between">
+    <div class="flex flex-col justify-between flex-grow w-[80%]">
+        <div class="flex flex-row w-full space-x-[0.7vw] items-start justify-between">
             <!-- name -->
             <h2 class="text-[1.7vw] font-semibold font-montserrat_alt text-black leading-snug">{{ $post->name }}</h2>
             <!-- type -->

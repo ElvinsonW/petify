@@ -104,7 +104,7 @@
             </div>
 
             <!-- Article Catalog -->
-            <div class="grid grid-cols-3 gap-[0.75vw] mx-[1vw] mt-[1vw]">        
+            <div class="grid grid-cols-3 mx-[1vw]">        
                 @foreach ($articles as $article)
                     <a href="/articles/{{ $article->slug }}" class="block w-full">
                         <div class="rounded-[0.5vw] shadow-xl p-[0.5vw] min-h-[38vw] w-[24vw] mt-[2.5vw] hover:bg-gray-100">
@@ -122,7 +122,7 @@
                             </div>
         
                             <!-- Judul Article -->
-                            <h4 class="font-montserrat_alt font-semibold w-[100%] text-[1.6vw] pr-[0.5vw] min-h-[5vw]">{{ $article->title }}</h4>    
+                            <h4 class="font-montserrat_alt font-semibold w-[100%] text-[1.6vw] pr-[0.5vw] min-h-[5vw]">{{ Str::limit($article->title,45) }}</h4>    
         
                             <!-- Desc Singkat -->
                             <p class="font-open_sans text-slate-600 my-[1vw] text-justify pr-[0.5vw] w-[100%] break-words min-h-[5vw]">

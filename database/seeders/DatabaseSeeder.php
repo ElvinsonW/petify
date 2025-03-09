@@ -29,14 +29,7 @@ class DatabaseSeeder extends Seeder
     {
         // Panggil seeder lain yang diperlukan
 
-        $this->call([UserSeeder::class, ArticleEventCategorySeeder::class, PetCategorySeeder::class]);
-        
-        Article::factory(50)->recycle([
-            User::all(),
-            ArticleEventCategory::all()
-        ])->create([
-            "image" => 'articles-image/petArticlePict.png'
-        ]);
+        $this->call([UserSeeder::class, ArticleEventCategorySeeder::class, PetCategorySeeder::class, PetSeeder::class, AdoptionPostSeeder::class, AdoptionRequestSeeder::class, LifeAfterAdoptionSeeder::class, ArticleSeeder::class]);
 
         ArticleRequest::factory(50)->recycle([
             User::all(),
@@ -45,32 +38,12 @@ class DatabaseSeeder extends Seeder
             "image" => 'articles-image/petArticlePict.png'
         ]);
 
-        Pet::factory(10)->recycle([
+        AdoptionPostRequest::factory(30)->recycle([
             User::all(),
             PetCategory::all(),
         ])->create([
-            "image_1" => "adoption-post-image/petadoptic.png"
+            "image_1" => 'adoption-post-image/petadoptic.png'
         ]);
-
-        // Buat 50 postingan adopsi dengan relasi ke User dan Pet
-        AdoptionPost::factory(50)->recycle([
-            User::all(),
-            Pet::all(),
-        ])->create();
-
-        // Buat 50 kehidupan setelah adopsi dengan relasi ke User dan Pet
-        AdoptionPostRequest::factory(50)->recycle([
-            User::all(),
-            PetCategory::all(),
-        ])->create();
-
-        LifeAfterAdoption::factory(50)->recycle([
-            User::all(),
-            Pet::all(),
-        ])->create([
-            "image" => 'life-after-adoption-post-image/laaPict.png',
-        ]);
-
 
         Event::factory(50)->recycle([
             User::all(),
@@ -89,11 +62,6 @@ class DatabaseSeeder extends Seeder
                 ]);
             });
         });
-
-        AdoptionRequest::factory(50)->recycle([
-            User::all(),
-            AdoptionPost::all()
-        ])->create();
 
         $this->call([
             FindMyPetSeeder::class,

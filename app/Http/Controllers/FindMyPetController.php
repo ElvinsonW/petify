@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FindMyPet;
 use App\Models\PetCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FindMyPetController extends Controller
 {
@@ -87,8 +88,6 @@ class FindMyPetController extends Controller
         return redirect()->route('find-my-pets.index')->with('createSuccess', 'Missing pet post created successfully!');
     }
 
-
-
     /**
      * Display the specified resource.
      */
@@ -111,13 +110,23 @@ class FindMyPetController extends Controller
     public function update(Request $request, string $id)
     {
         // Implementasi untuk memperbarui data berdasarkan ID
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $username, string $id)
     {
         // Implementasi untuk menghapus data berdasarkan ID
+        $post = FindMyPet::find($id);
+
+        if($post){
+            Storage::delete($post->image);
+            $post->delete();
+            return redirect('/dashboard' . '/' . $username . '/posts?post=find-my-pet')->with('deleteSuccess','FindMyPet Post Successly Deleted');
+        } else {
+            return redirect('/dashboard' . '/' . $username . '/posts?post=find-my-pet')->with('deleteError','Post Not Found');
+        }
     }
 }

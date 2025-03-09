@@ -270,7 +270,7 @@
                 <!-- Catalog -->
                 @foreach ($adoptions as $adoption)
 
-                    <a href="/adoptions/{{ $adoption->slug }}" class="min-h-[43vw] w-[24vw] mt-[2.5vw]">
+                    <a href="/adoptions/{{ $adoption->slug }}" class="min-h-[41vw] w-[24vw] mt-[1vw]">
                         <div class="rounded-[0.5vw] shadow-xl p-[0.5vw] w-full h-full hover:bg-gray-100">
                             <!-- Gambar Pet -->
                             <img src="{{ $adoption->pet->image_1 }}" alt="Pet Picture" class="object-cover w-[100%] h-[30vh] rounded-md">
@@ -282,7 +282,7 @@
                             </div>
         
                             <!-- Name & Like -->
-                            <div class="flex flex-row font-montserrat_alt font-semibold w-[100%] min-h-[5vw]">
+                            <div class="flex flex-row font-montserrat_alt font-semibold w-[100%] min-h-[2vw]">
                                 <p class="text-[1.6vw] w-[16vw]">{{ $adoption->name }}</p>    
                                 <!-- Like -->
                                 @php
@@ -295,7 +295,7 @@
                             </div>
         
                             <!-- Desc Singkat -->
-                            <p class="font-open_sans text-slate-600 mt-[1vw] mb-[1.5vw] text-justify pr-[0.5vw] break-words min-h-[10vw]">{{ Str::limit($adoption->description,150) }}</p>
+                            <p class="font-open_sans text-slate-600 mt-[1vw] mb-[1.5vw] text-justify pr-[0.5vw] break-words min-h-[10vw]">{!! Str::limit(strip_tags($adoption->description),150) !!}</p>
                             
                             <!-- Profile -->
                             <div class="flex flex-row">
