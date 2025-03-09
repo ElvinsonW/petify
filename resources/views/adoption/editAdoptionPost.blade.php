@@ -144,9 +144,9 @@
                             </div>
                             <div id="img-preview-container" class="flex flex-wrap gap-3">
                                 @for ($i = 1 ; $i <= 3 ; $i++)
-                                    @if($adoption->{'image_' . $i})
+                                    @if($adoption->pet->{'image_' . $i})
                                         <div class="relative inline-block" data-image-id="image_{{ $i }}">
-                                            <img src="{{ asset('storage/' . $adoption->{'image_' . $i}) }}" alt="Pet Picture" class="img-fluid w-auto h-[20vh] mb-3">
+                                            <img src="{{ asset('storage/' . $adoption->pet->{'image_' . $i}) }}" alt="Pet Picture" class="img-fluid w-auto h-[20vh] mb-3">
                                             <button class="absolute top-0 right-0 bg-red-500 text-white px-2 py-1" onclick="removeUploadedImage('{{ $i }}')">X</button>
                                             <input type="hidden" name="existing_images[]" value="{{ $adoption->{'image_' . $i} }}">
                                         </div>

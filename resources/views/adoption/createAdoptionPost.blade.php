@@ -231,7 +231,7 @@
                 <div class="mb-6">
                     <label for="description" class="block mb-2 text-lg font-semibold">Add Description</label>
                     <input id="description" type="hidden" name="description" value="{{ old('description') }}">
-                    <trix-editor input="description" class="h-[250px]"></trix-editor>
+                    <trix-editor input="description" class="h-[250px] overflow-auto scrollbar-thin"></trix-editor>
     
                     @error('description')
                         <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
@@ -244,7 +244,7 @@
                 <div class="mb-6">
                     <label for="requirement" class="block mb-2 text-lg font-semibold">Add Requirement Criteria (Optional)</label>
                     <input id="requirement" type="hidden" name="requirement" value="{{ old('content') }}">
-                    <trix-editor input="requirement" class="h-[250px]"></trix-editor>
+                    <trix-editor input="requirement" class="h-[250px] overflow-auto scrollbar-thin"></trix-editor>
     
                     @error('requirement')
                         <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">

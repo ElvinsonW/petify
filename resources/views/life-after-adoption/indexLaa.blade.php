@@ -155,7 +155,7 @@
                         </div>
 
                         <!-- Caption -->
-                        <p class="px-[0.25vw] font-open_sans text-slate-600 my-[1vw] text-justify pr-[0.5vw]">{{ $post->description }}</p>
+                        <p class="px-[0.25vw] font-open_sans text-slate-600 my-[1vw] text-justify pr-[0.5vw] break-words">{{ $post->description }}</p>
                     </div>
                 @endforeach
             </div>

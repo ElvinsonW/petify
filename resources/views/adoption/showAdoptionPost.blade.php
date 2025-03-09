@@ -229,7 +229,7 @@
         <!-- Description -->
         <div class="mt-16 mr-16">
             <h4 class="font-montserrat_alt font-semibold text-2xl mb-2">Description</h4>
-            <hr class="border-black border-1/2 w-full">
+            <hr class="border-black border-1/2 w-full break-words">
             {!! $adoption->description !!}              
         </div>
 
@@ -237,7 +237,7 @@
         @if ($adoption->requirement)    
             <div class="mt-16 mr-16">
                 <h4 class="font-montserrat_alt font-semibold text-2xl mb-2">Requirement Criteria</h4>
-                <hr class="border-black border-1/2 w-full">
+                <hr class="border-black border-1/2 w-full break-words">
                 {!! $adoption->requirement !!}                    
             </div>
         @endif

@@ -105,7 +105,7 @@ class ArticleController extends Controller
 
     // Fungsi untuk membuat slug secara otomatis
     public function createSlug(Request $request){
-        $slug = SlugService::createSlug(Article::class, 'slug', $request->title,["unique" => true]);
+        $slug = SlugService::createSlug(ArticleRequest::class, 'slug', $request->title,["unique" => true]);
         return response()->json(['slug' => $slug]);
     }
 }

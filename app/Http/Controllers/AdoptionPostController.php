@@ -131,7 +131,7 @@ class AdoptionPostController extends Controller
         $adoptionPost = AdoptionPost::where('slug',$slug)->firstOrFail();
 
         if($adoptionPost->status == 1){
-            return redirect('/dashboard' . '/' . auth()->user()->username . '/posts')->with("updateError","The pet has been adopted!");
+            return redirect('/dashboard' . '/' . auth()->user()->username . '/posts?post=adoption')->with("updateError","The pet has been adopted!");
         }
 
         // Mengembalikan view yang sesuai dengan beberapa parameter
@@ -229,7 +229,7 @@ class AdoptionPostController extends Controller
         $adoptionPost->update($postValidatedData);
 
         // Direct user ke Halaman Adoption dan mengirim pesan berhasil
-        return redirect('/dashboard' . '/' . auth()->user()->username . '/posts')->with('updateSuccess',"Update Successful!");
+        return redirect('/dashboard' . '/' . auth()->user()->username . '/posts?post=adoption')->with('updateSuccess',"Update Successful!");
     }
 
     /**
@@ -259,12 +259,12 @@ class AdoptionPostController extends Controller
         }
     
         // Direct user ke Halaman Adoption dan mengirim pesan berhasil
-        return redirect('/dashboard' . '/' . auth()->user()->username . '/posts')->with('deleteSuccess', "Post deleted successfully!");
+        return redirect('/dashboard' . '/' . auth()->user()->username . '/posts?post=adoption')->with('deleteSuccess', "Post deleted successfully!");
     }
 
     // Fungsi untuk secara otomatis membuat slug
     public function createSlug(Request $request){
-        $slug = SlugService::createSlug(AdoptionPost::class, 'slug', $request->name,["unique" => true]);
+        $slug = SlugService::createSlug(AdoptionPostRequest::class, 'slug', $request->name,["unique" => true]);
         return response()->json(['slug' => $slug]);
     }
 

@@ -29,21 +29,7 @@ class DatabaseSeeder extends Seeder
     {
         // Panggil seeder lain yang diperlukan
 
-        $this->call([UserSeeder::class, ArticleEventCategorySeeder::class, PetCategorySeeder::class, PetSeeder::class, AdoptionPostSeeder::class, AdoptionRequestSeeder::class, LifeAfterAdoptionSeeder::class, ArticleSeeder::class]);
-
-        ArticleRequest::factory(50)->recycle([
-            User::all(),
-            ArticleEventCategory::all()
-        ])->create([
-            "image" => 'articles-image/petArticlePict.png'
-        ]);
-
-        AdoptionPostRequest::factory(30)->recycle([
-            User::all(),
-            PetCategory::all(),
-        ])->create([
-            "image_1" => 'adoption-post-image/petadoptic.png'
-        ]);
+        $this->call([UserSeeder::class, ArticleEventCategorySeeder::class, PetCategorySeeder::class, PetSeeder::class, AdoptionPostSeeder::class, AdoptionRequestSeeder::class, LifeAfterAdoptionSeeder::class, ArticleSeeder::class, AdoptionPostRequestSeeder::class, ArticleRequestSeeder::class]);
 
         Event::factory(50)->recycle([
             User::all(),

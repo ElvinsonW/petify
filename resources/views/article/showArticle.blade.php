@@ -1,5 +1,5 @@
 <x-layout>
-    <div>
+    <div class="w-[100vw]">
         <!-- Image -->
         <div class="w-full">
             @if($article->image)
@@ -43,7 +43,7 @@
                     </p>
     
                     <!-- isi -->
-                    <div class="text-base md:text-xl leading-relaxed mb-6">
+                    <div class="text-base md:text-xl leading-relaxed mb-6 flex-grow break-words">
                         {!! $article->content !!}
                     </div>
                 </div>

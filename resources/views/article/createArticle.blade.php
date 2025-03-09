@@ -96,7 +96,7 @@
                         <label for="content" class="block mb-3 text-lg font-semibold w-fit">Content</label>
                     
                         <input id="content" type="hidden" name="content" value="{{ old('content') }}" required>
-                        <trix-editor input="content" class="h-[250px]"></trix-editor>
+                        <trix-editor input="content" class="h-[250px] overflow-auto scrollbar-thin"></trix-editor>
         
                         @error('content')
                             <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">

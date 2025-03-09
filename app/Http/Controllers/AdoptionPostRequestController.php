@@ -53,20 +53,24 @@ class AdoptionPostRequestController extends Controller
             $request->update($data);
     
             if($isAccepted){
-                if($request->pet_id == 0){
-                    $petData = [
-                        "user_id" => $request->user_id,
-                        "pet_category_id" => $request->pet_category_id,
-                        "name" => $request->name,
-                        "breed" => $request->breed,
-                        "gender" => $request->gender,
-                        "image_1" => $request->image_1,
-                        "image_2" => $request->image_2,
-                        "image_3" => $request->image_3,
-                    ];
 
+                $petData = [
+                    "user_id" => $request->user_id,
+                    "pet_category_id" => $request->pet_category_id,
+                    "name" => $request->name,
+                    "breed" => $request->breed,
+                    "gender" => $request->gender,
+                    "image_1" => $request->image_1,
+                    "image_2" => $request->image_2,
+                    "image_3" => $request->image_3,
+                ];
+
+                if($request->pet_id == 0){
                     $pet = Pet::create($petData);
-                } 
+                } else{
+                    $pet = Pet::find($request->pet_id);
+                    $pet->update($petData);
+                }
 
                 $postData = [
                     "user_id" => $request->user_id,
@@ -85,7 +89,7 @@ class AdoptionPostRequestController extends Controller
                 AdoptionPost::create($postData);
             } else {
                 for($i = 1 ; $i <= 3 ; $i++){
-                    $property = 'image' . $i;
+                    $property = 'image_' . $i;
                     if(!empty($request->$property)){
                         Storage::delete($request->$property);
                     }

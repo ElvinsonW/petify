@@ -28,8 +28,8 @@ class FindMyPetSeeder extends Seeder
             "name" => "jojo",
             "breed" => "bulldog",
             "last_seen" => "Di Komplek Daan Mogot 9",
-            'last_seen' => $faker->city(), // Last seen location
-            'date_lost' => $faker->date(), // Date lost
+            'last_seen' => $faker->city(),
+            'date_lost' => $faker->date(),
             "color" => "Putih",
             "pet_category_id" => 1,
             "color_tag" => "Yes",
@@ -39,20 +39,20 @@ class FindMyPetSeeder extends Seeder
             'gender' => "Male",
 
         ]);
-        foreach (range(1, 10) as $index) {
+        for ($i = 0 ; $i < 10 ; $i++) {
             FindMyPet::create([
-                'user_id' => $faker->randomElement($users), // Random user
-                'name' => $faker->word(), // Pet name
-                'breed' => $faker->word(), // Breed
-                'last_seen' => $faker->city(), // Last seen location
-                'date_lost' => $faker->date(), // Date lost
-                'color' => $faker->safeColorName(), // Pet color
-                'pet_category_id' => $faker->randomElement($categories), // Random category
-                'color_tag' => $faker->randomElement(['Yes', 'No']), // Color tag
-                'image' => $faker->imageUrl(640, 480, 'animals'), // Random image URL
-                'description' => $faker->paragraph(), // Pet description
-                'city' => $faker->city(), // City
-                'gender' => $faker->randomElement(['Male', 'Female']), // Gender
+                'user_id' => $faker->randomElement($users), 
+                'name' => $faker->word(), 
+                'breed' => $faker->word(), 
+                'last_seen' => $faker->city(),
+                'date_lost' => $faker->date(), 
+                'color' => $faker->safeColorName(), 
+                'pet_category_id' => $faker->randomElement($categories), 
+                'color_tag' => $faker->randomElement(['Yes', 'No']), 
+                'image' => $faker->imageUrl(640, 480, 'animals'),
+                'description' => $faker->paragraph(),
+                'city' => $faker->city(), 
+                'gender' => $faker->randomElement(['Male', 'Female']),
             ]);
         }
     }
