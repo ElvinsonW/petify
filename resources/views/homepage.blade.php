@@ -107,7 +107,7 @@
                 <div>
                     <!-- <i class="fa-solid fa-dog fa-5x" style="color: #166b68;"></i> -->
                     <img src="{{ asset('images/Find.svg') }}" alt="Find My Pet">
-                    <h4 class="font-montserrat_alt text-[1.6vw] font-semibold text-greenpetify my-[1vw]">Find your Pet!</h4>
+                    <h4 class="font-montserrat_alt text-[1.6vw] font-semibold text-greenpetify my-[1vw]">Find My Pet!</h4>
                     <p class="font-open_sans tracking-wide w-[25vw]">Users can upload/post information about their missing pets, including the pet's characteristics (color, breed, last known location).</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
                     <p class="font-open_sans tracking-wide text-oren font-bold mt-[1vw] mb-[2.5vw] relative">
