@@ -18,7 +18,7 @@
             </span>
         </div>
         <!-- detail -->
-        <p class="mt-[0.2vw] text-[0.95vw] font-open_sans leading-snug text-gray-600 font-normal">
+        <p class="mt-[0.2vw] text-[0.95vw] font-open_sans leading-snug text-gray-600 font-normal break-words">
             {!! Str::limit($post->description,350) !!}
         </p>
         <div class="flex flex-col text-[0.8vw] text-black font-open_sans font-semibold mt-[1.5vw] leading-snug space-y-[0.3vw]">

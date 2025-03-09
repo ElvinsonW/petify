@@ -58,7 +58,7 @@
                         placeholder="Time input here..."
                         required>
                 </div>
-                <button class="delete-session" onclick="deleteSession(this)">
+                <button class="delete-session" onclick="deleteSession(this, ${dayIndex})">
                     <i class="fa-solid fa-trash text-red-600"></i>
                 </button>
             </div>
@@ -88,9 +88,10 @@
         sessionsContainer.classList.toggle('hidden');
     }
 
-    function deleteSession(button) {
+    function deleteSession(button, dayIndex) {
         const sessionDiv = button.closest('.p-4.bg-gray-50.shadow.rounded-xl.flex.flex-col');
         sessionDiv.remove();
+        sessionCount[dayIndex]--;
     }
 
 </script>

@@ -68,6 +68,9 @@
             <div id="filterDropdown" class="absolute z-10 w-[16.85vw] mt-[0.7vw] bg-greenpetify text-white rounded-[1vw] shadow-lg opacity-0 scale-95 transition-all transform origin-top-left hidden font-overpass justify-between">
                 <div class="p-[1vw] space-y-[1vw]">
                     <form action="{{ route('find-my-pets.index') }}" method="GET">
+                        @php
+                            $params = ["category","search"]
+                        @endphp
                         @foreach ($params as $param)
                             @if($param)
                                 <input type="hidden" name="{{ $param }}" value="{{ request($param) }}">

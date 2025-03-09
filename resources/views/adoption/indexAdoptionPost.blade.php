@@ -56,7 +56,7 @@
                     @php
                         $params = ['category', 'like', 'minWeight','maxWeight','minAge','maxAge','city','gender','vaccine'];
                     @endphp
-
+                    
                     @foreach($params as $param)
                         @if(request($param))
                             <input type="hidden" name="{{ $param }}" value="{{ request($param) }}">
@@ -99,7 +99,11 @@
 
                 <!-- Dropdown Filter -->
                 <div id="filterDropdown" class="absolute z-10 w-[16.85vw] mt-[5vw] bg-greenpetify text-white rounded-[1vw] shadow-lg opacity-0 scale-95 transition-all transform origin-top-left hidden font-overpass">
-                    <form class="p-[1vw] space-y-[1vw]">
+                    <form class="p-[1vw] space-y-[1vw]" method="GET" action="{{ url('adoptions') }}">
+                        
+                        @php
+                            $params = ['category', 'like', 'search'];
+                        @endphp
 
                         @foreach ($params as $param)
                             @if ($param)

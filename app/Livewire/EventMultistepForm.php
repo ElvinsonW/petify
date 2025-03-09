@@ -62,7 +62,7 @@ class EventMultistepForm extends Component
         })->toArray();
     } elseif ($this->step == 2) {
         $this->validate([
-            'days' => ['required', 'array', 'min:1'],
+            'days' => ['required', 'array'],
             'days.*.date' => ['required', 'date'],
             'sessions' => ['nullable', 'array'],
             'sessions.*.*.time' => ['required', 'date_format:H:i'],

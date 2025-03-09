@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdoptionPost;
+use App\Models\AdoptionRequest;
 use App\Models\LifeAfterAdoption;
 use App\Models\LikedAdoptionPost;
 use App\Models\LikedLifeAfterAdoption;
@@ -50,7 +51,17 @@ class LifeAfterAdoptionController extends Controller
     public function create()
     {
         // Mencari pet yang telah diadopsi oleh user
-        $pets = Pet::where('user_id',auth()->user()->id)->get();
+        $petIds = AdoptionRequest::where('user_id', auth()->user()->id)
+                                ->where('approval_status', "Accepted")
+                                ->whereHas('adoption_post')
+                                ->with('adoption_post')
+                                ->get()
+                                ->pluck('adoption_post.pet_id');
+
+        $pets = Pet::where('user_id',auth()->user()->id)
+                    ->whereIn('id',$petIds)
+                    ->get();
+
 
         // Mengembalikan view yang sesuai dan beberapa parameter
         return view('life-after-adoption.createLaa',[

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Middleware\CheckPostOwnership;
 use App\Models\AdoptionPost;
 use App\Models\AdoptionPostRequest;
+use App\Models\AdoptionRequest;
 use App\Models\LikedAdoptionPost;
 use App\Models\Pet;
 use App\Models\PetCategory;
@@ -273,7 +274,16 @@ class AdoptionPostController extends Controller
     }
 
     public function beforeCreate2(){
-        $pet = Pet::where('user_id',auth()->user()->id)->get();
+        $petIds = AdoptionRequest::where('user_id', auth()->user()->id)
+                                ->where('approval_status', "Accepted")
+                                ->whereHas('adoption_post')
+                                ->with('adoption_post')
+                                ->get()
+                                ->pluck('adoption_post.pet_id');
+
+        $pet = Pet::where('user_id',auth()->user()->id)
+                    ->whereIn('id',$petIds)
+                    ->get();
 
         if($pet->isEmpty()){
             return redirect('/adoptions/create/before-create-1')->with('createError',"You don't have any pet!");
