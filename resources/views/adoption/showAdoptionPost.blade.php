@@ -241,17 +241,18 @@
                 {!! $adoption->requirement !!}                    
             </div>
         @endif
-
-        @if ($adoption->status == "0" || $adoption->adoption_status == "0")    
-            <!-- Button Adopt Me (kalo belom diadopt)-->
-            <a href="{{ '/adoptions' . '/' . $adoption->slug . '/adoption-request/create' }}">
-                <button class="mt-10 text-white bg-greentipis rounded-2xl shadow-lg transform hover:scale-95 hover:bg-greentua transition duration-300 ease-in-out text-xl font-semibold px-5 py-2.5 font-overpass">Adopt Me</button>
-            </a>
-        @else
-            <!-- Button Life After Adoption (kalo udah diadopt) -->
-            <a href="life-after-adoption.html">
-                <button class="mt-10 text-white bg-greentipis rounded-2xl shadow-lg transform hover:scale-95 hover:bg-greentua transition duration-300 ease-in-out text-xl font-semibold px-5 py-2.5 font-overpass">Life After Adoption</button>
-            </a>
+        @if (auth()->user()->id != $adoption->user_id)    
+            @if ($adoption->status == "0" || $adoption->adoption_status == "0"  )    
+                <!-- Button Adopt Me (kalo belom diadopt)-->
+                <a href="{{ '/adoptions' . '/' . $adoption->slug . '/adoption-request/create' }}">
+                    <button class="mt-10 text-white bg-greentipis rounded-2xl shadow-lg transform hover:scale-95 hover:bg-greentua transition duration-300 ease-in-out text-xl font-semibold px-5 py-2.5 font-overpass">Adopt Me</button>
+                </a>
+            @else
+                <!-- Button Life After Adoption (kalo udah diadopt) -->
+                <a href="life-after-adoption.html">
+                    <button class="mt-10 text-white bg-greentipis rounded-2xl shadow-lg transform hover:scale-95 hover:bg-greentua transition duration-300 ease-in-out text-xl font-semibold px-5 py-2.5 font-overpass">Life After Adoption</button>
+                </a>
+            @endif
         @endif
 
     </div>

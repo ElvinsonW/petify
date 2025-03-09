@@ -29,15 +29,16 @@
             </div>
             <!-- Search Bar -->
             <div>
-                @php
-                    $params = ['category', 'liked'];
-                @endphp
-                @foreach($params as $param)
-                    @if(request($param))
-                        <input type="hidden" name="{{ $param }}" value="{{ request($param) }}">
-                    @endif
-                @endforeach
                 <form class="max-w-md w-[16vw] mt-[1vw]">           
+                    @php
+                        $params = ['category'];
+                    @endphp
+    
+                    @foreach($params as $param)
+                        @if(request($param))
+                            <input type="hidden" name="{{ $param }}" value="{{ request($param) }}">
+                        @endif
+                    @endforeach
                     <label for="search" class="mb-[0.5vw] text-sm text-gray-900 sr-only !font-overpass font-semibold">Search</label>
                     <div class="relative w-full border-1/2 border-gray-400 rounded-[0.5vw] bg-white shadow-md">
                         <div class="absolute inset-y-0 start-0 flex items-center ps-[0.75vw] pointer-events-none">

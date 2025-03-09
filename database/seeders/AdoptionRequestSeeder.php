@@ -22,7 +22,7 @@ class AdoptionRequestSeeder extends Seeder
             $users = User::where('id', '!=', $post->user->id)
                 ->where('id', '!=', 1)
                 ->inRandomOrder()
-                ->limit(5)
+                ->limit(3)
                 ->get();
         
             foreach ($users as $user) {

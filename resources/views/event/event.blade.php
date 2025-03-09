@@ -76,6 +76,7 @@
                         <div class="relative">
                             <select id="categorySelected" class="appearance-none text-[1.1vw] font-medium text-white bg-greenpetify border px-[1.2vw] py-[0.35vw] pr-[2.5vw] rounded-[0.5vw] w-full">
                                 <option value="" disabled selected>Pet Category</option>
+                                <option value="all">All Category</option>
                                 @foreach ($categories as $category)
                                     @if (request('category') == $category->slug)
                                         <option value="{{ $category->slug }}" class="categoryFilter" selected>{{ $category->name }}</option>
@@ -334,7 +335,12 @@
 
     categorySelect.addEventListener('change', () => {
         const selectedCategory = categorySelect.value;
-        if (selectedCategory) {
+        if(selectedCategory == "all"){
+            let currentUrl = new URL(window.location.href);
+            currentUrl.searchParams.delete('category')
+            window.location.href = currentUrl.toString();
+        }
+        else if (selectedCategory) {
             let currentUrl = new URL(window.location.href);
 
             currentUrl.searchParams.set('category', selectedCategory);
