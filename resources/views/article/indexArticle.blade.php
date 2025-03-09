@@ -61,7 +61,34 @@
                     <h4 class="text-[1.4vw] font-bold">Article Category</h4>
                     <hr class="border-black border-1/2 w-full my-[0.5vw]">
                 </div>
-                
+
+                <!-- ALL CATEGORY -->
+                @if (request()->is('articles') && !request()->query('category')) 
+                    @php
+                        $queryParams = request()->query();
+                    @endphp
+
+                    <button class="clear-category pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group bg-orenmuda">
+                        <a href="{{ url('articles/') . '?' . http_build_query($queryParams) }}">
+                            <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left text-white">All Category</p>
+                            <hr class="border-1/2 my-[0.5vw] w-full border-white">
+                        </a>
+                    </button>         
+
+                @else
+                    @php
+                        $queryParams = request()->query();
+                        unset($queryParams['category']); 
+                    @endphp
+                    <button class="clear-category pl-[0.5vw] pr-[0.5vw] w-full transition duration-500 ease-in-out rounded-[0.75vw] group hover:bg-orenmuda">
+                        <a href="{{ url('articles/') . '?' . http_build_query($queryParams) }}">
+                            <p class="text-[1.4vw] font-semibold mt-[0.5vw] text-left group-hover:text-white transition-colors duration-500 ease-in-out">All Category</p>
+                            <hr class="border-orenmuda border-1/2 w-[6vw] my-[0.5vw] group-hover:w-full group-hover:border-white transition-all duration-500 ease-in-out">
+                        </a>
+                    </button>   
+
+                @endif
+
                 @foreach ($categories as $category)
                     @php
                         $isActive = request()->query('category') == $category->slug;
