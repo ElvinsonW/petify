@@ -21,7 +21,7 @@
 
         @auth
             <!-- AFTER LOGIN -->
-            <a href="/dashboard/{{ auth()->user()->username }}/posts?post=adoption" class="lg:flex hidden items-center justify-center space-x-3 font-semibold">
+            <a href='{{ auth()->user()->role == "User" ?  "/dashboard" . "/" . auth()->user()->username . "/posts?post=adoption" : "/dashboard" . "/adoption-post-requests"}}' class="lg:flex hidden items-center justify-center space-x-3 font-semibold">
                 <p class="text-greenpetify text-center">{{ auth()->user()->username }}</p>
                 <div class="w-12 h-12 bg-white border-4 border-greentua rounded-full flex justify-center items-center">
                     <img src="{{ asset('storage/' . auth()->user()->image) ?? asset('images/after login.svg') }}" alt="After Login logo" class="rounded-full w-10 h-10">

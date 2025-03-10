@@ -277,7 +277,7 @@
                     <a href="/adoptions/{{ $adoption->slug }}" class="min-h-[41vw] w-[24vw] mt-[1vw]">
                         <div class="rounded-[0.5vw] shadow-xl p-[0.5vw] w-full h-full hover:bg-gray-100">
                             <!-- Gambar Pet -->
-                            <img src="{{ $adoption->pet->image_1 }}" alt="Pet Picture" class="object-cover w-[100%] h-[30vh] rounded-md">
+                            <img src="{{ $adoption->pet->image_1 ?? $adoption->image_1 }}" alt="Pet Picture" class="object-cover w-[100%] h-[30vh] rounded-md">
                             
                             <!-- Category & Days -->
                             <div class="flex flex-row font-montserrat_alt font-semibold w-[100%]">
