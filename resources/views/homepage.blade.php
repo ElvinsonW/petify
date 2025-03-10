@@ -86,7 +86,7 @@
                     <p class="font-open_sans tracking-wide w-[25vw]">This education section provides articles about animal care, adoption tips, food, and other information related to animals.</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
                     <p class="font-open_sans tracking-wide text-oren font-bold mt-[1vw] mb-[2.5vw] relative">
-                        <a href="articles" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
+                        <a href="/articles" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
                             See More
                         </a>
                     </p>                
@@ -98,7 +98,7 @@
                     <p class="font-open_sans tracking-wide">A feature that showcases information about animal-related events, such as adoption campaigns, pet exhibitions, and community meetups, to raise awareness and foster interaction within the animal adoption community.</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
                     <p class="font-open_sans tracking-wide text-oren font-bold mt-[1vw] mb-[2.5vw] relative">
-                        <a href="events" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
+                        <a href="/events" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
                             See More
                         </a>
                     </p>                
@@ -111,7 +111,7 @@
                     <p class="font-open_sans tracking-wide w-[25vw]">Users can upload/post information about their missing pets, including the pet's characteristics (color, breed, last known location).</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
                     <p class="font-open_sans tracking-wide text-oren font-bold mt-[1vw] mb-[2.5vw] relative">
-                        <a href="find-my-pet" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
+                        <a href="/find-my-pets" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
                             See More
                         </a>
                     </p>                
@@ -123,7 +123,7 @@
                     <p class="font-open_sans tracking-wide w-[25vw]">Users can create posts sharing the life journey of their pets after adoption.</p>
                     <!-- <p class="font-open_sans tracking-wide text-oren font-bold mt-4 mb-10 hover:text-merah hover:font-extrabold"><a href="../pages/adopt.html">See More</a></p> -->
                     <p class="font-open_sans tracking-wide text-oren font-bold mt-[1vw] mb-[2.5vw] relative">
-                        <a href="life-after-adoption" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
+                        <a href="/life-after-adoption" class="hover:text-merah before:absolute before:w-0 before:h-0.5 before:bg-merah before:bottom-0 before:left-0 before:transition-all before:duration-300 hover:before:w-1/5">
                             See More
                         </a>
                     </p>                
