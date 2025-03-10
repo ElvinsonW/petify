@@ -62,7 +62,6 @@ class LifeAfterAdoptionController extends Controller
                     ->whereIn('id',$petIds)
                     ->get();
 
-
         // Mengembalikan view yang sesuai dan beberapa parameter
         return view('life-after-adoption.createLaa',[
             "pets" => $pets

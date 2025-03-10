@@ -86,7 +86,7 @@ class LifeAfterAdoptionSeeder extends Seeder
         LifeAfterAdoption::create([
             "user_id" => 4,
             "pet_id" => 10,
-            "image" => "life-after-adoption-post-image/pepper1.png",
+            "image" => "life-after-adoption-post-image/pepper3.png",
             "description" => "Liatin apa tu"
         ]);
     }
