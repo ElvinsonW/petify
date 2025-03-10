@@ -66,7 +66,7 @@ class FindMyPetController extends Controller
         ]);
 
         // Menyimpan gambar jika ada
-        $imagePath = $request->file('image')->store('uploads/pets', 'public');
+        $imagePath = $request->file('image')->store('find-my-pet-image', 'public');
 
         // Menyimpan data ke dalam database
         FindMyPet::create([
@@ -102,6 +102,7 @@ class FindMyPetController extends Controller
     public function edit(string $id)
     {
         // Implementasi jika ingin mengedit data berdasarkan ID
+        
     }
 
     /**
@@ -116,17 +117,19 @@ class FindMyPetController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $username, string $id)
+    public function destroy(string $id)
     {
         // Implementasi untuk menghapus data berdasarkan ID
         $post = FindMyPet::find($id);
 
+        $user = auth()->user();
+
         if($post){
             Storage::delete($post->image);
             $post->delete();
-            return redirect('/dashboard' . '/' . $username . '/posts?post=find-my-pet')->with('deleteSuccess','FindMyPet Post Successly Deleted');
+            return redirect('/dashboard' . '/' . $user->username . '/posts?post=find-my-pet')->with('deleteSuccess','FindMyPet Post Successly Deleted');
         } else {
-            return redirect('/dashboard' . '/' . $username . '/posts?post=find-my-pet')->with('deleteError','Post Not Found');
+            return redirect('/dashboard' . '/' . $user->username . '/posts?post=find-my-pet')->with('deleteError','Post Not Found');
         }
     }
 }

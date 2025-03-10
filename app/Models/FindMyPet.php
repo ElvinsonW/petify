@@ -23,7 +23,8 @@ class FindMyPet extends Model
         'image',    // Path ke gambar
         'description', // Deskripsi tambahan
         'city',
-        'gender'
+        'gender',
+        'status'
     ];
 
     // Relasi ke model User (pemilik)

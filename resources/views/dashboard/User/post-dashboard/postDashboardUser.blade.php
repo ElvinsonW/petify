@@ -168,7 +168,7 @@
             <div class="overflow-y-auto scrollbar-thin max-h-[80vh] mb-[3vw] pr-[0.5vw] flex flex-col gap-[1vw]">
                 @foreach ($posts[request('post')] as $post)    
                     <div class="last:mb-[6vw]">
-                        @include('/dashboard/user/post-dashboard/' . request('post') . 'Card', ["post" => $post])
+                        @include('/dashboard/user/post-dashboard/' . request('post') . 'Card', ["post" => $post, "user" => $user])
                     </div>
                 @endforeach
             </div>
