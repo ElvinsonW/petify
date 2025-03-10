@@ -169,7 +169,7 @@
 
         <!-- Right Section (Display Pets) -->
         <div class="flex pt-[3vw] w-3/4">
-            <div class="max-h-screen h-auto overflow-y-auto space-y-[3vw] px-[5vw] pb-[7.5vw] pt-[2vw] ml-auto">
+            <div class="max-h-screen overflow-y-auto space-y-[3vw] px-[5vw] pb-[7.5vw] pt-[2vw] ml-auto">
                 @foreach ($pets as $pet)
                     <div class="bg-white shadow-lg rounded-[0.75vw] p-[2.5vw] relative">
                         <div class="flex flex-col md:flex-row gap-[1.5vw]">
@@ -226,7 +226,7 @@
                 petCategoryContainer.classList.remove("mt-[1vw]");
                 petCategoryContainer.classList.add("mt-[16vw]");
                 sidebarLeft.classList.add("h-auto");
-                sidebarLeft.style.minHeight = "calc(150vh + 200px)";
+                sidebarLeft.style.minHeight = "calc(100vh + 120px)";
             } else {
                 filterDropdown.classList.add("hidden");
                 filterDropdown.classList.remove("opacity-100", "scale-100");
