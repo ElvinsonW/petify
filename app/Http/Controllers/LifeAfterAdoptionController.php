@@ -81,7 +81,7 @@ class LifeAfterAdoptionController extends Controller
         ]);        
 
         // Simpan image di local storage
-        $validatedData['image'] = $request->file('image')->store('life-after-adoption-image', 'public');
+        $validatedData['image'] = $request->file('image')->store('life-after-adoption-post-image', 'public');
 
         // Simpan user id
         $validatedData["user_id"] = auth()->user()->id;
