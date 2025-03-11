@@ -23,7 +23,7 @@
     <div class="w-full mt-[2.5vw] mb-32" id="createStep1">
         <!-- Judul Page -->
         <div class="text-center">
-            <h2 class="text-6xl font-montserrat_alt font-bold text-green">Adoption Post</h2>
+            <h2 class="text-6xl font-montserrat_alt font-bold text-greenpetify">Adoption Post</h2>
         </div>
 
         <!-- Container Pertanyaan -->  
@@ -31,14 +31,14 @@
             <a href="/adoptions/create/before-create-2">
                 <div class="shadow-2xl rounded-[0.75vw] w-[28vw] h-[18vw] py-[4.5vw] justify-items-center text-center hover:bg-gray-200 transition">
                     <img src="{{ asset('images/ever-posted-icon.svg') }}" class="w-[5vw]" alt="Icon Ever Posted">
-                    <p class="mt-[1vw] font-montserrat_alt text-[1.2vw] font-bold text-green">Ever Posted</p>
+                    <p class="mt-[1vw] font-montserrat_alt text-[1.2vw] font-bold text-greenpetify">Ever Posted</p>
                 </div>
             </a>
 
             <a href="/adoptions/create">
                 <div class="shadow-2xl rounded-[0.75vw] w-[28vw] h-[18vw] py-[4.5vw] justify-items-center text-center hover:bg-gray-200 transition">
                     <img src="{{ asset('images/new-adopt-post.svg') }}" class="w-[5vw]" alt="Icon New Adoption Post">
-                    <p class="mt-[1vw] font-montserrat_alt text-[1.2vw] font-bold text-green">New Adoption Post</p>
+                    <p class="mt-[1vw] font-montserrat_alt text-[1.2vw] font-bold text-greenpetify">New Adoption Post</p>
                 </div>
             </a>
         </div>
