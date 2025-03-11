@@ -2,7 +2,7 @@
     <!-- Image & Details -->
     <div class="flex flex-col md:flex-row gap-[1.2vw] ">     
             <!-- Pet Image -->
-            <img class="[27vw] h-[17vw] rounded-[0.6vw] object-cover" src="{{ asset('storage/' . $post->image) }}" alt="Missing Dog" />    
+            <img class="w-[27vw] h-[17vw] rounded-[0.6vw] object-cover" src="{{ asset('storage/' . $post->image) }}" alt="Missing Dog" />    
 
             <!-- Pet Details -->
             <div class="flex-1 pt-[0.35vw] ">
