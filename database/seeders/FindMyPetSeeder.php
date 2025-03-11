@@ -28,7 +28,6 @@ class FindMyPetSeeder extends Seeder
             "name" => "jojo",
             "breed" => "bulldog",
             "last_seen" => "Di Komplek Daan Mogot 9",
-            'last_seen' => $faker->city(),
             'date_lost' => $faker->date(),
             "color" => "Coklat Tua",
             "pet_category_id" => 1,
@@ -39,35 +38,67 @@ class FindMyPetSeeder extends Seeder
             'gender' => "Male",
 
         ]);
+
         FindMyPet::create([
             "user_id" =>  $faker->randomElement($users),
             "name" => "whiskey",
             "breed" => "persia",
             "last_seen" => "di gerbang rumah",
-            'last_seen' => $faker->city(),
             'date_lost' => $faker->date(),
             "color" => "Putih",
             "pet_category_id" => 2,
             "color_tag" => "Yes",
             "image" => "find-my-pet-image/whiskey.png",
             "description" => "Whiskey adalah kucing yang pendiam dan suka berdiri di kotak kotak kosong.",
-            "city" => "Jakarta",
+            "city" => "Tangerang",
             'gender' => "Female",
 
         ]);
+
         FindMyPet::create([
             "user_id" =>  $faker->randomElement($users),
             "name" => "ocong",
             "breed" => "Burung Kakak Tua",
             "last_seen" => "Di Apartemen Seasons City lt 16",
-            'last_seen' => $faker->city(),
             'date_lost' => $faker->date(),
             "color" => "Putih",
             "pet_category_id" => 4,
             "color_tag" => "Yes",
             "image" => "find-my-pet-image/ocong.png",
             "description" => "Ocong adalah burung kakak tua yang galak dan suka mematuk orang lain. Dia juga suka bernyanyi lagu-lagu yang di nyanyikan oleh ownernya",
-            "city" => "Jakarta",
+            "city" => "Pekanbaru",
+            'gender' => "Male",
+
+        ]);
+
+        FindMyPet::create([
+            "user_id" =>  $faker->randomElement($users),
+            "name" => "latte",
+            "breed" => "Basset Hound",
+            "last_seen" => "Di sofa, pintu terbuka",
+            'date_lost' => $faker->date(),
+            "color" => "Putih Coklat",
+            "pet_category_id" => 1,
+            "color_tag" => "Yes",
+            "image" => "find-my-pet-image/latte.png",
+            "description" => "Latte merupakan bayi anjing Basset Hound berusia 2 bulan, ukurannya masih sangat kecil setara dengan cup susu. Dia belum terlatih untuk apapun tapi dia akan datang saat dipanggil.",
+            "city" => "Medan",
+            'gender' => "Male",
+
+        ]);
+
+        FindMyPet::create([
+            "user_id" =>  $faker->randomElement($users),
+            "name" => "lizzy",
+            "breed" => "Leopard Gecko",
+            "last_seen" => "di kandangnya",
+            'date_lost' => $faker->date(),
+            "color" => "Orange berbintik hitam",
+            "pet_category_id" => 3,
+            "color_tag" => "Yes",
+            "image" => "find-my-pet-image/lizzy.png",
+            "description" => "Lizzy merupakan bayi Leopard Gecko yang biasanya berada di kandangnya. Namun, tiba-tiba ia menghilang entah sampai kemana",
+            "city" => "Bogor",
             'gender' => "Male",
 
         ]);
