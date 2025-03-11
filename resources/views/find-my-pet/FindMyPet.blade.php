@@ -171,7 +171,7 @@
         <div class="flex pt-[3vw] w-3/4">
             <div class="max-h-screen overflow-y-auto space-y-[3vw] px-[5vw] pb-[7.5vw] pt-[2vw] ml-auto">
                 @foreach ($pets as $pet)
-                    <div class="bg-white shadow-lg rounded-[0.75vw] p-[2.5vw] relative">
+                    <div class="bg-white shadow-lg rounded-[0.75vw] p-[2vw] w-[66vw] h-auto relative">
                         <div class="flex flex-col md:flex-row gap-[1.5vw]">
                             <img class="w-[27vw] h-[17vw] rounded-[0.6vw] object-cover" src="{{ $pet->image ? asset('storage/' . $pet->image) : asset('public\images\fmpkucing.jpeg') }}" alt="{{ $pet->name }}"/>
                             
