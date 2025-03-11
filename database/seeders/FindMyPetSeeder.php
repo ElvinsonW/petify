@@ -22,7 +22,6 @@ class FindMyPetSeeder extends Seeder
         // Get some categories and users for seeding
         $categories = PetCategory::pluck('id')->toArray();
         $users = User::where('id', '!=', 1)->pluck('id')->toArray();
-        $imageUrl = 'https://i.pinimg.com/736x/30/13/f3/3013f3fd14bb182a26290f5594b299db.jpg';
         
         FindMyPet::create([
             "user_id" =>  $faker->randomElement($users),
@@ -31,30 +30,46 @@ class FindMyPetSeeder extends Seeder
             "last_seen" => "Di Komplek Daan Mogot 9",
             'last_seen' => $faker->city(),
             'date_lost' => $faker->date(),
-            "color" => "Putih",
+            "color" => "Coklat Tua",
             "pet_category_id" => 1,
             "color_tag" => "Yes",
-            "image" => $imageUrl,
+            "image" => "find-my-pet-image/jojo.png",
             "description" => "Jojo adalah anjing yang ramah dan jinak, tetapi bisa merasa cemas jika berada di lingkungan asing atau didekati secara tiba-tiba. Biasanya, ia merespons namanya dengan baik jika dipanggil dengan lembut.",
             "city" => "Jakarta",
             'gender' => "Male",
 
         ]);
-        for ($i = 0 ; $i < 10 ; $i++) {
-            FindMyPet::create([
-                'user_id' => $faker->randomElement($users), 
-                'name' => $faker->word(), 
-                'breed' => $faker->word(), 
-                'last_seen' => $faker->city(),
-                'date_lost' => $faker->date(), 
-                'color' => $faker->safeColorName(), 
-                'pet_category_id' => $faker->randomElement($categories), 
-                'color_tag' => $faker->randomElement(['Yes', 'No']), 
-                'image' => $imageUrl,
-                'description' => $faker->paragraph(),
-                'city' => $faker->city(), 
-                'gender' => $faker->randomElement(['Male', 'Female']),
-            ]);
-        }
+        FindMyPet::create([
+            "user_id" =>  $faker->randomElement($users),
+            "name" => "whiskey",
+            "breed" => "persia",
+            "last_seen" => "di gerbang rumah",
+            'last_seen' => $faker->city(),
+            'date_lost' => $faker->date(),
+            "color" => "Putih",
+            "pet_category_id" => 2,
+            "color_tag" => "Yes",
+            "image" => "find-my-pet-image/whiskey.png",
+            "description" => "Whiskey adalah kucing yang pendiam dan suka berdiri di kotak kotak kosong.",
+            "city" => "Jakarta",
+            'gender' => "Female",
+
+        ]);
+        FindMyPet::create([
+            "user_id" =>  $faker->randomElement($users),
+            "name" => "ocong",
+            "breed" => "Burung Kakak Tua",
+            "last_seen" => "Di Apartemen Seasons City lt 16",
+            'last_seen' => $faker->city(),
+            'date_lost' => $faker->date(),
+            "color" => "Putih",
+            "pet_category_id" => 4,
+            "color_tag" => "Yes",
+            "image" => "find-my-pet-image/ocong.png",
+            "description" => "Ocong adalah burung kakak tua yang galak dan suka mematuk orang lain. Dia juga suka bernyanyi lagu-lagu yang di nyanyikan oleh ownernya",
+            "city" => "Jakarta",
+            'gender' => "Male",
+
+        ]);
     }
 }
