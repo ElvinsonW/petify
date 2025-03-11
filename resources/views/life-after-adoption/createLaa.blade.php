@@ -2,7 +2,7 @@
     <div class="w-full mt-10 mb-32 bg-no-repeat bg-center bg-contain">
         <!-- Judul Page -->
         <div class="text-center">
-            <h2 class="text-6xl font-montserrat_alt font-bold text-greentua">Life After Adoption Post</h2>
+            <h2 class="text-6xl font-montserrat_alt font-bold text-greenpetify">Life After Adoption Post</h2>
         </div>
 
         <div class="mx-24 mt-16">
