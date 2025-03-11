@@ -1,9 +1,9 @@
 <div class="grid grid-cols-3 gap-6 overflow-y-auto scrollbar-thin max-h-[75vh] pb-[3vw] pr-[0.5vw] mb-[5vw]">
     @foreach ($posts as $post)  
-        <a href="/adoptions/{{ $post->slug }}">
+        <a href="/adoptions/{{ $post->adoption_post->slug }}" class="w-full">
             <div class="rounded-[0.5vw] shadow-xl p-[0.5vw] w-full h-full hover:bg-gray-100">
                 <!-- Gambar Pet -->
-                <img src="{{ asset('images/petadoptpic.svg') }}" alt="Pet Picture" class="object-cover w-[100%] h-[30vh] rounded-md">
+                <img src="{{ asset('storage/' . $post->adoption_post->pet->image_1) }}" alt="Pet Picture" class="object-cover w-[100%] h-[30vh] rounded-md">
                 
                 <!-- Category & Days -->
                 <div class="flex flex-row font-montserrat_alt font-semibold w-[100%]">

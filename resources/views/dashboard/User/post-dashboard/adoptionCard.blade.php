@@ -1,10 +1,10 @@
 <!-- card 1 -->
-<div class="flex md:flex-row items-start space-x-[1.5vw] bg-gray-50 hover-brightness rounded-[1.1vw]">
+<div class="flex md:flex-row items-start space-x-[1.5vw] bg-gray-50 hover-brightness rounded-[1.1vw] mb-[1vw]">
     <!-- photo of pet -->
     <img
         src="{{ $post->pet->image_1 ? asset('storage/' . $post->pet->image_1) : asset('images/articlepict.svg') }}"
         alt="Pet Image"
-        class="w-full md:w-[10vw] h-[10vw] rounded-[1.1vw] object-cover"
+        class="w-[10.5vw] h-[10.5vw] rounded-[1.1vw] object-cover"
     />
     <div class="flex flex-col justify-between flex-grow w-[80%]">
         <div class="flex flex-row w-full space-x-[0.7vw] items-start justify-between">
@@ -33,23 +33,23 @@
                 </span>
                 
                 <!-- Icons at the end -->
-                <div class="flex justify-center space-x-[0.5vw]">
+                <div class="flex justify-center space-x-[0.6vw]">
                     <!-- show -->
-                    <div class="bg-blue-200 p-[1vw] rounded-md flex items-center justify-center w-[2.2vw] h-[2.2vw] cursor-pointer">
+                    <div class="bg-blue-200 p-[1vw] rounded-md flex items-center justify-center w-[2vw] h-[2vw] cursor-pointer">
                         <a href="/adoptions/{{ $post->slug }}">
                             <i class="fa-solid fa-eye text-blue-500 text-[1.25vw]"></i>
                         </a>
                     </div>
                     @if (auth()->user()->id == $post->user_id)    
                         <!-- pen edit -->
-                        <div class="bg-yellow-300 p-[1vw] rounded-md flex items-center justify-center w-[2.2vw] h-[2.2vw]">
+                        <div class="bg-yellow-300 p-[1vw] rounded-md flex items-center justify-center w-[2vw] h-[2vw]">
                             <a href="/adoptions/{{ $post->slug }}/edit">
                                 <i class="fa-solid fa-pen-nib text-yellow-500 text-[1.25vw]"></i>
                             </a>
                         </div>
 
                         <!-- dusbin -->
-                        <div class="bg-red-300 p-[1vw] rounded-md flex items-center justify-center w-[2.2vw] h-[2.2vw]">
+                        <div class="bg-red-300 p-[1vw] rounded-md flex items-center justify-center w-[2vw] h-[2vw]">
                             <form action="{{ route('adoptions.destroy', $post->slug) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
                                 @csrf
                                 @method('DELETE')

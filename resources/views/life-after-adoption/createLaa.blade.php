@@ -2,7 +2,7 @@
     <div class="w-full mt-10 mb-32 bg-no-repeat bg-center bg-contain">
         <!-- Judul Page -->
         <div class="text-center">
-            <h2 class="text-6xl font-montserrat_alt font-bold text-greentua">Life After Adoption Post</h2>
+            <h2 class="text-6xl font-montserrat_alt font-bold text-greenpetify">Life After Adoption Post</h2>
         </div>
 
         <div class="mx-24 mt-16">
@@ -66,7 +66,7 @@
                 <div>
                     <label for="description" class="block mb-3 text-lg font-semibold w-fit">Description</label>
                     <input id="description" type="hidden" name="description" value="{{ old('description') }}">
-                    <textarea input="description" rows="10" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none"></textarea>
+                    <textarea name="description" rows="10" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none"></textarea>
                 
                     @error('description')
                         <p id="filled_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
@@ -74,12 +74,6 @@
                         </p>
                     @enderror
                 </div>
-                
-                <style>
-                    trix-toolbar {
-                        display: none !important; 
-                    }
-                </style>
                 
                 <button type="submit" class="mt-10 inline-flex items-center px-3 py-2.5 text-lg font-semibold font-overpass text-center text-white bg-orenmuda rounded-2xl shadow-lg transform hover:scale-95 hover:bg-orange-400 transition duration-300 ease-in-out">Create Post</button>
             </form>

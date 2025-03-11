@@ -176,9 +176,16 @@
             @if (auth()->user()->id == $user->id)    
                 <!-- Floating Button Adoption Post  -->
                 <div class=" hover:bg-orange-400 fixed bottom-[1.5vw] bg-or-dashboard text-white font-montserrat_alt text-[1.3vw] font-semibold tracking-wide px-[0.8vw] py-[0.4vw] rounded-[0.6vw] shadow-white shadow-lg flex items-center space-x-[0.5vw] cursor-pointer">
-                    <a href="{{ '/' . request('post') . 's/create' }}">
-                        <span>+ Create Post</span>
-                    </a>
+                    @if (request('post') == "adoption")
+                        <a href="{{ '/adoptions/create/before-create-1' }}">
+                            <span>+ Create Post</span>
+                        </a>
+
+                    @else
+                        <a href="{{ '/' . request('post') . 's/create' }}">
+                            <span>+ Create Post</span>
+                        </a>
+                    @endif
                 </div>
             @endif
         @endif

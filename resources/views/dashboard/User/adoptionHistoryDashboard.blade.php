@@ -20,7 +20,7 @@
             @foreach ($adoptions as $adoption)    
                 <a href="{{ '/dashboard' . '/' . $user->username . '/adoption-history' . '?name=' . $adoption->adoption_post->name }}" class="card-adopsi flex flex-col md:flex-row items-center gap-[1.2vw] mt-[1.5vw] p-3 transition-all duration-300 rounded-lg" id="{{ str_replace(' ', '-', $adoption->adoption_post->name) }}">
                     <!-- Pet Image -->
-                    <img class="w-[16vw] h-auto object-cover rounded-lg" src="{{ asset('storage/' . $adoption->adoption_post->pet->image_1 ) }}" alt="Missing Dog" />    
+                    <img class="w-[16vw] h-[16vw] object-cover rounded-lg" src="{{ asset('storage/' . $adoption->adoption_post->pet->image_1 ) }}" alt="Missing Dog" />    
                 
                     <!-- Pet Details -->
                     <div class="flex-1 text-black tracking-wide">
@@ -56,7 +56,7 @@
             @foreach ($lifeAfterAdoptions as $post)    
                 <a href="/life-after-adoption" id="{{ $post->name }}">
                     <div class="w-full h-full flex flex-col items-center">
-                        <div class="w-[10w] h-[10vw] relative">
+                        <div class="w-[8.2vw] h-[10vw] object-cover relative">
                             <img src="{{ asset('storage/' . $post->image ) }}" alt="Pet Post" class="w-full h-full object-cover">
                             <div class="w-full pb-[0.5vw] pl-[0.5vw] flex gap-[0.5vw] items-center mt-[-2.3vw]">
                                 <svg width="28" height="28" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">

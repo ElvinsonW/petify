@@ -3,7 +3,7 @@
     <div class="w-full mt-10 mb-32 bg-no-repeat bg-center bg-contain" style="background-image: url(../src/images/form-bg.png)">
         <!-- Judul Page -->
         <div class="text-center">
-            <h2 class="text-6xl font-montserrat_alt font-bold text-green">Missing Post</h2>
+            <h2 class="text-6xl font-montserrat_alt font-bold text-greenpetify">Missing Post</h2>
         </div>
 
         <!-- Container Pertanyaan -->  

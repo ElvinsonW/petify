@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="w-[100vw]">
+    <div class="w-full bg-white">
         <!-- Image -->
         <div class="w-full">
             @if($article->image)
@@ -10,18 +10,18 @@
         </div>
     
         <!-- Article Container -->
-        <div class="max-w-6xl mx-auto px-6 lg:px-0 mt-8 mb-36">
+        <div class="max-w-6xl mx-auto px-6 mt-8 mb-36">
             <div class="flex flex-col md:flex-row gap-6">
                 <!-- Sidebar: Writer Info -->
                 <div class="w-full md:w-1/4">
                     <!-- writer -->
-                    <p class="text-lg sm:text-xl lg:text-2xl font-bold mb-2 font-montserrat_alt text-greenpetify">Writer</p>
-                    <a class="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 font-overpass" href="/dashboard/{{ $article->user->username }}/posts?post=adoption">{{ $article->user->name }} - ({{ $article->user->username }})</a>
+                    <p class="text-2xl font-bold mb-[0.5vw] font-montserrat_alt text-greenpetify">Writer</p>
+                    <a class="text-3xl font-bold font-overpass" href="/dashboard/{{ $article->user->username }}/posts?post=adoption">{{ $article->user->name }} - ({{ $article->user->username }})</a>
                     <!-- date -->
-                    <p class="text-lg sm:text-xl lg:text-2xl font-bold mb-2 font-montserrat_alt text-greenpetify">Date</p>
-                    <p class="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 font-overpass">11 Jan 2024</p>
+                    <p class="text-2xl font-bold mb-[0.5vw] mt-[1vw] font-montserrat_alt text-greenpetify">Date</p>
+                    <p class="text-3xl font-bold mb-[1vw] font-overpass">11 Jan 2024</p>
                     <!-- media social -->
-                    <p class="text-lg sm:text-xl lg:text-2xl font-bold mb-2 font-montserrat_alt text-greenpetify">Media Social</p>
+                    <p class="text-2xl font-bold mb-[0.5vw] font-montserrat_alt text-greenpetify">Media Social</p>
                     <div class="flex flex-col sm:flex-col text-xl font-bold font-overpass">
                         <a href="#" class="hover:text-blue-700 transition flex items-center mb-3">
                             <i class="fa-brands fa-facebook mr-4 text-2xl sm:text-3xl"></i>Facebook
@@ -36,7 +36,7 @@
                 </div>
     
                 <!-- Content of article -->
-                <div class="w-full md:w-3/4 font-overpass tracking-tight text-justify">
+                <div class="w-3/4 font-overpass tracking-tight text-justify">
                     <!-- Title -->
                     <p class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
                         {{ $article->title }}

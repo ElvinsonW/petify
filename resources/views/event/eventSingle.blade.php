@@ -67,8 +67,9 @@
                 <!-- Days -->
                 <div class="w-3/5 space-y-[2.5vw] mr-[3vw]">
                     @foreach ($event->days as $day)
-                        <button onclick="showSessions('{{ \Carbon\Carbon::parse($day->date)->format('Y-m-d') }}')" 
-                            class="p-[1vw] rounded-[0.5vw] bg-gray-100 flex items-center hover:bg-gray-300 hover:text-white transition duration-500 w-full">
+                        <button id="day-{{ \Carbon\Carbon::parse($day->date)->format('Y-m-d') }}"
+                                onclick="showSessions('{{ \Carbon\Carbon::parse($day->date)->format('Y-m-d') }}')"
+                                class="p-[1vw] rounded-[0.5vw] bg-gray-100 flex items-center hover:bg-gray-300 hover:text-white transition duration-500 w-full day-button">
                             <img src="{{ asset('images/uim_calendar.svg') }}" alt="Calendar Icon" class="w-18 h-18 mr-[1vw]">
                             <div class="text-[1.2vw] md:text-[1.4vw] font-montserrat_alt font-semibold leading-snug flex flex-col items-start">
                                 <p class="text-gray-400 mr-[1vw]">Day {{ $loop->iteration }}</p>
@@ -150,5 +151,31 @@
             }
         });
 </script>  
+
+<script>
+    // Function to handle the click event on day buttons
+    function showSessions(date) {
+        // Select all day buttons and reset the styles
+        const dayButtons = document.querySelectorAll('.day-button');
+        dayButtons.forEach(button => {
+            button.classList.remove('bg-gray-300');  // Reset all buttons
+            button.classList.add('bg-abuevent');  // Reset to original color
+        });
+
+        // Add the 'selected' class to the clicked button (green background, white text)
+        const clickedButton = document.querySelector(`#day-${date}`);
+        clickedButton.classList.add('bg-gray-300');  // Set clicked button to green and white text
+
+        // Hide all sessions
+        const allSessions = document.querySelectorAll('.sessions');
+        allSessions.forEach(session => {
+            session.style.display = 'none'; // Hide all sessions
+        });
+
+        // Show the selected day's sessions
+        const selectedSessions = document.querySelector(`#sessions-${date}`);
+        selectedSessions.style.display = 'block'; // Show the selected day's sessions
+    }
+</script>
 
 </x-layout>

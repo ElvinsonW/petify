@@ -64,7 +64,17 @@
         <!-- Swiper Carousel -->
         <div class="swiper default-carousel swiper-container">
             <div class="swiper-wrapper">
-                @if ($adoption->pet->image_1)
+                @if ($adoption->image_1)
+                    @for ($i = 1 ; $i <= 3 ; $i++)
+                        @if($adoption->{'image_' . $i})
+                            <div class="swiper-slide">
+                                <div class="h-auto">
+                                    <img src="{{ asset('storage/' . $adoption->{'image_' . $i}) }}" alt="Pet Picture" class="w-full h-[50vw] rounded-b-4xl object-cover">
+                                </div>
+                            </div>
+                        @endif
+                    @endfor
+                @elseif ($adoption->pet->image_1)
                     @for ($i = 1 ; $i <= 3 ; $i++)
                         @if($adoption->pet->{'image_' . $i})
                             <div class="swiper-slide">

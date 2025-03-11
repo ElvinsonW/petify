@@ -40,38 +40,6 @@ class AdoptionRequestController extends Controller
         return view('adoption-request.createAdoptionRequest', ["slug" => $slug]);
     }
 
-    // Store a newly created adoption request in the database
-    public function store(Request $request, string $slug)
-    {
-        // Validasi inputan
-        $request->validate([
-            'description1' => 'required|string',
-            'description2' => 'required|string',
-            'description3' => 'required|string',
-            'description4' => 'required|string',
-            'description5' => 'required|string',
-        ]);
-
-        // Pastikan pengguna sudah login
-        if (!auth()->check()) {
-            return redirect()->route('login')->with('error', 'Please log in to submit the form.');
-        }
-
-        // Menyimpan data dengan menggunakan Mass Assignment
-        AdoptionRequest::create([
-            'user_id' => auth()->user()->id,
-            'post_id' => $slug,
-            'Q1' => $request->description1,
-            'Q2' => $request->description2,
-            'Q3' => $request->description3,
-            'Q4' => $request->description4,
-            'Q5' => $request->description5,
-        ]);
-
-        // Redirect ke halaman index dengan pesan sukses
-        return redirect()->route('adoption-request.index')->with('success', 'Adoption request created successfully!');
-    }
-
     public function show(string $username, string $id){
         $user = User::where('username',$username)->firstOrFail();
         $request = AdoptionRequest::find($id);
