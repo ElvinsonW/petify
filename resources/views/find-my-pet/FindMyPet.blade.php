@@ -173,7 +173,8 @@
                 @foreach ($pets as $pet)
                     <div class="bg-white shadow-lg rounded-[0.75vw] p-[2.5vw] relative">
                         <div class="flex flex-col md:flex-row gap-[1.5vw]">
-                            <img class="w-[27vw] h-[17vw] rounded-[0.6vw] object-cover" src="{{ asset('storage/' . $pet->image) }}" alt="{{ $pet->name }}"/>
+                            <img class="w-[27vw] h-[17vw] rounded-[0.6vw] object-cover" src="{{ $pet->image ? asset('storage/' . $pet->image) : asset('public\images\fmpkucing.jpeg') }}" alt="{{ $pet->name }}"/>
+                            
 
                             <div class="flex-1 pt-[0.5vw]">
                                 <span class="bg-{{$pet->pet_category->color}} text-white text-[1vw] font-semibold font-montserrat_alt px-[1vw] py-[0.5vw] rounded-[0.8vw] ">{{ ucfirst($pet->pet_category->name) }}</span>

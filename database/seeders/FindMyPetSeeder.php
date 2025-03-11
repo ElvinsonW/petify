@@ -22,6 +22,7 @@ class FindMyPetSeeder extends Seeder
         // Get some categories and users for seeding
         $categories = PetCategory::pluck('id')->toArray();
         $users = User::where('id', '!=', 1)->pluck('id')->toArray();
+        $imageUrl = 'https://i.pinimg.com/736x/30/13/f3/3013f3fd14bb182a26290f5594b299db.jpg';
         
         FindMyPet::create([
             "user_id" =>  $faker->randomElement($users),
@@ -33,7 +34,7 @@ class FindMyPetSeeder extends Seeder
             "color" => "Putih",
             "pet_category_id" => 1,
             "color_tag" => "Yes",
-            "image" => "find-my-pet-image/jojo.png",
+            "image" => $imageUrl,
             "description" => "Jojo adalah anjing yang ramah dan jinak, tetapi bisa merasa cemas jika berada di lingkungan asing atau didekati secara tiba-tiba. Biasanya, ia merespons namanya dengan baik jika dipanggil dengan lembut.",
             "city" => "Jakarta",
             'gender' => "Male",
@@ -49,7 +50,7 @@ class FindMyPetSeeder extends Seeder
                 'color' => $faker->safeColorName(), 
                 'pet_category_id' => $faker->randomElement($categories), 
                 'color_tag' => $faker->randomElement(['Yes', 'No']), 
-                'image' => $faker->imageUrl(640, 480, 'animals'),
+                'image' => $imageUrl,
                 'description' => $faker->paragraph(),
                 'city' => $faker->city(), 
                 'gender' => $faker->randomElement(['Male', 'Female']),
