@@ -24,7 +24,7 @@
             <a href='{{ auth()->user()->role == "User" ?  "/dashboard" . "/" . auth()->user()->username . "/posts?post=adoption" : "/dashboard" . "/adoption-post-requests"}}' class="lg:flex hidden items-center justify-center space-x-3 font-semibold">
                 <p class="text-greenpetify text-center">{{ auth()->user()->username }}</p>
                 <div class="w-12 h-12 bg-white border-4 border-greentua rounded-full flex justify-center items-center">
-                    <img src="{{ asset('storage/' . auth()->user()->image) ?? asset('images/after login.svg') }}" alt="After Login logo" class="rounded-full w-10 h-10">
+                    <img src="{{ asset('storage/' . auth()->user()->image) ?? asset('images/after login.svg') }}" alt="After Login logo" class="rounded-full w-10 h-10 object-cover">
                 </div>
             </a>
         @else
@@ -32,7 +32,7 @@
             <!-- Login/signin -->
             <div class="lg:flex hidden gap-6">
                 <a href="/login" class="px-4 py-4rem text-white bg-greenpetify rounded-2xl border border-greentua shadow-lg transform hover:scale-95 hover:bg-greentua transition duration-300 ease-in-out"><button class="w-full h-full">Login</button></a>
-                <a href="/register" class="px-4 py-4rem text-white bg-greenpetify rounded-2xl border border-greentua shadow-lg transform hover:scale-95 hover:bg-greentua transition duration-300 ease-in-out"><button class="w-full h-full">Sign In</button></a>
+                <a href="/register" class="px-4 py-4rem text-white bg-greenpetify rounded-2xl border border-greentua shadow-lg transform hover:scale-95 hover:bg-greentua transition duration-300 ease-in-out"><button class="w-full h-full">Sign Up</button></a>
             </div>
         @endauth
             

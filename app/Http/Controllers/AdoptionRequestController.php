@@ -45,15 +45,16 @@ class AdoptionRequestController extends Controller
         $request = AdoptionRequest::find($id);
         $currUser = auth()->user()->id;
 
-        if($user->id != $currUser || $currUser != $request->adoption_post->user_id){
-            return redirect('/dashboard' . '/' . $username . '/adoption-requests?request=other-request')->with('requestError','Only The Owner Can Access!');
-        }
-
+        
         if(!$request){
             return redirect('/dashboard' . '/' . $username . '/adoption-requests')->with('requestError','Adoption Request Not Found!');
         }
 
-        return view('dashboard.User.showAdoptionRequest',["request" => $request, "user" => $user]);
+        if($currUser == $request->adoption_post->user_id || $currUser == $request->user_id){
+            return view('dashboard.User.showAdoptionRequest',["request" => $request, "user" => $user]);
+        }
+        return redirect('/dashboard' . '/' . $username . '/adoption-requests?request=other-request')->with('requestError','Only The Owner Can Access!');
+
     }
 
     // Show the form for editing the specified adoption request

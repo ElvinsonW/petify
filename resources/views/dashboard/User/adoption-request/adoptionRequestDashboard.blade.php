@@ -86,12 +86,13 @@
             <div class="bg-white p-[2vw] rounded-lg shadow-lg flex-1 flex flex-col overflow-hidden">
                 <!-- Table Header -->
                 <div class="grid font-bold text-[1.2vw] border-b pb-[1vw] font-overpass text-gray-500"
-                    style="grid-template-columns: 15% 20% 15% 10% 20% 15%;">
+                    style="grid-template-columns: 15% 15% 15% 12% 15% 12% 16%;">
                     <p>Requested By</p>
                     <p>Pet Name</p>
                     <p>Pet Category</p>
                     <p>Trust Point</p>
                     <p>Contact</p>
+                    <p>Status</p>
                     <p>Action</p>
                 </div>
 
@@ -99,7 +100,7 @@
                 <div class="divide-y divide-gray-300 overflow-y-auto overflow-x-clip scroll-m-0 flex-1">
                     @foreach ($requests[request('request')] as $request)
                         <div class="grid py-[0.5vw] items-center text-[1.2vw] font-bold font-overpass text-black"
-                            style="grid-template-columns: 15% 20% 15% 10% 20% 15%;">
+                            style="grid-template-columns: 15% 15% 15% 12% 15% 12% 15%;">
                             <p>{{ $request->user->username }}</p>
                             <p>{{ $request->adoption_post->name }}</p>
                             <span class="bg-{{ $request->adoption_post->pet->pet_category->color }} text-white text-[1vw] font-semibold font-montserrat_alt px-[1vw] py-[0.5vw] rounded-xl w-fit text-center">
@@ -107,30 +108,28 @@
                             </span>
                             <p>{{ $request->user->point }}</p>
                             <p>{{ $request->user->phone_number }}</p>
-                            <div class="flex space-x-[0.5vw]">
-                                @if ($request->approval_status == "Pending")   
-                                    @if (request('request') == "other-request")    
-                                        <button class="bg-blue-200 p-[1vw] rounded-md flex items-center justify-center w-[2.5vw] h-[2.5vw]">
-                                            <a href="/dashboard/{{ $user->username }}/adoption-requests/{{ $request->id }}/show" class="flex items-center justify-center">
-                                                <i class="fa-solid fa-eye text-blue-500 text-[1.2vw]"></i>
-                                            </a>
-                                        </button>
-                                        <button class="bg-greenabout p-[1vw] rounded-md flex items-center justify-center w-[2.5vw] h-[2.5vw]">
-                                            <a href="/adoptions/{{ $request->adoption_post->slug }}/adoption-request/{{ $request->id }}/accept" class="flex items-center justify-center">
-                                                <i class="fa-solid fa-check text-greentipis text-[1.2vw]"></i>
-                                            </a>
-                                        </button>
-                                        <button class="bg-red-200 p-[1vw] rounded-md flex items-center justify-center w-[2.5vw] h-[2.5vw]">
-                                            <a href="/adoptions/{{ $request->adoption_post->slug }}/adoption-request/{{ $request->id }}/reject" class="flex items-center justify-center">
-                                                <i class="fa-solid fa-xmark text-red-600 text-[1.2vw]"></i>
-                                            </a>
-                                        </button>
-                                    
-                                    @else
-                                        <p>{{ $request->approval_status }}</p>
-                                    @endif 
-                                @else
-                                    <p class="{{ $request->approval_status === "Accepted" ? 'text-green-500' : 'text-red-500' }}">{{ $request->approval_status }}</p>
+                            @if ($request->approval_status == "Pending")   
+                                <p>{{ $request->approval_status }}</p>
+                            @else
+                                <p class="{{ $request->approval_status === "Accepted" ? 'text-green-500' : 'text-red-500' }}">{{ $request->approval_status }}</p>
+                            @endif
+                            <div class="flex gap-[0.5vw]">
+                                <button class="bg-blue-200 p-[1vw] rounded-md flex items-center justify-center w-[2.5vw] h-[2.5vw]">
+                                    <a href="/dashboard/{{ $user->username }}/adoption-requests/{{ $request->id }}/show" class="flex items-center justify-center">
+                                        <i class="fa-solid fa-eye text-blue-500 text-[1.2vw]"></i>
+                                    </a>
+                                </button>
+                                @if ($request->approval_status == "Pending" && request('request') == "other-request")    
+                                    <button class="bg-greenabout p-[1vw] rounded-md flex items-center justify-center w-[2.5vw] h-[2.5vw]">
+                                        <a href="/adoptions/{{ $request->adoption_post->slug }}/adoption-request/{{ $request->id }}/accept" class="flex items-center justify-center">
+                                            <i class="fa-solid fa-check text-greentipis text-[1.2vw]"></i>
+                                        </a>
+                                    </button>
+                                    <button class="bg-red-200 p-[1vw] rounded-md flex items-center justify-center w-[2.5vw] h-[2.5vw]">
+                                        <a href="/adoptions/{{ $request->adoption_post->slug }}/adoption-request/{{ $request->id }}/reject" class="flex items-center justify-center">
+                                            <i class="fa-solid fa-xmark text-red-600 text-[1.2vw]"></i>
+                                        </a>
+                                    </button>
                                 @endif
                             </div>
                         </div>
