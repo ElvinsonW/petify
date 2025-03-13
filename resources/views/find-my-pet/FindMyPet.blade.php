@@ -192,7 +192,7 @@
                         </div>
 
                         <div class="mt-[1.2vw] font-open_sans text-justify text-sm text-black tracking-wide leading-snug">
-                            <p>{{ ucfirst($pet->description) }}</p>
+                            <p class="break-words">{{ ucfirst($pet->description) }}</p>
                         </div>
 
                         <div class="mt-[1.2vw] flex items-center">

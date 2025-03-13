@@ -55,18 +55,25 @@
                     <!-- Gender -->
                     <div>
                         <label for="gender" class="block mb-2 text-lg font-semibold">Gender</label>
-                        <select id="gender" name="gender" class="border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" required>
-                            <option value="" disabled selected hidden>Select gender...</option>
-                            <option value="Male" @if(old('gender') == 'Male') selected @endif>Male</option>
-                            <option value="Female" @if(old('gender') == 'Female') selected @endif>Female</option>
-                        </select>
+                        <div class="relative">
+                            <select id="gender" name="gender" class="appearance-none border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none" required>
+                                <option value="" disabled selected hidden>Select gender...</option>
+                                <option value="Male" @if(old('gender') == 'Male') selected @endif>Male</option>
+                                <option value="Female" @if(old('gender') == 'Female') selected @endif>Female</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Pet Category -->
                     <div>
                         <label for="pet_category_id" class="block mb-2 text-lg font-semibold">Pet Category</label>
                         <div class="relative">
-                            <select id="pet_category_id" name="pet_category_id" class="category appearance-none border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none pr-10 text-gray-400" required>
+                            <select id="pet_category_id" name="pet_category_id" class="category appearance-none border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none pr-10 text-black" required>
                                 <option value="" disabled selected hidden>Select a category...</option>
                                 @foreach ($categories as $category)
                                     @if (old('pet_category_id') == $category->id)
@@ -77,7 +84,7 @@
                                 @endforeach
                             </select>
                             <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                                <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                 </svg>
                             </div>
@@ -88,7 +95,7 @@
                     <div>
                         <label for="color_tag" class="block mb-2 text-lg font-semibold">Color & Tag</label>
                         <div class="relative">
-                            <select id="color_tag" name="color_tag" class="category appearance-none border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none pr-10 text-gray-400" required>
+                            <select id="color_tag" name="color_tag" class="category appearance-none border border-black text-sm rounded-lg block w-full p-2.5 focus:outline-none pr-10 text-black" required>
                                 <option value="" disabled selected hidden>Select color & tag...</option>
                                 @if (old('color_tag') == "yes")
                                     <option value="yes" class="text-black" selected>Yes</option>
@@ -103,7 +110,7 @@
                                 @endif
                             </select>
                             <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                                <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                 </svg>
                             </div>
