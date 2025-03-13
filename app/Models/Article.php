@@ -27,17 +27,19 @@ class Article extends Model
         $query->when(
             $filter['search'] ?? false,
             fn($query, $search) =>
-            $query->where('title','like','%' . $search . '%')
-                  ->orWhere('content','like','%' . $search . '%')
+                $query->where(function ($query) use ($search) {
+                    $query->where('title', 'like', '%' . $search . '%')
+                        ->orWhere('content', 'like', '%' . $search . '%');
+                })
         );
-
+        
         $query->when(
             $filter['category'] ?? false,
             fn ($query, $category) =>
             $query->whereHas(
                 'article_category',
-                fn($query) => 
-                $query->where('slug',$category)
+                fn($categoryQuery) => 
+                    $categoryQuery->where('slug',$category)
             )
         );
     }
