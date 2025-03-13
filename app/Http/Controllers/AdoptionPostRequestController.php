@@ -87,6 +87,8 @@ class AdoptionPostRequestController extends Controller
                 ];
                 
                 AdoptionPost::create($postData);
+
+                $request->user->addPoint(20);
             } else {
                 for($i = 1 ; $i <= 3 ; $i++){
                     $property = 'image_' . $i;

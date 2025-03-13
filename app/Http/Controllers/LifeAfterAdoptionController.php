@@ -89,7 +89,7 @@ class LifeAfterAdoptionController extends Controller
         // Simpan Post ke dalam Database
         $laaPost = LifeAfterAdoption::create($validatedData);
 
-        $laaPost->user->addPoint(15);
+        $laaPost->user->addPoint(20);
 
         // Direct user ke halaman Life After Adoption dan kirim pesan berhasil
         return redirect('life-after-adoption')->with('createSuccess', "Life After Adoption Post Successfully Created");

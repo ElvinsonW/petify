@@ -89,6 +89,7 @@ class AdoptionRequestController extends Controller
             if ($isAccepted) {
                 // Update status post
                 $request->adoption_post->update(["status" => 1]);
+                $request->user->addPoint(20);
         
                 // Update pemilik hewan peliharaan
                 $request->adoption_post->pet->update(["user_id" => $request->user_id]);
