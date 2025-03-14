@@ -214,7 +214,7 @@
                 <hr class="border-black border-1/2 w-64">
                 <div class="flex flex-row mt-4">
                     <div class="w-24 h-24 bg-white border-4 border-greentua rounded-full flex justify-center items-center">
-                        <img src="{{ asset('storage/' . $adoption->user->image) ?? asset('images/after login.svg') }}" alt="Dodoidoy Profile" class="w-[6vw] h-[6vw] rounded-full">
+                        <img src="{{ asset('storage/' . $adoption->user->image) ?? asset('images/after login.svg') }}" alt="Dodoidoy Profile" class="w-[6vw] h-[6vw] rounded-full object-cover">
                     </div>
                     
                     <div class="flex flex-col mt-4 ml-4">

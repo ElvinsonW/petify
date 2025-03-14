@@ -53,9 +53,11 @@ class FindMyPet extends Model
         $query->when(
             $filters["search"] ?? false, 
             fn($query, $search) =>
-                $query->where('name', 'like', '%' . $search . '%')
+                $query->where(function ($query) use ($search) {
+                    $query->where('name', 'like', '%' . $search . '%')
                     ->orWhere('breed', 'like', '%' . $search . '%')
-                    ->orWhere('description', 'like', '%' . $search . '%')
+                    ->orWhere('description', 'like', '%' . $search . '%');
+                })
         );
 
         $query->when(

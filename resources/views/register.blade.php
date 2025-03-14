@@ -26,7 +26,7 @@
             <!-- Bagian Kiri -->
             <div class="lg:w-3/5 flex-1 flex bg-cover bg-center" style="background-image: url('{{ asset('images/login-register.svg') }} ');">
                 <div class="text-center text-white p-8 flex flex-col justify-end">
-                    <a href="../pages/index.html" class="absolute top-4">
+                    <a href="/" class="absolute top-4">
                         <img src="{{ asset('images/Logo-White.svg') }}" alt="Petify Logo" class="w-40 mb-auto">
                     </a>
                     <div class="font-open_sans flex items-center space-x-2">
