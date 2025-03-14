@@ -95,8 +95,6 @@ class AdoptionPostController extends Controller
                 $idx++;
             }
         }
-        dd($request->all());
-        dd($validatedData);
         
         // Memasukkan Adoption Post ke Database
         AdoptionPostRequest::create($validatedData);
