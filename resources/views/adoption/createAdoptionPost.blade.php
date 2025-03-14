@@ -243,7 +243,7 @@
                 <!-- Requirement Criteria -->
                 <div class="mb-6">
                     <label for="requirement" class="block mb-2 text-lg font-semibold">Add Requirement Criteria (Optional)</label>
-                    <input id="requirement" type="hidden" name="requirement" value="{{ old('content') }}">
+                    <input id="requirement" type="hidden" name="requirement" value="{{ old('requirement') }}">
                     <trix-editor input="requirement" class="h-[250px] overflow-auto scrollbar-thin"></trix-editor>
     
                     @error('requirement')
@@ -365,7 +365,12 @@
     });
 
     document.addEventListener("trix-change", function(event) {
-        document.querySelector("#description").value = event.target.innerHTML;
+        const targetEditor = event.target;
+        const inputId = targetEditor.getAttribute("input"); // Ambil atribut input
+        const inputElement = document.querySelector(`#${inputId}`);
+        if (inputElement) {
+            inputElement.value = targetEditor.editor.getDocument().toString(); // Ambil teks dari editor
+        }
     });
 
 

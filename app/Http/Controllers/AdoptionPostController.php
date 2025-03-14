@@ -71,7 +71,7 @@ class AdoptionPostController extends Controller
             'vaccinated' => ['required'],
             'weight' => ['required','numeric', 'min:0.01'],
             'description' => ['required', 'max:255'],
-            'requirement',
+            'requirement' => ['nullable'],
         ]);
 
         $request->validate([
@@ -95,6 +95,8 @@ class AdoptionPostController extends Controller
                 $idx++;
             }
         }
+        dd($request->all());
+        dd($validatedData);
         
         // Memasukkan Adoption Post ke Database
         AdoptionPostRequest::create($validatedData);
