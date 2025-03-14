@@ -369,7 +369,7 @@
         const inputId = targetEditor.getAttribute("input"); // Ambil atribut input
         const inputElement = document.querySelector(`#${inputId}`);
         if (inputElement) {
-            inputElement.value = targetEditor.editor.getDocument().toString(); // Ambil teks dari editor
+            inputElement.value = targetEditor.editor.getHTML() // Ambil teks dari editor
         }
     });
 
